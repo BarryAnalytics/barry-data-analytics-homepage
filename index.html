@@ -2,27 +2,19 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Barry Data & Analytics</title>
+<title>Barry Data & Analytics – Data Analytics Consultant</title>
 
-<meta name="description" content="Barry Data & Analytics – KPI Dashboards, automatisiertes Reporting und Datenanalyse für Unternehmen.">
-<meta name="keywords" content="Data Analytics, KPI Dashboard, Reporting, Power BI, Excel, Forecasting">
+<meta name="description" content="Dashboard, Reporting Automatisierung und Datenanalyse für Unternehmen. Klare Daten. Klare Entscheidungen.">
 
 <style>
-:root{
---bg:#0A1A2F;
---card:#1B2228;
---accent:#00C2C7;
---orange:#E67E22;
---text:#fff;
-}
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:var(--bg);
-color:var(--text);
+font-family:Arial;
+background:#0A1A2F;
+color:white;
 scroll-behavior:smooth;
 }
 
@@ -30,42 +22,30 @@ scroll-behavior:smooth;
 nav{
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:15px 30px;
-border-bottom:1px solid var(--accent);
+background:#0A1A2F;
+border-bottom:2px solid #00C2C7;
 position:sticky;
 top:0;
-background:var(--bg);
 z-index:1000;
 }
 
 nav a{
 color:white;
-margin-right:15px;
+margin:0 10px;
 text-decoration:none;
 font-size:14px;
-}
-
-.lang button{
-background:transparent;
-border:1px solid var(--accent);
-color:white;
-padding:5px 10px;
-border-radius:6px;
-cursor:pointer;
-margin-left:5px;
 }
 
 /* HERO */
 .hero{
 text-align:center;
-padding:70px 20px 40px;
+padding:80px 20px 40px;
 }
 
 .hero h1{
 font-size:42px;
 margin:10px 0;
-font-weight:900;
 }
 
 .hero p{
@@ -73,87 +53,107 @@ font-size:18px;
 opacity:0.9;
 }
 
+.cta{
+margin-top:20px;
+}
+
+.cta button{
+background:#E67E22;
+border:none;
+padding:14px 22px;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.cta button:hover{
+transform:scale(1.05);
+box-shadow:0 10px 25px rgba(230,126,34,0.4);
+}
+
 /* SLIDER */
 .slider{
-display:flex;
 overflow:hidden;
 max-width:1000px;
 margin:40px auto;
 border-radius:12px;
-border:2px solid var(--accent);
 }
 
-.slide{
-min-width:100%;
-padding:40px;
-text-align:center;
-background:var(--card);
+.slides{
+display:flex;
 animation:slide 15s infinite;
 }
 
+.slides img{
+width:100%;
+}
+
 @keyframes slide{
-0%{transform:translateX(0)}
-33%{transform:translateX(-100%)}
-66%{transform:translateX(-200%)}
-100%{transform:translateX(0)}
+0%{transform:translateX(0);}
+33%{transform:translateX(-100%);}
+66%{transform:translateX(-200%);}
+100%{transform:translateX(0);}
 }
 
 /* GRID */
-.section{
-max-width:1200px;
-margin:80px auto;
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+max-width:1100px;
+margin:60px auto;
 padding:0 20px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+.card{
+background:#1B2228;
+padding:18px;
+border-radius:10px;
+transition:0.3s;
+opacity:0;
+transform:translateY(40px);
 }
 
-.card{
-background:var(--card);
-padding:25px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.05);
-transition:0.3s;
+.card.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .card:hover{
-border-color:var(--accent);
+border:1px solid #00C2C7;
 transform:translateY(-5px);
 }
 
 /* FORM */
-form{
-display:grid;
-gap:15px;
+.form{
+max-width:800px;
+margin:60px auto;
+background:#1B2228;
+padding:25px;
+border-radius:12px;
 }
 
 input, textarea, select{
-padding:12px;
-border-radius:8px;
+width:100%;
+padding:10px;
+margin-top:10px;
+margin-bottom:15px;
+background:#0A1A2F;
 border:1px solid #333;
-background:#0d1624;
 color:white;
 }
 
 button{
-background:var(--orange);
+background:#E67E22;
+padding:12px;
 border:none;
-padding:15px;
-border-radius:30px;
 color:white;
-font-weight:bold;
+width:100%;
 cursor:pointer;
 }
 
-/* FOOTER */
-footer{
-text-align:center;
-padding:40px;
-opacity:0.6;
-}
 </style>
 </head>
 
@@ -161,9 +161,103 @@ opacity:0.6;
 
 <nav>
 <div><strong>Barry Data & Analytics</strong></div>
-
 <div>
-<a href="#home">Start</a>
-<a href="#about">Über mich</a>
+<a href="#">Start</a>
 <a href="#cases">Anwendungsfälle</a>
-<a href="#form
+<a href="#form">Projektanfrage</a>
+<a href="#kontakt">Kontakt</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<p>Herzlich willkommen bei Barry Data & Analytics</p>
+<h1>Klare Daten & klare Entscheidungen</h1>
+<p>Aus Daten werden Ergebnisse</p>
+
+<div class="cta">
+<button>Projekt starten</button>
+</div>
+</section>
+
+<!-- SLIDER -->
+<div class="slider">
+<div class="slides">
+<img src="dashboard1.png">
+<img src="dashboard2.png">
+<img src="dashboard3.png">
+</div>
+</div>
+
+<!-- CASES -->
+<section id="cases" class="grid">
+
+<div class="card"><h3>KPI Dashboard</h3><p>Klare Übersicht aller wichtigen Kennzahlen – in Echtzeit.</p></div>
+
+<div class="card"><h3>Forecast</h3><p>Planungssicherheit durch datenbasierte Prognosen.</p></div>
+
+<div class="card"><h3>Logistik</h3><p>Transparente Lieferketten und optimierte Prozesse.</p></div>
+
+<div class="card"><h3>Marketing</h3><p>Erkennen, welche Kampagnen wirklich Umsatz bringen.</p></div>
+
+<div class="card"><h3>Automatisierung</h3><p>Reports aktualisieren sich automatisch – ohne Aufwand.</p></div>
+
+<div class="card"><h3>Datenqualität</h3><p>Saubere, verlässliche Daten für alle Teams.</p></div>
+
+<div class="card"><h3>Callcenter</h3><p>Analyse von Anrufen, Wartezeiten und Servicelevel.</p></div>
+
+<div class="card"><h3>Operations</h3><p>Optimierung von Prozessen und Durchlaufzeiten.</p></div>
+
+<div class="card"><h3>E-Commerce</h3><p>Conversion steigern und Abbrüche reduzieren.</p></div>
+
+</section>
+
+<!-- FORM -->
+<section id="form" class="form">
+
+<h2>Projektanfrage</h2>
+
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="E-Mail" required>
+
+<select>
+<option>Dashboard Erstellung</option>
+<option>Reporting Automatisierung</option>
+<option>Datenanalyse</option>
+<option>KPI Entwicklung</option>
+<option>Datenbereinigung</option>
+<option>Prozessoptimierung</option>
+<option>Sonstiges</option>
+</select>
+
+<textarea placeholder="Projektbeschreibung"></textarea>
+
+<button>Projektanfrage senden</button>
+
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" style="text-align:center; padding:40px;">
+<p>Ahmed Barry – Barry Data & Analytics</p>
+<p>Bochum | Remote</p>
+<p>barry.analytics@outlook.de</p>
+</section>
+
+<script>
+
+/* SCROLL ANIMATION */
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+cards.forEach(card => {
+const pos = card.getBoundingClientRect().top;
+if(pos < window.innerHeight - 50){
+card.classList.add('show');
+}
+});
+});
+
+</script>
+
+</body>
+</html>
