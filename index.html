@@ -3,248 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barry Data & Analytics | Future of Intelligence 2026</title>
-    
-    <!-- SEO & Metadaten -->
-    <meta name="description" content="Barry Data & Analytics – KPI Dashboards, Reporting-Automatisierung und Performance-Optimierung.">
-    
-    <!-- Google Fonts -->
+    <title>Barry Data & Analytics – Dashboards, Reporting & Datenanalyse</title>
+
+    <!-- DEINE SEO METADATEN -->
+    <meta name="description" content="Barry Data & Analytics – KPI Dashboards, Reporting-Automatisierung, Datenanalyse und Performance-Optimierung für Unternehmen. Klare Daten. Klare Entscheidungen.">
+    <meta name="keywords" content="Dashboard, KPI, Reporting, Datenanalyse, Automatisierung, Forecasting, Datenqualität, Business Intelligence">
+    <meta name="author" content="Ahmed Barry">
+
     <link href="https://googleapis.com" rel="stylesheet">
-    
-    <!-- Chart.js für interaktive Grafiken (Direkt eingebunden für 2026 Look) -->
     <script src="https://jsdelivr.net"></script>
 
     <style>
         :root {
             --primary: #4de2e8;
-            --primary-glow: rgba(77, 226, 232, 0.4);
-            --bg-dark: #070b14;
-            --bg-glass: rgba(20, 30, 50, 0.6);
-            --text-light: #f1f5f9;
-            --accent-gradient: linear-gradient(135deg, #4de2e8 0%, #2563eb 100%);
+            --bg-dark: #0e141f;
+            --bg-glass: rgba(20, 28, 45, 0.6);
+            --text-light: #d7dff0;
+            --text-soft: #c5ccdd;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-dark); color: var(--text-light); font-family: "Inter", sans-serif; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* Video Hintergrund Platzhalter */
+        .video-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(14, 20, 31, 0.8), rgba(14, 20, 31, 0.9));
+            z-index: -1;
         }
 
-        /* Hintergrund-Animation (Statt Video-File als Fallback) */
-        .animated-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #070b14 100%);
-        }
-
-        /* Navigation */
         nav {
-            position: fixed; top: 0; width: 100%;
-            padding: 1.2rem 8%;
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
             display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(20px);
-            background: rgba(7, 11, 20, 0.7);
-            border-bottom: 1px solid rgba(77, 226, 232, 0.15);
-            z-index: 100;
+            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(77, 226, 232, 0.2); z-index: 100;
         }
 
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
-
-        /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 0 10%;
-            background: radial-gradient(circle at 85% 15%, rgba(77, 226, 232, 0.12), transparent 40%);
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%;
+            max-width: 1200px; margin: 0 auto;
         }
 
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            line-height: 1.1;
-            margin-bottom: 1.2rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Bento Grid System */
-        .container { padding: 5rem 10%; }
+        h1 { font-family: 'Space Grotesk'; font-size: 3.5rem; margin-bottom: 1rem; color: var(--primary); }
         
         .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            max-width: 1200px; margin: 50px auto; padding: 0 20px;
         }
 
         .bento-item {
-            background: var(--bg-glass);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            padding: 2rem;
-            backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-glass); border: 1px solid rgba(77, 226, 232, 0.3);
+            padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);
         }
 
-        .bento-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
-
-        /* Platzhalter & Medien */
-        .media-box {
-            width: 100%;
-            background: rgba(0,0,0,0.3);
-            border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px dashed rgba(77, 226, 232, 0.3);
-            margin-bottom: 1.5rem;
-            position: relative;
-            min-height: 150px;
-        }
-
-        .video-placeholder-overlay {
-            position: absolute;
-            color: var(--primary);
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Grid Logic */
         .span-2 { grid-column: span 2; }
-        .row-2 { grid-row: span 2; }
 
-        /* Buttons */
+        .media-placeholder {
+            width: 100%; height: 180px; background: rgba(255,255,255,0.05);
+            border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center;
+            border: 1px dashed var(--primary); color: var(--primary);
+        }
+
         .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: 0.3s;
-            cursor: pointer;
-            border: none;
+            padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600;
+            background: var(--primary); color: #000; display: inline-block; transition: 0.3s;
         }
 
-        .btn-primary { background: var(--primary); color: #000; }
-        .btn-primary:hover { box-shadow: 0 0 25px var(--primary-glow); transform: scale(1.03); }
-
-        /* Chart Canvas */
-        #myChart { max-width: 100%; height: 200px !important; }
-
-        footer { text-align: center; padding: 3rem; opacity: 0.5; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        @media (max-width: 1000px) {
-            .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            .span-2, .row-2 { grid-column: span 2; }
-        }
-        @media (max-width: 600px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-2 { grid-column: span 1; }
-        }
+        footer { text-align: center; padding: 40px; color: var(--text-soft); border-top: 1px solid rgba(77,226,232,0.1); }
     </style>
 </head>
 <body>
 
-    <div class="animated-bg"></div>
+    <div class="video-overlay"></div>
 
     <nav>
-        <div class="logo">BARRY.ANALYTICS</div>
-        <div class="nav-links">
-            <a href="#" class="btn btn-primary">Kontakt</a>
-        </div>
+        <div style="font-weight: 700; font-family: 'Space Grotesk';">BARRY DATA & ANALYTICS</div>
+        <a href="mailto:deinemail@domain.de" class="btn">Kontakt aufnehmen</a>
     </nav>
 
     <header class="hero">
-        <p style="color: var(--primary); font-weight: 600; letter-spacing: 2px; margin-bottom: 0.5rem;">[ DATA ARCHITECT 2026 ]</p>
-        <h1>Präzise Analysen. <br> Intelligente Dashboards.</h1>
-        <p style="max-width: 550px; color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem;">
-            Ich verwandle komplexe Rohdaten in klare visuelle Strategien. Automatisierung trifft auf High-End Design.
+        <p style="letter-spacing: 2px; color: var(--text-soft);">AHMED BARRY</p>
+        <h1>Klare Daten. <br> Klare Entscheidungen.</h1>
+        <p style="max-width: 600px; font-size: 1.2rem; color: var(--text-soft);">
+            KPI Dashboards, Reporting-Automatisierung & Performance-Optimierung für Ihr Unternehmen.
         </p>
-        <div>
-            <a href="#explore" class="btn btn-primary">Portfolio ansehen</a>
-        </div>
     </header>
 
-    <main class="container" id="explore">
-        <div class="bento-grid">
-            
-            <!-- BLOCK 1: Interaktive Grafik (Live Chart) -->
-            <div class="bento-item span-2 row-2">
-                <h3 style="margin-bottom: 1rem; font-family: 'Space Grotesk';">Live Performance Tracking</h3>
-                <div class="media-box" style="border: none; background: transparent;">
-                    <canvas id="myChart"></canvas>
-                </div>
-                <p>KI-gestützte Vorhersagemodelle direkt in Ihrem Browser. Interaktiv und in Echtzeit.</p>
+    <main class="bento-grid">
+        <!-- Dashboard Sektion -->
+        <div class="bento-item span-2">
+            <div class="media-placeholder">
+                <canvas id="heroChart" style="padding: 10px;"></canvas>
             </div>
+            <h3>KPI Dashboards</h3>
+            <p>Visualisieren Sie Ihre wichtigsten Metriken in Echtzeit.</p>
+        </div>
 
-            <!-- BLOCK 2: Video Platzhalter -->
-            <div class="bento-item">
-                <div class="media-box">
-                    <span class="video-placeholder-overlay">▶ Video Clip: Dashboards</span>
-                    <!-- <video src="vid.mp4" autoplay loop muted></video> -->
-                </div>
-                <h4>Automatisierung</h4>
-                <p style="font-size: 0.9rem;">Reporting ohne manuellen Aufwand.</p>
-            </div>
+        <!-- Automatisierung -->
+        <div class="bento-item">
+            <div class="media-placeholder">[Video: Automatisierung Prozess]</div>
+            <h3>Automatisierung</h3>
+            <p>Schluss mit manuellem Reporting.</p>
+        </div>
 
-            <!-- BLOCK 3: Bild Platzhalter -->
-            <div class="bento-item">
-                <div class="media-box" style="background: url('https://placeholder.com') center/cover;">
-                </div>
-                <h4>UX-fokussiert</h4>
-                <p style="font-size: 0.9rem;">Daten, die man gerne ansieht.</p>
-            </div>
+        <!-- Forecasting -->
+        <div class="bento-item">
+            <div class="media-placeholder">[Bild: Forecasting Graph]</div>
+            <h3>Forecasting</h3>
+            <p>Datenbasierte Vorhersagen für Ihr Business.</p>
+        </div>
 
-            <!-- BLOCK 4: Breite Section -->
-            <div class="bento-item span-2">
-                <h3 style="color: var(--primary);">01. Beratung & Strategie</h3>
-                <p>Von der Datenquelle bis zum fertigen Insight begleite ich Unternehmen bei der digitalen Transformation 2026.</p>
-            </div>
-
+        <!-- Datenqualität -->
+        <div class="bento-item span-2">
+            <h3>Datenqualität & Integrität</h3>
+            <p>Wir stellen sicher, dass Ihre Daten sauber, korrekt und jederzeit abrufbar sind. Nur valide Daten führen zu richtigen Entscheidungen.</p>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 Barry Data & Analytics | Ahmed Barry <br>
-        Built with Precision & Modern Web Tech
+        <p>&copy; 2026 Barry Data & Analytics – Ahmed Barry</p>
+        <div style="margin-top: 10px;">
+            <a href="#" style="color: var(--primary); text-decoration: none;">Impressum</a> | 
+            <a href="#" style="color: var(--primary); text-decoration: none;">Datenschutz</a>
+        </div>
     </footer>
 
     <script>
-        // Chart.js Konfiguration für den 2026 Look
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx = document.getElementById('heroChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
                 datasets: [{
-                    label: 'Daten-Wachstum',
-                    data: [12, 19, 15, 25, 22, 30],
+                    label: 'Performance',
+                    data: [30, 55, 45, 90],
                     borderColor: '#4de2e8',
-                    backgroundColor: 'rgba(77, 226, 232, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
                     tension: 0.4,
-                    pointRadius: 0
+                    fill: false
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
-                scales: {
-                    x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
-                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
-                }
+                scales: { x: { display: false }, y: { display: false } }
             }
         });
     </script>
