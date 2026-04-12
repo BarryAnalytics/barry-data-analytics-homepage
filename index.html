@@ -3,309 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barry Data & Analytics</title>
+    <title>Barry Data & Analytics | Future of Intelligence 2026</title>
+    
+    <!-- SEO & Metadaten -->
+    <meta name="description" content="Barry Data & Analytics – KPI Dashboards, Reporting-Automatisierung und Performance-Optimierung.">
+    
+    <!-- Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Chart.js für interaktive Grafiken (Direkt eingebunden für 2026 Look) -->
+    <script src="https://jsdelivr.net"></script>
 
     <style>
+        :root {
+            --primary: #4de2e8;
+            --primary-glow: rgba(77, 226, 232, 0.4);
+            --bg-dark: #070b14;
+            --bg-glass: rgba(20, 30, 50, 0.6);
+            --text-light: #f1f5f9;
+            --accent-gradient: linear-gradient(135deg, #4de2e8 0%, #2563eb 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0d0d0d;
-            color: white;
-            text-align: center;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* HERO-BEREICH */
-        .hero-text-block {
-            margin-top: -55px; /* 45–60px höher */
+        /* Hintergrund-Animation (Statt Video-File als Fallback) */
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #070b14 100%);
         }
 
-        h1, h2, p {
-            margin: 10px 0;
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 1.2rem 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(7, 11, 20, 0.7);
+            border-bottom: 1px solid rgba(77, 226, 232, 0.15);
+            z-index: 100;
         }
 
-        /* Fade-Animation */
-        .welcome-text {
-            opacity: 0;
-            animation: fadeCycle 6s infinite;
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0 10%;
+            background: radial-gradient(circle at 85% 15%, rgba(77, 226, 232, 0.12), transparent 40%);
         }
 
-        @keyframes fadeCycle {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            70% { opacity: 1; }
-            90% { opacity: 0; }
-            100% { opacity: 0; }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* SLIDESHOW */
-        .slideshow-container {
+        /* Bento Grid System */
+        .container { padding: 5rem 10%; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-item {
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            width: 100%;
-            height: 420px;
             overflow: hidden;
-            margin-top: 40px;
         }
 
-        .slide {
-            position: absolute;
+        .bento-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Platzhalter & Medien */
+        .media-box {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px dashed rgba(77, 226, 232, 0.3);
+            margin-bottom: 1.5rem;
+            position: relative;
+            min-height: 150px;
         }
 
-        /* BUTTONS */
-        .button-container {
-            margin-top: 30px;
+        .video-placeholder-overlay {
+            position: absolute;
+            color: var(--primary);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
+        /* Grid Logic */
+        .span-2 { grid-column: span 2; }
+        .row-2 { grid-row: span 2; }
+
+        /* Buttons */
         .btn {
-            padding: 12px 28px;
-            margin: 10px;
-            border: none;
-            background-color: #1e90ff;
-            color: white;
-            font-size: 16px;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.3s;
             cursor: pointer;
-            border-radius: 6px;
+            border: none;
         }
 
-        .btn:hover {
-            background-color: #0b70d0;
-        }
+        .btn-primary { background: var(--primary); color: #000; }
+        .btn-primary:hover { box-shadow: 0 0 25px var(--primary-glow); transform: scale(1.03); }
 
-        /* ÜBER MICH – 20px höher */
-        .about-section {
-            margin-top: -20px;
-            padding: 40px 20px;
-        }
+        /* Chart Canvas */
+        #myChart { max-width: 100%; height: 200px !important; }
 
-        /* USE CASES */
-        .usecases {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-            text-align: left;
-        }
+        footer { text-align: center; padding: 3rem; opacity: 0.5; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
 
-        .usecases h2 {
-            text-align: center;
-            margin-bottom: 30px;
+        @media (max-width: 1000px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .span-2, .row-2 { grid-column: span 2; }
         }
-
-        .usecases ul li {
-            margin-bottom: 12px;
-        }
-
-        /* KONTAKT */
-        .contact-section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-            text-align: left;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 80px;
-            padding: 40px 0;
-            color: #ccc;
-            font-size: 14px;
+        @media (max-width: 600px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2 { grid-column: span 1; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- HERO TEXT -->
-    <h3 data-lang-de="DATA & ANALYTICS CONSULTING"
-        data-lang-en="DATA & ANALYTICS CONSULTING"
-        data-lang-fr="DATA & ANALYTICS CONSULTING">
-        DATA & ANALYTICS CONSULTING
-    </h3>
+    <div class="animated-bg"></div>
 
-    <div class="hero-text-block">
-        <h2 id="welcomeText" class="welcome-text"
-            data-lang-de="Herzlich willkommen bei Barry Data & Analytics"
-            data-lang-en="Welcome to Barry Data & Analytics"
-            data-lang-fr="Bienvenue chez Barry Data & Analytics">
-            Herzlich willkommen bei Barry Data & Analytics
-        </h2>
+    <nav>
+        <div class="logo">BARRY.ANALYTICS</div>
+        <div class="nav-links">
+            <a href="#" class="btn btn-primary">Kontakt</a>
+        </div>
+    </nav>
 
-        <p id="subline1"
-           data-lang-de="Klare Daten & klare Entscheidungen"
-           data-lang-en="Clear data & clear decisions"
-           data-lang-fr="Des données claires & des décisions claires">
-           Klare Daten & klare Entscheidungen
+    <header class="hero">
+        <p style="color: var(--primary); font-weight: 600; letter-spacing: 2px; margin-bottom: 0.5rem;">[ DATA ARCHITECT 2026 ]</p>
+        <h1>Präzise Analysen. <br> Intelligente Dashboards.</h1>
+        <p style="max-width: 550px; color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem;">
+            Ich verwandle komplexe Rohdaten in klare visuelle Strategien. Automatisierung trifft auf High-End Design.
         </p>
+        <div>
+            <a href="#explore" class="btn btn-primary">Portfolio ansehen</a>
+        </div>
+    </header>
 
-        <p id="subline2"
-           data-lang-de="Aus Daten werden Ergebnisse"
-           data-lang-en="Turning data into results"
-           data-lang-fr="Des données deviennent des résultats">
-           Aus Daten werden Ergebnisse
-        </p>
-    </div>
+    <main class="container" id="explore">
+        <div class="bento-grid">
+            
+            <!-- BLOCK 1: Interaktive Grafik (Live Chart) -->
+            <div class="bento-item span-2 row-2">
+                <h3 style="margin-bottom: 1rem; font-family: 'Space Grotesk';">Live Performance Tracking</h3>
+                <div class="media-box" style="border: none; background: transparent;">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <p>KI-gestützte Vorhersagemodelle direkt in Ihrem Browser. Interaktiv und in Echtzeit.</p>
+            </div>
 
-    <!-- BUTTONS -->
-    <div class="button-container">
-        <button class="btn"
-            data-lang-de="Projektanfrage starten"
-            data-lang-en="Start project request"
-            data-lang-fr="Démarrer une demande de projet">
-            Projektanfrage starten
-        </button>
+            <!-- BLOCK 2: Video Platzhalter -->
+            <div class="bento-item">
+                <div class="media-box">
+                    <span class="video-placeholder-overlay">▶ Video Clip: Dashboards</span>
+                    <!-- <video src="vid.mp4" autoplay loop muted></video> -->
+                </div>
+                <h4>Automatisierung</h4>
+                <p style="font-size: 0.9rem;">Reporting ohne manuellen Aufwand.</p>
+            </div>
 
-        <button class="btn"
-            data-lang-de="Über mich"
-            data-lang-en="About me"
-            data-lang-fr="À propos de moi">
-            Über mich
-        </button>
-    </div>
+            <!-- BLOCK 3: Bild Platzhalter -->
+            <div class="bento-item">
+                <div class="media-box" style="background: url('https://placeholder.com') center/cover;">
+                </div>
+                <h4>UX-fokussiert</h4>
+                <p style="font-size: 0.9rem;">Daten, die man gerne ansieht.</p>
+            </div>
 
-    <!-- SLIDESHOW -->
-    <div class="slideshow-container">
-        <img class="slide" src="slide1.jpg">
-        <img class="slide" src="slide2.jpg">
-        <img class="slide" src="slide3.jpg">
-    </div>
+            <!-- BLOCK 4: Breite Section -->
+            <div class="bento-item span-2">
+                <h3 style="color: var(--primary);">01. Beratung & Strategie</h3>
+                <p>Von der Datenquelle bis zum fertigen Insight begleite ich Unternehmen bei der digitalen Transformation 2026.</p>
+            </div>
 
-    <!-- ÜBER MICH -->
-    <section class="about-section">
-        <h2 data-lang-de="Über mich"
-            data-lang-en="About me"
-            data-lang-fr="À propos de moi">
-            Über mich
-        </h2>
+        </div>
+    </main>
 
-        <p data-lang-de="Ich bin Ahmed Barry, Data & Analytics Consultant aus Bochum. Ich helfe Unternehmen dabei, aus Daten klare Entscheidungen zu machen."
-           data-lang-en="I am Ahmed Barry, a Data & Analytics Consultant from Bochum. I help companies turn data into clear decisions."
-           data-lang-fr="Je suis Ahmed Barry, consultant Data & Analytics de Bochum. J’aide les entreprises à transformer les données en décisions claires.">
-           Ich bin Ahmed Barry, Data & Analytics Consultant aus Bochum. Ich helfe Unternehmen dabei, aus Daten klare Entscheidungen zu machen.
-        </p>
-    </section>
-
-    <!-- USE CASES -->
-    <section class="usecases">
-        <h2 data-lang-de="Anwendungsbeispiele"
-            data-lang-en="Use cases"
-            data-lang-fr="Cas d’utilisation">
-            Anwendungsbeispiele
-        </h2>
-
-        <ul>
-            <li data-lang-de="Automatisierte KPI-Dashboards"
-                data-lang-en="Automated KPI dashboards"
-                data-lang-fr="Tableaux de bord KPI automatisés">
-                Automatisierte KPI-Dashboards
-            </li>
-
-            <li data-lang-de="Reporting-Optimierung"
-                data-lang-en="Reporting optimization"
-                data-lang-fr="Optimisation du reporting">
-                Reporting-Optimierung
-            </li>
-
-            <li data-lang-de="Datenvisualisierung"
-                data-lang-en="Data visualization"
-                data-lang-fr="Visualisation des données">
-                Datenvisualisierung
-            </li>
-
-            <li data-lang-de="Prozessanalyse"
-                data-lang-en="Process analysis"
-                data-lang-fr="Analyse des processus">
-                Prozessanalyse
-            </li>
-
-            <li data-lang-de="Forecasting"
-                data-lang-en="Forecasting"
-                data-lang-fr="Prévisions">
-                Forecasting
-            </li>
-
-            <li data-lang-de="Datenbereinigung"
-                data-lang-en="Data cleansing"
-                data-lang-fr="Nettoyage des données">
-                Datenbereinigung
-            </li>
-
-            <li data-lang-de="Performance-Tracking"
-                data-lang-en="Performance tracking"
-                data-lang-fr="Suivi de performance">
-                Performance-Tracking
-            </li>
-
-            <li data-lang-de="Management-Reports"
-                data-lang-en="Management reports"
-                data-lang-fr="Rapports de gestion">
-                Management-Reports
-            </li>
-
-            <li data-lang-de="Self-Service BI"
-                data-lang-en="Self-service BI"
-                data-lang-fr="BI en libre-service">
-                Self-Service BI
-            </li>
-        </ul>
-    </section>
-
-    <!-- KONTAKT -->
-    <section class="contact-section">
-        <h2>Kontakt</h2>
-
-        <form>
-            <label>Name</label><br>
-            <input type="text"><br><br>
-
-            <label>E-Mail</label><br>
-            <input type="email"><br><br>
-
-            <label>Nachricht</label><br>
-            <textarea></textarea><br><br>
-
-            <button class="btn">Senden</button>
-        </form>
-    </section>
-
-    <!-- SPRACHWECHSEL -->
-    <div style="margin-top: 30px;">
-        <button class="btn" onclick="setLanguage('de')">DE</button>
-        <button class="btn" onclick="setLanguage('en')">EN</button>
-        <button class="btn" onclick="setLanguage('fr')">FR</button>
-    </div>
-
-    <!-- LANGUAGE SCRIPT -->
-    <script>
-        function setLanguage(lang) {
-            document.querySelectorAll("[data-lang-de]").forEach(el => {
-                el.textContent = el.getAttribute("data-lang-" + lang);
-            });
-        }
-    </script>
-
-    <!-- SLIDESHOW SCRIPT -->
-    <script>
-        let slideIndex = 0;
-        function showSlides() {
-            const slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.opacity = "0";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].style.opacity = "1";
-            setTimeout(showSlides, 5000);
-        }
-        showSlides();
-    </script>
-
-    <!-- FOOTER -->
     <footer>
-        © 2026 Barry Data & Analytics – Bochum, NRW
+        &copy; 2026 Barry Data & Analytics | Ahmed Barry <br>
+        Built with Precision & Modern Web Tech
     </footer>
 
+    <script>
+        // Chart.js Konfiguration für den 2026 Look
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [{
+                    label: 'Daten-Wachstum',
+                    data: [12, 19, 15, 25, 22, 30],
+                    borderColor: '#4de2e8',
+                    backgroundColor: 'rgba(77, 226, 232, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
