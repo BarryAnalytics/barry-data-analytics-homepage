@@ -1,271 +1,835 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Barry Data & Analytics – Dashboards, Reporting & Datenanalyse</title>
 
-<title>Barry Data & Analytics</title>
+    <!-- SEO -->
+    <meta name="description" content="Barry Data & Analytics – KPI Dashboards, Reporting-Automatisierung, Datenanalyse und Performance-Optimierung für Unternehmen. Klare Daten. Klare Entscheidungen.">
+    <meta name="keywords" content="Dashboard, KPI, Reporting, Datenanalyse, Automatisierung, Forecasting, Datenqualität, Business Intelligence">
+    <meta name="author" content="Ahmed Barry">
 
-<meta name="description" content="KPI Dashboards, automatisiertes Reporting und Datenanalyse für Unternehmen.">
-<meta name="keywords" content="Data Analytics, KPI Dashboard, Reporting, Power BI, Excel, Forecasting">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Barry Data & Analytics – Dashboards, Reporting & Analytics">
+    <meta property="og:description" content="KPI Dashboards, Reporting-Automatisierung & Datenanalyse für bessere Entscheidungen.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deinedomain.de">
+    <meta property="og:image" content="https://deinedomain.de/assets/img/preview.jpg">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
 
-<style>
-:root{
---bg:#0A1A2F;
---card:#1B2228;
---accent:#00C2C7;
---orange:#E67E22;
---text:#fff;
-}
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Barry Data & Analytics">
+    <meta name="twitter:description" content="Dashboards, Reporting-Automatisierung & Datenanalyse.">
+    <meta name="twitter:image" content="https://deinedomain.de/assets/img/preview.jpg">
 
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:var(--bg);
-color:var(--text);
-scroll-behavior:smooth;
-}
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-/* NAV */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
-border-bottom:1px solid var(--accent);
-position:sticky;
-top:0;
-background:var(--bg);
-z-index:1000;
-}
+    <style>
+        /* ================================
+           DESIGN SYSTEM (MAIN.CSS)
+           ================================ */
+        :root {
+            --primary: #4de2e8;
+            --primary-glow: rgba(77, 226, 232, 0.45);
+            --bg-dark: #0e141f;
+            --bg-glass: rgba(20, 28, 45, 0.35);
+            --text-light: #d7dff0;
+            --text-soft: #c5ccdd;
+            --white: #ffffff;
+        }
 
-nav a{
-color:white;
-margin-right:15px;
-text-decoration:none;
-font-size:14px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
 
-.lang button{
-background:transparent;
-border:1px solid var(--accent);
-color:white;
-padding:5px 10px;
-border-radius:6px;
-cursor:pointer;
-margin-left:5px;
-}
+        body {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
 
-/* HERO */
-.hero{
-text-align:center;
-padding:60px 20px 20px;
-}
+        /* VIDEO BACKGROUND */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
 
-.hero h1{
-font-size:40px;
-font-weight:900;
-}
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 10, 20, 0.55);
+            z-index: -1;
+        }
 
-/* VIDEO */
-.video-box{
-max-width:1000px;
-margin:30px auto;
-border-radius:12px;
-overflow:hidden;
-border:2px solid var(--accent);
-}
+        /* TYPO */
+        h1, h2, h3 {
+            text-shadow: 0 0 14px rgba(77, 226, 232, 0.22);
+        }
 
-/* SLIDER */
-.slider{
-max-width:1000px;
-margin:30px auto;
-position:relative;
-}
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
 
-.slider img{
-width:100%;
-display:none;
-border-radius:12px;
-}
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
 
-.slider img.active{
-display:block;
-}
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
 
-/* GRID */
-.section{
-max-width:1200px;
-margin:70px auto;
-padding:0 20px;
-}
+        p {
+            line-height: 1.6;
+            color: var(--text-soft);
+            margin-bottom: 16px;
+        }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+        /* BUTTONS */
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 26px;
+            background: var(--primary);
+            color: #000;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.25s;
+            border: none;
+        }
 
-.card{
-background:var(--card);
-padding:20px;
-border-radius:12px;
-transition:0.3s;
-}
+        .btn-secondary {
+            display: inline-block;
+            padding: 12px 26px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.25s;
+            background: transparent;
+        }
 
-.card:hover{
-transform:translateY(-5px);
-border:1px solid var(--accent);
-}
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
 
-/* FORM */
-form{
-display:grid;
-gap:15px;
-}
+        .btn-primary:hover {
+            background: #6ff3f7;
+        }
 
-input, textarea, select{
-padding:12px;
-border-radius:8px;
-border:1px solid #333;
-background:#0d1624;
-color:white;
-}
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #000;
+        }
 
-button{
-background:var(--orange);
-border:none;
-padding:15px;
-border-radius:30px;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
+        /* GLASS PANELS */
+        .glass-section,
+        .bento-item,
+        .service-card,
+        .contact {
+            backdrop-filter: blur(22px);
+            background: var(--bg-glass);
+            border: 1px solid var(--primary-glow);
+            border-radius: 18px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.45);
+            padding: 40px;
+        }
 
-/* FOOTER */
-footer{
-text-align:center;
-padding:40px;
-opacity:0.6;
-}
-</style>
+        /* ================================
+           LAYOUT (LAYOUT.CSS)
+           ================================ */
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            backdrop-filter: blur(18px);
+            background: rgba(5, 10, 20, 0.65);
+            border-bottom: 1px solid rgba(77, 226, 232, 0.25);
+        }
+
+        .nav-logo {
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a {
+            margin-left: 22px;
+            text-decoration: none;
+            color: #d7dff0;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 0 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-kicker {
+            font-size: 0.95rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #c5ccdd;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 520px;
+        }
+
+        .hero-sub {
+            margin-top: 6px;
+            font-size: 1.05rem;
+            color: #c5ccdd;
+        }
+
+        .hero-cta {
+            margin-top: 26px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* SECTIONS */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        /* GRIDS */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        /* CONTACT */
+        .contact {
+            margin-bottom: 40px;
+        }
+
+        /* FOOTER */
+        .footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 50px 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #c5ccdd;
+        }
+
+        .footer-links a {
+            color: #c5ccdd;
+            text-decoration: none;
+            margin-left: 16px;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(77, 226, 232, 0.4);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav {
+                padding: 14px 20px;
+                gap: 10px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .services-grid,
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+            }
+        }
+
+        /* ================================
+           COMPONENTS (COMPONENTS.CSS)
+           ================================ */
+
+        .service-card {
+            min-height: 150px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .bento-item strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--primary-glow);
+            background: rgba(20, 28, 45, 0.35);
+            color: var(--text-light);
+            backdrop-filter: blur(12px);
+        }
+
+        .contact-form label {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .contact-form button {
+            margin-top: 10px;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        /* LANGUAGE SWITCH */
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-switch button {
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--primary-glow);
+            background: rgba(20, 28, 45, 0.35);
+            backdrop-filter: blur(12px);
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .lang-switch button:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        .lang-switch button.active {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 14px var(--primary-glow);
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-<div><strong>Barry Data & Analytics</strong></div>
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop class="video-bg">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
 
-<div>
-<a href="#home">Start</a>
-<a href="#about">Über mich</a>
-<a href="#cases">Anwendungsfälle</a>
-<a href="#contact">Kontakt</a>
-</div>
+<!-- NAVIGATION -->
+<nav class="nav">
 
-<div class="lang">
-<button onclick="setLang('de')">DE</button>
-<button onclick="setLang('en')">EN</button>
-<button onclick="setLang('fr')">FR</button>
-</div>
+    <!-- LOGO -->
+    <div class="nav-logo">
+        <span data-lang="de">Barry Data & Analytics</span>
+        <span data-lang="en" style="display:none;">Barry Data & Analytics</span>
+        <span data-lang="fr" style="display:none;">Barry Data & Analytics</span>
+    </div>
+
+    <!-- LINKS -->
+    <div class="nav-links">
+        <!-- DE -->
+        <a href="#hero" data-lang="de">Startseite</a>
+        <a href="#about" data-lang="de">Über mich</a>
+        <a href="#services" data-lang="de">Leistungen</a>
+        <a href="#usecases" data-lang="de">Anwendungsbeispiele</a>
+        <a href="#contact" data-lang="de">Kontakt</a>
+
+        <!-- EN -->
+        <a href="#hero" data-lang="en" style="display:none;">Home</a>
+        <a href="#about" data-lang="en" style="display:none;">About</a>
+        <a href="#services" data-lang="en" style="display:none;">Services</a>
+        <a href="#usecases" data-lang="en" style="display:none;">Use Cases</a>
+        <a href="#contact" data-lang="en" style="display:none;">Contact</a>
+
+        <!-- FR -->
+        <a href="#hero" data-lang="fr" style="display:none;">Accueil</a>
+        <a href="#about" data-lang="fr" style="display:none;">À propos</a>
+        <a href="#services" data-lang="fr" style="display:none;">Services</a>
+        <a href="#usecases" data-lang="fr" style="display:none;">Cas d’usage</a>
+        <a href="#contact" data-lang="fr" style="display:none;">Contact</a>
+    </div>
+
+    <!-- LANGUAGE SWITCH -->
+    <div class="lang-switch">
+        <button data-lang-btn="de" onclick="setLang('de')">DE</button>
+        <button data-lang-btn="en" onclick="setLang('en')">EN</button>
+        <button data-lang-btn="fr" onclick="setLang('fr')">FR</button>
+    </div>
+
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-<h1 id="title">Klare Daten & klare Entscheidungen</h1>
-<p id="subtitle">Aus Daten werden Ergebnisse</p>
+<section id="hero" class="hero">
+
+    <!-- DE -->
+    <div data-lang="de">
+        <div class="hero-kicker">Data & Analytics Consulting</div>
+        <h1>Herzlich willkommen bei Barry Data & Analytics</h1>
+        <p>Klare Daten & klare Entscheidungen</p>
+        <p class="hero-sub">Aus Daten werden Ergebnisse</p>
+    </div>
+
+    <!-- EN -->
+    <div data-lang="en" style="display:none;">
+        <div class="hero-kicker">Data & Analytics Consulting</div>
+        <h1>Welcome to Barry Data & Analytics</h1>
+        <p>Clear data & clear decisions</p>
+        <p class="hero-sub">Turning data into results</p>
+    </div>
+
+    <!-- FR -->
+    <div data-lang="fr" style="display:none;">
+        <div class="hero-kicker">Data & Analytics Consulting</div>
+        <h1>Bienvenue chez Barry Data & Analytics</h1>
+        <p>Des données claires & des décisions claires</p>
+        <p class="hero-sub">Transformer les données en résultats</p>
+    </div>
+
+    <div class="hero-cta">
+        <a href="#contact" class="btn-primary" data-lang="de">Projektanfrage starten</a>
+        <a href="#contact" class="btn-primary" data-lang="en" style="display:none;">Start project inquiry</a>
+        <a href="#contact" class="btn-primary" data-lang="fr" style="display:none;">Démarrer une demande</a>
+
+        <a href="#services" class="btn-secondary" data-lang="de">Leistungen ansehen</a>
+        <a href="#services" class="btn-secondary" data-lang="en" style="display:none;">View services</a>
+        <a href="#services" class="btn-secondary" data-lang="fr" style="display:none;">Voir les services</a>
+    </div>
+
 </section>
-
-<!-- VIDEO -->
-<div class="video-box">
-<video autoplay muted loop>
-<source src="assets/videos/demo.mp4" type="video/mp4">
-</video>
-</div>
-
-<!-- SLIDER -->
-<div class="slider">
-<img src="assets/images/dashboard1.png" class="active">
-<img src="assets/images/dashboard2.png">
-<img src="assets/images/dashboard3.png">
-</div>
 
 <!-- ÜBER MICH -->
-<section class="section" id="about">
-<h2>Über mich</h2>
-<p>
-Ich bin Ahmed Barry, Gründer von Barry Data & Analytics.
-Ich bringe Struktur in komplexe Daten – klar, verständlich und effizient.
-</p>
+<section id="about" class="glass-section">
+
+    <!-- DE -->
+    <div data-lang="de">
+        <h2>Über mich</h2>
+        <p>Ich bin Ahmed Barry, Gründer von Barry Data & Analytics. Ich helfe Unternehmen dabei, Ordnung in ihre Datenwelt zu bringen – klar, strukturiert und ohne unnötige Komplexität.</p>
+        <p>Mein Schwerpunkt liegt auf KPI‑Dashboards, Automatisierung und Performance‑Analysen. Statt Bauchgefühl erhalten Sie eine Datenbasis, der Sie vertrauen können – mit Reports, die sich von selbst aktualisieren.</p>
+        <p>Ich arbeite präzise und lösungsorientiert – mit dem Anspruch, Daten so aufzubereiten, dass sie Entscheidungen einfacher machen, nicht komplizierter.</p>
+    </div>
+
+    <!-- EN -->
+    <div data-lang="en" style="display:none;">
+        <h2>About me</h2>
+        <p>I am Ahmed Barry, founder of Barry Data & Analytics. I help companies bring structure to their data world – clear, organized and without unnecessary complexity.</p>
+        <p>My focus is on KPI dashboards, automation and performance analytics. Instead of gut feeling, you get a reliable data foundation with reports that update automatically.</p>
+        <p>I work precisely and solution‑oriented – with the goal of making decisions easier, not more complicated.</p>
+    </div>
+
+    <!-- FR -->
+    <div data-lang="fr" style="display:none;">
+        <h2>À propos de moi</h2>
+        <p>Je suis Ahmed Barry, fondateur de Barry Data & Analytics. J’aide les entreprises à structurer leur univers de données – clair, organisé et sans complexité inutile.</p>
+        <p>Mon expertise couvre les tableaux de bord KPI, l’automatisation et l’analyse de performance. Vous obtenez une base de données fiable avec des rapports qui se mettent à jour automatiquement.</p>
+        <p>Je travaille avec précision et orientation solution – pour rendre vos décisions plus simples, pas plus difficiles.</p>
+    </div>
+
 </section>
 
-<!-- CASES -->
-<section class="section" id="cases">
-<h2>Anwendungsfälle</h2>
+<!-- LEISTUNGEN -->
+<section id="services" class="services">
 
-<div class="grid">
-<div class="card"><h3>KPI Dashboard</h3><p>Klare Übersicht über alle Kennzahlen.</p></div>
-<div class="card"><h3>Forecasting</h3><p>Planung mit präzisen Daten.</p></div>
-<div class="card"><h3>Marketing Analyse</h3><p>ROI und Kampagnen verstehen.</p></div>
-<div class="card"><h3>Automatisierung</h3><p>Reports ohne manuellen Aufwand.</p></div>
-<div class="card"><h3>Logistik</h3><p>Transparente Lieferketten.</p></div>
-<div class="card"><h3>Callcenter</h3><p>Analyse von Performance & Auslastung.</p></div>
-</div>
+    <!-- DE -->
+    <div data-lang="de">
+        <h2>Leistungen</h2>
+        <div class="services-grid">
+            <div class="service-card"><h3>KPI Dashboards & Reporting</h3><p>Klare Dashboards für Management und Teams.</p></div>
+            <div class="service-card"><h3>Automatisierung & Datenflüsse</h3><p>Automatisierte Reports und Datenprozesse.</p></div>
+            <div class="service-card"><h3>Performance‑Analysen</h3><p>Analysen für Logistik, Marketing, Callcenter.</p></div>
+            <div class="service-card"><h3>Forecasting & Szenarien</h3><p>Prognosen für Kapazitäten und Budgets.</p></div>
+        </div>
+    </div>
+
+    <!-- EN -->
+    <div data-lang="en" style="display:none;">
+        <h2>Services</h2>
+        <div class="services-grid">
+            <div class="service-card"><h3>KPI Dashboards & Reporting</h3><p>Clear dashboards for management and teams.</p></div>
+            <div class="service-card"><h3>Automation & Data Flows</h3><p>Automated reports and data processes.</p></div>
+            <div class="service-card"><h3>Performance Analytics</h3><p>Analytics for logistics, marketing, call centers.</p></div>
+            <div class="service-card"><h3>Forecasting & Scenarios</h3><p>Forecasts for capacity and budgets.</p></div>
+        </div>
+    </div>
+
+    <!-- FR -->
+    <div data-lang="fr" style="display:none;">
+        <h2>Services</h2>
+        <div class="services-grid">
+            <div class="service-card"><h3>Tableaux de bord KPI</h3><p>Tableaux de bord clairs pour la direction et les équipes.</p></div>
+            <div class="service-card"><h3>Automatisation & flux de données</h3><p>Rapports et processus automatisés.</p></div>
+            <div class="service-card"><h3>Analyse de performance</h3><p>Analyses pour logistique, marketing, centres d’appels.</p></div>
+            <div class="service-card"><h3>Prévisions & scénarios</h3><p>Prévisions pour capacités et budgets.</p></div>
+        </div>
+    </div>
 
 </section>
 
-<!-- FORM -->
-<section class="section">
-<h2>Projektanfrage</h2>
+<!-- ANWENDUNGSBEISPIELE (BENTO GRID) -->
+<section id="usecases" class="usecases">
+    <h2 data-lang="de">Anwendungsbeispiele</h2>
+    <h2 data-lang="en" style="display:none;">Use Cases</h2>
+    <h2 data-lang="fr" style="display:none;">Cas d’usage</h2>
 
-<form>
-<input placeholder="Name">
-<input placeholder="E-Mail">
-<select>
-<option>Dashboard</option>
-<option>Analyse</option>
-<option>Automatisierung</option>
-</select>
-<textarea placeholder="Projektbeschreibung"></textarea>
-<button>Absenden</button>
-</form>
+    <div class="bento-grid">
+
+        <!-- 1 -->
+        <div class="bento-item" data-lang="de">
+            <strong>KPI Übersicht</strong>
+            <p>Klare Kennzahlen statt Bauchgefühl.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>KPI Overview</strong>
+            <p>Clear metrics instead of gut feeling.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Vue KPI</strong>
+            <p>Des indicateurs clairs au lieu d’intuition.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Forecast Modelle</strong>
+            <p>Präzise Prognosen für Umsatz, Volumen und Ressourcen.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Forecast Models</strong>
+            <p>Accurate forecasts for revenue, volume and resources.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Modèles de prévision</strong>
+            <p>Prévisions précises pour revenus, volumes et ressources.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Logistik Performance</strong>
+            <p>Engpässe erkennen, Lieferzeiten verkürzen, Prozesse stabilisieren.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Logistics Performance</strong>
+            <p>Identify bottlenecks, reduce lead times, stabilize processes.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Performance logistique</strong>
+            <p>Identifier les goulots, réduire les délais, stabiliser les processus.</p>
+        </div>
+
+        <!-- 4 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Marketing Analytics</strong>
+            <p>Kampagnen verstehen, Budget effizient einsetzen, Umsatztreiber erkennen.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Marketing Analytics</strong>
+            <p>Understand campaigns, use budget efficiently, identify revenue drivers.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Analyse marketing</strong>
+            <p>Comprendre les campagnes, optimiser le budget, identifier les leviers.</p>
+        </div>
+
+        <!-- 5 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Automatisierte Reports</strong>
+            <p>Berichte, die sich selbst aktualisieren – weniger Fehler, weniger Aufwand.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Automated Reports</strong>
+            <p>Reports that update automatically – fewer errors, less effort.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Rapports automatisés</strong>
+            <p>Rapports qui se mettent à jour automatiquement – moins d’erreurs, moins d’effort.</p>
+        </div>
+
+        <!-- 6 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Datenqualität & Struktur</strong>
+            <p>Saubere, einheitliche Datenbasis – das Fundament jeder Analyse.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Data Quality & Structure</strong>
+            <p>Clean, consistent data – the foundation of every analysis.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Qualité & structure des données</strong>
+            <p>Base de données propre et cohérente – fondement de toute analyse.</p>
+        </div>
+
+        <!-- 7 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Callcenter Reporting</strong>
+            <p>Peak‑Zeiten erkennen, Schichten optimieren, Kundenzufriedenheit steigern.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Call Center Reporting</strong>
+            <p>Identify peak times, optimize shifts, improve customer satisfaction.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Reporting centre d’appels</strong>
+            <p>Identifier les pics, optimiser les équipes, améliorer la satisfaction.</p>
+        </div>
+
+        <!-- 8 -->
+        <div class="bento-item" data-lang="de">
+            <strong>Operations Analyse</strong>
+            <p>Durchlaufzeiten analysieren, Abläufe beschleunigen, Kosten senken.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>Operations Analysis</strong>
+            <p>Analyze lead times, accelerate workflows, reduce costs.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Analyse opérationnelle</strong>
+            <p>Analyser les délais, accélérer les processus, réduire les coûts.</p>
+        </div>
+
+        <!-- 9 -->
+        <div class="bento-item" data-lang="de">
+            <strong>E‑Commerce Performance</strong>
+            <p>Kaufabbrüche verstehen, Conversion steigern, Umsatz maximieren.</p>
+        </div>
+        <div class="bento-item" data-lang="en" style="display:none;">
+            <strong>E‑Commerce Performance</strong>
+            <p>Understand drop‑offs, increase conversion, maximize revenue.</p>
+        </div>
+        <div class="bento-item" data-lang="fr" style="display:none;">
+            <strong>Performance e‑commerce</strong>
+            <p>Comprendre les abandons, augmenter la conversion, maximiser le revenu.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="contact" class="contact">
+
+    <!-- DE -->
+    <div data-lang="de">
+        <h2>Kontakt & Projektanfrage</h2>
+        <p>Schreiben Sie mir kurz, wobei Sie Unterstützung benötigen. Ich melde mich mit einem Vorschlag für das weitere Vorgehen.</p>
+
+        <form class="contact-form">
+            <label>Name*</label>
+            <input type="text" required>
+
+            <label>E-Mail*</label>
+            <input type="email" required>
+
+            <label>Art des Projekts*</label>
+            <select required>
+                <option value="" disabled selected>Bitte auswählen</option>
+                <option>Dashboard & KPI Übersicht (Transparenz schaffen)</option>
+                <option>Reporting automatisieren (Zeit & Aufwand reduzieren)</option>
+                <option>Datenanalyse (bessere Entscheidungen treffen)</option>
+                <option>Datenstruktur & Qualität verbessern</option>
+                <option>Prozesse optimieren (Effizienz steigern)</option>
+                <option>Forecasting & Planung (Zukunft besser steuern)</option>
+                <option>Individuelles Projekt</option>
+            </select>
+
+            <label>Nachricht*</label>
+            <textarea rows="5" required></textarea>
+
+            <button class="btn-primary" type="submit">Absenden</button>
+        </form>
+    </div>
+
+    <!-- EN -->
+    <div data-lang="en" style="display:none;">
+        <h2>Contact & Project Inquiry</h2>
+        <p>Tell me briefly what you need support with. I will get back to you with a proposal.</p>
+
+        <form class="contact-form">
+            <label>Name*</label>
+            <input type="text" required>
+
+            <label>Email*</label>
+            <input type="email" required>
+
+            <label>Project type*</label>
+            <select required>
+                <option value="" disabled selected>Please choose</option>
+                <option>Dashboard & KPI overview (create transparency)</option>
+                <option>Automate reporting (save time & effort)</option>
+                <option>Data analysis (make better decisions)</option>
+                <option>Improve data structure & quality</option>
+                <option>Optimize processes (increase efficiency)</option>
+                <option>Forecasting & planning (steer the future)</option>
+                <option>Custom project</option>
+            </select>
+
+            <label>Message*</label>
+            <textarea rows="5" required></textarea>
+
+            <button class="btn-primary" type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- FR -->
+    <div data-lang="fr" style="display:none;">
+        <h2>Contact & demande de projet</h2>
+        <p>Expliquez brièvement votre besoin. Je vous recontacte avec une proposition.</p>
+
+        <form class="contact-form">
+            <label>Nom*</label>
+            <input type="text" required>
+
+            <label>Email*</label>
+            <input type="email" required>
+
+            <label>Type de projet*</label>
+            <select required>
+                <option value="" disabled selected>Veuillez choisir</option>
+                <option>Tableau de bord & KPI (créer de la transparence)</option>
+                <option>Automatiser le reporting (gagner du temps)</option>
+                <option>Analyse de données (meilleures décisions)</option>
+                <option>Améliorer la qualité & structure des données</option>
+                <option>Optimiser les processus (plus d’efficacité)</option>
+                <option>Prévisions & planification (mieux piloter l’avenir)</option>
+                <option>Projet personnalisé</option>
+            </select>
+
+            <label>Message*</label>
+            <textarea rows="5" required></textarea>
+
+            <button class="btn-primary" type="submit">Envoyer</button>
+        </form>
+    </div>
 
 </section>
 
 <!-- FOOTER -->
-<footer>
-Barry Data & Analytics – Ahmed Barry
+<footer class="footer">
+
+    <div>
+        <span data-lang="de">© Barry Data & Analytics – Ahmed Barry</span>
+        <span data-lang="en" style="display:none;">© Barry Data & Analytics – Ahmed Barry</span>
+        <span data-lang="fr" style="display:none;">© Barry Data & Analytics – Ahmed Barry</span>
+    </div>
+
+    <div class="footer-links">
+        <a href="impressum.html" data-lang="de">Impressum</a>
+        <a href="datenschutz.html" data-lang="de">Datenschutz</a>
+
+        <a href="impressum.html" data-lang="en" style="display:none;">Legal Notice</a>
+        <a href="datenschutz.html" data-lang="en" style="display:none;">Privacy Policy</a>
+
+        <a href="impressum.html" data-lang="fr" style="display:none;">Mentions légales</a>
+        <a href="datenschutz.html" data-lang="fr" style="display:none;">Protection des données</a>
+    </div>
+
 </footer>
 
+<!-- LANGUAGE SCRIPT -->
 <script>
+function setLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display = el.getAttribute("data-lang") === lang ? "block" : "none";
+    });
 
-/* SLIDER */
-let slides=document.querySelectorAll('.slider img');
-let index=0;
+    document.querySelectorAll(".lang-switch button").forEach(btn => {
+        const code = btn.getAttribute("data-lang-btn");
+        btn.classList.toggle("active", code === lang);
+    });
 
-setInterval(()=>{
-slides[index].classList.remove('active');
-index=(index+1)%slides.length;
-slides[index].classList.add('active');
-},3000);
-
-/* LANGUAGE */
-function setLang(lang){
-if(lang==="en"){
-document.getElementById("title").innerText="Clear Data & Clear Decisions";
-document.getElementById("subtitle").innerText="Turning Data into Results";
-}
-if(lang==="fr"){
-document.getElementById("title").innerText="Données claires & décisions claires";
-document.getElementById("subtitle").innerText="Transformer les données en résultats";
-}
-if(lang==="de"){
-document.getElementById("title").innerText="Klare Daten & klare Entscheidungen";
-document.getElementById("subtitle").innerText="Aus Daten werden Ergebnisse";
-}
+    localStorage.setItem("lang", lang);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem("lang");
+    if (saved) {
+        setLang(saved);
+        return;
+    }
+
+    const browserLang = navigator.language || navigator.userLanguage;
+
+    if (browserLang.startsWith("de")) setLang("de");
+    else if (browserLang.startsWith("fr")) setLang("fr");
+    else setLang("en");
+});
 </script>
 
 </body>
