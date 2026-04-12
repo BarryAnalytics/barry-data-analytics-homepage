@@ -5,149 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barry Data & Analytics – Dashboards, Reporting & Datenanalyse</title>
 
-    <!-- DEINE SEO METADATEN -->
+    <!-- SEO AUS DEINEM CODE -->
     <meta name="description" content="Barry Data & Analytics – KPI Dashboards, Reporting-Automatisierung, Datenanalyse und Performance-Optimierung für Unternehmen. Klare Daten. Klare Entscheidungen.">
     <meta name="keywords" content="Dashboard, KPI, Reporting, Datenanalyse, Automatisierung, Forecasting, Datenqualität, Business Intelligence">
     <meta name="author" content="Ahmed Barry">
 
     <link href="https://googleapis.com" rel="stylesheet">
-    <script src="https://jsdelivr.net"></script>
 
     <style>
         :root {
             --primary: #4de2e8;
-            --bg-dark: #0e141f;
-            --bg-glass: rgba(20, 28, 45, 0.6);
-            --text-light: #d7dff0;
-            --text-soft: #c5ccdd;
+            --bg: #0e141f;
+            --glass: rgba(20, 28, 45, 0.7);
+            --text: #d7dff0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg-dark); color: var(--text-light); font-family: "Inter", sans-serif; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
 
-        /* Video Hintergrund Platzhalter */
-        .video-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(14, 20, 31, 0.8), rgba(14, 20, 31, 0.9));
-            z-index: -1;
+        /* SPRACHAUSWAHL GANZ OBEN */
+        .lang-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            font-size: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        .lang-bar a { color: var(--text); text-decoration: none; opacity: 0.6; transition: 0.3s; }
+        .lang-bar a:hover, .lang-bar a.active { opacity: 1; color: var(--primary); }
 
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(77, 226, 232, 0.2); z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(14, 20, 31, 0.8);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%;
-            max-width: 1200px; margin: 0 auto;
+        .hero { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
+        .hero h1 { font-family: 'Space Grotesk'; font-size: clamp(2.5rem, 5vw, 3.8rem); color: var(--primary); line-height: 1.1; margin-bottom: 20px; }
+
+        /* VIDEO + CHECKLISTE COMBO */
+        .sales-engine {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            align-items: center;
         }
 
-        h1 { font-family: 'Space Grotesk'; font-size: 3.5rem; margin-bottom: 1rem; color: var(--primary); }
-        
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1200px; margin: 50px auto; padding: 0 20px;
+        .video-box {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            aspect-ratio: 16 / 9;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 40px rgba(77, 226, 232, 0.1);
         }
 
-        .bento-item {
-            background: var(--bg-glass); border: 1px solid rgba(77, 226, 232, 0.3);
-            padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);
+        .checklist { list-style: none; text-align: left; }
+        .checklist li { 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+            font-size: 1.1rem;
+        }
+        .checklist li::before { 
+            content: '✓'; 
+            color: var(--primary); 
+            font-weight: bold; 
+            margin-right: 15px; 
+            font-size: 1.3rem;
         }
 
-        .span-2 { grid-column: span 2; }
-
-        .media-placeholder {
-            width: 100%; height: 180px; background: rgba(255,255,255,0.05);
-            border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center;
-            border: 1px dashed var(--primary); color: var(--primary);
+        /* FEATURES */
+        .features {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; margin-top: 50px;
         }
+        .card { 
+            background: var(--glass); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
 
         .btn {
-            padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600;
-            background: var(--primary); color: #000; display: inline-block; transition: 0.3s;
+            background: var(--primary); color: #000; padding: 15px 35px;
+            border-radius: 8px; text-decoration: none; font-weight: 700;
+            display: inline-block; transition: 0.3s;
         }
+        .btn:hover { box-shadow: 0 0 20px var(--primary); }
 
-        footer { text-align: center; padding: 40px; color: var(--text-soft); border-top: 1px solid rgba(77,226,232,0.1); }
+        @media (max-width: 900px) {
+            .sales-engine { grid-template-columns: 1fr; }
+            .hero { text-align: center; }
+            .checklist li { justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="video-overlay"></div>
+    <!-- SPRACHAUSWAHL (DEINE ANFORDERUNG) -->
+    <div class="lang-bar">
+        <a href="?lang=de" class="active">DE</a>
+        <a href="?lang=en">EN</a>
+        <a href="?lang=fr">FR</a>
+    </div>
 
     <nav>
-        <div style="font-weight: 700; font-family: 'Space Grotesk';">BARRY DATA & ANALYTICS</div>
-        <a href="mailto:deinemail@domain.de" class="btn">Kontakt aufnehmen</a>
+        <div style="font-family: 'Space Grotesk'; font-weight: 700; font-size: 1.3rem; letter-spacing: 1px;">BARRY<span style="color:var(--primary)">.</span>ANALYTICS</div>
+        <a href="mailto:deinemail@domain.de" style="color: var(--primary); text-decoration: none; font-weight: 600;">Kontakt</a>
     </nav>
 
     <header class="hero">
-        <p style="letter-spacing: 2px; color: var(--text-soft);">AHMED BARRY</p>
-        <h1>Klare Daten. <br> Klare Entscheidungen.</h1>
-        <p style="max-width: 600px; font-size: 1.2rem; color: var(--text-soft);">
-            KPI Dashboards, Reporting-Automatisierung & Performance-Optimierung für Ihr Unternehmen.
+        <p style="color: var(--primary); letter-spacing: 4px; font-weight: 600; margin-bottom: 10px;">AHMED BARRY</p>
+        <h1>Klare Daten.<br>Klare Entscheidungen.</h1>
+        <p style="font-size: 1.2rem; max-width: 800px; margin-bottom: 40px; color: #a0aec0;">
+            Strategische Datenanalyse und Reporting-Automatisierung für messbaren Unternehmenserfolg.
         </p>
+
+        <!-- VERKAUFS-ENGINE: VIDEO + ARGUMENTE -->
+        <div class="sales-engine">
+            <div class="video-box">
+                <span style="color: var(--primary); letter-spacing: 2px;">▶ VIDEO-DEMO ABSPIELEN</span>
+                <!-- <video src="assets/demo.mp4" controls width="100%"></video> -->
+            </div>
+            
+            <div class="benefits-text">
+                <h2 style="font-family: 'Space Grotesk'; margin-bottom: 20px;">Was Sie erwartet:</h2>
+                <ul class="checklist">
+                    <li>Live-Einblick in KPI-Dashboards</li>
+                    <li>Automatisierung von Workflows</li>
+                    <li>Fehlerfreie Reporting-Systeme</li>
+                    <li>Strategisches Forecasting</li>
+                </ul>
+                <a href="#contact" class="btn" style="margin-top: 20px;">Jetzt Projekt besprechen</a>
+            </div>
+        </div>
+
+        <!-- DEINE INHALTE ALS CARDS -->
+        <div class="features">
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Reporting-Automatisierung</h3>
+                <p>Ich baue Lösungen, die Daten automatisch ziehen und aufbereiten. Sparen Sie Stunden an manueller Arbeit.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Forecasting</h3>
+                <p>Blicken Sie in die Zukunft Ihres Unternehmens mit datenbasierten Vorhersagemodellen.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Datenqualität</h3>
+                <p>Ich optimiere Ihre Infrastruktur, damit Sie sich zu 100% auf die Korrektheit Ihrer Zahlen verlassen können.</p>
+            </div>
+        </div>
     </header>
 
-    <main class="bento-grid">
-        <!-- Dashboard Sektion -->
-        <div class="bento-item span-2">
-            <div class="media-placeholder">
-                <canvas id="heroChart" style="padding: 10px;"></canvas>
-            </div>
-            <h3>KPI Dashboards</h3>
-            <p>Visualisieren Sie Ihre wichtigsten Metriken in Echtzeit.</p>
-        </div>
-
-        <!-- Automatisierung -->
-        <div class="bento-item">
-            <div class="media-placeholder">[Video: Automatisierung Prozess]</div>
-            <h3>Automatisierung</h3>
-            <p>Schluss mit manuellem Reporting.</p>
-        </div>
-
-        <!-- Forecasting -->
-        <div class="bento-item">
-            <div class="media-placeholder">[Bild: Forecasting Graph]</div>
-            <h3>Forecasting</h3>
-            <p>Datenbasierte Vorhersagen für Ihr Business.</p>
-        </div>
-
-        <!-- Datenqualität -->
-        <div class="bento-item span-2">
-            <h3>Datenqualität & Integrität</h3>
-            <p>Wir stellen sicher, dass Ihre Daten sauber, korrekt und jederzeit abrufbar sind. Nur valide Daten führen zu richtigen Entscheidungen.</p>
-        </div>
-    </main>
-
-    <footer>
+    <footer style="text-align: center; padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px;">
         <p>&copy; 2026 Barry Data & Analytics – Ahmed Barry</p>
-        <div style="margin-top: 10px;">
-            <a href="#" style="color: var(--primary); text-decoration: none;">Impressum</a> | 
-            <a href="#" style="color: var(--primary); text-decoration: none;">Datenschutz</a>
-        </div>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Klare Daten. Klare Entscheidungen.</p>
     </footer>
 
-    <script>
-        const ctx = document.getElementById('heroChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-                datasets: [{
-                    label: 'Performance',
-                    data: [30, 55, 45, 90],
-                    borderColor: '#4de2e8',
-                    tension: 0.4,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: { x: { display: false }, y: { display: false } }
-            }
-        });
-    </script>
 </body>
 </html>
