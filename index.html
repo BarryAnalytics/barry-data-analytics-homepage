@@ -4797,16 +4797,29 @@ body.nav-open .burger span:nth-child(3) {
   }
 }
 
-
-
 /* ============================================
-   MOBILE FIX – Hero-Hintergrund entfernen
+   MOBILE FIX – Navigation & Inhalt ausrichten
    ============================================ */
 @media (max-width: 600px) {
-  .hero-right {
-    background: var(--bg-main) !important; /* nur dunkler Hintergrund, kein Verlauf */
-    border: none;
-    box-shadow: none;
+
+  /* Header-Inhalt nicht künstlich begrenzen */
+  .header-inner {
+    max-width: 100% !important;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Hauptinhalt auf dieselbe Logik bringen */
+  main {
+    max-width: 100% !important;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Header-Hintergrund auf Handy klar und vollflächig */
+  header {
+    background: #050712 !important;
+    border-bottom: 1px solid rgba(51, 240, 255, 0.16);
   }
 }
 
