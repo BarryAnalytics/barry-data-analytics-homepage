@@ -4707,12 +4707,6 @@ body.nav-open .burger span:nth-child(3) {
   }
 }
 
-
-
-
-
-
-
 /* ============================================
    WOW D — GROWING DATA BLOCKS (SLOW EDITION)
    ============================================ */
@@ -4746,6 +4740,65 @@ body.nav-open .burger span:nth-child(3) {
   50%  { transform: scaleX(1); }
   100% { transform: scaleX(0.55); }
 }
+
+
+
+
+/* ============================================
+   MOBILE FIX – NUR FÜR HANDY (max 600px)
+   ============================================ */
+@media (max-width: 600px) {
+
+  /* Welcome mittig + Abstand */
+  .welcome-center {
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  /* Hero: alles untereinander, zentriert */
+  .hero {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 32px;
+    margin-top: 24px;
+  }
+
+  .hero-title,
+  .hero-subline,
+  .hero-highlight,
+  .hero-body {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Buttons zentrieren */
+  .hero-cta-row {
+    justify-content: center;
+  }
+
+  /* Rechte Box (Dashboard) kleiner + mittig */
+  .hero-right {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  /* Use Cases: 1 Spalte */
+  .usecase-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer: Text zentriert */
+  .footer-inner {
+    text-align: center;
+  }
+}
+
+
+
 
 
 </style>
