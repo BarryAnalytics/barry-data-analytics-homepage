@@ -1096,6 +1096,306 @@
   100% { transform: translateX(-100%); }
 }
 
+/* USE CASES GRID */
+
+.usecases {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #0d1117, #020308);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 880px) {
+  .usecases-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .usecases-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.usecase-card {
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  padding: 14px;
+  font-size: 0.86rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: all var(--transition-med);
+  position: relative;
+  overflow: hidden;
+}
+
+.usecase-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(39, 243, 217, 0.25);
+  border-color: rgba(39, 243, 217, 0.55);
+  background: linear-gradient(145deg, #111827, #020308);
+}
+
+.usecase-icon {
+  font-size: 1.3rem;
+}
+
+.usecase-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent-soft);
+}
+
+.usecase-title {
+  font-weight: 650;
+}
+
+.usecase-tagline {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.usecase-active {
+  border-color: rgba(39, 243, 217, 0.9);
+  box-shadow: 0 0 26px rgba(39, 243, 217, 0.6);
+}
+
+.usecase-active::after {
+  content: "Aktiv";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(39, 243, 217, 0.12);
+  border: 1px solid rgba(39, 243, 217, 0.7);
+  color: var(--accent);
+}
+
+/* DETAIL PANEL */
+
+.detail-panel {
+  margin-top: 16px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #0d1117, #020308);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-title {
+  font-size: 0.92rem;
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-pill {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--text-muted);
+}
+
+.detail-body {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.detail-col {
+  flex: 1 1 200px;
+}
+
+.detail-col-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+  color: var(--accent-soft);
+}
+
+.detail-col-list {
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.detail-col-list li::before {
+  content: "• ";
+  color: var(--accent);
+}
+
+/* ABOUT */
+
+.about-section .about {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #0d1117, #020308);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 880px) {
+  .about-section .about {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.about-subtitle {
+  font-size: 1rem;
+  font-weight: 650;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  color: var(--accent);
+}
+
+.about-claim {
+  font-size: 0.92rem;
+  color: var(--accent);
+  margin-top: 14px;
+}
+
+/* FOUNDER */
+
+.founder-section .founder {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #0d1117, #020308);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  font-size: 0.9rem;
+}
+
+.founder-contact a {
+  color: var(--accent);
+}
+
+.founder-note {
+  margin-top: 10px;
+  color: var(--text-muted);
+}
+
+/* CONTACT */
+
+.contact {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #0d1117, #020308);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 20px;
+}
+
+@media (max-width: 880px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field input,
+.field select,
+.field textarea {
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 10px;
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 18px rgba(39, 243, 217, 0.45);
+}
+
+/* FOOTER */
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: radial-gradient(circle at bottom, #020308, #000);
+  border-top: 1px solid rgba(39, 243, 217, 0.12);
+}
+
+.footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 880px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-title {
+  font-size: 0.9rem;
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  max-width: 1180px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  font-size: 0.78rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: var(--text-muted);
+}
+
+.footer-legal-menu {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-md);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+}
 
 .logo {
   width: 46px;
@@ -1116,69 +1416,7 @@
   image-rendering: -webkit-optimize-contrast;
 }
 
-.process-cards {
-  display: grid;
-  gap: 20px;
-  margin-bottom: 32px;
-}
 
-.process-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 20px 22px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-}
-
-.process-card:hover {
-  border-color: rgba(0, 255, 255, 0.4);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
-  transform: translateY(-2px);
-}
-
-.process-card-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(0, 255, 255, 0.15);
-  color: #00f0ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.process-card h4 {
-  margin: 0 0 6px 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.process-card p {
-  margin: 0;
-  opacity: 0.85;
-  line-height: 1.45;
-  font-size: 0.95rem;
-}
-
-/* Mobile Optimierung */
-@media (max-width: 768px) {
-  .process-cards {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .process-card {
-    padding: 18px 20px;
-  }
-
-  .process-card-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
-  }
-}
 
 
 /* Container für die Cards */
@@ -1191,21 +1429,19 @@
 
 /* Einzelne Card */
 .process-card {
-  background: rgba(255, 255, 255, 0.03); /* sehr dezent, wie dein Layout */
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 18px 20px;
-  border-radius: 10px; /* gleiche Rundung wie deine Inputs */
+  border-radius: 10px;
   transition: all 0.25s ease;
 }
 
-/* Hover-Effekt – Premium, aber nicht übertrieben */
 .process-card:hover {
   border-color: rgba(0, 255, 255, 0.35);
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.12);
   transform: translateY(-2px);
 }
 
-/* Nummernkreis */
 .process-card-icon {
   width: 32px;
   height: 32px;
@@ -1220,7 +1456,6 @@
   font-size: 0.95rem;
 }
 
-/* Titel */
 .process-card h4 {
   margin: 0 0 6px 0;
   font-size: 1.05rem;
@@ -1228,7 +1463,6 @@
   color: #fff;
 }
 
-/* Text */
 .process-card p {
   margin: 0;
   opacity: 0.85;
@@ -1236,166 +1470,29 @@
   font-size: 0.95rem;
 }
 
-/* MOBILE OPTIMIERUNG */
-@media (max-width: 768px) {
-  .process-cards {
-    gap: 16px;
-  }
-
-  .process-card {
-    padding: 16px 18px;
-  }
-
-  .process-card-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 0.85rem;
-  }
-
-  .process-card h4 {
-    font-size: 1rem;
-  }
-
-  .process-card p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-}
-
-/* FORMULARFELDER – Premium Consulting Look */
-.contact-form .field {
-  margin-bottom: 22px; /* mehr Luft, ruhiger */
-}
-
-.contact-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #fff;
-  opacity: 0.9;
-}
-
-/* Inputs & Selects */
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  width: 100%;
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px; /* gleiche Rundung wie Cards */
-  color: #fff;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-}
-
-/* Placeholder Lesbarkeit */
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-/* Focus-Effekt – identisch zu Cards */
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-  border-color: rgba(0, 255, 255, 0.35);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.12);
-  outline: none;
-}
-
-/* Textarea */
-.contact-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Button – mehr Premium */
-.contact-form .btn-primary {
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
-  background: #00f0ff;
-  color: #000;
-  transition: all 0.25s ease;
-}
-
-.contact-form .btn-primary:hover {
-  background: #0ff;
-  box-shadow: 0 0 14px rgba(0, 255, 255, 0.35);
-  transform: translateY(-2px);
-}
-
-/* Hinweis unter dem Formular */
-.contact-note {
-  margin-top: 14px;
-  font-size: 0.9rem;
-  opacity: 0.75;
-}
-
-/* MOBILE OPTIMIERUNG */
-@media (max-width: 768px) {
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea {
-    padding: 16px;
-    font-size: 1rem;
-  }
-
-  .contact-form .btn-primary {
-    padding: 16px 20px;
-    font-size: 1.05rem;
-  }
-}
-
 
 /* -------------------------------------------
-   1) SEKTION-HARMONIE (Abstände, Ruhe, Struktur)
+   PROCESS CARDS
 -------------------------------------------- */
-#contact {
-  margin-top: 40px;
-}
 
-.section-header {
-  margin-bottom: 32px;
-}
-
-.section-title {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.section-subtitle {
-  opacity: 0.85;
-  line-height: 1.5;
-  max-width: 520px;
-}
-
-/* -------------------------------------------
-   2) PROCESS CARDS (Premium Consulting Look)
--------------------------------------------- */
 .process-cards {
   display: grid;
   grid-template-columns: 1fr;
   gap: 18px;
-  margin: 24px 0 32px 0;
+  margin: 24px 0 32px;
 }
 
 .process-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   padding: 18px 20px;
   border-radius: 10px;
-  transition: all 0.25s ease;
+  transition: all .25s ease;
 }
 
 .process-card:hover {
-  border-color: rgba(0, 255, 255, 0.35);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.12);
+  border-color: rgba(0,255,255,.35);
+  box-shadow: 0 0 12px rgba(0,255,255,.12);
   transform: translateY(-2px);
 }
 
@@ -1403,18 +1500,17 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(0, 255, 255, 0.15);
+  background: rgba(0,255,255,.15);
   color: #00f0ff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   margin-bottom: 12px;
-  font-size: 0.95rem;
 }
 
 .process-card h4 {
-  margin: 0 0 6px 0;
+  margin: 0 0 6px;
   font-size: 1.05rem;
   font-weight: 600;
   color: #fff;
@@ -1422,14 +1518,16 @@
 
 .process-card p {
   margin: 0;
-  opacity: 0.85;
+  opacity: .85;
   line-height: 1.45;
-  font-size: 0.95rem;
+  font-size: .95rem;
 }
 
+
 /* -------------------------------------------
-   3) FORMULARFELDER – Optisch an Cards angepasst
+   CONTACT FORM
 -------------------------------------------- */
+
 .contact-form .field {
   margin-bottom: 22px;
 }
@@ -1437,10 +1535,10 @@
 .contact-form label {
   display: block;
   margin-bottom: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
   color: #fff;
-  opacity: 0.9;
+  opacity: .9;
+  font-size: .95rem;
+  font-weight: 500;
 }
 
 .contact-form input,
@@ -1448,25 +1546,25 @@
 .contact-form textarea {
   width: 100%;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
   border-radius: 10px;
   color: #fff;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
+  font-size: .95rem;
+  transition: all .25s ease;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255,255,255,.45);
 }
 
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
-  border-color: rgba(0, 255, 255, 0.35);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.12);
   outline: none;
+  border-color: rgba(0,255,255,.35);
+  box-shadow: 0 0 12px rgba(0,255,255,.12);
 }
 
 .contact-form textarea {
@@ -1474,277 +1572,99 @@
   resize: vertical;
 }
 
-/* Button */
 .contact-form .btn-primary {
   width: 100%;
   padding: 14px 18px;
-  font-size: 1rem;
-  font-weight: 600;
   border-radius: 10px;
   background: #00f0ff;
   color: #000;
-  transition: all 0.25s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all .25s ease;
 }
 
 .contact-form .btn-primary:hover {
   background: #0ff;
-  box-shadow: 0 0 14px rgba(0, 255, 255, 0.35);
+  box-shadow: 0 0 14px rgba(0,255,255,.35);
   transform: translateY(-2px);
 }
 
-/* Hinweis */
 .contact-note {
-  margin-top: 14px;
-  font-size: 0.9rem;
-  opacity: 0.75;
+  margin-top: 16px;
+  font-size: .88rem;
+  opacity: .65;
 }
+
 
 /* -------------------------------------------
-   4) MOBILE OPTIMIERUNG – Ultra Premium
+   ABOUT PILLS
 -------------------------------------------- */
-@media (max-width: 768px) {
 
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .process-cards {
-    gap: 16px;
-  }
-
-  .process-card {
-    padding: 16px 18px;
-  }
-
-  .process-card-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 0.85rem;
-  }
-
-  .process-card h4 {
-    font-size: 1rem;
-  }
-
-  .process-card p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea {
-    padding: 16px;
-    font-size: 1rem;
-  }
-
-  .contact-form .btn-primary {
-    padding: 16px 20px;
-    font-size: 1.05rem;
-  }
-}
-
-/* Pill-Tags harmonisieren */
 .about-pill {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
   padding: 6px 12px;
   border-radius: 10px;
-  font-size: 0.85rem;
-  opacity: 0.85;
-  transition: all 0.25s ease;
+  font-size: .85rem;
+  opacity: .85;
+  transition: all .25s ease;
 }
 
 .about-pill:hover {
-  border-color: rgba(0, 255, 255, 0.35);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
+  border-color: rgba(0,255,255,.35);
+  box-shadow: 0 0 10px rgba(0,255,255,.12);
 }
 
-/* Abstand zwischen Cards und Formular */
+
+/* -------------------------------------------
+   CONTACT LAYOUT
+-------------------------------------------- */
+
 .contact {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
 
-/* Footer-Hinweis beruhigen */
-.contact-note {
-  margin-top: 16px;
-  font-size: 0.88rem;
-  opacity: 0.65;
-}
-
-/* Die zwei runden Icons unten links ausblenden */
-.contact .some-icon-class,
-.contact .some-other-icon-class {
-  display: none !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .contact {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .about-pill {
-    font-size: 0.9rem;
-    padding: 8px 14px;
-  }
-}
 
 /* -------------------------------------------
-   FOUNDER – Modern Glass Card (Option B)
+   FOUNDER CARD
 -------------------------------------------- */
-.founder-section {
-  margin-top: 60px;
-}
 
-.founder {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 28px 32px;
-  border-radius: 14px;
-  max-width: 620px;
-  margin-top: 24px;
-  box-shadow: 0 0 22px rgba(0, 255, 255, 0.08);
-  transition: all 0.35s ease;
-}
-
-.founder:hover {
-  box-shadow: 0 0 32px rgba(0, 255, 255, 0.18);
-  border-color: rgba(0, 255, 255, 0.25);
-  transform: translateY(-2px);
-}
-
-.founder-contact {
-  margin: 6px 0;
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-.founder-contact a {
-  color: #00f0ff;
-  text-decoration: none;
-  transition: opacity 0.25s ease;
-}
-
-.founder-contact a:hover {
-  opacity: 0.7;
-}
-
-.founder-location,
-.founder-note {
-  margin-top: 10px;
-  opacity: 0.75;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-/* Titel-Abstände harmonisieren */
-.founder-section .section-header {
-  margin-bottom: 12px;
-}
-
-.founder-section .section-title {
-  font-size: 1.8rem;
-  margin-bottom: 4px;
-}
-
-.founder-section .section-subtitle {
-  opacity: 0.85;
-  font-size: 1rem;
-}
-
-/* FOUNDER – Modern Glass Card, volle Breite harmonischer */
 .founder-section {
   margin-top: 56px;
 }
 
 .founder {
-  background: rgba(255, 255, 255, 0.06);
+  width: 100%;
+  padding: 32px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.06);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 24px 26px;
-  border-radius: 14px;
-  width: 100%;
-  max-width: 900px;
-  margin-top: 20px;
-  box-shadow: 0 0 18px rgba(0, 255, 255, 0.08);
-  transition: all 0.35s ease;
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  box-shadow: 0 0 22px rgba(0,255,255,.10);
+  transition: all .35s ease;
 }
 
 .founder:hover {
-  box-shadow: 0 0 26px rgba(0, 255, 255, 0.16);
-  border-color: rgba(0, 255, 255, 0.22);
+  border-color: rgba(0,255,255,.22);
+  box-shadow: 0 0 28px rgba(0,255,255,.16);
   transform: translateY(-2px);
 }
 
-.founder-contact {
-  margin: 4px 0;
-  font-size: 0.96rem;
-  opacity: 0.9;
-}
-
-.founder-contact a {
-  color: #00f0ff;
-  text-decoration: none;
-  transition: opacity 0.25s ease;
-}
-
-.founder-contact a:hover {
-  opacity: 0.7;
-}
-
-.founder-location,
-.founder-note {
-  margin-top: 10px;
-  opacity: 0.78;
-  line-height: 1.55;
-  font-size: 0.96rem;
-}
-
-.founder-section .section-header {
-  margin-bottom: 10px;
-}
-
-.founder-section .section-title {
-  font-size: 1.7rem;
-  margin-bottom: 2px;
-}
-
-.founder-section .section-subtitle {
-  opacity: 0.85;
-  font-size: 1rem;
-}
-
-
-/* Founder – breite Card + Foto */
-.founder {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 32px;
-  border-radius: 16px;
-  width: 100%;
-  box-shadow: 0 0 22px rgba(0, 255, 255, 0.10);
-  transition: all 0.35s ease;
-}
-
-/* Foto Platzhalter */
 .founder-photo {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
   margin-bottom: 22px;
 }
 
-/* Name + Rolle */
 .founder-name {
   font-size: 1.4rem;
   font-weight: 600;
@@ -1753,33 +1673,43 @@
 
 .founder-role {
   font-size: 1.05rem;
-  opacity: 0.85;
+  opacity: .85;
   margin-bottom: 20px;
 }
 
-/* Kontakt */
 .founder-contact {
   margin: 6px 0;
   font-size: 1rem;
-  opacity: 0.9;
+  opacity: .9;
+}
+
+.founder-contact a {
+  color: #00f0ff;
+  text-decoration: none;
+}
+
+.founder-contact a:hover {
+  opacity: .7;
 }
 
 .founder-location,
 .founder-note {
   margin-top: 14px;
-  opacity: 0.78;
+  opacity: .78;
   line-height: 1.55;
   font-size: 1rem;
 }
 
+
+/* -------------------------------------------
+   MOBILE
+-------------------------------------------- */
+
 @media (max-width: 900px) {
+
   .about-layout {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-
-  .about {
-    font-size: 1.05rem;
   }
 
   .founder {
@@ -1787,89 +1717,59 @@
   }
 }
 
-/* ÜBER UNS – FINAL, LESBAR, BREIT, PREMIUM */
-.about {
-  max-width: 100%;
-  padding: 0; /* kein unnötiges Padding */
-  background: transparent; /* kein Kasten */
-  border: none; /* keine Box */
-  box-shadow: none; /* kein Schatten */
-  display: block; /* KEIN Grid */
-  line-height: 1.75;
-  font-size: 1.08rem;
-  opacity: 0.92;
+@media (max-width: 768px) {
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .process-cards {
+    gap: 16px;
+  }
+
+  .process-card {
+    padding: 16px 18px;
+  }
+
+  .process-card-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .process-card h4 {
+    font-size: 1rem;
+  }
+
+  .process-card p {
+    font-size: .9rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    padding: 16px;
+    font-size: 1rem;
+  }
+
+  .contact-form .btn-primary {
+    padding: 16px 20px;
+    font-size: 1.05rem;
+  }
+
+  .about-pill {
+    padding: 8px 14px;
+    font-size: .9rem;
+  }
 }
 
-/* Absätze */
-.about-text {
-  margin-bottom: 22px;
-}
-
-/* Intro */
-.about-intro {
-  font-size: 1.22rem;
-  margin-bottom: 26px;
-  opacity: 0.96;
-}
-
-/* Untertitel */
-.about-subtitle {
-  margin-top: 40px;
-  margin-bottom: 14px;
-  font-size: 1.32rem;
-  font-weight: 600;
-  opacity: 0.95;
-}
-
-/* Claim */
-.about-claim {
-  margin-top: 30px;
-  font-size: 1.18rem;
-  font-weight: 600;
-}
-
-/* ⭐ ÜBER UNS – FINAL, LESBAR, PREMIUM ⭐ */
-.about {
-  max-width: 100%;
-  padding: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  display: block;
-  line-height: 1.75;
-  font-size: 1.08rem;
-  opacity: 0.92;
-}
-
-/* Absätze */
-.about-text {
-  margin-bottom: 22px;
-}
-
-/* Intro */
-.about-intro {
-  font-size: 1.22rem;
-  margin-bottom: 26px;
-  opacity: 0.96;
-}
-
-/* Untertitel */
-.about-subtitle {
-  margin-top: 40px;
-  margin-bottom: 14px;
-  font-size: 1.32rem;
-  font-weight: 600;
-  opacity: 0.95;
-}
-
-/* Claim */
-.about-claim {
-  margin-top: 30px;
-  font-size: 1.18rem;
-  font-weight: 600;
-}
-
-/* ⭐ ÜBER UNS – FINAL HARMONISIERT ⭐ */
+/* ==========================================
+   ÜBER UNS
+========================================== */
 
 .about-layout {
   display: grid;
@@ -1879,7 +1779,6 @@
   margin-top: 60px;
 }
 
-/* LINKER TEXTBEREICH */
 .about-left {
   max-width: 100%;
   line-height: 1.75;
@@ -1911,15 +1810,19 @@
   font-weight: 600;
 }
 
-/* RECHTER FOUNDER-BEREICH */
+/* ==========================================
+   FOUNDER CARD
+========================================== */
+
 .founder-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   padding: 32px;
   border-radius: 16px;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 0 22px rgba(0, 255, 255, 0.12);
+  box-shadow: 0 0 22px rgba(0,255,255,0.12);
+
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1959,8 +1862,56 @@
   font-size: 0.95rem;
 }
 
-/* MOBILE */
-@media (max-width: 880px) {
+/* ==========================================
+   ÜBER UNS ABSTÄNDE
+========================================== */
+
+.section-ueber-uns {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  gap: 40px;
+}
+
+.ueber-uns-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-ueber-uns p {
+  margin: 0 0 10px 0;
+  line-height: 1.55;
+}
+
+.section-ueber-uns h3 {
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  margin-bottom: 14px;
+}
+
+.gruender-box {
+  padding: 24px;
+  gap: 12px;
+}
+
+.gruender-box .contact-line {
+  margin-bottom: 4px;
+}
+
+.note {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 900px) {
+
   .about-layout {
     grid-template-columns: 1fr;
     gap: 50px;
@@ -1969,195 +1920,970 @@
   .founder-card {
     max-width: 100%;
   }
-}
-/* ⭐ GLOBAL TYPOGRAFIE – PREMIUM CONSULTING LOOK ⭐ */
 
-/* Grundschrift */
-body {
-  font-size: 1rem;
-  line-height: 1.65;
-  letter-spacing: 0.01em;
-  color: var(--text-main);
-}
-
-/* Abschnittsüberschriften */
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.22;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-}
-
-/* Eyebrow (kleine Überschrift oben) */
-.section-eyebrow {
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  opacity: 0.85;
-}
-
-/* Untertitel */
-.section-subtitle {
-  font-size: 1.05rem;
-  opacity: 0.85;
-  line-height: 1.55;
-  margin-bottom: 20px;
-}
-
-/* Standard-Absätze */
-p {
-  margin-bottom: 18px;
-  font-size: 1.02rem;
-  line-height: 1.7;
-  opacity: 0.92;
-}
-
-/* H3 – Unterüberschriften */
-h3 {
-  font-size: 1.34rem;
-  font-weight: 600;
-  margin-top: 42px;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-  opacity: 0.95;
-}
-
-/* Links */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.75;
-}
-
-/* Listen */
-ul, ol {
-  margin-left: 20px;
-  margin-bottom: 18px;
-  line-height: 1.65;
-}
-
-/* MOBILE TYPOGRAFIE */
-@media (max-width: 880px) {
-  .section-title {
-    font-size: 1.7rem;
+  .section-ueber-uns {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    gap: 28px;
   }
 
-  h3 {
-    font-size: 1.22rem;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.68;
+  .ueber-uns-text {
+    gap: 8px;
   }
 }
-/* ⭐ ÜBER UNS – MODERNES CONSULTING GRID ⭐ */
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1.2fr;
-  gap: 60px;
-  margin-top: 50px;
-  align-items: start;
+/* ===========================
+   ÜBER-UNS – BASISLAYOUT
+   =========================== */
+
+.section-ueber-uns {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  gap: 28px;
 }
 
-/* SPALTE LINKS */
-.about-col {
-  line-height: 1.75;
-  font-size: 1.08rem;
-  opacity: 0.92;
+.section-ueber-uns h2 {
+  margin-bottom: 6px;
 }
 
-.about-intro {
-  font-size: 1.26rem;
-  margin-bottom: 28px;
-  opacity: 0.96;
-}
-
-.about-text {
-  margin-bottom: 22px;
-}
-
-.about-subtitle {
-  margin-top: 42px;
-  margin-bottom: 14px;
-  font-size: 1.34rem;
-  font-weight: 600;
-  opacity: 0.95;
-}
-
-.about-claim {
-  margin-top: 30px;
-  font-size: 1.18rem;
-  font-weight: 600;
-}
-
-/* SPALTE RECHTS – FOUNDER CARD */
-.founder-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 32px;
-  border-radius: 16px;
-  box-shadow: 0 0 22px rgba(0, 255, 255, 0.12);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 420px;
-}
-
-.founder-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.10);
-  border: 2px solid rgba(39,243,217,0.45);
-  box-shadow: 0 0 18px rgba(39,243,217,0.25);
+.subtitle {
   margin-bottom: 10px;
 }
 
+.section-ueber-uns p {
+  margin: 0 0 8px 0;
+  line-height: 1.55;
+}
+
+.section-ueber-uns h3 {
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+
+.ueber-uns-text {
+  gap: 8px;
+}
+
+.gruender-box {
+  padding: 20px;
+  gap: 10px;
+}
+
+.gruender-box .contact-line {
+  margin-bottom: 3px;
+}
+
+.note {
+  margin-top: 8px;
+}
+
+/* ===========================
+   ÜBER-UNS – MOBILE
+   =========================== */
+
+@media (max-width: 900px) {
+
+  .section-ueber-uns {
+    flex-direction: column;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    gap: 22px;
+  }
+
+  .gruender-box {
+    order: -1;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .ueber-uns-text {
+    gap: 6px;
+  }
+
+  .section-ueber-uns p {
+    margin-bottom: 6px;
+  }
+
+  .section-ueber-uns h3 {
+    margin-top: 16px;
+    margin-bottom: 4px;
+  }
+}
+
+/* ============================
+   FOUNDER SECTION – Premium Glass Card
+   ============================ */
+
+.founder-section {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.founder-wrapper {
+  width: 100%;
+  max-width: 900px;
+}
+
+.founder-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 0 22px rgba(0, 255, 255, 0.10);
+  transition: all 0.35s ease;
+}
+
+.founder-card:hover {
+  box-shadow: 0 0 26px rgba(0, 255, 255, 0.16);
+  border-color: rgba(0, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+.founder-photo {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 0 18px rgba(0,255,255,0.25);
+}
+
+.founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founder-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .founder-name {
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   font-weight: 600;
+  margin-bottom: 6px;
 }
 
 .founder-role {
   font-size: 1.05rem;
   opacity: 0.85;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .founder-contact {
-  margin: 4px 0;
-  font-size: 0.95rem;
+  margin: 6px 0;
+  font-size: 1rem;
   opacity: 0.9;
+}
+
+.founder-contact a {
+  color: #00f0ff;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.founder-contact a:hover {
+  opacity: 0.7;
 }
 
 .founder-location,
 .founder-note {
-  margin-top: 10px;
+  margin-top: 14px;
   opacity: 0.78;
   line-height: 1.55;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /* MOBILE */
-@media (max-width: 880px) {
-  .about-grid {
+@media (max-width: 768px) {
+  .founder-card {
     grid-template-columns: 1fr;
-    gap: 40px;
+    text-align: center;
+    padding: 26px;
   }
 
+  .founder-photo {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .founder-content {
+    align-items: center;
+  }
+}
+
+/* ============================================
+   TEAM SECTION
+   ============================================ */
+
+.team-section {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.team-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+
+/* ============================================
+   TEAM-STREIFEN – Premium Look
+   ============================================ */
+
+.team-strip {
+  width: 100%;
+  background: #14181f;
+  padding: 48px 0 52px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.team-strip-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   TEAM-MEMBER
+   ============================================ */
+
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex: 1 1 100%;
+}
+
+/* ============================================
+   FOTO
+   ============================================ */
+
+.team-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 0 22px rgba(0,255,255,0.20);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   TEXT
+   ============================================ */
+
+.team-info {
+  flex: 1;
+}
+
+.team-name {
+  font-size: 1.65rem;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.team-role {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.team-contact {
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+
+.team-contact a {
+  color: #00f0ff;
+  text-decoration: none;
+}
+
+.team-location {
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.team-note {
+  opacity: 0.78;
+  line-height: 1.55;
+  max-width: 620px;
+  font-size: 1rem;
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .team-member {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .team-info {
+    align-items: center;
+  }
+}
+
+/* ============================================
+   FOUNDER SECTION
+   ============================================ */
+
+.founder-section {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.founder-wrapper {
+  width: 100%;
+  max-width: 900px;
+}
+
+.founder-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 0 22px rgba(0, 255, 255, 0.10);
+  transition: all 0.35s ease;
+}
+
+.founder-card:hover {
+  box-shadow: 0 0 26px rgba(0, 255, 255, 0.16);
+  border-color: rgba(0, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+.founder-photo {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 0 18px rgba(0,255,255,0.25);
+}
+
+.founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founder-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.founder-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.founder-role {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin-bottom: 20px;
+}
+
+.founder-contact {
+  margin: 6px 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.founder-contact a {
+  color: #00f0ff;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.founder-contact a:hover {
+  opacity: 0.7;
+}
+
+.founder-location,
+.founder-note {
+  margin-top: 14px;
+  opacity: 0.78;
+  line-height: 1.55;
+  font-size: 1rem;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
   .founder-card {
-    max-width: 100%;
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 26px;
+  }
+
+  .founder-photo {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .founder-content {
+    align-items: center;
+  }
+}
+
+/* ============================================
+   USE CASE – Premium Hover
+   ============================================ */
+
+.usecase-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease, opacity 0.35s ease;
+  cursor: pointer;
+}
+
+.usecase-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 18px rgba(39, 243, 217, 0.25);
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.06);
+}
+
+.usecase-card.usecase-active {
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px rgba(39, 243, 217, 0.35);
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.10);
+}
+
+.usecase-card .usecase-icon {
+  transition: transform 0.35s ease;
+}
+
+.usecase-card:hover .usecase-icon {
+  transform: scale(1.12);
+}
+
+/* ============================================
+   DETAIL PANEL
+   ============================================ */
+
+#usecase-details {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+#usecase-details.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   FOOTER – Premium
+   ============================================ */
+
+.footer-legal-content {
+  margin-top: 1.2rem;
+  padding: 1.4rem 1.6rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  color: #d4d4d4;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.footer-legal-content:hover {
+  border-color: rgba(0, 255, 255, 0.25);
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.15);
+}
+
+.footer-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-btn,
+.scroll-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.footer-btn:hover,
+.scroll-top-btn:hover {
+  background: rgba(0,255,200,0.12);
+  border-color: rgba(0,255,200,0.6);
+  transform: translateY(-1px);
+}
+
+.footer-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+}
+
+.footer-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.footer-scroll {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.scroll-footer-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #00ffd5;
+  transition: 0.25s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.scroll-footer-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-footer-btn:hover {
+  background: rgba(0, 255, 200, 0.22);
+  border-color: rgba(0, 255, 200, 0.8);
+  transform: scale(1.08);
+}
+
+.scroll-footer-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 600px) {
+  #scroll-bottom {
+    top: 18vh;
+    width: 44px;
+    height: 44px;
   }
 }
 
 
-  </style>
+/* ============================
+   PREMIUM TYPOGRAPHY – HERO (ENTFERNT)
+   ============================ */
+/* Alle Hero-Regeln wurden entfernt, um dein altes Layout zu schützen */
+
+
+/* ============================
+   PREMIUM PILLEN UI STYLE
+   ============================ */
+
+.dashboard-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.dashboard-badge {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #FFFFFFE6;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+.dashboard-badge:hover {
+  border-color: #00E5FF;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ============================
+   PREMIUM KPI SPACING
+   ============================ */
+
+.dashboard-kpis {
+  margin-bottom: 24px;
+}
+
+/* ============================
+   PREMIUM CHART SPACING
+   ============================ */
+
+.dashboard-image {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: #ffffffd9;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+.hero-tag:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.hero-tag-dot {
+  width: 6px;
+  height: 6px;
+  background: #00e5ff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00e5ff;
+}
+
+/* ⭐ Scroll-Pfeil – stabile Version ⭐ */
+
+#scroll-bottom {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #00ffd5;
+  transition: 0.25s ease;
+  z-index: 9999;
+  opacity: 1; /* sichtbar */
+}
+
+#scroll-bottom:hover {
+  background: rgba(0, 255, 200, 0.22);
+  border-color: rgba(0, 255, 200, 0.8);
+  transform: translateX(-50%) scale(1.08);
+}
+
+/* ⭐ Scroll-Pfeil – sichtbar oben, verschwindet beim Scrollen ⭐ */
+
+#scroll-bottom {
+  position: fixed;
+  top: 70px; /* ← HIER sitzt der Pfeil, höher oder tiefer einstellbar */
+  left: 53%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #00ffd5;
+  transition: opacity 0.35s ease, transform 0.25s ease;
+  z-index: 9999;
+  opacity: 1; /* sichtbar */
+}
+
+#scroll-bottom.hidden {
+  opacity: 0; /* verschwindet */
+  pointer-events: none;
+}
+
+
+/* ⭐ Linker Bereich – nur die unteren Elemente etwas nach unten schieben ⭐ */
+
+.hero-left .hero-cta-row {
+  margin-top: 35px; /* etwas Luft über den Buttons */
+}
+
+.hero-left .hero-meta {
+  margin-top: 22px; /* Standort etwas nach unten */
+}
+
+
+/* ⭐ Pfeil – sanft pulsieren (Premium) ⭐ */
+
+#scroll-bottom {
+  position: fixed;
+  top: 70px;
+  left: 52%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #00ffd5;
+  transition: opacity 0.35s ease, transform 0.25s ease;
+  z-index: 9999;
+  opacity: 1;
+
+  /* ⭐ Pulsieren */
+  animation: arrowPulse 2.4s ease-in-out infinite;
+}
+
+/* Pfeil verschwindet beim Scrollen */
+#scroll-bottom.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ⭐ Keyframes für Premium-Puls */
+@keyframes arrowPulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 0 rgba(0, 255, 200, 0.0);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 0 18px rgba(0, 255, 200, 0.35);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 0 rgba(0, 255, 200, 0.0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-description {
+    max-width: 34ch; /* kompakter, weniger Scrollen */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-left,
+  .hero-right {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .hero-cta-row {
+    gap: 12px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-card {
+    padding: 18px;
+  }
+}
+
+
+/* ============================
+   ⭐ MOBILE iPhone – Perfekte Optimierung ⭐
+   ============================ */
+
+@media (max-width: 768px) {
+
+  /* 1) Headline – perfekt lesbar, nicht zu groß */
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.15;
+    max-width: 14ch; /* kompakt, aber stark */
+    margin-bottom: 16px;
+  }
+
+  /* 2) Subheadline – kompakter */
+  .hero-subtitle {
+    font-size: 18px;
+    line-height: 1.35;
+    margin-bottom: 16px;
+  }
+
+  /* 3) Beschreibung – kürzere Textbreite */
+  .hero-description {
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 34ch; /* weniger Scrollen */
+    margin-bottom: 20px;
+  }
+
+  /* 4) Buttons – enger, kompakter */
+  .hero-cta-row {
+    gap: 12px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* 5) Standort – kompakt */
+  .hero-meta {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  /* 6) Karten (links & rechts) – weniger Höhe */
+  .hero-left,
+  .hero-right {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  /* 7) Dashboard – kompakter */
+  .dashboard-card {
+    padding: 18px;
+  }
+
+  .dashboard-image {
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* 8) Pfeil bleibt perfekt */
+  #scroll-bottom {
+    top: 70px;
+    left: 50%;
+  }
+}
+
+
+/* ============================
+   ⭐ Mobile Dashboard Animation
+   ============================ */
+
+@media (max-width: 768px) {
+
+  /* Dashboard startet unsichtbar */
+  .dashboard-card {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  /* Sobald sichtbar → sanft reinfahren */
+  .dashboard-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* ============================
+   ⭐ Mobile Button Effekt (iPhone)
+   ============================ */
+
+@media (max-width: 768px) {
+
+  .cta-primary,
+  .cta-secondary {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    touch-action: manipulation;
+  }
+
+  /* Effekt beim Tippen */
+  .cta-primary:active,
+  .cta-secondary:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 14px rgba(0, 255, 200, 0.35);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .cta-primary:active::after,
+  .cta-secondary:active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 18px rgba(0, 255, 200, 0.45);
+    opacity: 1;
+  }
+}
+
+/</style>
 </head>
 <body>
   <div class="page">
@@ -2191,24 +2917,43 @@ ul, ol {
     <main class="wrapper">
       <!-- HERO -->
       <section id="hero" class="hero">
-        <div class="hero-left">
-          <div class="hero-pill">
-            <span class="hero-pill-dot"></span>
-            <span data-i18n="hero_pill"></span>
-          </div>
-          <div class="hero-eyebrow" data-i18n="hero_eyebrow"></div>
-          <h1 class="hero-title" data-i18n="hero_title"></h1>
-          <p class="hero-subtitle" data-i18n="hero_subtitle"></p>
-          <p class="hero-highlight" data-i18n="hero_highlight"></p>
-          <div class="hero-cta-row">
-            <button class="btn btn-primary" data-scroll="#contact" data-i18n="hero_cta_primary"></button>
-            <button class="btn btn-ghost" data-scroll="#services" data-i18n="hero_cta_secondary"></button>
-          </div>
-          <div class="hero-meta">
-            <span class="hero-meta-dot"></span>
-            <span data-i18n="hero_location"></span>
-          </div>
-        </div>
+       
+<div class="hero-left">
+
+  <div class="hero-pill">
+    <span class="hero-pill-dot"></span>
+    <span data-i18n="hero_pill"></span>
+  </div>
+
+  <!-- NEUER BLOCK START -->
+  <div class="hero-eyebrow">
+    <span class="hero-pill-dot"></span>
+    <span data-i18n="hero_eyebrow"></span>
+  </div>
+
+  <p class="hero-sub-eyebrow" data-i18n="hero_sub_eyebrow">
+   
+  </p>
+
+  <h1 class="hero-title" data-i18n="hero_title"></h1>
+
+  <p class="hero-subtitle" data-i18n="hero_subtitle"></p>
+
+  <p class="hero-highlight" data-i18n="hero_highlight"></p>
+  <!-- NEUER BLOCK ENDE -->
+
+  <div class="hero-cta-row">
+    <button class="btn btn-primary" data-scroll="#contact" data-i18n="hero_cta_primary"></button>
+    <button class="btn btn-ghost" data-scroll="#services" data-i18n="hero_cta_secondary"></button>
+  </div>
+
+  <div class="hero-meta">
+    <span class="hero-meta-dot"></span>
+    <span data-i18n="hero_location"></span>
+  </div>
+
+</div>
+
 
         <aside class="hero-right">
           <div class="hero-right-header">
@@ -2404,94 +3149,85 @@ ul, ol {
             </div>
           </div>
 
-          <div class="detail-panel" id="detail-panel">
-            <div class="detail-header">
-              <div class="detail-title">
-                <span id="detail-icon">📈</span>
-                <span id="detail-title"></span>
-              </div>
-              <div class="detail-pill" id="detail-pill"></div>
-            </div>
-            <div class="detail-body">
-              <div class="detail-col">
-                <div class="detail-col-title" data-i18n="detail_col_problem"></div>
-                <ul class="detail-col-list" id="detail-problem"></ul>
-              </div>
-              <div class="detail-col">
-                <div class="detail-col-title" data-i18n="detail_col_solution"></div>
-                <ul class="detail-col-list" id="detail-solution"></ul>
-              </div>
-              <div class="detail-col">
-                <div class="detail-col-title" data-i18n="detail_col_result"></div>
-                <ul class="detail-col-list" id="detail-result"></ul>
-              </div>
-            </div>
-          </div>
+          <div class="detail-panel" id="usecase-details">
+    <div class="detail-header">
+      <div class="detail-title">
+        <span id="detail-icon">📈</span>
+        <span id="detail-title"></span>
+      </div>
+      <div class="detail-pill" id="detail-pill"></div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-col">
+        <div class="detail-col-title" data-i18n="detail_col_problem"></div>
+        <ul class="detail-col-list" id="detail-problem"></ul>
+      </div>
+      <div class="detail-col">
+        <div class="detail-col-title" data-i18n="detail_col_solution"></div>
+        <ul class="detail-col-list" id="detail-solution"></ul>
+      </div>
+      <div class="detail-col">
+        <div class="detail-col-title" data-i18n="detail_col_result"></div>
+        <ul class="detail-col-list" id="detail-result"></ul>
+      </div>
+    </div>
+</div>
+
+<section id="about" class="section-ueber-uns">
+
+  <!-- LINKE SEITE: ÜBER UNS TEXT -->
+  <div class="ueber-uns-text">
+
+    <h2 data-i18n="about_section_title"></h2>
+    <div class="subtitle" data-i18n="about_headline"></div>
+
+    <p data-i18n="about_intro"></p>
+
+    <p data-i18n="about_body1"></p>
+
+    <h3 data-i18n="about_approach_title"></h3>
+    <p data-i18n="about_approach_text"></p>
+
+    <h3 data-i18n="about_claim"></h3>
+
+    <h3 data-i18n="about_personal_title"></h3>
+    <p data-i18n="about_personal_text"></p>
+
+  </div>
+
+
+<section id="team-strip" class="team-strip">
+
+  <div class="team-strip-inner">
+
+    <div class="team-member">
+
+      <div class="team-photo">
+        <img src="founder-photo.jpg" alt="">
+      </div>
+
+      <div class="team-info">
+
+        <h2 class="team-name" data-i18n="founder_name"></h2>
+        <div class="team-role" data-i18n="founder_role"></div>
+
+        <div class="team-contact">
+          <a href="mailto:ahmed@barrydataanalytics.de" data-i18n="founder_email_label"></a><br>
+          <a href="tel:+4915755355849" data-i18n="founder_phone_label"></a>
         </div>
-      </section>
 
-<section class="section-ueber-uns">
+        <div class="team-location" data-i18n="founder_location"></div>
 
-    <!-- LINKE SEITE: ÜBER UNS TEXT -->
-    <div class="ueber-uns-text">
+        <p class="team-note" data-i18n="founder_note"></p>
 
-        <h2>Über uns</h2>
-        <div class="subtitle">Klare Daten. Verlässliche Entscheidungen.</div>
-
-        <p>
-            Barry Data &amp; Analytics unterstützt Unternehmen dabei, komplexe Informationen in klare, nutzbare Entscheidungsgrundlagen zu übersetzen.
-            Wir entwickeln pragmatische Lösungen für Reporting, Dashboards und Datenanalysen – mit dem Ziel, Transparenz zu schaffen und manuellen Aufwand spürbar zu reduzieren.
-        </p>
-
-        <p>
-            Wir setzen nicht auf überladene Tools oder theoretische Konzepte. Entscheidend sind Lösungen, die im Arbeitsalltag funktionieren,
-            sofort Mehrwert schaffen und sich nahtlos in bestehende Prozesse einfügen.
-        </p>
-
-        <p>
-            Ob Excel-basierte Auswertungen, verstreute Datenquellen oder fehlende Übersicht: Wir bringen Struktur in bestehende Systeme
-            und machen relevante Informationen sichtbar.
-        </p>
-
-        <h3>Unser Ansatz</h3>
-        <p>
-            Wir entwickeln Datenlösungen, die im Alltag funktionieren. Klar strukturiert, verständlich und ohne unnötige Komplexität.
-            Unser Fokus liegt auf einfachen Prozessen, übersichtlichen Dashboards und Auswertungen, die sofort nutzbar sind und mit dem Unternehmen wachsen können.
-        </p>
-
-        <h3>Unser Anspruch</h3>
-        <p>
-            Daten sollen nicht nur sichtbar sein, sondern echten Nutzen bringen. Wir schaffen Klarheit, reduzieren Aufwand und machen Informationen so zugänglich,
-            dass Entscheidungen leichter fallen.
-        </p>
-
-        <h3>Persönlich &amp; direkt</h3>
-        <p>
-            Barry Data &amp; Analytics wurde gegründet, um Unternehmen pragmatisch und verständlich bei datenbasierten Entscheidungen zu unterstützen.
-            Wir arbeiten transparent, kommunizieren direkt und konzentrieren uns auf Lösungen, die wirklich weiterhelfen.
-        </p>
+      </div>
 
     </div>
 
-    <!-- RECHTE SEITE: GRÜNDER-BOX -->
-    <aside class="gruender-box">
-
-        <div>
-            <div class="name">Ahmed Barry</div>
-            <div class="role">Gründer &amp; Inhaber</div>
-
-            <div class="contact-line">E-Mail: ahmed@barrydataanalytics.de</div>
-            <div class="contact-line">Telefon: +49 1575 5356849</div>
-            <div class="contact-line">Bochum (NRW), Deutschland</div>
-        </div>
-
-        <div class="note">
-            Ich freue mich über eine unverbindliche Anfrage und melde mich persönlich zurück.
-        </div>
-
-    </aside>
+  </div>
 
 </section>
+
 
 
 
@@ -2600,14 +3336,13 @@ ul, ol {
   </div>
 </section>
 
-
-<!-- FOOTER (NEU + LEGAL DROPDOWN) -->
+<!-- FOOTER (NEU + LEGAL DROPDOWN + SHARE BUTTONS) -->
 <footer>
   <div class="footer-inner">
     <div>
       <div class="footer-title" data-i18n="footer_company"></div>
       <div>Bochum (NRW), Deutschland</div>
-      <div>Remote &amp; international</div>
+      <div>Remote & international</div>
       <div class="muted">ahmed@barrydataanalytics.de</div>
     </div>
 
@@ -2625,25 +3360,195 @@ ul, ol {
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <div>© <span id="year"></span> Barry Data &amp; Analytics</div>
+<div class="footer-bottom">
+  <div>© <span id="year"></span> Barry Data & Analytics</div>
 
-    <div class="footer-legal-dropdown">
-      <button class="footer-legal-toggle" id="legal-toggle">
-        <span data-i18n="footer_legal_dropdown"></span> ▾
-      </button>
+  <div class="footer-legal-dropdown">
+    <button class="footer-legal-toggle" id="legal-toggle">
+      <span data-i18n="footer_legal_dropdown"></span> ▾
+    </button>
 
-      <div class="footer-legal-menu" id="legal-menu">
-        <div class="footer-legal-item" data-i18n="footer_imprint"></div>
-        <div class="footer-legal-item" data-i18n="footer_privacy"></div>
-        <div class="footer-legal-item" data-i18n="footer_terms"></div>
-      </div>
+    <div class="footer-legal-menu" id="legal-menu">
+      <div class="footer-legal-item" data-i18n="footer_imprint"></div>
+      <div class="footer-legal-item" data-i18n="footer_privacy"></div>
+      <div class="footer-legal-item" data-i18n="footer_terms"></div>
     </div>
+
+    <!-- ⭐ LEGAL CONTENT ⭐ -->
+    <div id="legal-content" class="footer-legal-content"></div>
   </div>
+</div>
+
+<div class="footer-actions">
+  <!-- Seite teilen -->
+  <button class="footer-btn" data-share="page">
+    <span class="footer-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10 7a2 2 0 1 0-1.9-2.5A2 2 0 0 0 10 7Zm0 14a2 2 0 1 0-1.9-2.5A2 2 0 0 0 10 21Zm8-10a2 2 0 1 0-1.9-2.5A2 2 0 0 0 18 11Zm-7.1 7.1 4.2-2.2m-4.2-7.8 4.2 2.2"
+              fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <span data-i18n="footer_share_page"></span>
+  </button>
+
+  <!-- LinkedIn teilen -->
+  <button class="footer-btn" data-share="linkedin">
+    <span class="footer-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm.9 5.5H3.9V20h2Z
+                 M10.5 9.5h-2V20h2v-5.3c0-1.4.8-2.3 2.1-2.3 1.2 0 1.9.8 1.9 2.3V20h2v-5.9
+                 c0-2.4-1.3-3.8-3.4-3.8-1.5 0-2.4.7-2.8 1.5Z"
+              fill="currentColor" />
+      </svg>
+    </span>
+    <span data-i18n="footer_share_linkedin"></span>
+  </button>
+
+  <!-- E-Mail teilen -->
+  <button class="footer-btn" data-share="email">
+    <span class="footer-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"
+              fill="none" stroke="currentColor" stroke-width="1.6" />
+        <path d="M5 7.5 12 12l7-4.5"
+              fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <span data-i18n="footer_share_email"></span>
+  </button>
+
+  <!-- LinkedIn Profil -->
+  <a href="https://www.linkedin.com/in/ahmed-barry-data"
+     target="_blank"
+     class="footer-btn">
+    <span class="footer-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.2"
+                fill="none" stroke="currentColor" stroke-width="1.6" />
+        <path d="M6.5 19.5c.7-2.4 2.7-4 5.5-4s4.8 1.6 5.5 4"
+              fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <span data-i18n="footer_linkedin_profile"></span>
+  </a>
+</div>
+
+<div class="footer-scroll">
+  <!-- Nach oben -->
+  <button id="scroll-top" class="scroll-footer-btn">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 5 6 11m6-6 6 6M12 5v14"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Nach unten -->
+  <button id="scroll-bottom" class="scroll-footer-btn">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 19 6 13m6 6 6-6M12 19V5"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
 </footer>
 
+
+
+<!-- ⭐ HIER KOMMT DER NEUE FOOTER-JS-BLOCK ⭐ -->
+<script>
+/* Seite teilen */
+document.querySelector("[data-share='page']")?.addEventListener("click", () => {
+  navigator.share
+    ? navigator.share({ title: document.title, url: window.location.href })
+    : alert("Teilen wird von diesem Gerät nicht unterstützt.");
+});
+
+/* LinkedIn teilen */
+document.querySelector("[data-share='linkedin']")?.addEventListener("click", () => {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank");
+});
+
+/* E-Mail teilen */
+document.querySelector("[data-share='email']")?.addEventListener("click", () => {
+  const subject = encodeURIComponent("Interessante Seite");
+  const body = encodeURIComponent(window.location.href);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+});
+
+
+
+const topBtn = document.getElementById("scroll-top");
+const bottomBtn = document.getElementById("scroll-bottom");
+
+// Nach unten scrollen
+bottomBtn.addEventListener("click", () => {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+});
+
+// Nach oben scrollen
+topBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// --- Variante C: sichtbar bis Scroll ---
+
+// Beim Laden sichtbar machen
+bottomBtn.classList.add("visible");
+
+// Wenn der Nutzer scrollt → sofort ausblenden
+window.addEventListener("scroll", () => {
+  bottomBtn.classList.remove("visible");
+
+  // Wenn man wieder ganz oben ist → wieder anzeigen
+  if (window.scrollY < 50) {
+    bottomBtn.classList.add("visible");
+  }
+
+  // Nach oben Button anzeigen, wenn man weit unten ist
+  if (window.scrollY > 300) {
+    topBtn.classList.add("visible");
+  } else {
+    topBtn.classList.remove("visible");
+  }
+});
+
+document.addEventListener("scroll", () => {
+  const arrow = document.getElementById("scroll-bottom");
+
+  if (window.scrollY > 20) {
+    arrow.classList.add("hidden");
+  } else {
+    arrow.classList.remove("hidden");
+  }
+});
+
+
+document.addEventListener("scroll", () => {
+  const arrow = document.getElementById("scroll-bottom");
+
+  if (window.scrollY > 20) {
+    arrow.classList.add("hidden");
+  } else {
+    arrow.classList.remove("hidden");
+  }
+});
+
+
+
+
+</script>
+
 </main>
-  <script>
+
+
+ <script>
 const languageData = {
 
   /* ============================================================
@@ -2657,33 +3562,44 @@ const languageData = {
     nav_contact: "Kontakt",
     nav_cta: "Kurz Projekt besprechen",
 
-    /* Hero */
-    hero_pill: "Datenklarheit & Automatisierung",
-    hero_eyebrow: "WENIGER DATENCHAOS",
-    hero_title: "Weniger Datenchaos. Mehr Klarheit. Sofort.",
-    hero_subtitle:
-      "Ihre Daten – ob Excel, Tools oder Systeme – sollen Entscheidungen vereinfachen, nicht komplizierter machen. Wir bringen Struktur in Ihre Daten und automatisieren manuelle Auswertungen.",
-    hero_highlight:
-      "Klare, verlässliche Insights – ohne komplizierte Tools, ohne unnötige Prozesse.",
-    hero_cta_primary: "Kurz Projekt besprechen",
-    hero_cta_secondary: "Typische Kundenprojekte ansehen",
-    hero_location: "Standort: Bochum (NRW) – Remote & international",
-    hero_dashboard_title: "Sales Performance Dashboard",
-    hero_dashboard_badge: "Live-Daten · täglich aktualisiert",
-    hero_kpi1_label: "Weniger manueller Aufwand",
-    hero_kpi1_value: "−85 %",
-    hero_kpi2_label: "Zeit bis zum Report",
-    hero_kpi2_value: "Minuten statt Stunden",
-    hero_kpi3_label: "Fehlerquote",
-    hero_kpi3_value: "−70 %",
-    hero_tag1: "Weniger Excel-Chaos",
-    hero_tag2: "Kennzahlen auf Knopfdruck",
-    hero_tag3: "Immer aktuelle Daten",
-    hero_tag4: "Alles an einem Ort",
-    hero_chart_title: "Umsatzentwicklung nach Einführung",
-    hero_chart_range: "Letzte 6 Monate",
-    hero_chart_footer_left: "Vorher: manuelle Auswertungen",
-    hero_chart_footer_right: "Nachher: automatisierte Dashboards",
+  /* Hero */
+hero_pill: "Datenklarheit & Automatisierung",
+
+hero_eyebrow: "Reporting • Automatisierung • KPI-Dashboards",
+
+hero_title: "Weniger Datenchaos. Mehr Klarheit. Sofort.",
+
+hero_subtitle: "Mehr Überblick. Weniger Aufwand. Klare Entscheidungen.",
+
+hero_highlight:
+  "Verstreute Excel-Dateien, manuelle Auswertungen und fehlende Übersicht kosten Zeit und erschweren Entscheidungen. Wir schaffen klare Strukturen, automatisieren Auswertungen und machen wichtige Kennzahlen auf einen Blick verfügbar.",
+
+hero_cta_primary: "Kurz Projekt besprechen",
+hero_cta_secondary: "Typische Kundenprojekte ansehen",
+hero_location: "Standort: Bochum (NRW) – Remote & international",
+
+/* Dashboard (Hero Right) */
+hero_dashboard_title: "Business Performance Dashboard",
+hero_dashboard_badge: "Beispielhafte Darstellung",
+
+hero_kpi1_label: "Weniger manueller Aufwand",
+hero_kpi1_value: "−85 %",
+hero_kpi2_label: "Zeit bis zum Report",
+hero_kpi2_value: "Minuten statt Stunden",
+hero_kpi3_label: "Fehlerquote",
+hero_kpi3_value: "−70 %",
+
+hero_tag1: "Weniger Excel-Chaos",
+hero_tag2: "Kennzahlen auf Knopfdruck",
+hero_tag3: "Immer aktuelle Daten",
+hero_tag4: "Alles an einem Ort",
+
+hero_chart_title: "Umsatzentwicklung nach Einführung",
+hero_chart_range: "Letzte 6 Monate",
+hero_chart_footer_left: "Vorher: manuelle Auswertungen",
+hero_chart_footer_right: "Nachher: automatisierte Dashboards",
+ 
+
 
     /* Projektbeispiel */
     project_eyebrow: "TYPISCHES KUNDENPROJEKT",
@@ -2744,31 +3660,30 @@ const languageData = {
     detail_col_solution: "Lösung",
     detail_col_result: "Ergebnis",
 
-    /* ⭐ NEUES ÜBER UNS ⭐ */
-    about_section_title: "Über uns",
-    about_headline: "Klare Daten. Verlässliche Entscheidungen.",
-    about_intro:
-      "Barry Data & Analytics unterstützt Unternehmen dabei, komplexe Informationen in klare, nutzbare Entscheidungsgrundlagen zu übersetzen. Wir entwickeln pragmatische Lösungen für Reporting, KPI‑Dashboards und Datenanalysen — mit dem Ziel, Transparenz zu schaffen und manuellen Aufwand spürbar zu reduzieren.",
-    about_body1:
-      "Wir setzen nicht auf überladene Tools oder theoretische Konzepte. Entscheidend sind Lösungen, die im Arbeitsalltag funktionieren, sofort Mehrwert schaffen und sich nahtlos in bestehende Prozesse einfügen.",
-    about_body2:
-      "Ob Excel‑basierte Abläufe, verstreute Datenquellen oder fehlende Übersicht: Wir bringen Struktur in bestehende Systeme und machen relevante Informationen sichtbar.",
-    about_approach_title: "Unser Ansatz",
-    about_approach_text:
-      "Gute Datenlösungen müssen verständlich, zuverlässig und im Alltag nutzbar sein. Deshalb setzen wir auf klare KPI‑Strukturen, nachvollziehbare Reportings, einfache Prozesse, praxisnahe Dashboards und Lösungen, die mit dem Unternehmen mitwachsen.",
-    about_claim:
-      "Unser Anspruch: Daten nicht nur sichtbar machen — sondern wirklich nutzbar.",
-    about_personal_title: "Persönlich & direkt",
-    about_personal_text:
-      "Barry Data & Analytics wurde gegründet, um Unternehmen pragmatisch und verständlich bei datenbasierten Entscheidungen zu unterstützen. Direkte Kommunikation, transparente Zusammenarbeit und ein klarer Fokus auf echte Probleme stehen dabei im Mittelpunkt.",
+  /* ⭐ ÜBER UNS – FINAL ⭐ */
+about_section_title: "Über uns",
+about_headline: "Klare Daten. Verlässliche Entscheidungen.",
+about_intro:
+  "Barry Data & Analytics unterstützt Unternehmen dabei, komplexe Informationen in klare, nutzbare Entscheidungsgrundlagen zu übersetzen. Wir entwickeln pragmatische Lösungen für Reporting, KPI-Strukturen und Datenanalysen – mit dem Ziel, Transparenz zu schaffen und manuellen Aufwand spürbar zu reduzieren.",
+about_body1:
+  "Wir setzen nicht auf überladene Tools oder theoretische Konzepte. Entscheidend sind Lösungen, die im Arbeitsalltag funktionieren, sofort Mehrwert schaffen und sich nahtlos in bestehende Prozesse einfügen. Ob Excel-basierte Abläufe, verstreute Datenquellen oder fehlende Übersicht: Wir bringen Struktur in bestehende Systeme und machen relevante Informationen sichtbar.",
+about_approach_title: "Unser Ansatz",
+about_approach_text:
+  "Daten sollen für Sie arbeiten – nicht umgekehrt. Deshalb setzen wir auf klare KPI-Strukturen, nachvollziehbare Auswertungen, einfache Prozesse und Lösungen, die im Alltag wirklich nutzbar sind. Unser Ziel ist nicht nur die Umsetzung einer Lösung. Wir unterstützen Unternehmen dabei, dauerhaft den Überblick über ihre wichtigsten Kennzahlen zu behalten und fundierte Entscheidungen treffen zu können. Wenn neue Anforderungen entstehen, können bestehende Auswertungen flexibel weiterentwickelt werden.",
+about_claim:
+  "Daten nicht nur sichtbar machen – sondern wirklich nutzbar.",
+about_personal_title: "Persönlich & direkt",
+about_personal_text:
+  "Barry Data & Analytics wurde gegründet, um Unternehmen pragmatisch und verständlich bei datenbasierten Entscheidungen zu unterstützen. Direkte Kommunikation, transparente Zusammenarbeit und ein klarer Fokus auf echte Herausforderungen stehen dabei im Mittelpunkt.",
 
-    /* ⭐ Gründerblock ⭐ */
-    founder_name: "Ahmed Barry",
-    founder_role: "Gründer & Inhaber",
-    founder_email_label: "E-Mail",
-    founder_phone_label: "Telefon",
-    founder_location: "Bochum (NRW), Deutschland",
-    founder_note: "Melden Sie sich gerne unverbindlich, ich antworte persönlich.",
+/* ⭐ GRÜNDER – FINAL ⭐ */
+founder_name: "Ahmed Barry",
+founder_role: "Gründer & Inhaber",
+founder_email_label: "E-Mail",
+founder_phone_label: "Telefon",
+founder_location: "Bochum, NRW, Deutschland",
+founder_note:
+  "Ich freue mich über Ihre unverbindliche Anfrage und melde mich persönlich bei Ihnen zurück.",
 
 
     /* Formular */
@@ -2833,16 +3748,45 @@ field_type_option4: "Noch unklar",
     contact_note:
       "Ihre Anfrage ist unverbindlich. Wir melden uns mit Rückfragen oder einem konkreten Vorschlag.",
 
-    /* Footer */
-    footer_company: "Barry Data & Analytics",
-    footer_nav_title: "Navigation",
-    footer_legal_title: "Rechtliches",
-    footer_legal_text:
-      "Transparenter Umgang mit Daten – in Projekten und auf dieser Website.",
-    footer_legal_dropdown: "Rechtliche Hinweise",
-    footer_imprint: "Impressum",
-    footer_privacy: "Datenschutzerklärung",
-    footer_terms: "Allgemeine Geschäftsbedingungen",
+
+/* Footer */
+footer_company: "Barry Data & Analytics",
+footer_nav_title: "Navigation",
+footer_legal_title: "Rechtliches",
+footer_legal_text:
+  "Transparenter Umgang mit Daten – in Projekten und auf dieser Website.",
+footer_legal_dropdown: "Rechtliche Hinweise",
+footer_imprint: "Impressum",
+footer_privacy: "Datenschutzerklärung",
+footer_terms: "Allgemeine Geschäftsbedingungen",
+
+/* ⭐ Neue Footer-Funktionen (NEU & sauber ergänzt) ⭐ */
+footer_share_page: "Seite teilen",
+footer_share_linkedin: "Auf LinkedIn teilen",
+footer_share_email: "Per E‑Mail teilen",
+footer_linkedin_profile: "LinkedIn Profil",
+footer_back_to_top: "Nach oben",
+
+
+imprint_content: `
+Rechtsform: Einzelunternehmen (Barry Data & Analytics)
+Inhaber: Ahmed Barry
+Adresse: Bochum, Nordrhein‑Westfalen, Deutschland
+E‑Mail: ahmed@barrydataanalytics.de
+Telefon: +49 1575 5355849
+Inhaltlich verantwortlich gemäß § 18 Abs. 2 MStV: Ahmed Barry
+`,
+
+privacy_content: `
+Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO.
+Verarbeitete Daten: Kontaktinformationen, Projektanfragen, technische Nutzungsdaten.
+Zwecke: Beantwortung von Anfragen, Projektkommunikation, technische Bereitstellung der Website.
+Weitergabe: Keine Weitergabe an Dritte, außer wenn gesetzlich erforderlich.
+Speicherdauer: Speicherung nur so lange, wie es für den jeweiligen Zweck notwendig ist.
+Ihre Rechte: Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch, Datenübertragbarkeit.
+Kontakt für Datenschutzanfragen: ahmed@barrydataanalytics.de
+`,
+
   },
 
   /* ============================================================
@@ -2856,33 +3800,44 @@ field_type_option4: "Noch unklar",
     nav_contact: "Contact",
     nav_cta: "Discuss project briefly",
 
-    /* Hero */
-    hero_pill: "Data clarity & automation",
-    hero_eyebrow: "LESS DATA CHAOS",
-    hero_title: "Less data chaos. More clarity. Instantly.",
-    hero_subtitle:
-      "Your data – whether Excel, tools or systems – should simplify decisions, not make them more complex. We structure your data and automate manual reporting.",
-    hero_highlight:
-      "Clear, reliable insights – without complex tools and unnecessary processes.",
-    hero_cta_primary: "Discuss project briefly",
-    hero_cta_secondary: "View typical client projects",
-    hero_location: "Location: Bochum (NRW) – Remote & international",
-    hero_dashboard_title: "Sales performance dashboard",
-    hero_dashboard_badge: "Live data · updated daily",
-    hero_kpi1_label: "Less manual effort",
-    hero_kpi1_value: "−85%",
-    hero_kpi2_label: "Time to report",
-    hero_kpi2_value: "Minutes instead of hours",
-    hero_kpi3_label: "Error rate",
-    hero_kpi3_value: "−70%",
-    hero_tag1: "Less Excel chaos",
-    hero_tag2: "KPIs at a glance",
-    hero_tag3: "Always up-to-date data",
-    hero_tag4: "Everything in one place",
-    hero_chart_title: "Revenue trend after go-live",
-    hero_chart_range: "Last 6 months",
-    hero_chart_footer_left: "Before: manual reporting",
-    hero_chart_footer_right: "After: automated dashboards",
+   /* Hero */
+hero_pill: "Data clarity & automation",
+
+hero_eyebrow: "Reporting • Automation • KPI dashboards",
+
+hero_title: "Less data chaos. More clarity. Instantly.",
+
+hero_subtitle: "More overview. Less effort. Clear decisions.",
+
+hero_highlight:
+  "Scattered Excel files, manual analyses and missing visibility cost time and make decisions harder. We create clear structures, automate reporting processes and make key metrics available at a glance.",
+
+hero_cta_primary: "Discuss project briefly",
+hero_cta_secondary: "View typical client projects",
+hero_location: "Location: Bochum (NRW) – Remote & international",
+
+/* Dashboard (Hero Right) */
+hero_dashboard_title: "Business Performance Dashboard",
+hero_dashboard_badge: "Sample representation",
+
+hero_kpi1_label: "Less manual effort",
+hero_kpi1_value: "−85%",
+hero_kpi2_label: "Time to report",
+hero_kpi2_value: "Minutes instead of hours",
+hero_kpi3_label: "Error rate",
+hero_kpi3_value: "−70%",
+
+hero_tag1: "Less Excel chaos",
+hero_tag2: "KPIs at a glance",
+hero_tag3: "Always up-to-date data",
+hero_tag4: "Everything in one place",
+
+hero_chart_title: "Revenue trend after implementation",
+hero_chart_range: "Last 6 months",
+hero_chart_footer_left: "Before: manual reporting",
+hero_chart_footer_right: "After: automated dashboards",
+ 
+
 
     /* Project */
     project_eyebrow: "TYPICAL CLIENT PROJECT",
@@ -2943,31 +3898,31 @@ field_type_option4: "Noch unklar",
     detail_col_solution: "Solution",
     detail_col_result: "Result",
 
-    /* ⭐ NEW ABOUT US ⭐ */
-    about_section_title: "About us",
-    about_headline: "Clear data. Reliable decisions.",
-    about_intro:
-      "Barry Data & Analytics helps companies translate complex information into clear, actionable decision‑making foundations. We develop pragmatic solutions for reporting, KPI dashboards and data analytics — with the goal of creating transparency and significantly reducing manual effort.",
-    about_body1:
-      "We don’t rely on overloaded tools or theoretical concepts. What matters are solutions that work in everyday operations, create immediate value and integrate seamlessly into existing processes.",
-    about_body2:
-      "Whether Excel‑based workflows, scattered data sources or lack of visibility: we bring structure to existing systems and make relevant information accessible.",
-    about_approach_title: "Our approach",
-    about_approach_text:
-      "Good data solutions must be understandable, reliable and usable in daily work. That’s why we focus on clear KPI structures, transparent reporting, simple processes, practical dashboards and solutions that grow with the company.",
-    about_claim:
-      "Our promise: not just making data visible — but truly usable.",
-    about_personal_title: "Personal & direct",
-    about_personal_text:
-      "Barry Data & Analytics was founded to support companies pragmatically and clearly in data‑driven decision‑making. Direct communication, transparent collaboration and a focus on real problems are at the core of our work.",
+  /* ⭐ ABOUT US – FINAL ⭐ */
+about_section_title: "About Us",
+about_headline: "Clear data. Confident decisions.",
+about_intro:
+  "Barry Data & Analytics supports organizations in transforming complex information into clear, actionable decision-making foundations. We develop pragmatic solutions for reporting, KPI structures and data analysis — with the goal of creating transparency and significantly reducing manual effort.",
+about_body1:
+  "We do not rely on overloaded tools or theoretical concepts. What matters are solutions that work in day‑to‑day operations, create immediate value and integrate seamlessly into existing processes. Whether Excel-based workflows, scattered data sources or a lack of clarity — we bring structure to existing systems and make relevant information visible.",
+about_approach_title: "Our Approach",
+about_approach_text:
+  "Data should work for you — not the other way around. That’s why we focus on clear KPI structures, transparent evaluations, simple processes and solutions that are truly usable in everyday business. Our goal is not just to implement a solution. We help organizations maintain long-term visibility into their key metrics and make informed decisions. As new requirements arise, existing analyses can be expanded flexibly.",
+about_claim:
+  "Not just making data visible — but truly usable.",
+about_personal_title: "Personal & Direct",
+about_personal_text:
+  "Barry Data & Analytics was founded to support companies in a pragmatic and understandable way in data-driven decision-making. Direct communication, transparent collaboration and a focus on real challenges are at the core of our work.",
 
-    /* ⭐ Founder block ⭐ */
-    founder_name: "Ahmed Barry",
-    founder_role: "Founder & Owner",
-    founder_email_label: "Email",
-    founder_phone_label: "Phone",
-    founder_location: "Bochum (NRW), Germany",
-    founder_note: "Feel free to reach out — I respond personally.",
+/* ⭐ FOUNDER – FINAL ⭐ */
+founder_name: "Ahmed Barry",
+founder_role: "Founder & Owner",
+founder_email_label: "Email",
+founder_phone_label: "Phone",
+founder_location: "Bochum, NRW, Germany",
+founder_note:
+  "I look forward to your inquiry and will get back to you personally.",
+
 
 
     /* Form */
@@ -3028,15 +3983,44 @@ field_type_option4: "Not sure yet",
           "Your inquiry is non‑binding. We’ll get back with questions or a concrete proposal.",
 
         /* Footer */
-        footer_company: "Barry Data & Analytics",
-        footer_nav_title: "Navigation",
-        footer_legal_title: "Legal",
-        footer_legal_text:
-          "Transparent handling of data – in projects and on this website.",
-        footer_legal_dropdown: "Legal information",
-        footer_imprint: "Imprint",
-        footer_privacy: "Privacy policy",
-        footer_terms: "Terms & conditions",
+footer_company: "Barry Data & Analytics",
+footer_nav_title: "Navigation",
+footer_legal_title: "Legal",
+footer_legal_text:
+  "Transparent handling of data – in projects and on this website.",
+footer_legal_dropdown: "Legal information",
+footer_imprint: "Imprint",
+footer_privacy: "Privacy policy",
+footer_terms: "Terms & conditions",
+
+/* ⭐ New Footer Functions (added cleanly) ⭐ */
+footer_share_page: "Share page",
+footer_share_linkedin: "Share on LinkedIn",
+footer_share_email: "Share via email",
+footer_linkedin_profile: "LinkedIn profile",
+footer_back_to_top: "Back to top",
+
+
+/* ⭐ New legal content ⭐ */
+imprint_content: `
+Legal form: Sole proprietorship (Barry Data & Analytics)
+Owner: Ahmed Barry
+Address: Bochum, North Rhine‑Westphalia, Germany
+Email: ahmed@barrydataanalytics.de
+Phone: +49 1575 5355849
+Responsible according to § 18 (2) MStV: Ahmed Barry
+`,
+
+privacy_content: `
+We process personal data exclusively in accordance with the GDPR.
+Processed data: contact information, project inquiries, technical usage data.
+Purpose: responding to inquiries, project communication, technical operation of the website.
+Disclosure: no transfer to third parties unless legally required.
+Storage period: data is stored only as long as necessary for the stated purpose.
+Your rights: access, rectification, deletion, restriction, objection, data portability.
+Contact for privacy inquiries: ahmed@barrydataanalytics.de
+`,
+
       },
           fr: {
         nav_home: "Accueil",
@@ -3045,33 +4029,44 @@ field_type_option4: "Not sure yet",
         nav_contact: "Contact",
         nav_cta: "Parler brièvement du projet",
 
-        /* Hero */
-        hero_pill: "Clarté des données & automatisation",
-        hero_eyebrow: "MOINS DE CHAOS DE DONNÉES",
-        hero_title: "Moins de chaos de données. Plus de clarté. Immédiatement.",
-        hero_subtitle:
-          "Vos données – Excel, outils ou systèmes – doivent simplifier les décisions, pas les compliquer. Nous structurons vos données et automatisons les analyses manuelles.",
-        hero_highlight:
-          "Des insights clairs et fiables – sans outils complexes ni processus inutiles.",
-        hero_cta_primary: "Parler brièvement du projet",
-        hero_cta_secondary: "Voir des projets types",
-        hero_location: "Localisation : Bochum (NRW) – Remote & international",
-        hero_dashboard_title: "Tableau de bord Sales Performance",
-        hero_dashboard_badge: "Données en direct · mises à jour chaque jour",
-        hero_kpi1_label: "Moins de travail manuel",
-        hero_kpi1_value: "−85 %",
-        hero_kpi2_label: "Temps jusqu’au rapport",
-        hero_kpi2_value: "Minutes au lieu d’heures",
-        hero_kpi3_label: "Taux d’erreur",
-        hero_kpi3_value: "−70 %",
-        hero_tag1: "Moins de chaos Excel",
-        hero_tag2: "Indicateurs en un coup d’œil",
-        hero_tag3: "Données toujours à jour",
-        hero_tag4: "Tout au même endroit",
-        hero_chart_title: "Évolution du chiffre d’affaires après le déploiement",
-        hero_chart_range: "6 derniers mois",
-        hero_chart_footer_left: "Avant : analyses manuelles",
-        hero_chart_footer_right: "Après : tableaux de bord automatisés",
+ /* Hero */
+hero_pill: "Clarté des données & automatisation",
+
+hero_eyebrow: "Reporting • Automatisation • Tableaux de bord KPI",
+
+hero_title: "Moins de chaos de données. Plus de clarté. Immédiatement.",
+
+hero_subtitle: "Plus de visibilité. Moins d’effort. Des décisions claires.",
+
+hero_highlight:
+  "Des fichiers Excel dispersés, des analyses manuelles et un manque de visibilité font perdre du temps et compliquent les décisions. Nous créons des structures claires, automatisons les analyses et rendons les indicateurs clés visibles en un coup d’œil.",
+
+hero_cta_primary: "Discuter brièvement du projet",
+hero_cta_secondary: "Voir des projets clients typiques",
+hero_location: "Localisation : Bochum (NRW) – Remote & international",
+
+/* Dashboard (Hero Right) */
+hero_dashboard_title: "Business Performance Dashboard",
+hero_dashboard_badge: "Représentation illustrative",
+
+hero_kpi1_label: "Moins de travail manuel",
+hero_kpi1_value: "−85 %",
+hero_kpi2_label: "Temps jusqu’au rapport",
+hero_kpi2_value: "Minutes au lieu d’heures",
+hero_kpi3_label: "Taux d’erreur",
+hero_kpi3_value: "−70 %",
+
+hero_tag1: "Moins de chaos Excel",
+hero_tag2: "Indicateurs en un coup d’œil",
+hero_tag3: "Données toujours à jour",
+hero_tag4: "Tout au même endroit",
+
+hero_chart_title: "Évolution du chiffre d’affaires après mise en place",
+hero_chart_range: "6 derniers mois",
+hero_chart_footer_left: "Avant : analyses manuelles",
+hero_chart_footer_right: "Après : tableaux de bord automatisés",
+     
+
 
         /* Projet */
         project_eyebrow: "PROJET CLIENT TYPE",
@@ -3132,31 +4127,32 @@ field_type_option4: "Not sure yet",
         detail_col_solution: "Solution",
         detail_col_result: "Résultat",
 
-        /* ⭐ Nouveau À propos ⭐ */
-        about_section_title: "À propos",
-        about_headline: "Des données claires. Des décisions fiables.",
-        about_intro:
-          "Barry Data & Analytics aide les entreprises à transformer des informations complexes en bases décisionnelles claires et exploitables. Nous développons des solutions pragmatiques pour le reporting, les tableaux de bord KPI et l’analyse de données — avec pour objectif d’apporter de la transparence et de réduire considérablement le travail manuel.",
-        about_body1:
-          "Nous n’utilisons pas d’outils surchargés ni de concepts théoriques. L’essentiel, ce sont des solutions qui fonctionnent au quotidien, créent de la valeur immédiatement et s’intègrent parfaitement aux processus existants.",
-        about_body2:
-          "Qu’il s’agisse de processus basés sur Excel, de sources de données dispersées ou d’un manque de visibilité : nous apportons de la structure aux systèmes existants et rendons les informations pertinentes accessibles.",
-        about_approach_title: "Notre approche",
-        about_approach_text:
-          "De bonnes solutions de données doivent être compréhensibles, fiables et utilisables au quotidien. C’est pourquoi nous misons sur des structures KPI claires, des reportings transparents, des processus simples, des tableaux de bord pratiques et des solutions qui évoluent avec l’entreprise.",
-        about_claim:
-          "Notre ambition : ne pas seulement rendre les données visibles — mais réellement utiles.",
-        about_personal_title: "Personnel & direct",
-        about_personal_text:
-          "Barry Data & Analytics a été fondé pour accompagner les entreprises de manière pragmatique et compréhensible dans leurs décisions basées sur les données. Communication directe, collaboration transparente et concentration sur les vrais problèmes sont au cœur de notre approche.",
+      /* ⭐ À PROPOS – FINAL ⭐ */
+about_section_title: "À propos",
+about_headline: "Des données claires. Des décisions fiables.",
+about_intro:
+  "Barry Data & Analytics aide les entreprises à transformer des informations complexes en bases décisionnelles claires et exploitables. Nous développons des solutions pragmatiques pour le reporting, les structures KPI et l’analyse de données — avec pour objectif de créer de la transparence et de réduire considérablement les efforts manuels.",
+about_body1:
+  "Nous n’utilisons pas d’outils surchargés ni de concepts théoriques. L’essentiel est de proposer des solutions qui fonctionnent au quotidien, apportent une valeur immédiate et s’intègrent harmonieusement dans les processus existants. Qu’il s’agisse de processus basés sur Excel, de sources de données dispersées ou d’un manque de visibilité, nous apportons de la structure aux systèmes existants et rendons les informations pertinentes visibles.",
+about_approach_title: "Notre approche",
+about_approach_text:
+  "Les données doivent travailler pour vous — et non l’inverse. C’est pourquoi nous privilégions des structures KPI claires, des analyses compréhensibles, des processus simples et des solutions réellement utilisables au quotidien. Notre objectif n’est pas seulement de mettre en place une solution. Nous aidons les entreprises à garder une vision durable de leurs indicateurs clés et à prendre des décisions éclairées. Lorsque de nouveaux besoins apparaissent, les analyses existantes peuvent être développées de manière flexible.",
+about_claim:
+  "Rendre les données non seulement visibles — mais réellement exploitables.",
+about_personal_title: "Personnel & direct",
+about_personal_text:
+  "Barry Data & Analytics a été créé pour accompagner les entreprises de manière pragmatique et compréhensible dans leurs décisions basées sur les données. Une communication directe, une collaboration transparente et un focus sur les véritables enjeux sont au cœur de notre démarche.",
 
-        /* ⭐ Fondateur ⭐ */
-        founder_name: "Ahmed Barry",
-        founder_role: "Fondateur & propriétaire",
-        founder_email_label: "E-mail",
-        founder_phone_label: "Téléphone",
-        founder_location: "Bochum (NRW), Allemagne",
-        founder_note: "N’hésitez pas à me contacter — je réponds personnellement.",
+/* ⭐ FONDATEUR – FINAL ⭐ */
+founder_name: "Ahmed Barry",
+founder_role: "Fondateur & propriétaire",
+founder_email_label: "E‑mail",
+founder_phone_label: "Téléphone",
+founder_location: "Bochum, NRW, Allemagne",
+founder_note:
+  "Je me réjouis de votre demande et je vous répondrai personnellement.",
+
+
 
         /* Formulaire */
         contact_eyebrow: "DEMANDE DE PROJET",
@@ -3217,15 +4213,43 @@ field_type_option4: "Pas encore sûr",
           "Votre demande est sans engagement. Nous revenons vers vous avec des questions ou une proposition concrète.",
 
         /* Footer */
-        footer_company: "Barry Data & Analytics",
-        footer_nav_title: "Navigation",
-        footer_legal_title: "Mentions légales",
-        footer_legal_text:
-          "Gestion transparente des données – dans les projets et sur ce site.",
-        footer_legal_dropdown: "Informations légales",
-        footer_imprint: "Mentions légales",
-        footer_privacy: "Politique de confidentialité",
-        footer_terms: "Conditions générales",
+footer_company: "Barry Data & Analytics",
+footer_nav_title: "Navigation",
+footer_legal_title: "Mentions légales",
+footer_legal_text:
+  "Gestion transparente des données – dans les projets et sur ce site.",
+footer_legal_dropdown: "Informations légales",
+footer_imprint: "Mentions légales",
+footer_privacy: "Politique de confidentialité",
+footer_terms: "Conditions générales",
+
+/* ⭐ Nouvelles fonctions du pied de page (ajoutées proprement) ⭐ */
+footer_share_page: "Partager la page",
+footer_share_linkedin: "Partager sur LinkedIn",
+footer_share_email: "Partager par e‑mail",
+footer_linkedin_profile: "Profil LinkedIn",
+footer_back_to_top: "Retour en haut",
+
+/* ⭐ Nouveau contenu légal ⭐ */
+imprint_content: `
+Forme juridique : Entreprise individuelle (Barry Data & Analytics)
+Propriétaire : Ahmed Barry
+Adresse : Bochum, Rhénanie‑du‑Nord–Westphalie, Allemagne
+E‑mail : ahmed@barrydataanalytics.de
+Téléphone : +49 1575 5355849
+Responsable selon § 18 (2) MStV : Ahmed Barry
+`,
+
+privacy_content: `
+Nous traitons les données personnelles exclusivement conformément au RGPD.
+Données traitées : informations de contact, demandes de projet, données techniques d’utilisation.
+Finalités : réponse aux demandes, communication de projet, fonctionnement technique du site.
+Transmission : aucune transmission à des tiers, sauf obligation légale.
+Durée de conservation : uniquement le temps nécessaire à la finalité prévue.
+Vos droits : accès, rectification, suppression, limitation, opposition, portabilité des données.
+Contact pour les demandes liées à la protection des données : ahmed@barrydataanalytics.de
+`,
+
       }
     };
       
@@ -3775,5 +4799,121 @@ field_type_option4: "Pas encore sûr",
   applyLanguage("de");
 </script>
 
+<script>
+document.querySelectorAll('.usecase-box').forEach(box => {
+  box.addEventListener('click', () => {
+    const target = document.querySelector('#usecase-details');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+
+<script>
+/* ============================================
+   SMOOTH SCROLL FÜR ALLE MENÜPUNKTE
+============================================ */
+document.querySelectorAll("[data-scroll]").forEach(link => {
+  link.addEventListener("click", () => {
+    const target = document.querySelector(link.getAttribute("data-scroll"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+
+/* ============================================
+   ACTIVE STATE BEIM SCROLLEN
+============================================ */
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("data-scroll") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+/* ============================================
+   USE CASE – Active Card + Scroll + Animation
+============================================ */
+document.querySelectorAll(".usecase-card").forEach(card => {
+  card.addEventListener("click", () => {
+
+    /* Aktive Karte setzen */
+    document.querySelectorAll(".usecase-card")
+      .forEach(c => c.classList.remove("usecase-active"));
+    card.classList.add("usecase-active");
+
+    /* Detail Panel sichtbar machen */
+    const panel = document.querySelector("#usecase-details");
+    if (panel) {
+      panel.classList.add("visible");
+
+      /* Scroll mit Offset */
+      const offset = 140;
+      const top = panel.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: "smooth" });
+    }
+  });
+});
+
+/* ============================================
+   LEGAL DROPDOWN – Inhalte laden
+   (richtige Position: NACH Sprach-Init!)
+============================================ */
+document.querySelector('[data-i18n="footer_imprint"]').onclick = () => {
+  document.getElementById('legal-content').innerText =
+    languageData[currentLang].imprint_content;
+};
+
+document.querySelector('[data-i18n="footer_privacy"]').onclick = () => {
+  document.getElementById('legal-content').innerText =
+    languageData[currentLang].privacy_content;
+};
+
+document.querySelector('[data-i18n="footer_terms"]').onclick = () => {
+  document.getElementById('legal-content').innerText =
+    languageData[currentLang].terms_content || "";
+};
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const dashboard = document.querySelector(".dashboard-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          dashboard.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(dashboard);
+});
+</script>
+
+
 </body>
 </html>
+
+
+ 
