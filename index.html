@@ -2883,6 +2883,196 @@ footer {
   }
 }
 
+
+/* ============================
+   ⭐ MOBILE NAVIGATION – APP STYLE
+   ============================ */
+
+.mobile-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  width: 34px;
+  height: 26px;
+  z-index: 99999;
+  cursor: pointer;
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  height: 3px;
+  margin-bottom: 6px;
+  background: #00e5ff;
+  border-radius: 3px;
+  transition: 0.3s ease;
+}
+
+/* Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 10, 20, 0.92);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 99998;
+}
+
+.mobile-nav.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Inhalt */
+.mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 90px 30px;
+  gap: 28px;
+}
+
+/* Links */
+.mobile-link {
+  font-size: 22px;
+  color: #ffffffd9;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.mobile-link:hover {
+  color: #00e5ff;
+}
+
+/* Sprache */
+.mobile-lang {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.mobile-lang button {
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.35);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #00ffd5;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.mobile-lang button:hover {
+  background: rgba(0, 255, 200, 0.22);
+}
+
+/* CTA */
+.mobile-cta {
+  margin-top: 18px;
+  padding: 14px 20px;
+  background: #00e5ff;
+  color: #000;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.mobile-cta:active {
+  transform: scale(0.96);
+}
+
+/* ============================
+   ⭐ MOBILE LAYOUT (HEADLINE → FOOTER)
+   ============================ */
+
+@media (max-width: 768px) {
+
+  /* Headline */
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.15;
+    max-width: 14ch;
+    margin-bottom: 16px;
+  }
+
+  /* Subheadline */
+  .hero-subtitle {
+    font-size: 18px;
+    line-height: 1.35;
+    margin-bottom: 16px;
+  }
+
+  /* Beschreibung */
+  .hero-description {
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 34ch;
+    margin-bottom: 20px;
+  }
+
+  /* Buttons */
+  .hero-cta-row {
+    gap: 12px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* Standort */
+  .hero-meta {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  /* Dashboard */
+  .dashboard-card {
+    padding: 18px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .dashboard-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer kompakt */
+  footer {
+    padding: 40px 20px;
+    font-size: 14px;
+  }
+
+  /* Navigation sichtbar */
+  .mobile-nav-toggle {
+    display: block;
+  }
+}
+
+.project-ticker-wrapper {
+  margin-top: -15px; /* kannst du auf -50 oder -60 erhöhen */
+  position: relative;
+  z-index: 5;
+}
+
+/* ⭐ Ticker: nur untere Linie, oben weg */
+.project-ticker-wrapper {
+  border-top: none;              /* obere Linie aus */
+  border-bottom: 1px solid var(--accent, #27f3ff); /* nur unten */
+}
+
+/* ⭐ Ticker: nur untere Linie, oben weg */
+.project-ticker-wrapper {
+  border-top: none; /* obere Linie aus */
+  border-bottom: 1px solid var(--accent, #27f3ff); /* nur unten */
+  margin-top: -14px; /* Ticker etwas nach oben ziehen */
+  position: relative;
+  z-index: 5;
+}
+
+
 /</style>
 </head>
 <body>
@@ -2913,6 +3103,34 @@ footer {
     </div>
   </nav>
 </header>
+
+  <!-- ⭐ Mobile Navigation Button + Overlay (GENAU HIER!) -->
+  <div class="mobile-nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="mobile-nav">
+    <div class="mobile-nav-inner">
+
+      <a href="#home" class="mobile-link">Home</a>
+      <a href="#services" class="mobile-link">Services</a>
+      <a href="#about" class="mobile-link">Über uns</a>
+      <a href="#contact" class="mobile-link">Kontakt</a>
+
+      <div class="mobile-lang">
+        <button data-lang="de">DE</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="fr">FR</button>
+      </div>
+
+      <button class="mobile-cta">Kurz Projekt besprechen</button>
+
+    </div>
+  </nav>
+  <!-- ⭐ Ende Mobile Navigation -->
+
 
     <main class="wrapper">
       <!-- HERO -->
@@ -4908,6 +5126,17 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   observer.observe(dashboard);
+});
+</script>
+
+<script>
+const toggle = document.querySelector(".mobile-nav-toggle");
+const nav = document.querySelector(".mobile-nav");
+const body = document.body;
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("active");
+  body.style.overflow = nav.classList.contains("active") ? "hidden" : "auto";
 });
 </script>
 
