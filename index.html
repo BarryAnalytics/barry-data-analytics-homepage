@@ -3072,6 +3072,861 @@ footer {
   z-index: 5;
 }
 
+.project-ticker-track {
+  animation: tickerMove 45s linear infinite;
+}
+
+
+/* ⭐ Mobile Navigation Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(6px);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.mobile-nav.active {
+  display: flex;
+}
+
+/* ⭐ Mobile Navigation Links */
+.mobile-link {
+  font-size: 1.4rem;
+  margin: 12px 0;
+  color: #fff;
+  text-align: center;
+}
+
+/* ⭐ Language Buttons */
+.mobile-lang {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-lang button {
+  font-size: 1.2rem;
+  padding: 8px 16px;
+}
+
+/* ⭐ CTA Button */
+.mobile-cta {
+  margin-top: 30px;
+  padding: 14px 24px;
+  font-size: 1.2rem;
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+/* ⭐ Hamburger Button */
+.mobile-nav-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+/* ⭐ Mobile Ticker Optimierung */
+@media (max-width: 768px) {
+  .project-ticker-wrapper {
+    margin-top: -20px; /* etwas höher */
+    padding: 12px 0;   /* mehr Luft */
+    border-bottom-width: 1px;
+  }
+
+  .project-ticker-track {
+    font-size: 15px; /* größer für Mobile */
+    animation: tickerMove 55s linear infinite; /* langsamer */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .project-ticker-wrapper {
+    margin-top: -20px;
+  }
+}
+
+
+/* ⭐ Pixelgenaue Mobile-Ticker-Optimierung */
+@media (max-width: 768px) {
+
+  /* Wrapper: Position, Abstand, Höhe */
+  .project-ticker-wrapper {
+    margin-top: -18px;        /* perfekt für iPhone 13–17 */
+    padding: 10px 0;          /* mehr Luft oben/unten */
+    border-bottom-width: 1px; /* klare Linie */
+  }
+
+  /* Lauftext: Größe, Geschwindigkeit, Abstand */
+  .project-ticker-track {
+    font-size: 15.5px;        /* perfekt lesbar auf iPhone 13 */
+    letter-spacing: 0.2px;    /* ruhigeres Schriftbild */
+    animation: tickerMove 56s linear infinite; /* Premium-Lesegeschwindigkeit */
+  }
+
+  /* Optional: Text nicht zu nah am Rand */
+  .project-ticker-track span {
+    padding-left: 12px;
+  }
+}
+
+
+/* ⭐ Pixelgenaue HERO-Optimierung für Mobile */
+@media (max-width: 768px) {
+
+  /* Gesamter Hero-Bereich */
+  .hero {
+    padding-top: 32px;          /* perfekte Luft oben */
+    padding-bottom: 24px;       /* nicht zu lang */
+    gap: 28px;                  /* Abstand zwischen links/rechts */
+    flex-direction: column;     /* Dashboard unter Text */
+  }
+
+  /* Linke Seite (Text) */
+  .hero-left {
+    width: 100%;
+    padding: 0 18px;            /* perfekte Seitenabstände */
+  }
+
+  /* Eyebrow / Pill */
+  .hero-eyebrow {
+    margin-bottom: 6px;
+  }
+
+  /* Titel */
+  .hero-title {
+    font-size: 26px;            /* perfekt für iPhone 13–17 */
+    line-height: 1.22;
+    margin-bottom: 10px;
+  }
+
+  /* Untertitel */
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+
+  /* Highlight */
+  .hero-highlight {
+    font-size: 15px;
+    line-height: 1.45;
+    margin-bottom: 18px;
+  }
+
+  /* CTA-Buttons */
+  .hero-cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;                  /* perfekte Daumen-Abstände */
+    margin-bottom: 18px;
+  }
+
+  .hero-cta-row .btn {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 16px;
+  }
+
+  /* Standort / Meta */
+  .hero-meta {
+    margin-top: 4px;
+    font-size: 14px;
+  }
+
+  /* Rechte Seite (Dashboard) */
+  .hero-right {
+    width: 100%;
+    padding: 0 18px;
+    margin-top: 6px;
+  }
+
+  .hero-right-header {
+    margin-bottom: 10px;
+  }
+
+  .hero-kpi-row {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .hero-kpi-label {
+    font-size: 13px;
+  }
+
+  .hero-kpi-value {
+    font-size: 17px;
+  }
+
+  /* Chart */
+  .hero-chart {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .hero-chart-bars .hero-chart-bar {
+    height: 42px;               /* kompakter für Mobile */
+  }
+}
+
+
+/* ⭐ Pixelgenaue Use-Case-Optimierung für Mobile */
+@media (max-width: 768px) {
+
+  /* Gesamter Use-Case Bereich */
+  .usecase-section {
+    padding: 24px 18px;
+  }
+
+  /* Jede Karte */
+  .usecase-card {
+    padding: 16px 14px;          /* kompakter, aber edel */
+    border-radius: 10px;
+    margin-bottom: 14px;         /* perfekte Abstände */
+  }
+
+  /* Titel */
+  .usecase-card-title {
+    font-size: 18px;             /* klarer Fokus */
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  /* Beschreibung */
+  .usecase-card-text {
+    font-size: 14px;             /* ruhiger, besser lesbar */
+    line-height: 1.45;
+    opacity: 0.9;
+  }
+
+  /* Icon / Kategorie */
+  .usecase-card-label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    opacity: 0.85;
+  }
+
+  /* Abstand zwischen Titel und Text */
+  .usecase-card-title + .usecase-card-text {
+    margin-top: 4px;
+  }
+
+  /* Abstand zwischen Karten */
+  .usecase-card:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+
+/* ⭐ Pixelgenaue SERVICES-Optimierung für Mobile */
+@media (max-width: 768px) {
+
+  /* Gesamter Services-Bereich */
+  .services-section {
+    padding: 28px 18px; /* perfekte Seitenabstände */
+  }
+
+  /* Jede Service-Karte */
+  .service-card {
+    padding: 16px 14px;        /* kompakter, aber edel */
+    border-radius: 10px;
+    margin-bottom: 16px;       /* perfekte Abstände */
+  }
+
+  /* Kategorie / Label */
+  .service-card-label {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+
+  /* Titel */
+  .service-card-title {
+    font-size: 18px;           /* klarer Fokus */
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  /* Beschreibung */
+  .service-card-text {
+    font-size: 14px;           /* ruhiger, besser lesbar */
+    line-height: 1.45;
+    opacity: 0.9;
+  }
+
+  /* Abstand zwischen Titel und Text */
+  .service-card-title + .service-card-text {
+    margin-top: 4px;
+  }
+
+  /* Abstand zwischen Karten */
+  .service-card:not(:last-child) {
+    margin-bottom: 18px;
+  }
+}
+
+/* ⭐ Pixelgenaue Kontaktformular-Optimierung für Mobile */
+@media (max-width: 768px) {
+
+  /* Gesamter Kontaktbereich */
+  #contact {
+    padding: 32px 18px;            /* perfekte Seitenabstände */
+  }
+
+  /* Überschrift */
+  #contact h2, 
+  #contact h3 {
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+
+  /* Labels */
+  .form-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
+    opacity: 0.9;
+  }
+
+  /* Eingabefelder */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;            /* Daumenfreundlich */
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 14px;           /* perfekte Feldabstände */
+  }
+
+  /* Textarea */
+  .form-group textarea {
+    min-height: 120px;             /* nicht zu groß, nicht zu klein */
+    line-height: 1.45;
+  }
+
+  /* CTA Button */
+  .contact-submit,
+  #contact button[type="submit"] {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+  }
+
+  /* Hinweistext unter dem Button */
+  .contact-note {
+    font-size: 13px;
+    line-height: 1.45;
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+
+  /* Kontakt-Info (Adresse, Email) */
+  .contact-info {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* Footer Abstand */
+  footer {
+    margin-top: 32px;
+  }
+}
+
+/* ⭐ Pixelgenaue ABOUT-Optimierung für Mobile */
+@media (max-width: 768px) {
+
+  /* Gesamter About-Bereich */
+  #about {
+    padding: 32px 18px;          /* perfekte Seitenabstände */
+  }
+
+  /* Hauptüberschrift */
+  #about h2 {
+    font-size: 24px;             /* perfekt für iPhone 13–17 */
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  /* Unterüberschriften */
+  #about h3 {
+    font-size: 18px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+
+  /* Absatztext */
+  #about p {
+    font-size: 15px;
+    line-height: 1.55;           /* ruhige Lesbarkeit */
+    margin-bottom: 14px;         /* perfekte Absatzabstände */
+    opacity: 0.92;
+  }
+
+  /* Bullet-ähnliche Abschnitte */
+  #about .about-block {
+    margin-bottom: 20px;
+  }
+
+  /* Abstand zwischen Sektionen */
+  #about section {
+    margin-bottom: 26px;
+  }
+}
+
+/* ⭐ Pixelgenaue LEGAL-Optimierung für Mobile */
+@media (max-width: 768px) {
+
+  /* Gesamter Legal-Bereich */
+  .legal-section,
+  #legal,
+  footer .legal {
+    padding: 28px 18px;          /* perfekte Seitenabstände */
+    font-size: 14px;
+    line-height: 1.55;           /* ruhige Lesbarkeit */
+    opacity: 0.92;
+  }
+
+  /* Überschrift */
+  .legal-section h2,
+  #legal h2 {
+    font-size: 20px;
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+
+  /* Absatztext */
+  .legal-section p,
+  #legal p {
+    margin-bottom: 14px;         /* perfekte Absatzabstände */
+  }
+
+  /* Footer Navigation */
+  footer .footer-nav {
+    margin-top: 20px;
+    margin-bottom: 14px;
+  }
+
+  footer .footer-nav a {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;         /* perfekte Link-Abstände */
+    opacity: 0.9;
+  }
+
+  /* Copyright */
+  footer .copyright {
+    font-size: 13px;
+    opacity: 0.75;
+    margin-top: 12px;
+  }
+
+  /* Legal-Link (Impressum / Datenschutz) */
+  footer .legal-link {
+    font-size: 14px;
+    margin-top: 16px;
+    display: block;
+  }
+
+  /* Abstand zum Kontaktformular */
+  #contact + footer {
+    margin-top: 32px;
+  }
+}
+
+/* ⭐ Pixelgenaue MOBILE-NAVIGATION */
+@media (max-width: 768px) {
+
+  /* Hamburger Button */
+  .mobile-nav-toggle {
+    position: fixed;
+    top: 18px;                 /* perfekt für iPhone 13–17 */
+    right: 18px;
+    width: 34px;               /* größere Klickfläche */
+    height: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10000;
+  }
+
+  .mobile-nav-toggle span {
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+  }
+
+  /* Vollbild Overlay */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(6px);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 9999;
+  }
+
+  .mobile-nav.active {
+    display: flex;
+  }
+
+  /* Navigation Links */
+  .mobile-link {
+    font-size: 20px;           /* perfekt lesbar */
+    margin: 10px 0;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  /* Sprachumschalter */
+  .mobile-lang {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-lang button {
+    font-size: 16px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+
+  /* CTA Button */
+  .mobile-cta {
+    margin-top: 28px;
+    padding: 14px 24px;
+    font-size: 17px;
+    width: 100%;
+    max-width: 260px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #000;
+  }
+}
+
+/* ⭐ Hamburger Animation – Pixelgenau & Premium */
+.mobile-nav-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.28s ease;
+}
+
+/* ⭐ Animation wenn aktiv */
+.mobile-nav-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ⭐ Pixelgenauer LANGUAGE SWITCHER für Mobile */
+@media (max-width: 768px) {
+
+  /* Container */
+  .mobile-lang {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;                     /* perfekte Abstände */
+    width: 100%;
+    max-width: 240px;              /* ruhige Breite */
+    align-items: center;
+  }
+
+  /* Buttons */
+  .mobile-lang button {
+    width: 100%;
+    padding: 12px 0;               /* Daumenfreundlich */
+    font-size: 17px;               /* +1px größer */
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+  }
+
+  /* Hover / Active */
+  .mobile-lang button:active,
+  .mobile-lang button:hover {
+    background: rgba(255,255,255,0.16);
+    transform: translateY(-1px);
+  }
+
+  /* Aktive Sprache */
+  .mobile-lang button.active {
+    background: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+}
+
+/* ⭐ Pixelgenauer GLOW für Mobile */
+@media (max-width: 768px) {
+
+  /* Buttons (Primary + Ghost) */
+  .btn-primary {
+    box-shadow: 0 0 14px rgba(0, 255, 200, 0.35);   /* ruhiger, edel */
+  }
+
+  .btn-ghost {
+    box-shadow: 0 0 10px rgba(0, 255, 200, 0.22);
+  }
+
+  /* CTA im Hero */
+  .hero-cta-row .btn-primary {
+    box-shadow: 0 0 16px rgba(0, 255, 200, 0.38);
+  }
+
+  /* Mobile Navigation CTA */
+  .mobile-cta {
+    box-shadow: 0 0 18px rgba(0, 255, 200, 0.40);
+  }
+
+  /* Karten (Services, Usecases) */
+  .service-card,
+  .usecase-card {
+    box-shadow: 0 0 18px rgba(0, 255, 200, 0.18);   /* dezenter, ruhiger */
+  }
+
+  /* Hero Dashboard */
+  .hero-right,
+  .hero-chart {
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.16);
+  }
+
+  /* Ticker */
+  .project-ticker-wrapper {
+    box-shadow: 0 0 12px rgba(0, 255, 200, 0.20);
+  }
+
+  /* Navigation Glow */
+  .mobile-nav {
+    box-shadow: inset 0 0 40px rgba(0, 255, 200, 0.12);
+  }
+}
+
+/* ⭐ Pixelgenaues Mobile-Spacing für die gesamte Seite */
+@media (max-width: 768px) {
+
+  /* HERO → Ticker */
+  #hero {
+    margin-bottom: 26px;
+  }
+
+  /* Ticker → Services */
+  .project-ticker-wrapper {
+    margin-bottom: 28px;
+  }
+
+  /* Services */
+  #services {
+    padding-top: 10px;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+  }
+
+  /* Abstand zwischen Service-Karten */
+  .service-card:not(:last-child) {
+    margin-bottom: 18px;
+  }
+
+  /* Services → Usecases */
+  #services + #usecases {
+    margin-top: 10px;
+  }
+
+  /* Usecases */
+  #usecases {
+    padding-top: 10px;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+  }
+
+  /* Abstand zwischen Usecase-Karten */
+  .usecase-card:not(:last-child) {
+    margin-bottom: 18px;
+  }
+
+  /* Usecases → About */
+  #usecases + #about {
+    margin-top: 6px;
+  }
+
+  /* About */
+  #about {
+    padding-top: 10px;
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+  }
+
+  /* About → Kontakt */
+  #about + #contact {
+    margin-top: 4px;
+  }
+
+  /* Kontakt */
+  #contact {
+    padding-top: 12px;
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+  }
+
+  /* Kontakt → Footer */
+  #contact + footer {
+    margin-top: 20px;
+  }
+
+  /* Footer */
+  footer {
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+}
+
+/* ⭐ Pixelgenauer SCROLL-BUTTON für Mobile */
+@media (max-width: 768px) {
+
+  /* Button Container */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 26px;                     /* höher für iPhone 13–17 */
+    right: 22px;
+    width: 48px;                      /* größere Klickfläche */
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 255, 200, 0.12);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: all 0.28s ease;
+    box-shadow: 0 0 16px rgba(0, 255, 200, 0.28); /* ruhiger Glow */
+  }
+
+  /* Icon */
+  .scroll-to-top svg,
+  .scroll-to-top i {
+    font-size: 20px;                  /* perfekt lesbar */
+    color: #00ffd0;
+    transition: transform 0.28s ease;
+  }
+
+  /* Hover / Active */
+  .scroll-to-top:active,
+  .scroll-to-top:hover {
+    box-shadow: 0 0 22px rgba(0, 255, 200, 0.38);
+    transform: translateY(-2px);
+  }
+
+  .scroll-to-top:hover svg {
+    transform: translateY(-2px);
+  }
+}
+
+/* ⭐ Pixelgenaue SERVICES-Optimierung für Desktop */
+@media (min-width: 1024px) {
+
+  /* Gesamter Bereich */
+  #services {
+    padding: 60px 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;                        /* Premium-Abstand */
+  }
+
+  /* Karten */
+  .service-card {
+    padding: 26px 24px;               /* kompakter, edler */
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 0 26px rgba(0,255,200,0.18);
+    transition: all 0.28s ease;
+  }
+
+  /* Hover */
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 36px rgba(0,255,200,0.32);
+  }
+
+  /* Kategorie */
+  .service-card-label {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Titel */
+  .service-card-title {
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* Beschreibung */
+  .service-card-text {
+    font-size: 16px;
+    line-height: 1.55;
+    opacity: 0.92;
+  }
+}
 
 /</style>
 </head>
@@ -3104,32 +3959,32 @@ footer {
   </nav>
 </header>
 
-  <!-- ⭐ Mobile Navigation Button + Overlay (GENAU HIER!) -->
-  <div class="mobile-nav-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+<!-- ⭐ Mobile Navigation Button + Overlay (GENAU HIER!) -->
+<div class="mobile-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
-  <nav class="mobile-nav">
-    <div class="mobile-nav-inner">
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
 
-      <a href="#home" class="mobile-link">Home</a>
-      <a href="#services" class="mobile-link">Services</a>
-      <a href="#about" class="mobile-link">Über uns</a>
-      <a href="#contact" class="mobile-link">Kontakt</a>
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#about" class="mobile-link">Über uns</a>
+    <a href="#contact" class="mobile-link">Kontakt</a>
 
-      <div class="mobile-lang">
-        <button data-lang="de">DE</button>
-        <button data-lang="en">EN</button>
-        <button data-lang="fr">FR</button>
-      </div>
-
-      <button class="mobile-cta">Kurz Projekt besprechen</button>
-
+    <div class="mobile-lang">
+      <button data-lang="de">DE</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="fr">FR</button>
     </div>
-  </nav>
-  <!-- ⭐ Ende Mobile Navigation -->
+
+    <button class="mobile-cta">Kurz Projekt besprechen</button>
+
+  </div>
+</nav>03:28 04.06.2026
+<!-- ⭐ Ende Mobile Navigation -->
 
 
     <main class="wrapper">
@@ -4135,8 +4990,8 @@ about_personal_text:
 /* ⭐ FOUNDER – FINAL ⭐ */
 founder_name: "Ahmed Barry",
 founder_role: "Founder & Owner",
-founder_email_label: "Email",
-founder_phone_label: "Phone",
+founder_email_label: "E‑mail: ahmed@barrydataanalytics.de",
+founder_phone_label: "Téléphone: +49 1575 5356849",
 founder_location: "Bochum, NRW, Germany",
 founder_note:
   "I look forward to your inquiry and will get back to you personally.",
@@ -4364,8 +5219,8 @@ about_personal_text:
 /* ⭐ FONDATEUR – FINAL ⭐ */
 founder_name: "Ahmed Barry",
 founder_role: "Fondateur & propriétaire",
-founder_email_label: "E‑mail",
-founder_phone_label: "Téléphone",
+founder_email_label: "E‑mail: ahmed@barrydataanalytics.de",
+founder_phone_label: "Téléphone: +49 1575 5356849",
 founder_location: "Bochum, NRW, Allemagne",
 founder_note:
   "Je me réjouis de votre demande et je vous répondrai personnellement.",
@@ -4398,7 +5253,7 @@ contact_desc_text: "Décrivez brièvement votre défi actuel ou la transparence 
         field_name_placeholder: "Votre nom",
         field_company_label: "Entreprise (optionnel)",
         field_company_placeholder: "Nom de l’entreprise",
-        field_email_label: "E‑mail",
+        field_email_label: "E‑mail: ahmed@barrydataanalytics.de",
         field_email_placeholder: "Votre e‑mail professionnel",
 
      
@@ -4450,7 +5305,7 @@ footer_back_to_top: "Retour en haut",
 
 /* ⭐ Nouveau contenu légal ⭐ */
 imprint_content: `
-Forme juridique : Entreprise individuelle (Barry Data & Analytics)
+Forme juridique :Entreprise individuelle (Barry Data & Analytics)
 Propriétaire : Ahmed Barry
 Adresse : Bochum, Rhénanie‑du‑Nord–Westphalie, Allemagne
 E‑mail : ahmed@barrydataanalytics.de
@@ -5140,6 +5995,57 @@ toggle.addEventListener("click", () => {
 });
 </script>
 
+<script>
+const mobileToggle = document.querySelector(".mobile-nav-toggle");
+const mobileNav = document.querySelector(".mobile-nav");
+const mobileLinks = document.querySelectorAll(".mobile-link");
+const mobileLang = document.querySelectorAll(".mobile-lang button");
+const mobileCTA = document.querySelector(".mobile-cta");
+
+/* ⭐ Menü öffnen/schließen */
+mobileToggle.addEventListener("click", () => {
+  mobileNav.classList.toggle("active");
+});
+
+/* ⭐ Menü schließen beim Klick auf Link */
+mobileLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    mobileNav.classList.remove("active");
+  });
+});
+
+/* ⭐ Menü schließen beim Sprachwechsel */
+mobileLang.forEach(btn => {
+  btn.addEventListener("click", () => {
+    applyLanguage(btn.dataset.lang);
+    mobileNav.classList.remove("active");
+  });
+});
+
+/* ⭐ Menü schließen beim CTA */
+mobileCTA.addEventListener("click", () => {
+  mobileNav.classList.remove("active");
+});
+</script>
+
+<script>
+const mobileToggle = document.querySelector(".mobile-nav-toggle");
+const mobileNav = document.querySelector(".mobile-nav");
+
+mobileToggle.addEventListener("click", () => {
+  mobileToggle.classList.toggle("active");
+  mobileNav.classList.toggle("active");
+});
+
+/* ⭐ Menü schließen + Animation zurücksetzen */
+document.querySelectorAll(".mobile-link, .mobile-lang button, .mobile-cta")
+  .forEach(el => {
+    el.addEventListener("click", () => {
+      mobileNav.classList.remove("active");
+      mobileToggle.classList.remove("active");
+    });
+  });
+</script>
 
 </body>
 </html>
