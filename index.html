@@ -1529,86 +1529,298 @@
   pointer-events: auto; /* ⭐ Klicks erlauben */
 }
 
+/* ============================================
+   ⭐ GLOBAL HEADER LAYOUT
+============================================ */
+.nav {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 255, 220, 0.15);
+}
+
+/* Logo */
+.logo img {
+  height: 36px;
+}
+
+/* ============================================
+   ⭐ DESKTOP NAVIGATION
+============================================ */
+.nav-center {
+  display: flex;
+  gap: 26px;
+}
+
+.nav-link {
+  color: #eaffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  opacity: 1;
+  color: #7eeaff;
+}
+
+/* ============================================
+   ⭐ CTA IMMER SICHTBAR (auch mobil)
+============================================ */
+.mobile-header-cta {
+  padding: 6px 12px;
+  background: #00e0ff;
+  color: #000;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+/* ============================================
+   ⭐ SPRACHEN
+============================================ */
+.lang-switch {
+  display: flex;
+  gap: 6px;
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: #eaffff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.lang-btn.active {
+  background: rgba(0,255,220,0.15);
+  border-color: rgba(0,255,220,0.35);
+  opacity: 1;
+}
+
+/* ============================================
+   ⭐ BURGER ICON
+============================================ */
+.mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+.mobile-nav-toggle span {
+  width: 26px;
+  height: 3px;
+  background: #7eeaff;
+  border-radius: 3px;
+  transition: 0.3s ease;
+}
+
+/* Animation wenn aktiv */
+.mobile-nav-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.mobile-nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-nav-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================================
+   ⭐ MOBILE NAVIGATION (Slide-In)
+============================================ */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 340px;
+  height: 100vh;
+  background: rgba(10, 15, 20, 0.92);
+  backdrop-filter: blur(14px);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.4);
+  transition: right 0.35s ease;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav-inner {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Mobile Links */
+.mobile-link {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #eaffff;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Mobile Sprachen */
+.mobile-lang {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.mobile-lang button {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Mobile CTA */
+.mobile-cta {
+  margin-top: 20px;
+  padding: 14px;
+  background: #00e0ff;
+  color: #000;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ============================================
+   ⭐ RESPONSIVE REGELN
+============================================ */
+@media (max-width: 900px) {
+
+  /* Desktop Navigation ausblenden */
+  .nav-center {
+    display: none;
+  }
+
+  /* Burger sichtbar */
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  /* Sprachen kompakter */
+  .lang-switch {
+    gap: 4px;
+  }
+
+  .lang-btn {
+    padding: 3px 6px;
+    font-size: 0.7rem;
+  }
+
+  /* CTA kleiner */
+  .mobile-header-cta {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
+
   </style>
 </head>
 <body>
 <div class="page">
 
-  <header>
-    <nav class="nav">
 
-      <!-- Logo -->
-      <div class="nav-left">
-        <div class="logo">
-          <img src="assets/img/logo-barry.png" alt="Barry Data & Analytics Logo" />
-        </div>
+<header>
+  <nav class="nav">
+
+    <!-- ⭐ LINKS: Logo -->
+    <div class="nav-left">
+      <div class="logo">
+        <img src="assets/img/logo-barry.png" alt="Barry Data & Analytics Logo" />
+      </div>
+    </div>
+
+    <!-- ⭐ MITTE: Desktop Navigation -->
+    <div class="nav-center">
+      <div class="nav-link active" data-scroll="#hero" data-i18n="nav_home"></div>
+      <div class="nav-link" data-scroll="#services" data-i18n="nav_services"></div>
+      <div class="nav-link" data-scroll="#about" data-i18n="nav_about"></div>
+      <div class="nav-link" data-scroll="#contact" data-i18n="nav_contact"></div>
+    </div>
+
+    <!-- ⭐ RECHTS: CTA + Sprachen + EINZIGER Burger -->
+    <div class="nav-right">
+
+      <!-- CTA IMMER SICHTBAR (auch mobil) -->
+      <button class="mobile-header-cta"
+              data-scroll="#contact"
+              data-i18n="nav_cta"></button>
+
+      <!-- Sprachen -->
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
       </div>
 
-      <!-- Navigation: Home | Services | Über uns | Kontakt -->
-      <div class="nav-center">
-        <div class="nav-link active" data-scroll="#hero" data-i18n="nav_home"></div>
-        <div class="nav-link" data-scroll="#services" data-i18n="nav_services"></div>
-        <div class="nav-link" data-scroll="#about" data-i18n="nav_about"></div>
-        <div class="nav-link" data-scroll="#contact" data-i18n="nav_contact"></div>
-      </div>
-
-      <!-- Mobile Menü-Button + Hamburger -->
-      <button class="nav-menu-btn" type="button">
-        <span class="icon">☰</span>
-        <span data-i18n="nav_menu"></span>
-      </button>
-
+      <!-- ⭐ EINZIGER Mobile-Burger -->
       <div class="mobile-nav-toggle">
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      <!-- Sprachen + CTA -->
-      <div class="nav-right">
-
-        <!-- DE | EN | FR -->
-        <div class="lang-switch">
-          <button class="lang-btn active" data-lang="de">DE</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="fr">FR</button>
-        </div>
-
-        <!-- CTA -->
-        <button class="btn btn-primary nav-cta"
-                data-scroll="#contact"
-                data-i18n="nav_cta"></button>
-      </div>
-
-    </nav>
-  </header>
-
-  <!-- EINZIGES Mobile-Menü -->
-  <nav class="mobile-nav">
-    <div class="mobile-nav-inner">
-
-      <!-- OBEN -->
-      <div class="mobile-datetime" id="mobileDatetime"></div>
-
-      <!-- MITTE -->
-      <div class="mobile-link" data-scroll="#hero" data-i18n="nav_home"></div>
-      <div class="mobile-link" data-scroll="#services" data-i18n="nav_services"></div>
-      <div class="mobile-link" data-scroll="#about" data-i18n="nav_about"></div>
-      <div class="mobile-link" data-scroll="#contact" data-i18n="nav_contact"></div>
-
-      <!-- UNTEN -->
-      <div class="mobile-lang">
-        <button data-lang="de">DE</button>
-        <button data-lang="en">EN</button>
-        <button data-lang="fr">FR</button>
-      </div>
-
-      <button class="mobile-cta"
-              data-scroll="#contact"
-              data-i18n="nav_cta"></button>
-
     </div>
+
   </nav>
+</header>
+
+<!-- ⭐ EINZIGES Mobile-Menü -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+
+    <!-- OBEN -->
+    <div class="mobile-datetime" id="mobileDatetime"></div>
+
+    <!-- MITTE -->
+    <div class="mobile-link" data-scroll="#hero" data-i18n="nav_home"></div>
+    <div class="mobile-link" data-scroll="#services" data-i18n="nav_services"></div>
+    <div class="mobile-link" data-scroll="#about" data-i18n="nav_about"></div>
+    <div class="mobile-link" data-scroll="#contact" data-i18n="nav_contact"></div>
+
+    <!-- UNTEN -->
+    <div class="mobile-lang">
+      <button data-lang="de">DE</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="fr">FR</button>
+    </div>
+
+    <button class="mobile-cta"
+            data-scroll="#contact"
+            data-i18n="nav_cta"></button>
+
+  </div>
+</nav>
+
   <!-- Ende Mobile Navigation -->
 
   <main class="wrapper">
