@@ -59,6 +59,8 @@
       padding: 18px 18px 64px;
     }
 
+
+
     /* NAVIGATION */
 
     header {
@@ -229,6 +231,8 @@
       background: rgba(15, 23, 42, 1);
       color: var(--text-main);
     }
+
+
 
     /* HERO */
 
@@ -953,7 +957,8 @@
       color: var(--text-muted);
     }
 
-    /* FOOTER */
+    
+/* FOOTER */
 
     footer {
       margin-top: 34px;
@@ -1051,7 +1056,6 @@
       font-size: 0.76rem;
       cursor: pointer;
     }
-
     .footer-legal-item:hover {
       background: rgba(30, 64, 175, 0.4);
       color: var(--accent);
@@ -2526,6 +2530,19 @@ footer {
   }
 }
 
+/* ⭐ WICHTIG: Menü sichtbar machen */
+.footer-legal-menu {
+  display: none;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+
+.footer-legal-menu.open {
+  display: block;
+}
+
+
+
 
 /* ============================
    PREMIUM TYPOGRAPHY – HERO (ENTFERNT)
@@ -3093,10 +3110,6 @@ footer {
   z-index: 9999;
 }
 
-.mobile-nav.active {
-  display: flex;
-}
-
 /* ⭐ Mobile Navigation Links */
 .mobile-link {
   font-size: 1.4rem;
@@ -3448,6 +3461,7 @@ footer {
   }
 }
 
+
 /* ⭐ Pixelgenaue ABOUT-Optimierung für Mobile */
 @media (max-width: 768px) {
 
@@ -3588,9 +3602,6 @@ footer {
     z-index: 9999;
   }
 
-  .mobile-nav.active {
-    display: flex;
-  }
 
   /* Navigation Links */
   .mobile-link {
@@ -3628,30 +3639,6 @@ footer {
     background: var(--accent);
     color: #000;
   }
-}
-
-/* ⭐ Hamburger Animation – Pixelgenau & Premium */
-.mobile-nav-toggle {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  width: 34px;
-  height: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 10000;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.mobile-nav-toggle span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #fff;
-  border-radius: 3px;
-  transition: all 0.28s ease;
 }
 
 /* ⭐ Animation wenn aktiv */
@@ -3928,18 +3915,1755 @@ footer {
   }
 }
 
+/* ⭐ Pixelgenaue SERVICES-Optimierung für Desktop */
+@media (min-width: 1024px) {
+
+  /* Gesamter Bereich */
+  #services {
+    padding: 60px 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;                        /* Premium-Abstand */
+  }
+
+  /* Karten */
+  .service-card {
+    padding: 26px 24px;               /* kompakter, edler */
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 0 26px rgba(0,255,200,0.18);
+    transition: all 0.28s ease;
+  }
+
+  /* Hover */
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 36px rgba(0,255,200,0.32);
+  }
+
+  /* Kategorie */
+  .service-card-label {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Titel */
+  .service-card-title {
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* Beschreibung */
+  .service-card-text {
+    font-size: 16px;
+    line-height: 1.55;
+    opacity: 0.92;
+  }
+}
+
+/* ⭐ Menü-Icon sichtbar machen */
+.mobile-nav-toggle span {
+  background: #00ffd0; /* Türkis statt Weiß */
+}
+
+.mobile-nav.active {
+  display: flex;
+}
+
+/* ⭐ Scroll wieder aktivieren */
+body {
+  overflow-y: auto !important;
+}
+
+body.nav-open {
+  overflow-y: hidden; /* Nur wenn Menü offen */
+}
+
+.mobile-link {
+  font-size: 22px;
+  margin: 12px 0;
+  color: #fff;
+  text-align: center;
+}
+
+  .mobile-nav-toggle span {
+    height: 3px;
+    background: #00ffd0; /* sichtbar */
+    border-radius: 3px;
+  }
+
+ 
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(6px);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.mobile-nav.active {
+  display: flex;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+
+.mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;              /* statt 40–60px */
+  padding: 20px 0;        /* kompakt */
+}
+
+.mobile-link {
+  font-size: 20px;
+  margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+
+.nav {
+display: flex;
+align-items: center;
+}
+
+.mobile-nav-toggle {
+position: relative;
+left: auto;
+top: auto;
+bottom: auto;
+transform: none;
+
+width: 34px;
+height: 28px;
+
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+z-index: 10000;
+```
+
+}
+
+.mobile-nav-toggle span {
+height: 3px;
+background: #00ffd0;
+border-radius: 3px;
+}
+}
+
+.mobile-datetime {
+  font-size: 16px;
+  opacity: 0.75;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00ffd0;
+}
+
+.mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 0;
+}
+
+
+/* ⭐ Hamburger Animation */
+.mobile-nav-toggle span {
+  height: 3px;
+  background: #00ffd0;
+  border-radius: 3px;
+  transition: all 0.35s ease;
+  transform-origin: center;
+}
+
+/* Linie 1 → dreht nach rechts */
+.mobile-nav-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+/* Linie 2 → verschwindet */
+.mobile-nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+/* Linie 3 → dreht nach links */
+.mobile-nav-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ⭐ Menü Overlay Animation */
+.mobile-nav {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.35s ease;
+}
+
+.mobile-nav.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav.active .mobile-nav-inner {
+  animation: glowPulse 0.6s ease;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 rgba(0,255,200,0); }
+  50% { box-shadow: 0 0 22px rgba(0,255,200,0.35); }
+  100% { box-shadow: 0 0 0 rgba(0,255,200,0); }
+}
+
+
+  /* ⭐ Menü-Icon direkt nach Kontakt */
+  .mobile-nav-toggle {
+    order: 3;
+    position: relative;
+    left: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+
+    margin-left: 12px;
+    margin-right: 12px;
+
+    width: 34px;
+    height: 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    z-index: 10000;
+  }
+
+  .mobile-nav-toggle span {
+    height: 3px;
+    background: #00ffd0;
+    border-radius: 3px;
+  }
+
+    .nav-cta {
+    order: 5; /* CTA ganz unten */
+  }
+}
+
+
+/* ============================
+   ⭐ FINALER MOBILE NAVIGATION BLOCK
+   ============================ */
+
+/* Hamburger Button sichtbar auf Mobile */
+.mobile-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 28px;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.mobile-nav-toggle span {
+  height: 3px;
+  background: #00ffd0;
+  border-radius: 3px;
+  transition: all 0.35s ease;
+}
+
+/* Hamburger Animation */
+.mobile-nav-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 10, 20, 0.92);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.35s ease;
+  z-index: 9999;
+}
+
+.mobile-nav.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 90px 30px;
+  text-align: center;
+}
+
+/* Links */
+.mobile-link {
+  font-size: 22px;
+  color: #ffffffd9;
+  transition: 0.25s ease;
+}
+
+.mobile-link:hover {
+  color: #00e5ff;
+}
+
+/* Sprache */
+.mobile-lang {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.mobile-lang button {
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.35);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #00ffd5;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.mobile-lang button:hover {
+  background: rgba(0, 255, 200, 0.22);
+}
+
+/* CTA */
+.mobile-cta {
+  margin-top: 18px;
+  padding: 14px 20px;
+  background: #00e5ff;
+  color: #000;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.mobile-cta:active {
+  transform: scale(0.96);
+}
+
+/* ============================
+   ⭐ MOBILE HEADER REIHENFOLGE
+   ============================ */
+
+@media (max-width: 768px) {
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .nav-left {
+    order: 1; /* Logo */
+  }
+
+  .nav-center {
+    order: 2; /* Home, Services, Über uns, Kontakt */
+  }
+
+  .mobile-nav-toggle {
+    order: 3; /* Menü-Icon */
+  }
+
+  .nav-right {
+    order: 4; /* Sprachen */
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    flex-direction: row;
+  }
+
+  .nav-cta {
+    order: 5; /* CTA ganz rechts */
+    margin-left: 12px;
+  }
+}
+
+
+/* ============================
+   HEADER – Perfekte Ausrichtung
+   ============================ */
+
+.nav {
+  display: flex;
+  align-items: center;          /* Vertikal perfekt zentriert */
+  justify-content: space-between;
+  gap: 20px;
+  height: 80px;                 /* Einheitliche Höhe */
+  padding: 0 30px;
+}
+
+/* Logo */
+.nav-left .logo img {
+  height: 42px;                 /* Harmonische Größe */
+  display: block;
+}
+
+/* Navigation (Home | Services | Über uns | Kontakt) */
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 28px;                    /* Gleichmäßiger Abstand */
+}
+
+.nav-link {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Menü-Icon */
+.mobile-nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.mobile-nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Sprachen + CTA */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Sprachumschalter */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-btn {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* CTA */
+.nav-cta {
+  padding: 10px 18px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* Mobile: Navigation in eine Linie umbrechen */
+@media (max-width: 900px) {
+  .nav {
+    gap: 12px;
+  }
+
+  .nav-center {
+    display: none; /* Desktop-Navigation ausblenden */
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+}
+
+
+/* ============================================
+   HEADER FIX – Sprache zwischen Menü & CTA
+   Für ALLE Smartphones im Hochformat
+   ============================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Reihenfolge festlegen */
+.nav-left { order: 1; }          /* Logo */
+.nav-center { order: 2; }        /* Home | Services | Über uns | Kontakt */
+.mobile-nav-toggle { order: 3; } /* ☰ Menü */
+.lang-switch { order: 4; }       /* DE | EN | FR → WICHTIG */
+.nav-cta { order: 5; }           /* CTA */
+
+/* Sprachmenü korrekt ausrichten */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;                     /* verhindert Hochrutschen */
+  padding: 0;
+}
+
+/* CTA bleibt rechts */
+.nav-cta {
+  white-space: nowrap;
+}
+
+/* ============================================
+   MOBILE FIX – Gilt für ALLE Smartphones
+   ============================================ */
+@media (max-width: 900px) {
+
+  .nav {
+    gap: 12px;
+  }
+
+  /* Desktop-Navigation ausblenden */
+  .nav-center {
+    display: none;
+  }
+
+  /* Reihenfolge bleibt gleich */
+  .nav-left { order: 1; }
+  .mobile-nav-toggle { order: 2; }
+  .lang-switch { order: 3; }     /* Sprache bleibt GENAU hier */
+  .nav-cta { order: 4; }
+
+  /* Sprachbuttons kleiner für Mobile */
+  .lang-btn {
+    padding: 4px 6px;
+    font-size: 13px;
+  }
+}
+
+
+/* ============================================
+   HEADER FIX – Sprache zwischen Menü & CTA
+   Für ALLE Smartphones im Hochformat
+   ============================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Reihenfolge fest definieren */
+.nav-left { order: 1; }            /* Logo */
+.nav-center { order: 2; }          /* Home | Services | Über uns | Kontakt */
+.mobile-nav-toggle { order: 3; }   /* ☰ Menü */
+.lang-switch { order: 4; }         /* DE | EN | FR → WICHTIG */
+.nav-right { order: 5; }           /* CTA bleibt ganz rechts */
+
+/* Sprachmenü korrekt ausrichten */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+/* CTA */
+.nav-cta {
+  white-space: nowrap;
+}
+
+/* ============================================
+   MOBILE FIX – Gilt für ALLE Smartphones
+   ============================================ */
+@media (max-width: 900px) {
+
+  .nav {
+    gap: 12px;
+  }
+
+  /* Desktop-Navigation ausblenden */
+  .nav-center {
+    display: none;
+  }
+
+  /* Reihenfolge bleibt gleich */
+  .nav-left { order: 1; }
+  .mobile-nav-toggle { order: 2; }
+  .lang-switch { order: 3; }       /* Sprache bleibt GENAU hier */
+  .nav-right { order: 4; }
+
+  /* Sprachbuttons kleiner für Mobile */
+  .lang-btn {
+    padding: 4px 6px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 880px) {
+  .header-nav {
+    display: flex !important;
+  }
+}
+
+
+/* ============================================
+   MOBILE MENÜ – Premium Optimierung
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Menü-Breite & Animation */
+  .mobile-menu {
+    width: 82%;
+    padding: 32px 24px;
+    gap: 22px;
+    transition: right 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Navigation Links */
+  .mobile-menu a {
+    font-size: 1.05rem;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-normal);
+  }
+
+  /* Sprachbereich */
+  .mobile-lang {
+    margin-top: 10px;
+    gap: 12px;
+  }
+
+  .mobile-lang button {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0,179,198,0.55);
+  }
+
+  /* CTA im Mobile-Menü */
+  .mobile-cta {
+    margin-top: 18px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #021015;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 0 18px rgba(0,179,198,0.45);
+  }
+
+  /* Burger-Icon etwas größer & klarer */
+  .burger {
+    width: 30px;
+    height: 22px;
+  }
+
+  .burger span {
+    height: 3px;
+  }
+}
+
+/* ============================================
+   MOBILE MENÜ – Smooth Premium Animation
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Weicher Slide-In + Fade */
+  .mobile-menu {
+    opacity: 0;
+    transform: translateX(40px) translateY(6px);
+    transition:
+      right 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Wenn geöffnet */
+  #nav-toggle:checked ~ .mobile-menu {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+
+  /* Burger-Icon Animation smoother */
+  .burger span {
+    transition: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ============================================
+   MOBILE MENÜ – Struktur Premium Optimierung
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Mobile Menü Layout */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 26px; /* Mehr Luft zwischen den Bereichen */
+    padding-top: 48px;
+  }
+
+  /* Navigation – klarer Block */
+  .mobile-menu a {
+    padding: 12px 0;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    color: var(--text-normal);
+  }
+
+  /* Sprachblock – klar getrennt */
+  .mobile-lang {
+    margin-top: 6px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    display: flex;
+    gap: 12px;
+  }
+
+  .mobile-lang button {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+
+  /* CTA – als letzter, klarer Abschluss */
+  .mobile-cta {
+    margin-top: 10px;
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #021015;
+    box-shadow: 0 0 20px rgba(0,179,198,0.45);
+  }
+}
+
+
+/* ============================================
+   MOBILE MENÜ – Typografie Premium Optimierung
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Navigation – ruhiger, klarer, besser lesbar */
+  .mobile-menu a {
+    font-size: 1.08rem;
+    font-weight: 500;
+    letter-spacing: 0.015em;
+    line-height: 1.45;
+    color: var(--text-normal);
+    opacity: 0.92;
+  }
+
+  /* Sprachumschalter – kompakt, aber klar */
+  .mobile-lang button {
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  /* CTA – stärkerer Fokus, aber nicht zu laut */
+  .mobile-cta {
+    font-size: 1.02rem;
+    letter-spacing: 0.02em;
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  /* Gesamt-Typografie im Menü */
+  .mobile-menu {
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* ============================================
+   MOBILE MENÜ – Buttons Premium Optimierung
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Navigation Buttons */
+  .mobile-menu a {
+    padding: 12px 0;
+    border-radius: 6px;
+    transition: 0.25s ease;
+  }
+
+  .mobile-menu a:hover {
+    background: rgba(255,255,255,0.06);
+    padding-left: 6px;
+  }
+
+  /* Sprachbuttons */
+  .mobile-lang button {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,179,198,0.45);
+    background: rgba(0,179,198,0.08);
+    color: var(--accent-strong);
+    transition: 0.25s ease;
+  }
+
+  .mobile-lang button:hover {
+    background: rgba(0,179,198,0.18);
+    border-color: var(--accent-strong);
+  }
+
+  /* CTA Button */
+  .mobile-cta {
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #021015;
+    font-weight: 650;
+    box-shadow: 0 0 22px rgba(0,179,198,0.45);
+    transition: 0.3s ease;
+  }
+
+  .mobile-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,224,255,0.55);
+  }
+}
+
+
+/* ============================================
+   MOBILE MENÜ – Header Integration Premium
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Header bleibt sichtbar, aber wirkt ruhiger */
+  .header {
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  /* Wenn Menü geöffnet ist → Header leicht abdunkeln */
+  #nav-toggle:checked ~ .header-inner,
+  #nav-toggle:checked ~ .mobile-menu {
+    backdrop-filter: blur(22px) saturate(180%);
+  }
+
+  /* Body-Scroll deaktivieren, wenn Menü offen */
+  #nav-toggle:checked ~ .mobile-menu {
+    position: fixed;
+  }
+
+  /* Burger-Icon Integration */
+  .burger {
+    z-index: 9999; /* immer über dem Menü */
+  }
+
+  /* Burger-Icon Linien – ruhiger Übergang */
+  .burger span {
+    transition: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Wenn Menü offen → Burger wird zu X */
+  #nav-toggle:checked + label .line1 {
+    transform: rotate(45deg) translateY(7px);
+  }
+  #nav-toggle:checked + label .line2 {
+    opacity: 0;
+  }
+  #nav-toggle:checked + label .line3 {
+    transform: rotate(-45deg) translateY(-7px);
+  }
+
+  /* Header bekommt leichte Schattenreduktion beim Öffnen */
+  #nav-toggle:checked ~ .header-inner {
+    box-shadow: 0 0 20px rgba(0,179,198,0.15);
+  }
+}
+
+
+/* ============================================
+   MOBILE MENÜ – Content Integration Premium
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Wenn Menü geöffnet → Content abdunkeln */
+  #nav-toggle:checked ~ main {
+    filter: brightness(0.55) blur(2px);
+    transform: translateY(2px);
+    transition: 
+      filter 0.35s ease,
+      transform 0.35s ease;
+    pointer-events: none; /* verhindert Klicks unter dem Menü */
+  }
+
+  /* Wenn Menü geschlossen → Content normal */
+  main {
+    transition: 
+      filter 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  /* Body-Scroll deaktivieren, wenn Menü offen */
+  #nav-toggle:checked ~ .mobile-menu {
+    position: fixed;
+  }
+
+  /* Sicherstellen, dass Mobile-Menü über allem liegt */
+  .mobile-menu {
+    z-index: 9998;
+  }
+
+  /* Header bleibt über dem Content, aber unter dem Menü */
+  .header {
+    z-index: 9997;
+  }
+}
+
+/* ============================================
+   MOBILE MENÜ – Smooth Closing Animation
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Ausgangszustand (Menü geschlossen) */
+  .mobile-menu {
+    opacity: 0;
+    transform: translateX(40px) translateY(6px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      right 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Menü geöffnet */
+  #nav-toggle:checked ~ .mobile-menu {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+
+  /* Menü schließt → weiches Fade-Out + Slide-Out */
+  #nav-toggle:not(:checked) ~ .mobile-menu {
+    opacity: 0;
+    transform: translateX(40px) translateY(6px);
+  }
+
+  /* Content kehrt weich zurück */
+  main {
+    transition:
+      filter 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  #nav-toggle:not(:checked) ~ main {
+    filter: brightness(1) blur(0);
+    transform: translateY(0);
+  }
+
+  /* Burger-Icon smooth zurück */
+  .burger span {
+    transition: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ============================================
+   MOBILE MENÜ – Finalisierung & Harmonisierung
+   ============================================ */
+
+@media (max-width: 880px) {
+
+  /* Einheitliche Übergänge für ALLE Elemente */
+  .mobile-menu,
+  .mobile-menu a,
+  .mobile-lang button,
+  .mobile-cta,
+  main,
+  .burger span {
+    transition: 
+      opacity 0.35s ease,
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.35s ease,
+      background 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  /* Einheitliche Rundungen für ein ruhiges Gesamtbild */
+  .mobile-menu a,
+  .mobile-lang button,
+  .mobile-cta {
+    border-radius: 12px;
+  }
+
+  /* Leichter Glow beim Öffnen – aber sehr dezent */
+  #nav-toggle:checked ~ .mobile-menu {
+    box-shadow: 0 0 32px rgba(0,179,198,0.18);
+  }
+
+  /* Content Blur harmonisiert */
+  #nav-toggle:checked ~ main {
+    filter: brightness(0.55) blur(3px);
+  }
+
+  /* Menü wirkt wie ein Panel, nicht wie ein Overlay */
+  .mobile-menu {
+    background: rgba(3,7,18,0.94);
+    backdrop-filter: blur(22px) saturate(180%);
+  }
+
+  /* Navigation Links – dezente Hover-Bewegung */
+  .mobile-menu a:hover {
+    transform: translateX(4px);
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* Sprachbuttons – ruhiger Fokus */
+  .mobile-lang button:hover {
+    transform: translateY(-1px);
+  }
+
+  /* CTA – Premium Abschluss */
+  .mobile-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+.hero-meta {
+  margin-top: 6px;
+  opacity: 0.85;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.live-dot {
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.location-icon {
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+.hero-meta span:first-child {
+  display: inline-block;
+  width: 18px; /* gleiche Breite für alle Icons */
+  text-align: center;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.35;
+  opacity: 0.9;
+  margin-bottom: 14px;
+}
+
+.hero-cta-row {
+  margin-top: 10px;
+  margin-bottom: 18px;
+  display: flex;
+  gap: 12px;
+}
+
+.hero-meta {
+  margin-top: 4px;
+  font-size: 0.92rem;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-meta span:first-child {
+  display: inline-block;
+  width: 18px; /* perfekte Ausrichtung */
+  text-align: center;
+}
+
+.live-dot {
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.location-icon {
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.35;
+  }
+
+  .hero-highlight {
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.mobile-nav-inner {
+  height: 100vh; /* nimmt die gesamte Handy-Höhe */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* verteilt alles perfekt */
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+@keyframes miniNavFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav-inner {
+  animation: miniNavFade 0.35s ease-out;
+}
+
+.mobile-link {
+  font-size: 1.05rem;
+  padding: 6px 0; /* vorher war es größer */
+  line-height: 1.2;
+}
+
+.mobile-lang button {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+.mobile-cta {
+  padding: 10px 14px;
+  font-size: 1rem;
+}
+
+.mobile-nav-inner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 18px; /* vorher 24px */
+  gap: 8px; /* neu: kompakter */
+}
+
+.mobile-datetime {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+
+.mobile-link {
+  font-size: 1rem;
+  padding: 2px 0;
+  line-height: 1.1;
+}
+
+.mobile-nav-inner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 12px; /* minimal */
+  gap: 2px; /* fast kein Abstand */
+}
+
+.mobile-datetime {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.mobile-link {
+  font-size: 0.95rem;
+  padding: 1px 0;
+  line-height: 1.05;
+}
+
+.mobile-lang button {
+  padding: 3px 6px;
+  font-size: 0.8rem;
+}
+.mobile-cta {
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+
+
+
+/* ============================================================
+   PREMIUM FOOTER – Barry Data & Analytics
+   Komplett • Sauber • Dropdown‑kompatibel
+============================================================ */
+
+/* --- Footer Container --- */
+footer {
+  padding: 40px 20px;
+  background: #050712;
+  border-top: 1px solid rgba(51, 240, 255, 0.16);
+  color: #d4d4d4;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.footer-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 6px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: 0.25s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  color: #00ffd5;
+}
+
+/* --- Footer Bottom --- */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ============================================================
+   ⭐ LEGAL DROPDOWN – Menü + Inhalt
+============================================================ */
+
+/* --- Toggle Button --- */
+.footer-legal-toggle {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.footer-legal-toggle:hover {
+  background: rgba(0,255,200,0.12);
+  border-color: rgba(0,255,200,0.6);
+}
+
+/* --- Dropdown Menu --- */
+.footer-legal-menu {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 0;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+}
+
+.footer-legal-menu.open {
+  display: block;
+}
+
+.footer-legal-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.25s ease;
+}
+
+.footer-legal-item:hover {
+  background: rgba(0,255,200,0.12);
+  color: #00ffd5;
+}
+
+/* --- Legal Content Box --- */
+.footer-legal-content {
+  display: none;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  animation: fadeIn 0.25s ease;
+  max-width: 650px;
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+.footer-legal-content.open {
+  display: block;
+}
+
+/* --- Tabs --- */
+.legal-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.legal-tab {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: rgba(30, 41, 59, 0.6);
+  color: #9ca3af;
+  transition: 0.25s ease;
+}
+
+.legal-tab:hover {
+  background: rgba(0,255,200,0.12);
+  color: #00ffd5;
+}
+
+.legal-tab.active {
+  background: #00ffd5;
+  color: #000;
+}
+
+/* --- Legal Text --- */
+.legal-text {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  white-space: pre-line;
+  color: #d4d4d4;
+}
+
+/* --- Fade Animation --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   SHARE BUTTONS
+============================================================ */
+.footer-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.footer-btn:hover {
+  background: rgba(0,255,200,0.12);
+  border-color: rgba(0,255,200,0.6);
+}
+
+.footer-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================================
+   SCROLL BUTTONS
+============================================================ */
+.footer-scroll {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.scroll-footer-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0, 255, 200, 0.12);
+  border: 1px solid rgba(0, 255, 200, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #00ffd5;
+  transition: 0.25s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-footer-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-footer-btn:hover {
+  background: rgba(0, 255, 200, 0.22);
+  border-color: rgba(0, 255, 200, 0.8);
+  transform: scale(1.08);
+}
+
+.scroll-footer-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* --- Mobile Fixes --- */
+@media (max-width: 600px) {
+  #scroll-bottom {
+    top: 18vh;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ============================================================
+   FOOTER – LAYOUT & GRUNDSTIL
+============================================================ */
+footer {
+  background: #0a0f14;
+  color: #e5e5e5;
+  padding: 60px 0 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #00e0c6;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 6px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color .25s ease;
+}
+
+.footer-link:hover {
+  color: #00e0c6;
+}
+
+.muted {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   FOOTER BOTTOM
+============================================================ */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ============================================================
+   LEGAL DROPDOWN
+============================================================ */
+.footer-legal-dropdown {
+  position: relative;
+}
+
+.footer-legal-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: #e5e5e5;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.footer-legal-toggle:hover {
+  border-color: #00e0c6;
+  color: #00e0c6;
+}
+
+.footer-legal-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: #0f151b;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 10px 0;
+  width: 180px;
+  display: none;
+  z-index: 20;
+}
+
+.footer-legal-menu.open {
+  display: block;
+}
+
+.footer-legal-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+
+.footer-legal-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ============================================================
+   LEGAL CONTENT PANEL
+============================================================ */
+.footer-legal-content {
+  margin-top: 20px;
+  padding: 20px;
+  background: #0f151b;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  display: none;
+}
+
+.footer-legal-content.open {
+  display: block;
+}
+
+.legal-tabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.legal-tab {
+  cursor: pointer;
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+  transition: all .25s ease;
+}
+
+.legal-tab.active {
+  border-color: #00e0c6;
+  color: #00e0c6;
+}
+
+.legal-text {
+  white-space: pre-line;
+  line-height: 1.55;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* ============================================================
+   SHARE BUTTONS
+============================================================ */
+.footer-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0f151b;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .25s ease;
+  color: #e5e5e5;
+}
+
+.footer-btn:hover {
+  border-color: #00e0c6;
+  color: #00e0c6;
+}
+
+.footer-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================================
+   SCROLL BUTTONS
+============================================================ */
+.footer-scroll {
+  margin-top: 40px;
+  display: flex;
+  gap: 14px;
+}
+
+.scroll-footer-btn {
+  background: #0f151b;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.scroll-footer-btn:hover {
+  border-color: #00e0c6;
+  color: #00e0c6;
+}
+
+.scroll-footer-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+#scroll-top,
+#scroll-bottom {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+
+#scroll-top.visible,
+#scroll-bottom.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-actions {
+    justify-content: flex-start;
+  }
+
+  .legal-tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
 /</style>
 </head>
 <body>
-  <div class="page">
-     <header>
+
+
+<div class="page">
+
+<header>
   <nav class="nav">
+
+    <!-- 1) Logo -->
     <div class="nav-left">
       <div class="logo">
         <img src="assets/img/logo-barry.png" alt="Barry Data & Analytics Logo" />
       </div>
     </div>
 
+    <!-- 2) Navigation: Home | Services | Über uns | Kontakt -->
     <div class="nav-center">
       <div class="nav-link active" data-scroll="#hero" data-i18n="nav_home"></div>
       <div class="nav-link" data-scroll="#services" data-i18n="nav_services"></div>
@@ -3947,44 +5671,63 @@ footer {
       <div class="nav-link" data-scroll="#contact" data-i18n="nav_contact"></div>
     </div>
 
+    <!-- 3) Menü-Icon (☰) -->
+    <div class="mobile-nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- 4) Sprachen + CTA -->
     <div class="nav-right">
+
+      <!-- DE | EN | FR -->
       <div class="lang-switch">
         <button class="lang-btn active" data-lang="de">DE</button>
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="fr">FR</button>
       </div>
 
-      <button class="btn btn-primary nav-cta" data-scroll="#contact" data-i18n="nav_cta"></button>
+      <!-- CTA -->
+      <button class="btn btn-primary nav-cta"
+              data-scroll="#contact"
+              data-i18n="nav_cta"></button>
     </div>
+
   </nav>
 </header>
 
-<!-- ⭐ Mobile Navigation Button + Overlay (GENAU HIER!) -->
-<div class="mobile-nav-toggle">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
 
+<!-- ⭐ EINZIGES Mobile-Menü -->
 <nav class="mobile-nav">
   <div class="mobile-nav-inner">
 
-    <a href="#home" class="mobile-link">Home</a>
-    <a href="#services" class="mobile-link">Services</a>
-    <a href="#about" class="mobile-link">Über uns</a>
-    <a href="#contact" class="mobile-link">Kontakt</a>
+    <!-- OBEN -->
+    <div class="mobile-datetime" id="mobileDatetime"></div>
 
+    <!-- MITTE -->
+    <div class="mobile-link" data-scroll="#hero" data-i18n="nav_home"></div>
+    <div class="mobile-link" data-scroll="#services" data-i18n="nav_services"></div>
+    <div class="mobile-link" data-scroll="#about" data-i18n="nav_about"></div>
+    <div class="mobile-link" data-scroll="#contact" data-i18n="nav_contact"></div>
+
+    <!-- UNTEN -->
     <div class="mobile-lang">
       <button data-lang="de">DE</button>
       <button data-lang="en">EN</button>
       <button data-lang="fr">FR</button>
     </div>
 
-    <button class="mobile-cta">Kurz Projekt besprechen</button>
+    <button class="mobile-cta"
+            data-scroll="#contact"
+            data-i18n="nav_cta"></button>
 
   </div>
-</nav>03:28 04.06.2026
+</nav>
+
+
 <!-- ⭐ Ende Mobile Navigation -->
+
 
 
     <main class="wrapper">
@@ -4021,11 +5764,12 @@ footer {
   </div>
 
   <div class="hero-meta">
-    <span class="hero-meta-dot"></span>
+<span class="live-dot">●</span>
+  <span id="local-time"></span>
+</div>
+    <span class="location-icon">📍</span>
     <span data-i18n="hero_location"></span>
   </div>
-
-</div>
 
 
         <aside class="hero-right">
@@ -4409,6 +6153,7 @@ footer {
   </div>
 </section>
 
+
 <!-- FOOTER (NEU + LEGAL DROPDOWN + SHARE BUTTONS) -->
 <footer>
   <div class="footer-inner">
@@ -4433,897 +6178,898 @@ footer {
     </div>
   </div>
 
-<div class="footer-bottom">
-  <div>© <span id="year"></span> Barry Data & Analytics</div>
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> Barry Data & Analytics</div>
 
-  <div class="footer-legal-dropdown">
-    <button class="footer-legal-toggle" id="legal-toggle">
-      <span data-i18n="footer_legal_dropdown"></span> ▾
+    <div class="footer-legal-dropdown">
+      <button class="footer-legal-toggle" id="legal-toggle">
+        <span data-i18n="footer_legal_dropdown"></span> ▾
+      </button>
+
+      <div class="footer-legal-menu" id="legal-menu">
+        <div class="footer-legal-item" data-legal="imprint" data-i18n="footer_imprint"></div>
+        <div class="footer-legal-item" data-legal="privacy" data-i18n="footer_privacy"></div>
+        <div class="footer-legal-item" data-legal="terms" data-i18n="footer_terms"></div>
+      </div>
+
+      <div id="legal-content" class="footer-legal-content">
+        <div class="legal-tabs">
+          <span class="legal-tab active" data-tab="imprint">Impressum</span>
+          <span class="legal-tab" data-tab="privacy">Datenschutz</span>
+          <span class="legal-tab" data-tab="terms">AGB</span>
+        </div>
+
+        <div class="legal-text" id="legal-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-actions">
+    <button class="footer-btn" data-share="page">
+      <span class="footer-icon">
+        <svg viewBox="0 0 24 24"><path d="M10 7a2 2 0 1 0-1.9-2.5A2 2 0 0 0 10 7Zm0 14a2 2 0 1 0-1.9-2.5A2 2 0 0 0 10 21Zm8-10a2 2 0 1 0-1.9-2.5A2 2 0 0 0 18 11Zm-7.1 7.1 4.2-2.2m-4.2-7.8 4.2 2.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </span>
+      <span data-i18n="footer_share_page"></span>
     </button>
 
-    <div class="footer-legal-menu" id="legal-menu">
-      <div class="footer-legal-item" data-i18n="footer_imprint"></div>
-      <div class="footer-legal-item" data-i18n="footer_privacy"></div>
-      <div class="footer-legal-item" data-i18n="footer_terms"></div>
-    </div>
+    <button class="footer-btn" data-share="linkedin">
+      <span class="footer-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm.9 5.5H3.9V20h2ZM10.5 9.5h-2V20h2v-5.3c0-1.4.8-2.3 2.1-2.3 1.2 0 1.9.8 1.9 2.3V20h2v-5.9c0-2.4-1.3-3.8-3.4-3.8-1.5 0-2.4.7-2.8 1.5Z" fill="currentColor"/></svg>
+      </span>
+      <span data-i18n="footer_share_linkedin"></span>
+    </button>
 
-    <!-- ⭐ LEGAL CONTENT ⭐ -->
-    <div id="legal-content" class="footer-legal-content"></div>
+    <button class="footer-btn" data-share="email">
+      <span class="footer-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 7.5 12 12l7-4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </span>
+      <span data-i18n="footer_share_email"></span>
+    </button>
+
+    <a href="https://www.linkedin.com/in/ahmed-barry-data" target="_blank" class="footer-btn">
+      <span class="footer-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 19.5c.7-2.4 2.7-4 5.5-4s4.8 1.6 5.5 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </span>
+      <span data-i18n="footer_linkedin_profile"></span>
+    </a>
   </div>
-</div>
 
-<div class="footer-actions">
-  <!-- Seite teilen -->
-  <button class="footer-btn" data-share="page">
-    <span class="footer-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M10 7a2 2 0 1 0-1.9-2.5A2 2 0 0 0 10 7Zm0 14a2 2 0 1 0-1.9-2.5A2 2 0 0 0 10 21Zm8-10a2 2 0 1 0-1.9-2.5A2 2 0 0 0 18 11Zm-7.1 7.1 4.2-2.2m-4.2-7.8 4.2 2.2"
-              fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </span>
-    <span data-i18n="footer_share_page"></span>
-  </button>
+  <div class="footer-scroll">
+    <button id="scroll-top" class="scroll-footer-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 5 6 11m6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
 
-  <!-- LinkedIn teilen -->
-  <button class="footer-btn" data-share="linkedin">
-    <span class="footer-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm.9 5.5H3.9V20h2Z
-                 M10.5 9.5h-2V20h2v-5.3c0-1.4.8-2.3 2.1-2.3 1.2 0 1.9.8 1.9 2.3V20h2v-5.9
-                 c0-2.4-1.3-3.8-3.4-3.8-1.5 0-2.4.7-2.8 1.5Z"
-              fill="currentColor" />
-      </svg>
-    </span>
-    <span data-i18n="footer_share_linkedin"></span>
-  </button>
-
-  <!-- E-Mail teilen -->
-  <button class="footer-btn" data-share="email">
-    <span class="footer-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"
-              fill="none" stroke="currentColor" stroke-width="1.6" />
-        <path d="M5 7.5 12 12l7-4.5"
-              fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </span>
-    <span data-i18n="footer_share_email"></span>
-  </button>
-
-  <!-- LinkedIn Profil -->
-  <a href="https://www.linkedin.com/in/ahmed-barry-data"
-     target="_blank"
-     class="footer-btn">
-    <span class="footer-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="8" r="3.2"
-                fill="none" stroke="currentColor" stroke-width="1.6" />
-        <path d="M6.5 19.5c.7-2.4 2.7-4 5.5-4s4.8 1.6 5.5 4"
-              fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </span>
-    <span data-i18n="footer_linkedin_profile"></span>
-  </a>
-</div>
-
-<div class="footer-scroll">
-  <!-- Nach oben -->
-  <button id="scroll-top" class="scroll-footer-btn">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 5 6 11m6-6 6 6M12 5v14"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-
-  <!-- Nach unten -->
-  <button id="scroll-bottom" class="scroll-footer-btn">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 19 6 13m6 6 6-6M12 19V5"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-</div>
-
+    <button id="scroll-bottom" class="scroll-footer-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 19 6 13m6 6 6-6M12 19V5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
 </footer>
 
+</main>
 
 
-<!-- ⭐ HIER KOMMT DER NEUE FOOTER-JS-BLOCK ⭐ -->
+<!-- ⭐ FOOTER-JS ⭐ -->
 <script>
-/* Seite teilen */
+/* SHARE BUTTONS */
 document.querySelector("[data-share='page']")?.addEventListener("click", () => {
-  navigator.share
-    ? navigator.share({ title: document.title, url: window.location.href })
-    : alert("Teilen wird von diesem Gerät nicht unterstützt.");
+  if (navigator.share) navigator.share({ title: document.title, url: window.location.href });
+  else alert("Teilen wird von diesem Gerät nicht unterstützt.");
 });
 
-/* LinkedIn teilen */
 document.querySelector("[data-share='linkedin']")?.addEventListener("click", () => {
   const url = encodeURIComponent(window.location.href);
   window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank");
 });
 
-/* E-Mail teilen */
 document.querySelector("[data-share='email']")?.addEventListener("click", () => {
   const subject = encodeURIComponent("Interessante Seite");
   const body = encodeURIComponent(window.location.href);
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
 });
 
-
-
+/* SCROLL BUTTONS */
 const topBtn = document.getElementById("scroll-top");
 const bottomBtn = document.getElementById("scroll-bottom");
 
-// Nach unten scrollen
-bottomBtn.addEventListener("click", () => {
+if (bottomBtn) bottomBtn.addEventListener("click", () => {
   window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 });
 
-// Nach oben scrollen
-topBtn.addEventListener("click", () => {
+if (topBtn) topBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// --- Variante C: sichtbar bis Scroll ---
+if (bottomBtn) bottomBtn.classList.add("visible");
 
-// Beim Laden sichtbar machen
-bottomBtn.classList.add("visible");
-
-// Wenn der Nutzer scrollt → sofort ausblenden
 window.addEventListener("scroll", () => {
-  bottomBtn.classList.remove("visible");
-
-  // Wenn man wieder ganz oben ist → wieder anzeigen
-  if (window.scrollY < 50) {
-    bottomBtn.classList.add("visible");
+  if (bottomBtn) {
+    bottomBtn.classList.remove("visible");
+    if (window.scrollY < 50) bottomBtn.classList.add("visible");
   }
-
-  // Nach oben Button anzeigen, wenn man weit unten ist
-  if (window.scrollY > 300) {
-    topBtn.classList.add("visible");
-  } else {
-    topBtn.classList.remove("visible");
+  if (topBtn) {
+    if (window.scrollY > 300) topBtn.classList.add("visible");
+    else topBtn.classList.remove("visible");
   }
 });
-
-document.addEventListener("scroll", () => {
-  const arrow = document.getElementById("scroll-bottom");
-
-  if (window.scrollY > 20) {
-    arrow.classList.add("hidden");
-  } else {
-    arrow.classList.remove("hidden");
-  }
-});
-
-
-document.addEventListener("scroll", () => {
-  const arrow = document.getElementById("scroll-bottom");
-
-  if (window.scrollY > 20) {
-    arrow.classList.add("hidden");
-  } else {
-    arrow.classList.remove("hidden");
-  }
-});
-
-
-
-
 </script>
 
-</main>
+
+<!-- ⭐ PREMIUM-DROPDOWN-JS ⭐ -->
+<script>
+const legalToggle = document.getElementById("legal-toggle");
+const legalMenu = document.getElementById("legal-menu");
+const legalContent = document.getElementById("legal-content");
+const legalText = document.getElementById("legal-text");
+
+const legalTabs = document.querySelectorAll(".legal-tab");
+const legalItems = document.querySelectorAll(".footer-legal-item");
+
+const legalData = {
+  imprint: {
+    de: `Rechtsform: Einzelunternehmen (Barry Data & Analytics)
+Inhaber: Ahmed Barry
+Anschrift: Bochum, Nordrhein‑Westfalen, Deutschland
+E‑Mail: ahmed@barrydataanalytics.de
+Telefon: +49 1575 5355849
+Verantwortlich gemäß § 18 Abs. 2 MStV: Ahmed Barry`,
+
+    en: `Business type: Independent Consulting Practice (Barry Data & Analytics)
+Owner: Ahmed Barry
+Location: Bochum, North Rhine‑Westphalia, Germany
+E‑mail: ahmed@barrydataanalytics.de
+Phone: +49 1575 5355849
+Responsible according to § 18 (2) MStV: Ahmed Barry`,
+
+    fr: `Forme juridique : Cabinet de conseil indépendant (Barry Data & Analytics)
+Propriétaire : Ahmed Barry
+Localisation : Bochum, Rhénanie‑du‑Nord–Westphalie, Allemagne
+E‑mail : ahmed@barrydataanalytics.de
+Téléphone : +49 1575 5355849
+Responsable selon le § 18 (2) MStV : Ahmed Barry`
+  },
+
+  privacy: {
+    de: `Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO. Verarbeitete Daten umfassen insbesondere Kontaktinformationen, Projektanfragen und technische Nutzungsdaten. Die Verarbeitung erfolgt zur Beantwortung von Anfragen, zur Projektkommunikation und zur technischen Bereitstellung der Website. Eine Weitergabe an Dritte erfolgt nicht, es sei denn, es besteht eine gesetzliche Verpflichtung. Daten werden nur so lange gespeichert, wie es für den jeweiligen Zweck erforderlich ist. Betroffene Personen haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch sowie Datenübertragbarkeit. Kontakt für Datenschutzanfragen: ahmed@barrydataanalytics.de`,
+
+    en: `We process personal data exclusively in accordance with the GDPR. Processed data includes contact information, project inquiries and technical usage data. Data is processed for the purpose of responding to inquiries, project communication and the technical operation of this website. No data is shared with third parties unless legally required. Data is stored only for as long as necessary for the respective purpose. Data subjects have the right to access, rectification, deletion, restriction of processing, objection and data portability at any time. For privacy related inquiries, please contact: ahmed@barrydataanalytics.de`,
+
+    fr: `Nous traitons les données personnelles exclusivement conformément au RGPD. Les données traitées comprennent notamment les informations de contact, les demandes de projet et les données techniques d’utilisation. Les données sont traitées afin de répondre aux demandes, d’assurer la communication liée aux projets et d’assurer le fonctionnement technique de ce site. Aucune donnée n’est transmise à des tiers, sauf obligation légale. Les données sont conservées uniquement pendant la durée nécessaire à leur finalité. Les personnes concernées disposent à tout moment d’un droit d’accès, de rectification, de suppression, de limitation du traitement, d’opposition et de portabilité des données. Pour toute demande relative à la protection des données : ahmed@barrydataanalytics.de`
+  },
+
+  terms: {
+    de: `Unsere Zusammenarbeit basiert auf klaren, fairen und transparenten Regeln. Der konkrete Leistungsumfang ergibt sich aus dem jeweiligen Angebot oder der Projektvereinbarung. Anpassungen oder Erweiterungen erfolgen nach gemeinsamer Abstimmung. Ein bestimmter wirtschaftlicher, finanzieller oder geschäftlicher Erfolg wird nicht geschuldet.
+Damit Projekte reibungslos laufen, stellt der Auftraggeber alle notwendigen Informationen, Daten und Zugänge rechtzeitig bereit. Verzögerungen oder Mehraufwände, die durch fehlende oder fehlerhafte Angaben entstehen, können den Zeitplan beeinflussen.
+Die Vergütung richtet sich nach dem vereinbarten Angebot. Rechnungen sind innerhalb von 14 Tagen zahlbar. Bei größeren Projekten können Teilzahlungen oder Abschläge vereinbart werden. Termine verstehen sich als realistische Planwerte; sollten unvorhersehbare technische oder organisatorische Faktoren auftreten, werden Fristen entsprechend angepasst.
+Nach Bereitstellung gilt die Leistung als abgenommen, sofern innerhalb von 14 Tagen keine wesentlichen Mängel gemeldet werden. Nach vollständiger Bezahlung erhält der Auftraggeber die vereinbarten Nutzungsrechte an den individuell erstellten Ergebnissen. Methoden, Vorlagen, Skripte, Automatisierungen und allgemeines Know‑how bleiben Eigentum des Auftragnehmers.
+Alle vertraulichen Informationen des Auftraggebers werden streng vertraulich behandelt und nicht an Dritte weitergegeben, soweit keine gesetzliche Verpflichtung hierzu besteht. Personenbezogene Daten werden ausschließlich im Rahmen der geltenden Datenschutzgesetze verarbeitet.
+Der Auftragnehmer haftet unbeschränkt für Vorsatz und grobe Fahrlässigkeit. Bei einfacher Fahrlässigkeit haftet er nur bei Verletzung wesentlicher Vertragspflichten und ausschließlich für den vertragstypischen, vorhersehbaren Schaden. Für wirtschaftliche Entscheidungen, entgangene Gewinne, mittelbare Schäden oder Fehler in Kundendaten wird keine Haftung übernommen. Die Verantwortung für die Nutzung und Interpretation von Analysen, Dashboards und Empfehlungen liegt beim Auftraggeber.
+Referenzen werden ausschließlich unter Berücksichtigung berechtigter Interessen des Auftraggebers verwendet. Es gilt deutsches Recht. Sollte eine Bestimmung unwirksam sein, bleibt die Wirksamkeit der übrigen Regelungen unberührt.`,
+
+    en: `Our collaboration is based on clear, fair and transparent principles. The specific scope of services is defined in the respective offer or project agreement. Adjustments or extensions are made by mutual consent. No specific economic, financial or business outcome is guaranteed.
+To ensure smooth project execution, the client provides all necessary information, data and access credentials in a timely manner. Delays or additional effort caused by missing or incorrect information may affect the project timeline.
+Fees are based on the agreed offer. Invoices are payable within 14 days. For larger projects, partial or milestone payments may be agreed. Deadlines are realistic planning estimates; if unforeseen technical or organizational factors arise, timelines may be adjusted accordingly.
+The service is considered accepted if no material issues are reported within 14 days after delivery. Upon full payment, the client receives the agreed usage rights to the individually created deliverables. Methods, templates, scripts, automations and general know‑how remain the property of the service provider.
+All confidential information provided by the client is treated strictly confidentially and will not be shared with third parties unless legally required. Personal data is processed exclusively in accordance with applicable data protection laws.
+The service provider is fully liable for intent and gross negligence. In cases of simple negligence, liability applies only in the event of a breach of essential contractual obligations and is limited to the typical, foreseeable damage. No liability is assumed for business decisions, lost profits, indirect damages or errors in client‑provided data. The client is responsible for the use and interpretation of analyses, dashboards and recommendations.
+References are used only with due consideration of the client’s legitimate interests. German law applies. If any provision is or becomes invalid, the validity of the remaining provisions remains unaffected.`,
+
+    fr: `Notre collaboration repose sur des principes clairs, équitables et transparents. L’étendue précise des prestations est définie dans l’offre ou l’accord de projet correspondant. Toute adaptation ou extension est réalisée d’un commun accord. Aucun résultat économique, financier ou commercial spécifique n’est garanti.
+Pour assurer une exécution fluide du projet, le client fournit en temps utile toutes les informations, données et accès nécessaires. Les retards ou efforts supplémentaires dus à des informations manquantes ou incorrectes peuvent affecter le calendrier du projet.
+Les honoraires sont basés sur l’offre convenue. Les factures sont payables dans un délai de 14 jours. Pour les projets plus importants, des paiements partiels ou échelonnés peuvent être convenus. Les délais sont des estimations réalistes ; en cas de facteurs techniques ou organisationnels imprévus, ils peuvent être ajustés en conséquence.
+La prestation est considérée comme acceptée si aucun problème majeur n’est signalé dans les 14 jours suivant la livraison. Après paiement complet, le client reçoit les droits d’utilisation convenus sur les livrables créés individuellement. Les méthodes, modèles, scripts, automatisations et le savoir‑faire restent la propriété du prestataire.
+Toutes les informations confidentielles fournies par le client sont traitées de manière strictement confidentielle et ne sont pas transmises à des tiers, sauf obligation légale. Les données personnelles sont traitées exclusivement conformément aux lois applicables en matière de protection des données.
+Le prestataire est pleinement responsable en cas d’intention ou de négligence grave. En cas de négligence simple, la responsabilité n’est engagée qu’en cas de violation d’obligations contractuelles essentielles et est limitée aux dommages typiques et prévisibles. Aucune responsabilité n’est assumée pour les décisions commerciales, les pertes de bénéfices, les dommages indirects ou les erreurs dans les données fournies par le client. Le client est responsable de l’utilisation et de l’interprétation des analyses, tableaux de bord et recommandations.
+Les références ne sont utilisées qu’en tenant compte des intérêts légitimes du client. Le droit allemand s’applique. Si une disposition est ou devient invalide, la validité des autres dispositions n’en est pas affectée.`
+  }
+};
+
+function loadLegal(type) {
+  const lang = document.documentElement.lang || "de";
+  legalText.textContent = legalData[type][lang];
+  legalContent.classList.add("open");
+}
+
+legalToggle.addEventListener("click", () => {
+  legalMenu.classList.toggle("open");
+});
+
+legalItems.forEach(item => {
+  item.addEventListener("click", () => {
+    const type = item.dataset.legal;
+    loadLegal(type);
+    legalMenu.classList.remove("open");
+  });
+});
+
+legalTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    legalTabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    loadLegal(tab.dataset.tab);
+  });
+});
+</script>
 
 
- <script>
+ <!-- ⭐ TRANSLATION DATA ⭐ -->
+<script>
 const languageData = {
 
   /* ============================================================
      🇩🇪 DEUTSCH
   ============================================================ */
-  de: {
-    /* Navigation */
-    nav_home: "Home",
-    nav_services: "Services",
-    nav_about: "Über uns",
-    nav_contact: "Kontakt",
-    nav_cta: "Kurz Projekt besprechen",
+de: {
+
+  /* Navigation */
+  nav_home: "Home",
+  nav_services: "Services",
+  nav_about: "Über uns",
+  nav_contact: "Kontakt",
+  nav_cta: "Kurz Projekt besprechen",
 
   /* Hero */
-hero_pill: "Datenklarheit & Automatisierung",
+  hero_pill: "Datenklarheit & Automatisierung",
+  hero_eyebrow: "Reporting • Automatisierung • KPI-Dashboards",
+  hero_title: "Weniger Datenchaos. Mehr Klarheit. Sofort.",
+  hero_subtitle: "Mehr Überblick. Weniger Aufwand. Klare Entscheidungen.",
+  hero_highlight:
+    "Verstreute Excel-Dateien, manuelle Auswertungen und fehlende Übersicht kosten Zeit und erschweren Entscheidungen. Wir schaffen klare Strukturen, automatisieren Auswertungen und machen wichtige Kennzahlen auf einen Blick verfügbar.",
+  hero_cta_primary: "Kurz Projekt besprechen",
+  hero_cta_secondary: "Typische Kundenprojekte ansehen",
+  hero_location: "Standort: Bochum (NRW) – Remote & international",
 
-hero_eyebrow: "Reporting • Automatisierung • KPI-Dashboards",
+  /* Dashboard */
+  hero_dashboard_title: "Business Performance Dashboard",
+  hero_dashboard_badge: "Beispielhafte Darstellung",
+  hero_kpi1_label: "Weniger manueller Aufwand",
+  hero_kpi1_value: "−85 %",
+  hero_kpi2_label: "Zeit bis zum Report",
+  hero_kpi2_value: "Minuten statt Stunden",
+  hero_kpi3_label: "Fehlerquote",
+  hero_kpi3_value: "−70 %",
+  hero_tag1: "Weniger Excel-Chaos",
+  hero_tag2: "Kennzahlen auf Knopfdruck",
+  hero_tag3: "Immer aktuelle Daten",
+  hero_tag4: "Alles an einem Ort",
+  hero_chart_title: "Umsatzentwicklung nach Einführung",
+  hero_chart_range: "Letzte 6 Monate",
+  hero_chart_footer_left: "Vorher: manuelle Auswertungen",
+  hero_chart_footer_right: "Nachher: automatisierte Dashboards",
 
-hero_title: "Weniger Datenchaos. Mehr Klarheit. Sofort.",
+  /* Projektbeispiel */
+  project_eyebrow: "TYPISCHES KUNDENPROJEKT",
+  project_title: "Von Excel-Chaos zu klaren Entscheidungen",
+  project_subtitle:
+    "Ein Beispiel, wie ein Vertriebs-Dashboard aus unübersichtlichen Daten klare Handlungsempfehlungen macht.",
+  project_step1_label: "Problem",
+  project_step1_title: "Unklare Sales-Performance",
+  project_step1_text:
+    "Viele Excel-Dateien, unterschiedliche Versionen, keine einheitliche Sicht auf Pipeline, Abschlüsse und Forecast.",
+  project_step2_label: "Lösung",
+  project_step2_title: "Zentrales Dashboard",
+  project_step2_text:
+    "Datenquellen angebunden, Kennzahlen definiert, interaktives Dashboard für Vertrieb, Management und Controlling.",
+  project_step3_label: "Ergebnis",
+  project_step3_title: "Schnellere Entscheidungen",
+  project_step3_text:
+    "Transparente Pipeline, klare Zielerreichung, weniger Abstimmungsaufwand – mehr Zeit für Vertrieb statt für Excel.",
+  project_timeline_label: "Vorher → Lösung → Nachher",
+  project_cta_text:
+    "Klingt ähnlich zu Ihrer Situation? Dann lassen Sie uns kurz sprechen.",
+  project_cta_btn: "Nächstes Projekt besprechen",
 
-hero_subtitle: "Mehr Überblick. Weniger Aufwand. Klare Entscheidungen.",
+  /* Use Cases */
+  usecases_eyebrow: "USE CASES",
+  usecases_title: "Wo Dashboards und Automatisierung sofort wirken",
+  usecases_subtitle:
+    "Ausgewählte Beispiele, wie wir Daten in klare Entscheidungen übersetzen.",
+  usecase_sales_label: "Vertrieb",
+  usecase_sales_title: "Sales Performance Dashboard",
+  usecase_sales_tagline: "Pipeline, Abschlüsse, Forecast – auf einen Blick.",
+  usecase_marketing_label: "Marketing",
+  usecase_marketing_title: "Marketing Performance Analyse",
+  usecase_marketing_tagline: "ROI, Kampagnen, Kanäle – transparent und vergleichbar.",
+  usecase_logistics_label: "Logistik",
+  usecase_logistics_title: "Bestands- & Logistik-Analyse",
+  usecase_logistics_tagline: "Lieferzeiten, Lagerbestände, Engpässe – klar visualisiert.",
+  usecase_operations_label: "Operations",
+  usecase_operations_title: "Prozess- & Effizienz-Analyse",
+  usecase_operations_tagline: "Bottlenecks erkennen, Durchlaufzeiten verkürzen.",
+  usecase_ecommerce_label: "E-Commerce",
+  usecase_ecommerce_title: "Funnel & Conversion Analyse",
+  usecase_ecommerce_tagline: "Vom Klick bis zum Kauf – lückenlos nachvollziehbar.",
+  usecase_industry_label: "Industrie",
+  usecase_industry_title: "OEE & Produktionsreporting",
+  usecase_industry_tagline: "Anlagenverfügbarkeit, Auslastung, Stillstände im Blick.",
+  usecase_service_label: "Service & Support",
+  usecase_service_title: "Service- & Callcenter-Dashboard",
+  usecase_service_tagline: "Tickets, Reaktionszeiten, Zufriedenheit – in Echtzeit.",
+  usecase_forecast_label: "Forecasting",
+  usecase_forecast_title: "Nachfrage- & Umsatzprognosen",
+  usecase_forecast_tagline: "Bessere Planung statt Bauchgefühl.",
+  usecase_reporting_label: "Reporting",
+  usecase_reporting_title: "Automatisierte Business Reports",
+  usecase_reporting_tagline: "Zero Excel – Reports kommen automatisch.",
 
-hero_highlight:
-  "Verstreute Excel-Dateien, manuelle Auswertungen und fehlende Übersicht kosten Zeit und erschweren Entscheidungen. Wir schaffen klare Strukturen, automatisieren Auswertungen und machen wichtige Kennzahlen auf einen Blick verfügbar.",
+  detail_col_problem: "Problem",
+  detail_col_solution: "Lösung",
+  detail_col_result: "Ergebnis",
 
-hero_cta_primary: "Kurz Projekt besprechen",
-hero_cta_secondary: "Typische Kundenprojekte ansehen",
-hero_location: "Standort: Bochum (NRW) – Remote & international",
+  /* Über uns */
+  about_section_title: "Über uns",
+  about_headline: "Klare Daten. Verlässliche Entscheidungen.",
+  about_intro:
+    "Barry Data & Analytics unterstützt Unternehmen dabei, komplexe Informationen in klare, nutzbare Entscheidungsgrundlagen zu übersetzen.",
+  about_body1:
+    "Wir setzen nicht auf überladene Tools oder theoretische Konzepte. Entscheidend sind Lösungen, die im Arbeitsalltag funktionieren, sofort Mehrwert schaffen und sich nahtlos in bestehende Prozesse einfügen.",
+  about_approach_title: "Unser Ansatz",
+  about_approach_text:
+    "Daten sollen für Sie arbeiten – nicht umgekehrt.",
+  about_claim:
+    "Daten nicht nur sichtbar machen – sondern wirklich nutzbar.",
+  about_personal_title: "Persönlich & direkt",
+  about_personal_text:
+    "Barry Data & Analytics wurde gegründet, um Unternehmen pragmatisch und verständlich bei datenbasierten Entscheidungen zu unterstützen.",
 
-/* Dashboard (Hero Right) */
-hero_dashboard_title: "Business Performance Dashboard",
-hero_dashboard_badge: "Beispielhafte Darstellung",
-
-hero_kpi1_label: "Weniger manueller Aufwand",
-hero_kpi1_value: "−85 %",
-hero_kpi2_label: "Zeit bis zum Report",
-hero_kpi2_value: "Minuten statt Stunden",
-hero_kpi3_label: "Fehlerquote",
-hero_kpi3_value: "−70 %",
-
-hero_tag1: "Weniger Excel-Chaos",
-hero_tag2: "Kennzahlen auf Knopfdruck",
-hero_tag3: "Immer aktuelle Daten",
-hero_tag4: "Alles an einem Ort",
-
-hero_chart_title: "Umsatzentwicklung nach Einführung",
-hero_chart_range: "Letzte 6 Monate",
-hero_chart_footer_left: "Vorher: manuelle Auswertungen",
-hero_chart_footer_right: "Nachher: automatisierte Dashboards",
- 
-
-
-    /* Projektbeispiel */
-    project_eyebrow: "TYPISCHES KUNDENPROJEKT",
-    project_title: "Von Excel-Chaos zu klaren Entscheidungen",
-    project_subtitle:
-      "Ein Beispiel, wie ein Vertriebs-Dashboard aus unübersichtlichen Daten klare Handlungsempfehlungen macht.",
-    project_step1_label: "Problem",
-    project_step1_title: "Unklare Sales-Performance",
-    project_step1_text:
-      "Viele Excel-Dateien, unterschiedliche Versionen, keine einheitliche Sicht auf Pipeline, Abschlüsse und Forecast.",
-    project_step2_label: "Lösung",
-    project_step2_title: "Zentrales Dashboard",
-    project_step2_text:
-      "Datenquellen angebunden, Kennzahlen definiert, interaktives Dashboard für Vertrieb, Management und Controlling.",
-    project_step3_label: "Ergebnis",
-    project_step3_title: "Schnellere Entscheidungen",
-    project_step3_text:
-      "Transparente Pipeline, klare Zielerreichung, weniger Abstimmungsaufwand – mehr Zeit für Vertrieb statt für Excel.",
-    project_timeline_label: "Vorher → Lösung → Nachher",
-    project_cta_text:
-      "Klingt ähnlich zu Ihrer Situation? Dann lassen Sie uns kurz sprechen.",
-    project_cta_btn: "Nächstes Projekt besprechen",
-
-    /* Use Cases */
-    usecases_eyebrow: "USE CASES",
-    usecases_title: "Wo Dashboards und Automatisierung sofort wirken",
-    usecases_subtitle:
-      "Ausgewählte Beispiele, wie wir Daten in klare Entscheidungen übersetzen.",
-    usecase_sales_label: "Vertrieb",
-    usecase_sales_title: "Sales Performance Dashboard",
-    usecase_sales_tagline: "Pipeline, Abschlüsse, Forecast – auf einen Blick.",
-    usecase_marketing_label: "Marketing",
-    usecase_marketing_title: "Marketing Performance Analyse",
-    usecase_marketing_tagline: "ROI, Kampagnen, Kanäle – transparent und vergleichbar.",
-    usecase_logistics_label: "Logistik",
-    usecase_logistics_title: "Bestands- & Logistik-Analyse",
-    usecase_logistics_tagline: "Lieferzeiten, Lagerbestände, Engpässe – klar visualisiert.",
-    usecase_operations_label: "Operations",
-    usecase_operations_title: "Prozess- & Effizienz-Analyse",
-    usecase_operations_tagline: "Bottlenecks erkennen, Durchlaufzeiten verkürzen.",
-    usecase_ecommerce_label: "E-Commerce",
-    usecase_ecommerce_title: "Funnel & Conversion Analyse",
-    usecase_ecommerce_tagline: "Vom Klick bis zum Kauf – lückenlos nachvollziehbar.",
-    usecase_industry_label: "Industrie",
-    usecase_industry_title: "OEE & Produktionsreporting",
-    usecase_industry_tagline: "Anlagenverfügbarkeit, Auslastung, Stillstände im Blick.",
-    usecase_service_label: "Service & Support",
-    usecase_service_title: "Service- & Callcenter-Dashboard",
-    usecase_service_tagline: "Tickets, Reaktionszeiten, Zufriedenheit – in Echtzeit.",
-    usecase_forecast_label: "Forecasting",
-    usecase_forecast_title: "Nachfrage- & Umsatzprognosen",
-    usecase_forecast_tagline: "Bessere Planung statt Bauchgefühl.",
-    usecase_reporting_label: "Reporting",
-    usecase_reporting_title: "Automatisierte Business Reports",
-    usecase_reporting_tagline: "Zero Excel – Reports kommen automatisch.",
-
-    detail_col_problem: "Problem",
-    detail_col_solution: "Lösung",
-    detail_col_result: "Ergebnis",
-
-  /* ⭐ ÜBER UNS – FINAL ⭐ */
-about_section_title: "Über uns",
-about_headline: "Klare Daten. Verlässliche Entscheidungen.",
-about_intro:
-  "Barry Data & Analytics unterstützt Unternehmen dabei, komplexe Informationen in klare, nutzbare Entscheidungsgrundlagen zu übersetzen. Wir entwickeln pragmatische Lösungen für Reporting, KPI-Strukturen und Datenanalysen – mit dem Ziel, Transparenz zu schaffen und manuellen Aufwand spürbar zu reduzieren.",
-about_body1:
-  "Wir setzen nicht auf überladene Tools oder theoretische Konzepte. Entscheidend sind Lösungen, die im Arbeitsalltag funktionieren, sofort Mehrwert schaffen und sich nahtlos in bestehende Prozesse einfügen. Ob Excel-basierte Abläufe, verstreute Datenquellen oder fehlende Übersicht: Wir bringen Struktur in bestehende Systeme und machen relevante Informationen sichtbar.",
-about_approach_title: "Unser Ansatz",
-about_approach_text:
-  "Daten sollen für Sie arbeiten – nicht umgekehrt. Deshalb setzen wir auf klare KPI-Strukturen, nachvollziehbare Auswertungen, einfache Prozesse und Lösungen, die im Alltag wirklich nutzbar sind. Unser Ziel ist nicht nur die Umsetzung einer Lösung. Wir unterstützen Unternehmen dabei, dauerhaft den Überblick über ihre wichtigsten Kennzahlen zu behalten und fundierte Entscheidungen treffen zu können. Wenn neue Anforderungen entstehen, können bestehende Auswertungen flexibel weiterentwickelt werden.",
-about_claim:
-  "Daten nicht nur sichtbar machen – sondern wirklich nutzbar.",
-about_personal_title: "Persönlich & direkt",
-about_personal_text:
-  "Barry Data & Analytics wurde gegründet, um Unternehmen pragmatisch und verständlich bei datenbasierten Entscheidungen zu unterstützen. Direkte Kommunikation, transparente Zusammenarbeit und ein klarer Fokus auf echte Herausforderungen stehen dabei im Mittelpunkt.",
-
-/* ⭐ GRÜNDER – FINAL ⭐ */
+  /* Gründer */
+  
 founder_name: "Ahmed Barry",
 founder_role: "Gründer & Inhaber",
-founder_email_label: "E-Mail",
-founder_phone_label: "Telefon",
+founder_email_label: "E-Mail: ahmed@barrydataanalytics.de",
+founder_phone_label: "Telefon: +49 1575 5355849",
 founder_location: "Bochum, NRW, Deutschland",
 founder_note:
   "Ich freue mich über Ihre unverbindliche Anfrage und melde mich persönlich bei Ihnen zurück.",
 
 
-    /* Formular */
-    contact_eyebrow: "PROJEKTANFRAGE",
-    contact_title: "Projekt anfragen – klar & unverbindlich",
-    contact_subtitle:
+  /* Formular */
+  contact_eyebrow: "PROJEKTANFRAGE",
+  contact_title: "Projekt anfragen – klar & unverbindlich",
+  contact_subtitle:
     "Beschreiben Sie kurz Ihre Situation – wir melden uns mit Rückfragen oder einem konkreten Vorschlag.",
 
-/* Neue kundenorientierte Formulierungen */
-contact_area_title: "Wobei können wir Sie unterstützen?",
-/* Neue Zusammenarbeit */
-process_title: "So arbeiten wir zusammen",
-process_step1_title: "Analyse & Verständnis",
-process_step1_text: "Wir prüfen Ihre aktuelle Situation, Prozesse und Daten, um ein klares Bild zu erhalten.",
-process_step2_title: "Potenziale & Engpässe",
-process_step2_text: "Wir identifizieren, wo Transparenz fehlt, Abläufe stocken oder Aufwand entsteht.",
-process_step3_title: "Lösung & Vorgehen",
-process_step3_text: "Wir entwickeln die passende Datenlösung – strukturiert, verständlich und auf Ihr Ziel ausgerichtet.",
-process_step4_title: "Umsetzung & Begleitung",
-process_step4_text: "Wir setzen die Lösung um und unterstützen Sie zuverlässig im laufenden Betrieb.",
+  contact_area_title: "Wobei können wir Sie unterstützen?",
+  process_title: "So arbeiten wir zusammen",
+  process_step1_title: "Analyse & Verständnis",
+  process_step1_text: "Wir prüfen Ihre aktuelle Situation, Prozesse und Daten, um ein klares Bild zu erhalten.",
+  process_step2_title: "Potenziale & Engpässe",
+  process_step2_text: "Wir identifizieren, wo Transparenz fehlt, Abläufe stocken oder Aufwand entsteht.",
+  process_step3_title: "Lösung & Vorgehen",
+  process_step3_text: "Wir entwickeln die passende Datenlösung – strukturiert, verständlich und auf Ihr Ziel ausgerichtet.",
+  process_step4_title: "Umsetzung & Begleitung",
+  process_step4_text: "Wir setzen die Lösung um und unterstützen Sie zuverlässig im laufenden Betrieb.",
 
+  contact_desc_title: "Kurze Beschreibung",
+  contact_desc_text: "Beschreiben Sie kurz, welche Herausforderung Sie aktuell beschäftigt oder welche Transparenz Sie gewinnen möchten.",
 
-/* Neue Beschreibung */
-contact_desc_title: "Kurze Beschreibung",
-contact_desc_text: "Beschreiben Sie kurz, welche Herausforderung Sie aktuell beschäftigt oder welche Transparenz Sie gewinnen möchten.",
+  field_name_label: "Name",
+  field_name_placeholder: "Ihr Name",
+  field_company_placeholder: "Firmenname",
+  field_email_label: "E-Mail",
+  field_email_placeholder: "Ihre geschäftliche E-Mail",
 
+  field_type_label: "Projektstart / Daten (optional)",
+  field_type_option0: "Optional auswählen",
+  field_type_option1: "Sofort starten",
+  field_type_option2: "In den nächsten Wochen",
+  field_type_option3: "In den nächsten Monaten",
+  field_type_option4: "Noch unklar",
 
-    field_name_label: "Name",
-    field_name_placeholder: "Ihr Name",
-    field_company_label: "Unternehmen (optional)",
-    field_company_placeholder: "Firmenname",
-    field_email_label: "E-Mail",
-    field_email_placeholder: "Ihre geschäftliche E-Mail",
-    
-field_type_label: "Projektstart / Daten (optional)",
-field_type_option0: "Optional auswählen",
-field_type_option1: "Sofort starten",
-field_type_option2: "In den nächsten Wochen",
-field_type_option3: "In den nächsten Monaten",
-field_type_option4: "Noch unklar",
+  /* Projektauswahl */
+  form_project_label: "Projekt auswählen*",
+  form_project_placeholder: "Bitte auswählen",
+  form_project_sales: "Sales Performance Dashboard",
+  form_project_marketing: "Marketing Performance Analyse (ROI & Kampagnen)",
+  form_project_logistics: "Logistik Performance & Bestandsanalyse",
+  form_project_operations: "Operations Effizienz-Analyse (Prozesse & Bottlenecks)",
+  form_project_ecommerce: "E-Commerce Funnel & Conversion Tracking",
+  form_project_oee: "Industrie OEE & Produktionsreporting",
+  form_project_service: "Service & Callcenter Performance Dashboard",
+  form_project_forecasting: "Forecasting & Nachfrage-Prognosen",
+  form_project_reporting: "Automatisierte Business Reports (Zero Excel)",
+  form_project_custom: "Individuelles Projekt / Sonstige Lösung",
 
+  field_desc_label: "Kurze Projektbeschreibung",
 
+  /* ⭐ Neuer Satz (DE) ⭐ */
+  field_desc_placeholder:
+    "Kurze Projektbeschreibung – welches Thema und welche Optimierung stehen im Fokus?",
 
-    /* ⭐ Projektauswahl ⭐ */
-    form_project_label: "Projekt auswählen*",
-    form_project_placeholder: "Bitte auswählen",
-    form_project_sales: "Sales Performance Dashboard",
-    form_project_marketing: "Marketing Performance Analyse (ROI & Kampagnen)",
-    form_project_logistics: "Logistik Performance & Bestandsanalyse",
-    form_project_operations: "Operations Effizienz-Analyse (Prozesse & Bottlenecks)",
-    form_project_ecommerce: "E-Commerce Funnel & Conversion Tracking",
-    form_project_oee: "Industrie OEE & Produktionsreporting",
-    form_project_service: "Service & Callcenter Performance Dashboard",
-    form_project_forecasting: "Forecasting & Nachfrage-Prognosen",
-    form_project_reporting: "Automatisierte Business Reports (Zero Excel)",
-    form_project_custom: "Individuelles Projekt / Sonstige Lösung",
+  field_submit: "Anfrage senden",
+  contact_note:
+    "Ihre Anfrage ist unverbindlich. Wir melden uns mit Rückfragen oder einem konkreten Vorschlag.",
 
-    field_desc_label: "Kurze Projektbeschreibung",
-    field_desc_placeholder:
-      "Wo stehen Sie heute – und was soll sich durch ein Dashboard oder Reporting ändern?",
-    field_submit: "Anfrage senden",
-    contact_note:
-      "Ihre Anfrage ist unverbindlich. Wir melden uns mit Rückfragen oder einem konkreten Vorschlag.",
+  /* Footer */
+  footer_company: "Barry Data & Analytics",
+  footer_nav_title: "Navigation",
+  footer_legal_title: "Rechtliches",
+  footer_legal_text:
+    "Transparenter Umgang mit Daten – in Projekten und auf dieser Website.",
+  footer_legal_dropdown: "Rechtliche Hinweise",
+  footer_imprint: "Impressum",
+  footer_privacy: "Datenschutzerklärung",
+  footer_terms: "Allgemeine Geschäftsbedingungen",
+  footer_share_page: "Seite teilen",
+  footer_share_linkedin: "Auf LinkedIn teilen",
+  footer_share_email: "Per E‑Mail teilen",
+  footer_linkedin_profile: "LinkedIn Profil",
+  footer_back_to_top: "Nach oben",
 
+  /* ⭐ AGB – Final ⭐ */
 
-/* Footer */
-footer_company: "Barry Data & Analytics",
-footer_nav_title: "Navigation",
-footer_legal_title: "Rechtliches",
-footer_legal_text:
-  "Transparenter Umgang mit Daten – in Projekten und auf dieser Website.",
-footer_legal_dropdown: "Rechtliche Hinweise",
-footer_imprint: "Impressum",
-footer_privacy: "Datenschutzerklärung",
-footer_terms: "Allgemeine Geschäftsbedingungen",
+  terms_content: `
+Unsere Zusammenarbeit basiert auf klaren, fairen und transparenten Regeln. Der konkrete Leistungsumfang ergibt sich aus dem jeweiligen Angebot oder der Projektvereinbarung. Anpassungen oder Erweiterungen erfolgen nach gemeinsamer Abstimmung. Ein bestimmter wirtschaftlicher, finanzieller oder geschäftlicher Erfolg wird nicht geschuldet.
+Damit Projekte reibungslos laufen, stellt der Auftraggeber alle notwendigen Informationen, Daten und Zugänge rechtzeitig bereit. Verzögerungen oder Mehraufwände, die durch fehlende oder fehlerhafte Angaben entstehen, können den Zeitplan beeinflussen.
+Die Vergütung richtet sich nach dem vereinbarten Angebot. Rechnungen sind innerhalb von 14 Tagen zahlbar. Bei größeren Projekten können Teilzahlungen oder Abschläge vereinbart werden. Termine verstehen sich als realistische Planwerte; sollten unvorhersehbare technische oder organisatorische Faktoren auftreten, werden Fristen entsprechend angepasst.
+Nach Bereitstellung gilt die Leistung als abgenommen, sofern innerhalb von 14 Tagen keine wesentlichen Mängel gemeldet werden. Nach vollständiger Bezahlung erhält der Auftraggeber die vereinbarten Nutzungsrechte an den individuell erstellten Ergebnissen. Methoden, Vorlagen, Skripte, Automatisierungen und allgemeines Know how bleiben Eigentum des Auftragnehmers.
+Alle vertraulichen Informationen des Auftraggebers werden streng vertraulich behandelt und nicht an Dritte weitergegeben, soweit keine gesetzliche Verpflichtung hierzu besteht. Personenbezogene Daten werden ausschließlich im Rahmen der geltenden Datenschutzgesetze verarbeitet.
+Der Auftragnehmer haftet unbeschränkt für Vorsatz und grobe Fahrlässigkeit. Bei einfacher Fahrlässigkeit haftet er nur bei Verletzung wesentlicher Vertragspflichten und ausschließlich für den vertragstypischen, vorhersehbaren Schaden. Für wirtschaftliche Entscheidungen, entgangene Gewinne, mittelbare Schäden oder Fehler in Kundendaten wird keine Haftung übernommen. Die Verantwortung für die Nutzung und Interpretation von Analysen, Dashboards und Empfehlungen liegt beim Auftraggeber.
+Referenzen werden ausschließlich unter Berücksichtigung berechtigter Interessen des Auftraggebers verwendet. Es gilt deutsches Recht. Sollte eine Bestimmung unwirksam sein, bleibt die Wirksamkeit der übrigen Regelungen unberührt.
+`,
 
-/* ⭐ Neue Footer-Funktionen (NEU & sauber ergänzt) ⭐ */
-footer_share_page: "Seite teilen",
-footer_share_linkedin: "Auf LinkedIn teilen",
-footer_share_email: "Per E‑Mail teilen",
-footer_linkedin_profile: "LinkedIn Profil",
-footer_back_to_top: "Nach oben",
-
-
-imprint_content: `
+  /* ⭐ Impressum – Final ⭐ */
+  imprint_content: `
 Rechtsform: Einzelunternehmen (Barry Data & Analytics)
 Inhaber: Ahmed Barry
-Adresse: Bochum, Nordrhein‑Westfalen, Deutschland
-E‑Mail: ahmed@barrydataanalytics.de
+Anschrift: Bochum, Nordrhein Westfalen, Deutschland
+E Mail: ahmed@barrydataanalytics.de
 Telefon: +49 1575 5355849
-Inhaltlich verantwortlich gemäß § 18 Abs. 2 MStV: Ahmed Barry
+Verantwortlich gemäß § 18 Abs. 2 MStV: Ahmed Barry
 `,
 
-privacy_content: `
-Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO.
-Verarbeitete Daten: Kontaktinformationen, Projektanfragen, technische Nutzungsdaten.
-Zwecke: Beantwortung von Anfragen, Projektkommunikation, technische Bereitstellung der Website.
-Weitergabe: Keine Weitergabe an Dritte, außer wenn gesetzlich erforderlich.
-Speicherdauer: Speicherung nur so lange, wie es für den jeweiligen Zweck notwendig ist.
-Ihre Rechte: Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch, Datenübertragbarkeit.
-Kontakt für Datenschutzanfragen: ahmed@barrydataanalytics.de
-`,
+  /* ⭐ Datenschutz – Final ⭐ */
+  privacy_content: `
+Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO. Verarbeitete Daten umfassen insbesondere Kontaktinformationen, Projektanfragen und technische Nutzungsdaten. Die Verarbeitung erfolgt zur Beantwortung von Anfragen, zur Projektkommunikation und zur technischen Bereitstellung der Website. Eine Weitergabe an Dritte erfolgt nicht, es sei denn, es besteht eine gesetzliche Verpflichtung. Daten werden nur so lange gespeichert, wie es für den jeweiligen Zweck erforderlich ist. Betroffene Personen haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch sowie Datenübertragbarkeit. Kontakt für Datenschutzanfragen: ahmed@barrydataanalytics.de
+`
 
-  },
+},
 
   /* ============================================================
      🇬🇧 ENGLISH
   ============================================================ */
-  en: {
-    /* Navigation */
-    nav_home: "Home",
-    nav_services: "Services",
-    nav_about: "About",
-    nav_contact: "Contact",
-    nav_cta: "Discuss project briefly",
-
-   /* Hero */
-hero_pill: "Data clarity & automation",
-
-hero_eyebrow: "Reporting • Automation • KPI dashboards",
-
-hero_title: "Less data chaos. More clarity. Instantly.",
-
-hero_subtitle: "More overview. Less effort. Clear decisions.",
-
-hero_highlight:
-  "Scattered Excel files, manual analyses and missing visibility cost time and make decisions harder. We create clear structures, automate reporting processes and make key metrics available at a glance.",
-
-hero_cta_primary: "Discuss project briefly",
-hero_cta_secondary: "View typical client projects",
-hero_location: "Location: Bochum (NRW) – Remote & international",
-
-/* Dashboard (Hero Right) */
-hero_dashboard_title: "Business Performance Dashboard",
-hero_dashboard_badge: "Sample representation",
-
-hero_kpi1_label: "Less manual effort",
-hero_kpi1_value: "−85%",
-hero_kpi2_label: "Time to report",
-hero_kpi2_value: "Minutes instead of hours",
-hero_kpi3_label: "Error rate",
-hero_kpi3_value: "−70%",
-
-hero_tag1: "Less Excel chaos",
-hero_tag2: "KPIs at a glance",
-hero_tag3: "Always up-to-date data",
-hero_tag4: "Everything in one place",
-
-hero_chart_title: "Revenue trend after implementation",
-hero_chart_range: "Last 6 months",
-hero_chart_footer_left: "Before: manual reporting",
-hero_chart_footer_right: "After: automated dashboards",
  
+en: {
 
+  /* Navigation */
+  nav_home: "Home",
+  nav_services: "Services",
+  nav_about: "About",
+  nav_contact: "Contact",
+  nav_cta: "Discuss project briefly",
 
-    /* Project */
-    project_eyebrow: "TYPICAL CLIENT PROJECT",
-    project_title: "From Excel chaos to clear decisions",
-    project_subtitle:
-      "An example of how a sales dashboard turns scattered data into actionable insights.",
-    project_step1_label: "Problem",
-    project_step1_title: "Unclear sales performance",
-    project_step1_text:
-      "Many Excel files, different versions, no single view on pipeline, deals and forecast.",
-    project_step2_label: "Solution",
-    project_step2_title: "Central dashboard",
-    project_step2_text:
-      "Connected data sources, defined KPIs, interactive dashboard for sales, management and controlling.",
-    project_step3_label: "Result",
-    project_step3_title: "Faster decisions",
-    project_step3_text:
-      "Transparent pipeline, clear target achievement, less coordination effort – more time for selling.",
-    project_timeline_label: "Before → Solution → After",
-    project_cta_text:
-      "Sounds similar to your situation? Let’s talk briefly.",
-    project_cta_btn: "Discuss next project",
+  /* Hero */
+  hero_pill: "Data clarity & automation",
+  hero_eyebrow: "Reporting • Automation • KPI dashboards",
+  hero_title: "Less data chaos. More clarity. Instantly.",
+  hero_subtitle: "More overview. Less effort. Clear decisions.",
+  hero_highlight:
+    "Scattered Excel files, manual analyses and missing visibility cost time and make decisions harder. We create clear structures, automate reporting processes and make key metrics available at a glance.",
+  hero_cta_primary: "Discuss project briefly",
+  hero_cta_secondary: "View typical client projects",
+  hero_location: "Location: Bochum (NRW) – Remote & international",
 
-    /* Use cases */
-    usecases_eyebrow: "USE CASES",
-    usecases_title: "Where dashboards and automation pay off",
-    usecases_subtitle:
-      "Selected examples of how we turn data into decisions.",
-    usecase_sales_label: "Sales",
-    usecase_sales_title: "Sales performance dashboard",
-    usecase_sales_tagline: "Pipeline, deals, forecast – at a glance.",
-    usecase_marketing_label: "Marketing",
-    usecase_marketing_title: "Marketing performance analysis",
-    usecase_marketing_tagline: "ROI, campaigns, channels – transparent and comparable.",
-    usecase_logistics_label: "Logistics",
-    usecase_logistics_title: "Inventory & logistics analytics",
-    usecase_logistics_tagline: "Lead times, stock levels, bottlenecks – clearly visualised.",
-    usecase_operations_label: "Operations",
-    usecase_operations_title: "Process & efficiency analytics",
-    usecase_operations_tagline: "Identify bottlenecks, shorten cycle times.",
-    usecase_ecommerce_label: "E‑commerce",
-    usecase_ecommerce_title: "Funnel & conversion analysis",
-    usecase_ecommerce_tagline: "From click to purchase – fully traceable.",
-    usecase_industry_label: "Industry",
-    usecase_industry_title: "OEE & production reporting",
-    usecase_industry_tagline: "Availability, utilisation, downtimes in view.",
-    usecase_service_label: "Service & support",
-    usecase_service_title: "Service & call centre dashboard",
-    usecase_service_tagline: "Tickets, response times, satisfaction – in real time.",
-    usecase_forecast_label: "Forecasting",
-    usecase_forecast_title: "Demand & revenue forecasts",
-    usecase_forecast_tagline: "Better planning instead of gut feeling.",
-    usecase_reporting_label: "Reporting",
-    usecase_reporting_title: "Automated business reports",
-    usecase_reporting_tagline: "Zero Excel – reports arrive automatically.",
+  /* Dashboard */
+  hero_dashboard_title: "Business Performance Dashboard",
+  hero_dashboard_badge: "Sample representation",
+  hero_kpi1_label: "Less manual effort",
+  hero_kpi1_value: "−85%",
+  hero_kpi2_label: "Time to report",
+  hero_kpi2_value: "Minutes instead of hours",
+  hero_kpi3_label: "Error rate",
+  hero_kpi3_value: "−70%",
+  hero_tag1: "Less Excel chaos",
+  hero_tag2: "KPIs at a glance",
+  hero_tag3: "Always up‑to‑date data",
+  hero_tag4: "Everything in one place",
+  hero_chart_title: "Revenue trend after implementation",
+  hero_chart_range: "Last 6 months",
+  hero_chart_footer_left: "Before: manual reporting",
+  hero_chart_footer_right: "After: automated dashboards",
 
-    detail_col_problem: "Problem",
-    detail_col_solution: "Solution",
-    detail_col_result: "Result",
+  /* Project */
+  project_eyebrow: "TYPICAL CLIENT PROJECT",
+  project_title: "From Excel chaos to clear decisions",
+  project_subtitle:
+    "An example of how a sales dashboard turns scattered data into actionable insights.",
+  project_step1_label: "Problem",
+  project_step1_title: "Unclear sales performance",
+  project_step1_text:
+    "Many Excel files, different versions, no single view on pipeline, deals and forecast.",
+  project_step2_label: "Solution",
+  project_step2_title: "Central dashboard",
+  project_step2_text:
+    "Connected data sources, defined KPIs, interactive dashboard for sales, management and controlling.",
+  project_step3_label: "Result",
+  project_step3_title: "Faster decisions",
+  project_step3_text:
+    "Transparent pipeline, clear target achievement, less coordination effort – more time for selling.",
+  project_timeline_label: "Before → Solution → After",
+  project_cta_text: "Sounds similar to your situation? Let’s talk briefly.",
+  project_cta_btn: "Discuss next project",
 
-  /* ⭐ ABOUT US – FINAL ⭐ */
-about_section_title: "About Us",
-about_headline: "Clear data. Confident decisions.",
-about_intro:
-  "Barry Data & Analytics supports organizations in transforming complex information into clear, actionable decision-making foundations. We develop pragmatic solutions for reporting, KPI structures and data analysis — with the goal of creating transparency and significantly reducing manual effort.",
-about_body1:
-  "We do not rely on overloaded tools or theoretical concepts. What matters are solutions that work in day‑to‑day operations, create immediate value and integrate seamlessly into existing processes. Whether Excel-based workflows, scattered data sources or a lack of clarity — we bring structure to existing systems and make relevant information visible.",
-about_approach_title: "Our Approach",
-about_approach_text:
-  "Data should work for you — not the other way around. That’s why we focus on clear KPI structures, transparent evaluations, simple processes and solutions that are truly usable in everyday business. Our goal is not just to implement a solution. We help organizations maintain long-term visibility into their key metrics and make informed decisions. As new requirements arise, existing analyses can be expanded flexibly.",
-about_claim:
-  "Not just making data visible — but truly usable.",
-about_personal_title: "Personal & Direct",
-about_personal_text:
-  "Barry Data & Analytics was founded to support companies in a pragmatic and understandable way in data-driven decision-making. Direct communication, transparent collaboration and a focus on real challenges are at the core of our work.",
+  /* Use cases */
+  usecases_eyebrow: "USE CASES",
+  usecases_title: "Where dashboards and automation pay off",
+  usecases_subtitle:
+    "Selected examples of how we turn data into decisions.",
+  usecase_sales_label: "Sales",
+  usecase_sales_title: "Sales performance dashboard",
+  usecase_sales_tagline: "Pipeline, deals, forecast – at a glance.",
+  usecase_marketing_label: "Marketing",
+  usecase_marketing_title: "Marketing performance analysis",
+  usecase_marketing_tagline: "ROI, campaigns, channels – transparent and comparable.",
+  usecase_logistics_label: "Logistics",
+  usecase_logistics_title: "Inventory & logistics analytics",
+  usecase_logistics_tagline: "Lead times, stock levels, bottlenecks – clearly visualised.",
+  usecase_operations_label: "Operations",
+  usecase_operations_title: "Process & efficiency analytics",
+  usecase_operations_tagline: "Identify bottlenecks, shorten cycle times.",
+  usecase_ecommerce_label: "E‑commerce",
+  usecase_ecommerce_title: "Funnel & conversion analysis",
+  usecase_ecommerce_tagline: "From click to purchase – fully traceable.",
+  usecase_industry_label: "Industry",
+  usecase_industry_title: "OEE & production reporting",
+  usecase_industry_tagline: "Availability, utilisation, downtimes in view.",
+  usecase_service_label: "Service & support",
+  usecase_service_title: "Service & call centre dashboard",
+  usecase_service_tagline: "Tickets, response times, satisfaction – in real time.",
+  usecase_forecast_label: "Forecasting",
+  usecase_forecast_title: "Demand & revenue forecasts",
+  usecase_forecast_tagline: "Better planning instead of gut feeling.",
+  usecase_reporting_label: "Reporting",
+  usecase_reporting_title: "Automated business reports",
+  usecase_reporting_tagline: "Zero Excel – reports arrive automatically.",
 
-/* ⭐ FOUNDER – FINAL ⭐ */
-founder_name: "Ahmed Barry",
-founder_role: "Founder & Owner",
-founder_email_label: "E‑mail: ahmed@barrydataanalytics.de",
-founder_phone_label: "Téléphone: +49 1575 5356849",
-founder_location: "Bochum, NRW, Germany",
-founder_note:
-  "I look forward to your inquiry and will get back to you personally.",
+  detail_col_problem: "Problem",
+  detail_col_solution: "Solution",
+  detail_col_result: "Result",
 
+  /* About */
+  about_section_title: "About Us",
+  about_headline: "Clear data. Confident decisions.",
+  about_intro:
+    "Barry Data & Analytics supports organizations in transforming complex information into clear, actionable decision-making foundations.",
+  about_body1:
+    "We do not rely on overloaded tools or theoretical concepts. What matters are solutions that work in day‑to‑day operations, create immediate value and integrate seamlessly into existing processes.",
+  about_approach_title: "Our Approach",
+  about_approach_text:
+    "Data should work for you — not the other way around.",
+  about_claim: "Not just making data visible — but truly usable.",
+  about_personal_title: "Personal & Direct",
+  about_personal_text:
+    "Barry Data & Analytics was founded to support companies in a pragmatic and understandable way in data‑driven decision‑making.",
 
+  /* Founder (mit kompletter E-Mail & Telefonnummer) */
+  founder_name: "Ahmed Barry",
+  founder_role: "Founder & Owner",
+  founder_email_label: "Email: ahmed@barrydataanalytics.de",
+  founder_phone_label: "Phone: +49 1575 5355849",
+  founder_location: "Bochum, NRW, Germany",
+  founder_note: "I look forward to your inquiry and will get back to you personally.",
 
-    /* Form */
-    contact_eyebrow: "PROJECT INQUIRY",
-    contact_title: "Request a project – clear & non‑binding",
-    contact_subtitle:
-      "Briefly describe your situation – we’ll get back with questions or a concrete proposal.",
+  /* Form */
+  contact_eyebrow: "PROJECT INQUIRY",
+  contact_title: "Request a project – clear & non‑binding",
+  contact_subtitle:
+    "Briefly describe your situation – we’ll get back with questions or a concrete proposal.",
 
   contact_area_title: "Where can we support you?",
-process_title: "How we work together",
-process_step1_title: "Analysis & understanding",
-process_step1_text: "We review your current situation, processes and data to gain a clear picture.",
-process_step2_title: "Opportunities & bottlenecks",
-process_step2_text: "We identify where transparency is missing, processes slow down or effort increases.",
-process_step3_title: "Solution & approach",
-process_step3_text: "We design the right data solution – structured, clear and aligned with your goals.",
-process_step4_title: "Implementation & support",
-process_step4_text: "We implement the solution and support you reliably during ongoing operations.",
+  process_title: "How we work together",
+  process_step1_title: "Analysis & understanding",
+  process_step1_text: "We review your current situation, processes and data to gain a clear picture.",
+  process_step2_title: "Opportunities & bottlenecks",
+  process_step2_text: "We identify where transparency is missing, processes slow down or effort increases.",
+  process_step3_title: "Solution & approach",
+  process_step3_text: "We design the right data solution – structured, clear and aligned with your goals.",
+  process_step4_title: "Implementation & support",
+  process_step4_text: "We implement the solution and support you reliably during ongoing operations.",
 
-contact_desc_title: "Short description",
-contact_desc_text: "Briefly describe your current challenge or the transparency you want to gain.",
-  
+  contact_desc_title: "Short description",
+  contact_desc_text: "Briefly describe your current challenge or the transparency you want to gain.",
 
+  field_name_label: "Name",
+  field_name_placeholder: "Your name",
+  field_company_placeholder: "Company name",
+  field_email_label: "Email",
+  field_email_placeholder: "Your business email",
 
-    field_name_label: "Name",
-    field_name_placeholder: "Your name",
-            field_company_placeholder: "Company name",
-        field_email_label: "Email",
-        field_email_placeholder: "Your business email",
+  field_type_label: "Project start / data (optional)",
+  field_type_option0: "Optional selection",
+  field_type_option1: "Start immediately",
+  field_type_option2: "Within the next weeks",
+  field_type_option3: "Within the next months",
+  field_type_option4: "Not sure yet",
 
-   field_type_label: "Project start / data (optional)",
-field_type_option0: "Optional selection",
-field_type_option1: "Start immediately",
-field_type_option2: "Within the next weeks",
-field_type_option3: "Within the next months",
-field_type_option4: "Not sure yet",
-   
+  /* Project selection */
+  form_project_label: "Select project*",
+  form_project_placeholder: "Please choose",
+  form_project_sales: "Sales Performance Dashboard",
+  form_project_marketing: "Marketing Performance Analysis (ROI & Campaigns)",
+  form_project_logistics: "Logistics Performance & Inventory Analysis",
+  form_project_operations: "Operations Efficiency Analysis (Processes & Bottlenecks)",
+  form_project_ecommerce: "E‑Commerce Funnel & Conversion Tracking",
+  form_project_oee: "Industry OEE & Production Reporting",
+  form_project_service: "Service & Call Center Performance Dashboard",
+  form_project_forecasting: "Forecasting & Demand Predictions",
+  form_project_reporting: "Automated Business Reports (Zero Excel)",
+  form_project_custom: "Custom Project / Other Solution",
 
-        /* ⭐ Project selection – EN ⭐ */
-        form_project_label: "Select project*",
-        form_project_placeholder: "Please choose",
-        form_project_sales: "Sales Performance Dashboard",
-        form_project_marketing: "Marketing Performance Analysis (ROI & Campaigns)",
-        form_project_logistics: "Logistics Performance & Inventory Analysis",
-        form_project_operations: "Operations Efficiency Analysis (Processes & Bottlenecks)",
-        form_project_ecommerce: "E‑Commerce Funnel & Conversion Tracking",
-        form_project_oee: "Industry OEE & Production Reporting",
-        form_project_service: "Service & Call Center Performance Dashboard",
-        form_project_forecasting: "Forecasting & Demand Predictions",
-        form_project_reporting: "Automated Business Reports (Zero Excel)",
-        form_project_custom: "Custom Project / Other Solution",
+  field_desc_label: "Short project description",
 
-        field_desc_label: "Short project description",
-        field_desc_placeholder:
-          "Where are you today – and what should change through a dashboard or reporting?",
-        field_submit: "Send inquiry",
-        contact_note:
-          "Your inquiry is non‑binding. We’ll get back with questions or a concrete proposal.",
+  /* New sentence (EN) */
+  field_desc_placeholder:
+    "Short project description – which topic and which optimisation would you like to focus on.",
 
-        /* Footer */
-footer_company: "Barry Data & Analytics",
-footer_nav_title: "Navigation",
-footer_legal_title: "Legal",
-footer_legal_text:
-  "Transparent handling of data – in projects and on this website.",
-footer_legal_dropdown: "Legal information",
-footer_imprint: "Imprint",
-footer_privacy: "Privacy policy",
-footer_terms: "Terms & conditions",
+  field_submit: "Send inquiry",
+  contact_note:
+    "Your inquiry is non‑binding. We’ll get back with questions or a concrete proposal.",
 
-/* ⭐ New Footer Functions (added cleanly) ⭐ */
-footer_share_page: "Share page",
-footer_share_linkedin: "Share on LinkedIn",
-footer_share_email: "Share via email",
-footer_linkedin_profile: "LinkedIn profile",
-footer_back_to_top: "Back to top",
+  /* Footer */
+  footer_company: "Barry Data & Analytics",
+  footer_nav_title: "Navigation",
+  footer_legal_title: "Legal",
+  footer_legal_text:
+    "Transparent handling of data – in projects and on this website.",
+  footer_legal_dropdown: "Legal information",
+  footer_imprint: "Imprint",
+  footer_privacy: "Privacy policy",
+  footer_terms: "Terms & conditions",
+  footer_share_page: "Share page",
+  footer_share_linkedin: "Share on LinkedIn",
+  footer_share_email: "Share via email",
+  footer_linkedin_profile: "LinkedIn profile",
+  footer_back_to_top: "Back to top",
 
+  /* Terms & Conditions – Final */
+  terms_content: `
+Our collaboration is based on clear, fair and transparent principles. The specific scope of services is defined in the respective offer or project agreement. Adjustments or extensions are made by mutual consent. No specific economic, financial or business outcome is guaranteed.
+To ensure smooth project execution, the client provides all necessary information, data and access credentials in a timely manner. Delays or additional effort caused by missing or incorrect information may affect the project timeline.
+Fees are based on the agreed offer. Invoices are payable within 14 days. For larger projects, partial or milestone payments may be agreed. Deadlines are realistic planning estimates; if unforeseen technical or organizational factors arise, timelines may be adjusted accordingly.
+The service is considered accepted if no material issues are reported within 14 days after delivery. Upon full payment, the client receives the agreed usage rights to the individually created deliverables. Methods, templates, scripts, automations and general know how remain the property of the service provider.
+All confidential information provided by the client is treated strictly confidentially and will not be shared with third parties unless legally required. Personal data is processed exclusively in accordance with applicable data protection laws.
+The service provider is fully liable for intent and gross negligence. In cases of simple negligence, liability applies only in the event of a breach of essential contractual obligations and is limited to the typical, foreseeable damage. No liability is assumed for business decisions, lost profits, indirect damages or errors in client provided data. The client is responsible for the use and interpretation of analyses, dashboards and recommendations.
+References are used only with due consideration of the client’s legitimate interests. German law applies. If any provision is or becomes invalid, the validity of the remaining provisions remains unaffected.
+`,
 
-/* ⭐ New legal content ⭐ */
-imprint_content: `
-Legal form: Sole proprietorship (Barry Data & Analytics)
+  /* Imprint – Final */
+  imprint_content: `
+Business type: Independent Consulting Practice (Barry Data & Analytics)
 Owner: Ahmed Barry
-Address: Bochum, North Rhine‑Westphalia, Germany
-Email: ahmed@barrydataanalytics.de
+Location: Bochum, North Rhine Westphalia, Germany
+E mail: ahmed@barrydataanalytics.de
 Phone: +49 1575 5355849
 Responsible according to § 18 (2) MStV: Ahmed Barry
 `,
 
-privacy_content: `
-We process personal data exclusively in accordance with the GDPR.
-Processed data: contact information, project inquiries, technical usage data.
-Purpose: responding to inquiries, project communication, technical operation of the website.
-Disclosure: no transfer to third parties unless legally required.
-Storage period: data is stored only as long as necessary for the stated purpose.
-Your rights: access, rectification, deletion, restriction, objection, data portability.
-Contact for privacy inquiries: ahmed@barrydataanalytics.de
+  /* Privacy Policy – Final */
+  privacy_content: `
+We process personal data exclusively in accordance with the GDPR. Processed data includes contact information, project inquiries and technical usage data. Data is processed for the purpose of responding to inquiries, project communication and the technical operation of this website. No data is shared with third parties unless legally required. Data is stored only for as long as necessary for the respective purpose. Data subjects have the right to access, rectification, deletion, restriction of processing, objection and data portability at any time. For privacy related inquiries, please contact: ahmed@barrydataanalytics.de
+`
+
+},
+
+fr: {
+
+  /* Navigation */
+  nav_home: "Accueil",
+  nav_services: "Services",
+  nav_about: "À propos",
+  nav_contact: "Contact",
+  nav_cta: "Discuter brièvement du projet",
+
+  /* Hero */
+  hero_pill: "Clarté des données & automatisation",
+  hero_eyebrow: "Reporting • Automatisation • Tableaux de bord KPI",
+  hero_title: "Moins de chaos. Plus de clarté. Immédiatement.",
+  hero_subtitle: "Plus de visibilité. Moins d’effort. Des décisions claires.",
+  hero_highlight:
+    "Des fichiers Excel dispersés, des analyses manuelles et un manque de visibilité coûtent du temps et compliquent les décisions. Nous créons des structures claires, automatisons les analyses et rendons les indicateurs clés accessibles en un coup d’œil.",
+  hero_cta_primary: "Discuter brièvement du projet",
+  hero_cta_secondary: "Voir des projets clients typiques",
+  hero_location: "Localisation : Bochum (NRW) – Remote & international",
+
+  /* Dashboard */
+  hero_dashboard_title: "Tableau de bord de performance",
+  hero_dashboard_badge: "Exemple illustratif",
+  hero_kpi1_label: "Moins d’effort manuel",
+  hero_kpi1_value: "−85 %",
+  hero_kpi2_label: "Délai de reporting",
+  hero_kpi2_value: "Minutes au lieu d’heures",
+  hero_kpi3_label: "Taux d’erreur",
+  hero_kpi3_value: "−70 %",
+  hero_tag1: "Moins de chaos Excel",
+  hero_tag2: "Indicateurs en un coup d’œil",
+  hero_tag3: "Données toujours à jour",
+  hero_tag4: "Tout au même endroit",
+  hero_chart_title: "Évolution du chiffre d’affaires après mise en place",
+  hero_chart_range: "6 derniers mois",
+  hero_chart_footer_left: "Avant : analyses manuelles",
+  hero_chart_footer_right: "Après : tableaux de bord automatisés",
+
+  /* Project */
+  project_eyebrow: "PROJET CLIENT TYPIQUE",
+  project_title: "Du chaos Excel à des décisions claires",
+  project_subtitle:
+    "Un exemple montrant comment un tableau de bord commercial transforme des données dispersées en actions concrètes.",
+  project_step1_label: "Problème",
+  project_step1_title: "Performance commerciale peu claire",
+  project_step1_text:
+    "De nombreux fichiers Excel, différentes versions, aucune vue unifiée sur le pipeline, les ventes et les prévisions.",
+  project_step2_label: "Solution",
+  project_step2_title: "Tableau de bord centralisé",
+  project_step2_text:
+    "Sources de données connectées, KPIs définis, tableau de bord interactif pour les ventes, la direction et le contrôle de gestion.",
+  project_step3_label: "Résultat",
+  project_step3_title: "Décisions plus rapides",
+  project_step3_text:
+    "Pipeline transparent, objectifs clairs, moins de coordination – plus de temps pour vendre.",
+  project_timeline_label: "Avant → Solution → Après",
+  project_cta_text: "Situation similaire ? Discutons brièvement.",
+  project_cta_btn: "Discuter du prochain projet",
+
+  /* Use cases */
+  usecases_eyebrow: "CAS D’USAGE",
+  usecases_title: "Où les tableaux de bord apportent un impact immédiat",
+  usecases_subtitle:
+    "Exemples sélectionnés montrant comment nous transformons les données en décisions.",
+  usecase_sales_label: "Ventes",
+  usecase_sales_title: "Tableau de performance commerciale",
+  usecase_sales_tagline: "Pipeline, ventes, prévisions – en un coup d’œil.",
+  usecase_marketing_label: "Marketing",
+  usecase_marketing_title: "Analyse de performance marketing",
+  usecase_marketing_tagline: "ROI, campagnes, canaux – transparent et comparable.",
+  usecase_logistics_label: "Logistique",
+  usecase_logistics_title: "Analyse logistique & stocks",
+  usecase_logistics_tagline: "Délais, stocks, goulots d’étranglement – clairement visualisés.",
+  usecase_operations_label: "Opérations",
+  usecase_operations_title: "Analyse des processus & efficacité",
+  usecase_operations_tagline: "Identifier les blocages, réduire les délais.",
+  usecase_ecommerce_label: "E‑commerce",
+  usecase_ecommerce_title: "Analyse du tunnel & conversion",
+  usecase_ecommerce_tagline: "Du clic à l’achat – entièrement traçable.",
+  usecase_industry_label: "Industrie",
+  usecase_industry_title: "Reporting OEE & production",
+  usecase_industry_tagline: "Disponibilité, utilisation, arrêts – en un coup d’œil.",
+  usecase_service_label: "Service & support",
+  usecase_service_title: "Tableau de bord service & centre d’appels",
+  usecase_service_tagline: "Tickets, délais de réponse, satisfaction – en temps réel.",
+  usecase_forecast_label: "Prévisions",
+  usecase_forecast_title: "Prévisions de demande & revenus",
+  usecase_forecast_tagline: "Une meilleure planification plutôt que l’intuition.",
+  usecase_reporting_label: "Reporting",
+  usecase_reporting_title: "Rapports automatisés",
+  usecase_reporting_tagline: "Zéro Excel – rapports automatiques.",
+
+  detail_col_problem: "Problème",
+  detail_col_solution: "Solution",
+  detail_col_result: "Résultat",
+
+  /* About */
+  about_section_title: "À propos",
+  about_headline: "Des données claires. Des décisions fiables.",
+  about_intro:
+    "Barry Data & Analytics aide les organisations à transformer des informations complexes en bases décisionnelles claires et exploitables.",
+  about_body1:
+    "Nous n’utilisons pas d’outils surchargés ni de concepts théoriques. L’essentiel : des solutions qui fonctionnent au quotidien et créent une valeur immédiate.",
+  about_approach_title: "Notre approche",
+  about_approach_text:
+    "Les données doivent travailler pour vous — pas l’inverse.",
+  about_claim: "Rendre les données non seulement visibles — mais réellement utiles.",
+  about_personal_title: "Personnel & direct",
+  about_personal_text:
+    "Barry Data & Analytics a été fondé pour accompagner les entreprises de manière pragmatique et compréhensible dans leurs décisions basées sur les données.",
+
+  /* Founder (mit vollständiger E-Mail & Telefonnummer) */
+  founder_name: "Ahmed Barry",
+  founder_role: "Fondateur & propriétaire",
+  founder_email_label: "E‑mail : ahmed@barrydataanalytics.de",
+  founder_phone_label: "Téléphone : +49 1575 5355849",
+  founder_location: "Bochum, NRW, Allemagne",
+  founder_note:
+    "Je me réjouis de votre demande et vous répondrai personnellement.",
+
+  /* Form */
+  contact_eyebrow: "DEMANDE DE PROJET",
+  contact_title: "Demander un projet – clair & sans engagement",
+  contact_subtitle:
+    "Décrivez brièvement votre situation – nous reviendrons vers vous avec des questions ou une proposition concrète.",
+
+  contact_area_title: "Comment pouvons‑nous vous aider ?",
+  process_title: "Notre manière de travailler",
+  process_step1_title: "Analyse & compréhension",
+  process_step1_text: "Nous examinons votre situation actuelle, vos processus et vos données pour obtenir une vision claire.",
+  process_step2_title: "Opportunités & blocages",
+  process_step2_text: "Nous identifions où la transparence manque, où les processus ralentissent ou où l’effort augmente.",
+  process_step3_title: "Solution & approche",
+  process_step3_text: "Nous concevons la solution adaptée – structurée, claire et alignée sur vos objectifs.",
+  process_step4_title: "Mise en œuvre & accompagnement",
+  process_step4_text: "Nous mettons en œuvre la solution et vous accompagnons de manière fiable au quotidien.",
+
+  contact_desc_title: "Brève description",
+  contact_desc_text:
+    "Décrivez brièvement votre défi actuel ou la transparence que vous souhaitez obtenir.",
+
+  field_name_label: "Nom",
+  field_name_placeholder: "Votre nom",
+  field_company_placeholder: "Nom de l’entreprise",
+  field_email_label: "E‑mail",
+  field_email_placeholder: "Votre e‑mail professionnel",
+
+  field_type_label: "Début du projet / données (optionnel)",
+  field_type_option0: "Sélection optionnelle",
+  field_type_option1: "Commencer immédiatement",
+  field_type_option2: "Dans les prochaines semaines",
+  field_type_option3: "Dans les prochains mois",
+  field_type_option4: "Pas encore sûr",
+
+  /* Project selection */
+  form_project_label: "Sélectionner un projet*",
+  form_project_placeholder: "Veuillez choisir",
+  form_project_sales: "Tableau de performance commerciale",
+  form_project_marketing: "Analyse de performance marketing (ROI & campagnes)",
+  form_project_logistics: "Analyse logistique & stocks",
+  form_project_operations: "Analyse d’efficacité opérationnelle (processus & blocages)",
+  form_project_ecommerce: "Tunnel e‑commerce & suivi de conversion",
+  form_project_oee: "OEE industriel & reporting de production",
+  form_project_service: "Tableau de performance service & centre d’appels",
+  form_project_forecasting: "Prévisions & projections de demande",
+  form_project_reporting: "Rapports automatisés (Zéro Excel)",
+  form_project_custom: "Projet personnalisé / autre solution",
+
+  field_desc_label: "Brève description du projet",
+
+  /* New sentence (FR) */
+  field_desc_placeholder:
+    "Brève description du projet – quel sujet et quelle optimisation souhaitez‑vous mettre au centre ?",
+
+  field_submit: "Envoyer la demande",
+  contact_note:
+    "Votre demande est sans engagement. Nous reviendrons vers vous avec des questions ou une proposition concrète.",
+
+  /* Footer */
+  footer_company: "Barry Data & Analytics",
+  footer_nav_title: "Navigation",
+  footer_legal_title: "Mentions légales",
+  footer_legal_text:
+    "Gestion transparente des données – dans les projets et sur ce site.",
+  footer_legal_dropdown: "Informations légales",
+  footer_imprint: "Mentions légales",
+  footer_privacy: "Confidentialité",
+  footer_terms: "Conditions générales",
+  footer_share_page: "Partager la page",
+  footer_share_linkedin: "Partager sur LinkedIn",
+  footer_share_email: "Partager par e‑mail",
+  footer_linkedin_profile: "Profil LinkedIn",
+  footer_back_to_top: "Haut de page",
+
+  /* Conditions générales – Final */
+  terms_content: `
+Notre collaboration repose sur des principes clairs, équitables et transparents. L’étendue précise des prestations est définie dans l’offre ou l’accord de projet correspondant. Toute adaptation ou extension est réalisée d’un commun accord. Aucun résultat économique, financier ou commercial spécifique n’est garanti.
+Pour assurer une exécution fluide du projet, le client fournit en temps utile toutes les informations, données et accès nécessaires. Les retards ou efforts supplémentaires dus à des informations manquantes ou incorrectes peuvent affecter le calendrier du projet.
+Les honoraires sont basés sur l’offre convenue. Les factures sont payables dans un délai de 14 jours. Pour les projets plus importants, des paiements partiels ou échelonnés peuvent être convenus. Les délais sont des estimations réalistes ; en cas de facteurs techniques ou organisationnels imprévus, ils peuvent être ajustés en conséquence.
+La prestation est considérée comme acceptée si aucun problème majeur n’est signalé dans les 14 jours suivant la livraison. Après paiement complet, le client reçoit les droits d’utilisation convenus sur les livrables créés individuellement. Les méthodes, modèles, scripts, automatisations et le savoir faire restent la propriété du prestataire.
+Toutes les informations confidentielles fournies par le client sont traitées de manière strictement confidentielle et ne sont pas transmises à des tiers, sauf obligation légale. Les données personnelles sont traitées exclusivement conformément aux lois applicables en matière de protection des données.
+Le prestataire est pleinement responsable en cas d’intention ou de négligence grave. En cas de négligence simple, la responsabilité n’est engagée qu’en cas de violation d’obligations contractuelles essentielles et est limitée aux dommages typiques et prévisibles. Aucune responsabilité n’est assumée pour les décisions commerciales, les pertes de bénéfices, les dommages indirects ou les erreurs dans les données fournies par le client. Le client est responsable de l’utilisation et de l’interprétation des analyses, tableaux de bord et recommandations.
+Les références ne sont utilisées qu’en tenant compte des intérêts légitimes du client. Le droit allemand s’applique. Si une disposition est ou devient invalide, la validité des autres dispositions n’en est pas affectée.
 `,
 
-      },
-          fr: {
-        nav_home: "Accueil",
-        nav_services: "Services",
-        nav_about: "À propos",
-        nav_contact: "Contact",
-        nav_cta: "Parler brièvement du projet",
-
- /* Hero */
-hero_pill: "Clarté des données & automatisation",
-
-hero_eyebrow: "Reporting • Automatisation • Tableaux de bord KPI",
-
-hero_title: "Moins de chaos de données. Plus de clarté. Immédiatement.",
-
-hero_subtitle: "Plus de visibilité. Moins d’effort. Des décisions claires.",
-
-hero_highlight:
-  "Des fichiers Excel dispersés, des analyses manuelles et un manque de visibilité font perdre du temps et compliquent les décisions. Nous créons des structures claires, automatisons les analyses et rendons les indicateurs clés visibles en un coup d’œil.",
-
-hero_cta_primary: "Discuter brièvement du projet",
-hero_cta_secondary: "Voir des projets clients typiques",
-hero_location: "Localisation : Bochum (NRW) – Remote & international",
-
-/* Dashboard (Hero Right) */
-hero_dashboard_title: "Business Performance Dashboard",
-hero_dashboard_badge: "Représentation illustrative",
-
-hero_kpi1_label: "Moins de travail manuel",
-hero_kpi1_value: "−85 %",
-hero_kpi2_label: "Temps jusqu’au rapport",
-hero_kpi2_value: "Minutes au lieu d’heures",
-hero_kpi3_label: "Taux d’erreur",
-hero_kpi3_value: "−70 %",
-
-hero_tag1: "Moins de chaos Excel",
-hero_tag2: "Indicateurs en un coup d’œil",
-hero_tag3: "Données toujours à jour",
-hero_tag4: "Tout au même endroit",
-
-hero_chart_title: "Évolution du chiffre d’affaires après mise en place",
-hero_chart_range: "6 derniers mois",
-hero_chart_footer_left: "Avant : analyses manuelles",
-hero_chart_footer_right: "Après : tableaux de bord automatisés",
-     
-
-
-        /* Projet */
-        project_eyebrow: "PROJET CLIENT TYPE",
-        project_title: "Du chaos Excel à des décisions claires",
-        project_subtitle:
-          "Un exemple de la façon dont un tableau de bord commercial transforme des données dispersées en décisions concrètes.",
-        project_step1_label: "Problème",
-        project_step1_title: "Performance commerciale peu claire",
-        project_step1_text:
-          "Beaucoup de fichiers Excel, différentes versions, aucune vue unique sur le pipeline, les deals et le forecast.",
-        project_step2_label: "Solution",
-        project_step2_title: "Tableau de bord central",
-        project_step2_text:
-          "Sources de données connectées, indicateurs définis, tableau de bord interactif pour les ventes et le management.",
-        project_step3_label: "Résultat",
-        project_step3_title: "Décisions plus rapides",
-        project_step3_text:
-          "Pipeline transparent, atteinte des objectifs claire, moins de coordination – plus de temps pour la vente.",
-        project_timeline_label: "Avant → Solution → Après",
-        project_cta_text:
-          "Votre situation ressemble à cela ? Parlons‑en brièvement.",
-        project_cta_btn: "Parler du prochain projet",
-
-        /* Use cases */
-        usecases_eyebrow: "CAS D’USAGE",
-        usecases_title: "Où les tableaux de bord apportent un impact immédiat",
-        usecases_subtitle:
-          "Exemples de la façon dont nous transformons les données en décisions.",
-        usecase_sales_label: "Ventes",
-        usecase_sales_title: "Tableau de bord Sales Performance",
-        usecase_sales_tagline: "Pipeline, deals, forecast – en un coup d’œil.",
-        usecase_marketing_label: "Marketing",
-        usecase_marketing_title: "Analyse de performance marketing",
-        usecase_marketing_tagline: "ROI, campagnes, canaux – transparents et comparables.",
-        usecase_logistics_label: "Logistique",
-        usecase_logistics_title: "Analyse des stocks & de la logistique",
-        usecase_logistics_tagline: "Délais, stocks, goulots d’étranglement – clairement visualisés.",
-        usecase_operations_label: "Operations",
-        usecase_operations_title: "Analyse des processus & de l’efficacité",
-        usecase_operations_tagline: "Identifier les goulots, réduire les temps de cycle.",
-        usecase_ecommerce_label: "E‑commerce",
-        usecase_ecommerce_title: "Analyse du funnel & des conversions",
-        usecase_ecommerce_tagline: "Du clic à l’achat – entièrement traçable.",
-        usecase_industry_label: "Industrie",
-        usecase_industry_title: "OEE & reporting de production",
-        usecase_industry_tagline: "Disponibilité, utilisation, arrêts sous contrôle.",
-        usecase_service_label: "Service & support",
-        usecase_service_title: "Tableau de bord service & call center",
-        usecase_service_tagline: "Tickets, temps de réponse, satisfaction – en temps réel.",
-        usecase_forecast_label: "Prévisions",
-        usecase_forecast_title: "Prévisions de demande & de chiffre d’affaires",
-        usecase_forecast_tagline: "Une meilleure planification au lieu de l’intuition.",
-        usecase_reporting_label: "Reporting",
-        usecase_reporting_title: "Rapports business automatisés",
-        usecase_reporting_tagline: "Zero Excel – les rapports arrivent automatiquement.",
-
-        detail_col_problem: "Problème",
-        detail_col_solution: "Solution",
-        detail_col_result: "Résultat",
-
-      /* ⭐ À PROPOS – FINAL ⭐ */
-about_section_title: "À propos",
-about_headline: "Des données claires. Des décisions fiables.",
-about_intro:
-  "Barry Data & Analytics aide les entreprises à transformer des informations complexes en bases décisionnelles claires et exploitables. Nous développons des solutions pragmatiques pour le reporting, les structures KPI et l’analyse de données — avec pour objectif de créer de la transparence et de réduire considérablement les efforts manuels.",
-about_body1:
-  "Nous n’utilisons pas d’outils surchargés ni de concepts théoriques. L’essentiel est de proposer des solutions qui fonctionnent au quotidien, apportent une valeur immédiate et s’intègrent harmonieusement dans les processus existants. Qu’il s’agisse de processus basés sur Excel, de sources de données dispersées ou d’un manque de visibilité, nous apportons de la structure aux systèmes existants et rendons les informations pertinentes visibles.",
-about_approach_title: "Notre approche",
-about_approach_text:
-  "Les données doivent travailler pour vous — et non l’inverse. C’est pourquoi nous privilégions des structures KPI claires, des analyses compréhensibles, des processus simples et des solutions réellement utilisables au quotidien. Notre objectif n’est pas seulement de mettre en place une solution. Nous aidons les entreprises à garder une vision durable de leurs indicateurs clés et à prendre des décisions éclairées. Lorsque de nouveaux besoins apparaissent, les analyses existantes peuvent être développées de manière flexible.",
-about_claim:
-  "Rendre les données non seulement visibles — mais réellement exploitables.",
-about_personal_title: "Personnel & direct",
-about_personal_text:
-  "Barry Data & Analytics a été créé pour accompagner les entreprises de manière pragmatique et compréhensible dans leurs décisions basées sur les données. Une communication directe, une collaboration transparente et un focus sur les véritables enjeux sont au cœur de notre démarche.",
-
-/* ⭐ FONDATEUR – FINAL ⭐ */
-founder_name: "Ahmed Barry",
-founder_role: "Fondateur & propriétaire",
-founder_email_label: "E‑mail: ahmed@barrydataanalytics.de",
-founder_phone_label: "Téléphone: +49 1575 5356849",
-founder_location: "Bochum, NRW, Allemagne",
-founder_note:
-  "Je me réjouis de votre demande et je vous répondrai personnellement.",
-
-
-
-        /* Formulaire */
-        contact_eyebrow: "DEMANDE DE PROJET",
-        contact_title: "Demander un projet – clair & sans engagement",
-        contact_subtitle:
-          "Décrivez brièvement votre situation – nous revenons vers vous avec des questions ou une proposition concrète.",
-
-
- contact_area_title: "Comment pouvons‑nous vous aider ?",
-
-process_title: "Notre manière de travailler",
-process_step1_title: "Analyse & compréhension",
-process_step1_text: "Nous examinons votre situation, vos processus et vos données pour obtenir une vision claire.",
-process_step2_title: "Potentiels & blocages",
-process_step2_text: "Nous identifions les zones où la transparence manque ou où les processus ralentissent.",
-process_step3_title: "Solution & démarche",
-process_step3_text: "Nous concevons la solution adaptée – structurée, claire et alignée sur vos objectifs.",
-process_step4_title: "Mise en œuvre & accompagnement",
-process_step4_text: "Nous mettons la solution en place et vous accompagnons de manière fiable au quotidien.",
-contact_desc_title: "Brève description",
-contact_desc_text: "Décrivez brièvement votre défi actuel ou la transparence que vous souhaitez obtenir.",
-   
-
-        field_name_label: "Nom",
-        field_name_placeholder: "Votre nom",
-        field_company_label: "Entreprise (optionnel)",
-        field_company_placeholder: "Nom de l’entreprise",
-        field_email_label: "E‑mail: ahmed@barrydataanalytics.de",
-        field_email_placeholder: "Votre e‑mail professionnel",
-
-     
-field_type_label: "Démarrage / données (optionnel)",
-field_type_option0: "Sélection optionnelle",
-field_type_option1: "Démarrer immédiatement",
-field_type_option2: "Dans les prochaines semaines",
-field_type_option3: "Dans les prochains mois",
-field_type_option4: "Pas encore sûr",
-
-        /* ⭐ Sélection de projet – FR ⭐ */
-        form_project_label: "Sélectionner un projet*",
-        form_project_placeholder: "Veuillez choisir",
-        form_project_sales: "Tableau de bord Performance Commerciale",
-        form_project_marketing: "Analyse Performance Marketing (ROI & Campagnes)",
-        form_project_logistics: "Analyse Logistique & Gestion des Stocks",
-        form_project_operations: "Analyse Efficacité Opérationnelle (Processus & Goulots)",
-        form_project_ecommerce: "Tunnel E‑Commerce & Suivi des Conversions",
-        form_project_oee: "OEE Industriel & Reporting de Production",
-        form_project_service: "Tableau de bord Service & Centre d’Appels",
-        form_project_forecasting: "Prévisions & Demande",
-        form_project_reporting: "Rapports Automatisés (Zero Excel)",
-        form_project_custom: "Projet personnalisé / Autre solution",
-
-        field_desc_label: "Brève description du projet",
-        field_desc_placeholder:
-          "Où en êtes‑vous aujourd’hui – et que doit changer un tableau de bord ou un reporting ?",
-        field_submit: "Envoyer la demande",
-        contact_note:
-          "Votre demande est sans engagement. Nous revenons vers vous avec des questions ou une proposition concrète.",
-
-        /* Footer */
-footer_company: "Barry Data & Analytics",
-footer_nav_title: "Navigation",
-footer_legal_title: "Mentions légales",
-footer_legal_text:
-  "Gestion transparente des données – dans les projets et sur ce site.",
-footer_legal_dropdown: "Informations légales",
-footer_imprint: "Mentions légales",
-footer_privacy: "Politique de confidentialité",
-footer_terms: "Conditions générales",
-
-/* ⭐ Nouvelles fonctions du pied de page (ajoutées proprement) ⭐ */
-footer_share_page: "Partager la page",
-footer_share_linkedin: "Partager sur LinkedIn",
-footer_share_email: "Partager par e‑mail",
-footer_linkedin_profile: "Profil LinkedIn",
-footer_back_to_top: "Retour en haut",
-
-/* ⭐ Nouveau contenu légal ⭐ */
-imprint_content: `
-Forme juridique :Entreprise individuelle (Barry Data & Analytics)
+  /* Mentions légales – Final */
+  imprint_content: `
+Forme juridique : Cabinet de conseil indépendant (Barry Data & Analytics)
 Propriétaire : Ahmed Barry
-Adresse : Bochum, Rhénanie‑du‑Nord–Westphalie, Allemagne
-E‑mail : ahmed@barrydataanalytics.de
+Localisation : Bochum, Rhénanie du Nord–Westphalie, Allemagne
+E mail : ahmed@barrydataanalytics.de
 Téléphone : +49 1575 5355849
-Responsable selon § 18 (2) MStV : Ahmed Barry
+Responsable selon le § 18 (2) MStV : Ahmed Barry
 `,
 
-privacy_content: `
-Nous traitons les données personnelles exclusivement conformément au RGPD.
-Données traitées : informations de contact, demandes de projet, données techniques d’utilisation.
-Finalités : réponse aux demandes, communication de projet, fonctionnement technique du site.
-Transmission : aucune transmission à des tiers, sauf obligation légale.
-Durée de conservation : uniquement le temps nécessaire à la finalité prévue.
-Vos droits : accès, rectification, suppression, limitation, opposition, portabilité des données.
-Contact pour les demandes liées à la protection des données : ahmed@barrydataanalytics.de
-`,
+  /* Politique de confidentialité – Final */
+  privacy_content: `
+Nous traitons les données personnelles exclusivement conformément au RGPD. Les données traitées comprennent notamment les informations de contact, les demandes de projet et les données techniques d’utilisation. Les données sont traitées afin de répondre aux demandes, d’assurer la communication liée aux projets et d’assurer le fonctionnement technique de ce site. Aucune donnée n’est transmise à des tiers, sauf obligation légale. Les données sont conservées uniquement pendant la durée nécessaire à leur finalité. Les personnes concernées disposent à tout moment d’un droit d’accès, de rectification, de suppression, de limitation du traitement, d’opposition et de portabilité des données. Pour toute demande relative à la protection des données : ahmed@barrydataanalytics.de
+`
 
-      }
+}
+
     };
       
 
@@ -5985,70 +7731,86 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-const toggle = document.querySelector(".mobile-nav-toggle");
-const nav = document.querySelector(".mobile-nav");
-const body = document.body;
+/* ⭐ EINZIGER gültiger Menü-Code */
 
-toggle.addEventListener("click", () => {
-  nav.classList.toggle("active");
-  body.style.overflow = nav.classList.contains("active") ? "hidden" : "auto";
-});
-</script>
-
-<script>
-const mobileToggle = document.querySelector(".mobile-nav-toggle");
-const mobileNav = document.querySelector(".mobile-nav");
-const mobileLinks = document.querySelectorAll(".mobile-link");
-const mobileLang = document.querySelectorAll(".mobile-lang button");
-const mobileCTA = document.querySelector(".mobile-cta");
-
-/* ⭐ Menü öffnen/schließen */
-mobileToggle.addEventListener("click", () => {
-  mobileNav.classList.toggle("active");
-});
-
-/* ⭐ Menü schließen beim Klick auf Link */
-mobileLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    mobileNav.classList.remove("active");
-  });
-});
-
-/* ⭐ Menü schließen beim Sprachwechsel */
-mobileLang.forEach(btn => {
-  btn.addEventListener("click", () => {
-    applyLanguage(btn.dataset.lang);
-    mobileNav.classList.remove("active");
-  });
-});
-
-/* ⭐ Menü schließen beim CTA */
-mobileCTA.addEventListener("click", () => {
-  mobileNav.classList.remove("active");
-});
-</script>
-
-<script>
+/* ⭐ Mobile Menü öffnen/schließen */
 const mobileToggle = document.querySelector(".mobile-nav-toggle");
 const mobileNav = document.querySelector(".mobile-nav");
 
 mobileToggle.addEventListener("click", () => {
   mobileToggle.classList.toggle("active");
   mobileNav.classList.toggle("active");
+  document.body.classList.toggle("nav-open");
 });
 
-/* ⭐ Menü schließen + Animation zurücksetzen */
+/* ⭐ Sprache + Scroll + Menü schließen */
 document.querySelectorAll(".mobile-link, .mobile-lang button, .mobile-cta")
   .forEach(el => {
     el.addEventListener("click", () => {
+
+      /* Sprache */
+      if (el.dataset.lang) {
+        applyLanguage(el.dataset.lang);
+      }
+
+      /* Scroll */
+      if (el.dataset.scroll) {
+        const section = document.querySelector(el.dataset.scroll);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      /* Menü schließen */
       mobileNav.classList.remove("active");
       mobileToggle.classList.remove("active");
+      document.body.classList.remove("nav-open");
     });
   });
+
+/* ⭐ Laufende Uhrzeit + Datum */
+function updateDateTime() {
+  const now = new Date();
+  const options = {
+    weekday: "short",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  };
+  document.getElementById("mobileDatetime").textContent =
+    now.toLocaleString("de-DE", options);
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+</script>
+
+<script>
+  function updateLocalTime() {
+    const now = new Date();
+
+    const optionsDate = { 
+      day: "2-digit", 
+      month: "2-digit", 
+      year: "numeric" 
+    };
+
+    const optionsTime = { 
+      hour: "2-digit", 
+      minute: "2-digit" 
+    };
+
+    const date = now.toLocaleDateString(undefined, optionsDate);
+    const time = now.toLocaleTimeString(undefined, optionsTime);
+
+    document.getElementById("local-time").textContent = `${time} – ${date}`;
+  }
+
+  updateLocalTime();
+  setInterval(updateLocalTime, 1000);
 </script>
 
 </body>
 </html>
-
-
- 
