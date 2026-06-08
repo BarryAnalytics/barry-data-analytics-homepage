@@ -1754,20 +1754,414 @@
   }
 }
 
+/* ⭐ LOGO – Neon Glow Effekt */
+.logo img {
+  height: 42px; /* optimale Größe */
+  filter: drop-shadow(0 0 6px rgba(0, 255, 220, 0.55))
+          drop-shadow(0 0 14px rgba(0, 255, 220, 0.35));
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+/* Hover-Effekt (dezent, professionell) */
+.logo img:hover {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 220, 0.75))
+          drop-shadow(0 0 20px rgba(0, 255, 220, 0.55));
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   ⭐ Gründerfoto – Rund + Neon Glow
+============================================ */
+.founder-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.founder-photo img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 255, 220, 0.35);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 220, 0.55))
+          drop-shadow(0 0 16px rgba(0, 255, 220, 0.35));
+  transition: 0.35s ease;
+}
+
+.founder-photo img:hover {
+  filter: drop-shadow(0 0 12px rgba(0, 255, 220, 0.75))
+          drop-shadow(0 0 24px rgba(0, 255, 220, 0.55));
+  transform: translateY(-2px);
+}
+
+.founder-info h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #eaffff;
+}
+
+.founder-role {
+  margin: 4px 0 10px;
+  font-size: 1rem;
+  color: #7eeaff;
+}
+
+.founder-contact {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.founder-note {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Mobile Optimierung */
+@media (max-width: 700px) {
+  .founder-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+.logo img {
+  height: 42px;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 220, 0.55))
+          drop-shadow(0 0 14px rgba(0, 255, 220, 0.35));
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.logo img:hover {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 220, 0.75))
+          drop-shadow(0 0 20px rgba(0, 255, 220, 0.55));
+  transform: translateY(-1px);
+}
+
+/* Gründerblock höher setzen */
+.team-strip {
+  margin-top: -30px; /* kannst du anpassen: -20, -30, -50 */
+}
+
+.team-strip {
+  margin-top: -20px; /* -20 bis -50 möglich */
+}
+.founder-photo {
+  width: 85%; /* 80–90% möglich */
+}
+
+@media (max-width: 900px) {
+
+  /* Gesamtbereich kompakter */
+  .section-ueber-uns {
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 0 18px;
+  }
+
+  /* ÜBER UNS TEXT */
+  .ueber-uns-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+  }
+
+  .ueber-uns-text .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+
+  .ueber-uns-text p {
+    font-size: 0.98rem;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+
+  .ueber-uns-text h3 {
+    font-size: 1.25rem;
+    margin-top: 22px;
+    margin-bottom: 8px;
+  }
+
+  /* GRÜNDERBEREICH */
+  .team-strip {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .founder-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* ⭐ Rundes Foto bleibt rund */
+  .founder-photo img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 18px rgba(0, 255, 255, 0.25));
+  }
+
+  .founder-info .team-name {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+  }
+
+  .founder-info .team-role {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .founder-info .team-contact {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .founder-info p {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+}
+
+/* ===========================
+   DESKTOP – ÜBER UNS + GRÜNDER
+   =========================== */
+
+.section-ueber-uns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* Linke Seite */
+.ueber-uns-text {
+  max-width: 560px;
+}
+
+.ueber-uns-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.ueber-uns-text .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+}
+
+.ueber-uns-text p {
+  margin-bottom: 14px;
+  line-height: 1.55;
+}
+
+.ueber-uns-text h3 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+/* Rechte Seite – Gründer */
+.team-strip {
+  max-width: 380px;
+}
+
+.founder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ⭐ Rundes Foto */
+.founder-photo img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 22px rgba(0, 255, 255, 0.25));
+}
+
+.founder-info .team-name {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.founder-info .team-role {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.founder-info .team-contact {
+  margin-bottom: 12px;
+}
+
+.founder-info p {
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+
+/* ===========================
+   ÜBER UNS – Kompakte Abstände
+   =========================== */
+
+/* Gesamter Bereich enger */
+.section-ueber-uns {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  gap: 40px; /* statt 60–80px */
+}
+
+/* Linke Spalte kompakt */
+.ueber-uns-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem; /* vorher 1.2–1.6rem */
+}
+
+/* Überschriften enger */
+.ueber-uns-text h2,
+.ueber-uns-text h3 {
+  margin: 0; /* entfernt die riesigen Standardabstände */
+  padding: 0;
+}
+
+/* Fließtext kompakt */
+.ueber-uns-text p {
+  margin: 0;
+  line-height: 1.38; /* perfekt lesbar, aber kompakt */
+}
+
+/* Abstand vor neuer Sektion */
+.ueber-uns-text h3 {
+  margin-top: 1rem;
+}
+
+/* ===========================
+   Rechte Spalte – kompakt
+   =========================== */
+
+.founder-card {
+  gap: 0.5rem;
+}
+
+.team-contact {
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+/* Rundes Foto bleibt rund */
+.founder-photo img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.6rem;
+}
+
+/* ===========================
+   Mobile – noch kompakter
+   =========================== */
+
+@media (max-width: 900px) {
+
+  .section-ueber-uns {
+    gap: 1.4rem;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding: 0 1rem;
+  }
+
+  .ueber-uns-text {
+    gap: 0.5rem;
+  }
+
+  .ueber-uns-text p {
+    line-height: 1.34;
+  }
+
+  .founder-card {
+    gap: 0.4rem;
+  }
+}
+
+
+:root {
+  --p-gap: 0.38rem;        /* Absatz-Abstand – ruhig, nicht eng, nicht weit */
+  --h-gap: 0.35rem;        /* Abstand unter Überschriften – weich */
+  --section-gap: 1.1rem;   /* Abstand vor neuer Sektion – ruhig & klar */
+  --column-gap: 40px;      /* Abstand zwischen linker & rechter Spalte */
+  --line-height: 1.42;     /* Zeilenhöhe – ruhige Lesbarkeit */
+}
+
+/* Anwendung */
+.section-ueber-uns {
+  gap: var(--column-gap);
+}
+
+.ueber-uns-text p {
+  margin-bottom: var(--p-gap);
+  line-height: var(--line-height);
+}
+
+.ueber-uns-text h5,
+.ueber-uns-text h5 {
+  margin-bottom: var(--h-gap);
+}
+
+.ueber-uns-text h5 {
+  margin-top: var(--section-gap);
+}
+
+
+
 
   </style>
+<!-- ⭐⭐ HIER EINSETZEN ⭐⭐ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<meta property="og:image" content="https://barrydataanalytics.de/assets/img/logo-square.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Barry Data & Analytics",
+  "url": "https://barrydataanalytics.de",
+  "logo": "https://barrydataanalytics.de/assets/img/logo-barry.png"
+}
+</script>
+
+<!-- ⭐⭐ BIS HIER ⭐⭐ -->
 </head>
 <body>
 <div class="page">
-
-
 <header>
-  <nav class="nav">
 
+  <nav class="nav">
     <!-- ⭐ LINKS: Logo -->
     <div class="nav-left">
       <div class="logo">
-        <img src="assets/img/logo-barry.png" alt="Barry Data & Analytics Logo" />
+        <img src="assets/img/logo-barry.png" alt="Barry Data & Analytics Logo">
       </div>
     </div>
 
@@ -2092,56 +2486,62 @@
       </div>
     </section>
 
-    <!-- ÜBER UNS + GRÜNDER -->
-    <section id="about" class="section-ueber-uns">
+    
+<!-- ÜBER UNS + GRÜNDER -->
+<section id="about" class="section-ueber-uns">
 
-      <!-- LINKE SEITE: ÜBER UNS TEXT -->
-      <div class="ueber-uns-text">
+  <!-- LINKE SEITE: ÜBER UNS TEXT -->
+  <div class="ueber-uns-text">
 
-        <h2 data-i18n="about_section_title"></h2>
-        <div class="subtitle" data-i18n="about_headline"></div>
+    <h2 data-i18n="about_section_title"></h2>
+    <div class="subtitle" data-i18n="about_headline"></div>
 
-        <p data-i18n="about_intro"></p>
+    <p data-i18n="about_intro_text1"></p>
+    <p data-i18n="about_intro_text2"></p>
 
-        <p data-i18n="about_body1"></p>
+    <h3 data-i18n="about_approach_title"></h3>
+    <p data-i18n="about_approach_text"></p>
 
-        <h3 data-i18n="about_approach_title"></h3>
-        <p data-i18n="about_approach_text"></p>
+    <h3 data-i18n="about_personal_title"></h3>
+    <p data-i18n="about_personal_text1"></p>
+    <p data-i18n="about_personal_support"></p>
 
-        <h3 data-i18n="about_claim"></h3>
+  </div>
 
-        <h3 data-i18n="about_personal_title"></h3>
-        <p data-i18n="about_personal_text"></p>
+  <!-- RECHTE SEITE: Gründer-Strip -->
+  <section id="team-strip" class="team-strip">
+    <div class="team-strip-inner">
+      <div class="team-member founder-card">
+
+        <!-- ⭐ Rundes Gründerfoto -->
+        <div class="founder-photo">
+          <img src="assets/img/gruenderfoto.jpg" alt="Ahmed Barry">
+        </div>
+
+        <!-- ⭐ Gründer-Infos -->
+        <div class="founder-info">
+
+          <h2 class="team-name" data-i18n="founder_name"></h2>
+          <div class="team-role" data-i18n="founder_role"></div>
+
+          <div class="team-contact">
+            <a href="mailto:ahmed@barrydataanalytics.de" data-i18n="founder_email_label"></a><br>
+            <a href="tel:+4915755355849" data-i18n="founder_phone_label"></a>
+          </div>
+
+          <div class="team-location" data-i18n="founder_location"></div>
+
+          <p class="team-note" data-i18n="founder_text1"></p>
+          <p class="team-note" data-i18n="founder_text2"></p>
+
+        </div>
 
       </div>
+    </div>
+  </section>
 
-      <!-- RECHTE SEITE: Gründer-Strip -->
-      <section id="team-strip" class="team-strip">
-        <div class="team-strip-inner">
-          <div class="team-member">
+</section>
 
-            <div class="team-photo">
-              <img src="founder-photo.jpg" alt="">
-            </div>
-
-            <div class="team-info">
-              <h2 class="team-name" data-i18n="founder_name"></h2>
-              <div class="team-role" data-i18n="founder_role"></div>
-
-              <div class="team-contact">
-                <a href="mailto:ahmed@barrydataanalytics.de" data-i18n="founder_email_label"></a><br>
-                <a href="tel:+4915755355849" data-i18n="founder_phone_label"></a>
-              </div>
-
-              <div class="team-location" data-i18n="founder_location"></div>
-
-              <p class="team-note" data-i18n="founder_note"></p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </section>
 
     <!-- PROJEKTANFRAGE -->
     <section id="contact">
@@ -2455,30 +2855,42 @@ const languageData = {
     detail_col_solution: "Lösung",
     detail_col_result: "Ergebnis",
 
-    /* Über uns */
-    about_section_title: "Über uns",
-    about_headline: "Klare Daten. Verlässliche Entscheidungen.",
-    about_intro:
-      "Barry Data & Analytics unterstützt Unternehmen dabei, komplexe Informationen in klare, nutzbare Entscheidungsgrundlagen zu übersetzen.",
-    about_body1:
-      "Wir setzen nicht auf überladene Tools oder theoretische Konzepte. Entscheidend sind Lösungen, die im Arbeitsalltag funktionieren, sofort Mehrwert schaffen und sich nahtlos in bestehende Prozesse einfügen.",
-    about_approach_title: "Unser Ansatz",
-    about_approach_text:
-      "Daten sollen für Sie arbeiten – nicht umgekehrt.",
-    about_claim:
-      "Daten nicht nur sichtbar machen – sondern wirklich nutzbar.",
-    about_personal_title: "Persönlich & direkt",
-    about_personal_text:
-      "Barry Data & Analytics wurde gegründet, um Unternehmen pragmatisch und verständlich bei datenbasierten Entscheidungen zu unterstützen.",
+ /* Über uns – FINAL */
+about_section_title: "Über uns",
+about_headline: "Klare Daten. Verlässliche Entscheidungen.",
 
-    /* Gründer */
-    founder_name: "Ahmed Barry",
-    founder_role: "Gründer & Inhaber",
-    founder_email_label: "E-Mail: ahmed@barrydataanalytics.de",
-    founder_phone_label: "Telefon: +49 1575 5355849",
-    founder_location: "Bochum, NRW, Deutschland",
-    founder_note:
-      "Ich freue mich über Ihre unverbindliche Anfrage und melde mich persönlich bei Ihnen zurück.",
+about_intro_text1:
+  "Barry Data & Analytics unterstützt Unternehmen dabei, Daten sinnvoll zu nutzen, Prozesse zu vereinfachen und bessere Entscheidungen zu treffen.",
+
+about_intro_text2:
+  "Ob Reporting, Analysen, Dashboards, Automatisierung oder individuelle Lösungen – wir hören zuerst zu, verstehen Ihre Herausforderungen und entwickeln anschließend einen Ansatz, der optimal zu Ihren Zielen passen.",
+
+about_approach_title: "Unser Ansatz",
+about_approach_text:
+  "Daten sollen für Sie arbeiten – nicht umgekehrt. Deshalb stehen bei uns nicht Tools oder technische Begriffe im Mittelpunkt, sondern Ihre Ziele. Wir schaffen Lösungen, die verständlich, praxisnah und sofort nutzbar sind.",
+
+about_personal_title: "Persönlich & direkt",
+about_personal_text1:
+  "Barry Data & Analytics wurde mit dem Anspruch gegründet, Unternehmen unkompliziert und zuverlässig bei datenbezogenen Herausforderungen zu unterstützen.",
+
+about_personal_support:
+  "Wir hören zu, denken mit und begleiten Sie zuverlässig durch den gesamten Prozess – gemeinsam, transparent und mit Lösungen, die langfristig Bestand haben.",
+
+/* Gründer – FINAL */
+founder_name: "Ahmed Barry",
+founder_role: "Gründer & Inhaber",
+
+founder_text1:
+  "Gute Datenlösungen beginnen damit, die Herausforderungen eines Unternehmens wirklich zu verstehen. Deshalb nehme ich mir Zeit für Ihr Anliegen, höre zu und entwickle gemeinsam mit Ihnen Lösungen, die Ihren Arbeitsalltag spürbar erleichtern.",
+
+founder_email_label: "E-Mail: ahmed@barrydataanalytics.de",
+founder_phone_label: "Telefon: +49 1575 5355849",
+founder_location: "Bochum, NRW, Deutschland",
+
+founder_text2:
+  "Ich freue mich darauf, mehr über Ihr Vorhaben zu erfahren und gemeinsam die passende Lösung für Ihr Unternehmen zu entwickeln.",
+   
+
 
     /* Formular */
     contact_eyebrow: "PROJEKTANFRAGE",
@@ -2680,28 +3092,43 @@ Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO. Vera
     detail_col_solution: "Solution",
     detail_col_result: "Result",
 
-    /* About */
-    about_section_title: "About Us",
-    about_headline: "Clear data. Confident decisions.",
-    about_intro:
-      "Barry Data & Analytics supports organizations in transforming complex information into clear, actionable decision-making foundations.",
-    about_body1:
-      "We do not rely on overloaded tools or theoretical concepts. What matters are solutions that work in day‑to‑day operations, create immediate value and integrate seamlessly into existing processes.",
-    about_approach_title: "Our Approach",
-    about_approach_text:
-      "Data should work for you — not the other way around.",
-    about_claim: "Not just making data visible — but truly usable.",
-    about_personal_title: "Personal & Direct",
-    about_personal_text:
-      "Barry Data & Analytics was founded to support companies in a pragmatic and understandable way in data‑driven decision‑making.",
+    
 
-    /* Founder */
-    founder_name: "Ahmed Barry",
-    founder_role: "Founder & Owner",
-    founder_email_label: "Email: ahmed@barrydataanalytics.de",
-    founder_phone_label: "Phone: +49 1575 5355849",
-    founder_location: "Bochum, NRW, Germany",
-    founder_note: "I look forward to your inquiry and will get back to you personally.",
+/* About us – FINAL */
+about_section_title: "About us",
+about_headline: "Clear data. Confident decisions.",
+
+about_intro_text1:
+  "Barry Data & Analytics helps companies use data effectively, simplify processes, and make better decisions.",
+
+about_intro_text2:
+  "Whether reporting, analytics, dashboards, automation, or tailored solutions – we start by listening, understanding your challenges, and then developing an approach that ideally matches your goals.",
+
+about_approach_title: "Our approach",
+about_approach_text:
+  "Data should work for you – not the other way around. That’s why we focus on your goals rather than tools or technical terms. We create solutions that are clear, practical, and ready to use.",
+
+about_personal_title: "Personal & direct",
+about_personal_text1:
+  "Barry Data & Analytics was founded with the aim of supporting companies reliably and without unnecessary complexity in all data‑related challenges.",
+
+about_personal_support:
+  "We listen, think along with you, and support you throughout the entire process – collaboratively, transparently, and with solutions built to last.",
+
+/* Founder – FINAL */
+founder_name: "Ahmed Barry",
+founder_role: "Founder & Owner",
+
+founder_text1:
+  "Good data solutions start with truly understanding a company’s challenges. That’s why I take the time to listen, understand your situation, and develop solutions together with you that make your daily work noticeably easier.",
+
+founder_email_label: "Email: ahmed@barrydataanalytics.de",
+founder_phone_label: "Phone: +49 1575 5355849",
+founder_location: "Bochum, NRW, Germany",
+
+founder_text2:
+  "I look forward to learning more about your project and developing the right solution for your organization together.",
+
 
     /* Form */
     contact_eyebrow: "PROJECT INQUIRY",
@@ -2903,29 +3330,45 @@ We process personal data exclusively in accordance with the GDPR. Processed data
     detail_col_solution: "Solution",
     detail_col_result: "Résultat",
 
-    /* About */
-    about_section_title: "À propos",
-    about_headline: "Des données claires. Des décisions fiables.",
-    about_intro:
-      "Barry Data & Analytics aide les organisations à transformer des informations complexes en bases décisionnelles claires et exploitables.",
-    about_body1:
-      "Nous n’utilisons pas d’outils surchargés ni de concepts théoriques. L’essentiel : des solutions qui fonctionnent au quotidien et créent une valeur immédiate.",
-    about_approach_title: "Notre approche",
-    about_approach_text:
-      "Les données doivent travailler pour vous — pas l’inverse.",
-    about_claim: "Rendre les données non seulement visibles — mais réellement utiles.",
-    about_personal_title: "Personnel & direct",
-    about_personal_text:
-      "Barry Data & Analytics a été fondé pour accompagner les entreprises de manière pragmatique et compréhensible dans leurs décisions basées sur les données.",
+    
+/* À propos – FINAL */
+about_section_title: "À propos",
+about_headline: "Des données claires. Des décisions fiables.",
 
-    /* Founder */
-    founder_name: "Ahmed Barry",
-    founder_role: "Fondateur & propriétaire",
-    founder_email_label: "E‑mail : ahmed@barrydataanalytics.de",
-    founder_phone_label: "Téléphone : +49 1575 5355849",
-    founder_location: "Bochum, NRW, Allemagne",
-    founder_note:
-      "Je me réjouis de votre demande et vous répondrai personnellement.",
+about_intro_text1:
+  "Barry Data & Analytics aide les entreprises à utiliser leurs données de manière pertinente, à simplifier leurs processus et à prendre de meilleures décisions.",
+
+about_intro_text2:
+  "Qu'il s'agisse de reporting, d'analyses, de tableaux de bord, d'automatisation ou de solutions sur mesure – nous commençons par vous écouter, comprendre vos défis, pour ensuite développer une approche qui s'adapte idéalement à vos objectifs.",
+
+about_approach_title: "Notre approche",
+about_approach_text:
+  "Les données doivent travailler pour vous – et non l’inverse. C’est pourquoi nous mettons vos objectifs au centre, plutôt que les outils ou les termes techniques. Nous créons des solutions claires, pratiques et immédiatement utilisables.",
+
+about_personal_title: "Personnel & direct",
+about_personal_text1:
+  "Barry Data & Analytics a été fondé avec l’objectif d’accompagner les entreprises de manière fiable et simple dans leurs défis liés aux données.",
+
+about_personal_support:
+  "Nous écoutons, réfléchissons avec vous et vous accompagnons tout au long du processus – ensemble, en toute transparence et avec des solutions conçues pour durer.",
+
+/* Fondateur – FINAL */
+founder_name: "Ahmed Barry",
+founder_role: "Fondateur & propriétaire",
+
+founder_text1:
+  "De bonnes solutions data commencent par une compréhension réelle des défis d’une entreprise. C’est pourquoi je prends le temps d’écouter, de comprendre votre situation et de développer avec vous des solutions qui facilitent concrètement votre travail au quotidien.",
+
+founder_email_label: "E‑mail : ahmed@barrydataanalytics.de",
+founder_phone_label: "Téléphone : +49 1575 5355849",
+founder_location: "Bochum, NRW, Allemagne",
+
+founder_text2:
+  "Je me réjouis d’en savoir plus sur votre projet et de développer ensemble la solution la mieux adaptée à votre organisation.",
+
+
+
+
 
     /* Form */
     contact_eyebrow: "DEMANDE DE PROJET",
