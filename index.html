@@ -2126,10 +2126,127 @@
   margin-top: var(--section-gap);
 }
 
+.contact-status {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+}
 
+.contact-status.success {
+  color: #4ade80;
+}
+
+.contact-status.error {
+  color: #f97373;
+}
+
+/* ⭐ LANGUAGE SWITCHER – PREMIUM GLOW */
+.lang-switch {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 0 rgba(0,200,255,0);
+}
+
+/* Hover Glow */
+.lang-btn:hover {
+  background: rgba(0,200,255,0.18);
+  border-color: rgba(0,200,255,0.45);
+  box-shadow: 0 0 8px rgba(0,200,255,0.45);
+}
+
+/* Active Glow */
+.lang-btn.active {
+  background: rgba(0,200,255,0.28);
+  border-color: rgba(0,200,255,0.85);
+  box-shadow: 0 0 12px rgba(0,200,255,0.85);
+  font-weight: 600;
+}
+
+/* ⭐ MOBILE LANGUAGE SWITCHER */
+.mobile-lang {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.mobile-lang button {
+  padding: 8px 20px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.mobile-lang button:hover {
+  background: rgba(0,200,255,0.18);
+  border-color: rgba(0,200,255,0.45);
+  box-shadow: 0 0 8px rgba(0,200,255,0.45);
+}
+
+.mobile-lang button.active {
+  background: rgba(0,200,255,0.28);
+  border-color: rgba(0,200,255,0.85);
+  box-shadow: 0 0 12px rgba(0,200,255,0.85);
+  font-weight: 600;
+}
+
+/* ⭐ SUCCESS MESSAGE – PREMIUM GLOW */
+.contact-status {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.35s ease;
+}
+
+/* ⭐ SUCCESS */
+.contact-status.success {
+  display: block;
+  background: rgba(0, 200, 255, 0.12);
+  border: 1px solid rgba(0, 200, 255, 0.55);
+  color: #00eaff;
+  box-shadow: 0 0 14px rgba(0, 200, 255, 0.55);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ⭐ ERROR */
+.contact-status.error {
+  display: block;
+  background: rgba(255, 60, 60, 0.12);
+  border: 1px solid rgba(255, 60, 60, 0.55);
+  color: #ff6b6b;
+  box-shadow: 0 0 14px rgba(255, 60, 60, 0.55);
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
   </style>
+
+
 <!-- ⭐⭐ HIER EINSETZEN ⭐⭐ -->
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
@@ -2544,107 +2661,119 @@
 
 
     <!-- PROJEKTANFRAGE -->
-    <section id="contact">
-      <div class="section-header">
-        <div>
-          <div class="section-eyebrow" data-i18n="contact_eyebrow"></div>
-          <h2 class="section-title" data-i18n="contact_title"></h2>
-        </div>
-        <div class="section-subtitle" data-i18n="contact_subtitle"></div>
-      </div>
-      <div class="contact">
-        <div>
+<section id="contact">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow" data-i18n="contact_eyebrow"></div>
+      <h2 class="section-title" data-i18n="contact_title"></h2>
+    </div>
+    <div class="section-subtitle" data-i18n="contact_subtitle"></div>
+  </div>
 
-          <div class="contact-steps-title" data-i18n="process_title"></div>
+  <div class="contact">
+    <div>
 
-          <div class="process-cards">
+      <div class="contact-steps-title" data-i18n="process_title"></div>
 
-            <div class="process-card">
-              <div class="process-card-icon">1</div>
-              <h4 data-i18n="process_step1_title"></h4>
-              <p data-i18n="process_step1_text"></p>
-            </div>
+      <div class="process-cards">
 
-            <div class="process-card">
-              <div class="process-card-icon">2</div>
-              <h4 data-i18n="process_step2_title"></h4>
-              <p data-i18n="process_step2_text"></p>
-            </div>
-
-            <div class="process-card">
-              <div class="process-card-icon">3</div>
-              <h4 data-i18n="process_step3_title"></h4>
-              <p data-i18n="process_step3_text"></p>
-            </div>
-
-            <div class="process-card">
-              <div class="process-card-icon">4</div>
-              <h4 data-i18n="process_step4_title"></h4>
-              <p data-i18n="process_step4_text"></p>
-            </div>
-
-          </div>
-
-          <div class="about-pill-row">
-            <div class="about-pill" data-i18n="contact_pill1"></div>
-            <div class="about-pill" data-i18n="contact_pill2"></div>
-          </div>
+        <div class="process-card">
+          <div class="process-card-icon">1</div>
+          <h4 data-i18n="process_step1_title"></h4>
+          <p data-i18n="process_step1_text"></p>
         </div>
 
-        <form class="contact-form">
-          <div class="field">
-            <label for="name" data-i18n="field_name_label"></label>
-            <input id="name" type="text" data-i18n-placeholder="field_name_placeholder" />
-          </div>
+        <div class="process-card">
+          <div class="process-card-icon">2</div>
+          <h4 data-i18n="process_step2_title"></h4>
+          <p data-i18n="process_step2_text"></p>
+        </div>
 
-          <div class="field">
-            <label for="company" data-i18n="field_company_label"></label>
-            <input id="company" type="text" data-i18n-placeholder="field_company_placeholder" />
-          </div>
+        <div class="process-card">
+          <div class="process-card-icon">3</div>
+          <h4 data-i18n="process_step3_title"></h4>
+          <p data-i18n="process_step3_text"></p>
+        </div>
 
-          <div class="field">
-            <label for="email" data-i18n="field_email_label"></label>
-            <input id="email" type="email" data-i18n-placeholder="field_email_placeholder" />
-          </div>
+        <div class="process-card">
+          <div class="process-card-icon">4</div>
+          <h4 data-i18n="process_step4_title"></h4>
+          <p data-i18n="process_step4_text"></p>
+        </div>
 
-          <div class="field">
-            <label for="type" data-i18n="field_type_label"></label>
-            <select id="type">
-              <option value="" data-i18n="field_type_option0"></option>
-              <option value="dashboard" data-i18n="field_type_option1"></option>
-              <option value="reporting" data-i18n="field_type_option2"></option>
-              <option value="automation" data-i18n="field_type_option3"></option>
-              <option value="other" data-i18n="field_type_option4"></option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="project" data-i18n="form_project_label"></label>
-            <select id="project">
-              <option data-i18n="form_project_placeholder"></option>
-              <option data-i18n="form_project_sales"></option>
-              <option data-i18n="form_project_marketing"></option>
-              <option data-i18n="form_project_logistics"></option>
-              <option data-i18n="form_project_operations"></option>
-              <option data-i18n="form_project_ecommerce"></option>
-              <option data-i18n="form_project_oee"></option>
-              <option data-i18n="form_project_service"></option>
-              <option data-i18n="form_project_forecasting"></option>
-              <option data-i18n="form_project_reporting"></option>
-              <option data-i18n="form_project_custom"></option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="desc" data-i18n="field_desc_label"></label>
-            <textarea id="desc" data-i18n-placeholder="field_desc_placeholder"></textarea>
-          </div>
-
-          <button type="button" class="btn btn-primary" data-i18n="field_submit"></button>
-          <div class="contact-note" data-i18n="contact_note"></div>
-        </form>
       </div>
-    </section>
+
+      <div class="about-pill-row">
+        <div class="about-pill" data-i18n="contact_pill1"></div>
+        <div class="about-pill" data-i18n="contact_pill2"></div>
+      </div>
+    </div>
+
+    <!-- ⭐ FORMULAR -->
+    <form id="contact-form" class="contact-form" method="POST" novalidate>
+
+
+      <!-- ⭐ Sprache automatisch mitsenden -->
+      <input type="hidden" id="language" name="language" value="de">
+
+      <div class="field">
+        <label for="name" data-i18n="field_name_label"></label>
+        <input id="name" name="name" type="text" data-i18n-placeholder="field_name_placeholder" required />
+      </div>
+
+      <div class="field">
+        <label for="company" data-i18n="field_company_label"></label>
+        <input id="company" name="company" type="text" data-i18n-placeholder="field_company_placeholder" />
+      </div>
+
+      <div class="field">
+        <label for="email" data-i18n="field_email_label"></label>
+        <input id="email" name="email" type="email" data-i18n-placeholder="field_email_placeholder" required />
+      </div>
+
+      <div class="field">
+        <label for="type" data-i18n="field_type_label"></label>
+        <select id="type" name="type">
+          <option value="" data-i18n="field_type_option0"></option>
+          <option value="now" data-i18n="field_type_option1"></option>
+          <option value="weeks" data-i18n="field_type_option2"></option>
+          <option value="months" data-i18n="field_type_option3"></option>
+          <option value="unknown" data-i18n="field_type_option4"></option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="project" data-i18n="form_project_label"></label>
+        <select id="project" name="project" required>
+          <option value="" data-i18n="form_project_placeholder"></option>
+          <option value="sales" data-i18n="form_project_sales"></option>
+          <option value="marketing" data-i18n="form_project_marketing"></option>
+          <option value="logistics" data-i18n="form_project_logistics"></option>
+          <option value="operations" data-i18n="form_project_operations"></option>
+          <option value="ecommerce" data-i18n="form_project_ecommerce"></option>
+          <option value="oee" data-i18n="form_project_oee"></option>
+          <option value="service" data-i18n="form_project_service"></option>
+          <option value="forecasting" data-i18n="form_project_forecasting"></option>
+          <option value="reporting" data-i18n="form_project_reporting"></option>
+          <option value="custom" data-i18n="form_project_custom"></option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="desc" data-i18n="field_desc_label"></label>
+        <textarea id="desc" name="desc" data-i18n-placeholder="field_desc_placeholder" required></textarea>
+      </div>
+
+      <!-- ⭐ SUCCESS / ERROR MESSAGE -->
+      <div id="contact-status" class="contact-status" aria-live="polite" style="display:none;"></div>
+
+      <button type="submit" class="btn btn-primary" data-i18n="field_submit"></button>
+      <div class="contact-note" data-i18n="contact_note"></div>
+
+    </form>
+
+  </div>
+</section>
 
     <!-- FOOTER (LEGAL DROPDOWN + SHARE BUTTONS) -->
 
@@ -3896,6 +4025,12 @@ const usecaseDetails = {
 <script>
 let currentLang = "de";
 
+/* ⭐ NEU EINFÜGEN: Sprache ins Formular schreiben */
+function updateFormLanguage(lang) {
+  const langField = document.getElementById("language");
+  if (langField) langField.value = lang;
+}
+
 function applyLanguage(lang) {
   currentLang = lang;
   document.documentElement.lang = lang;
@@ -3943,6 +4078,9 @@ function applyLanguage(lang) {
   updateDetailPanel("sales");
   updateTickerLanguage(lang);
   loadLegal("imprint");
+
+/* ⭐ NEU: Sprache ins Formular schreiben */
+  updateFormLanguage(lang);
 }
 
 
@@ -4068,10 +4206,21 @@ document.addEventListener("click", (e) => {
   }
 
   const langBtn = e.target.closest(".lang-btn");
-  if (langBtn) {
-    const lang = langBtn.getAttribute("data-lang");
-    applyLanguage(lang);
+if (langBtn) {
+  const lang = langBtn.getAttribute("data-lang");
+
+  applyLanguage(lang);
+  updateFormLanguage(lang);
+  document.documentElement.lang = lang;
+
+  const statusBox = document.getElementById("contact-status");
+  if (statusBox) {
+    statusBox.textContent = "";
+    statusBox.style.display = "none";
   }
+
+  return;
+}
 
   const usecaseCard = e.target.closest(".usecase-card");
   if (usecaseCard) {
@@ -4215,9 +4364,24 @@ window.addEventListener("scroll", () => {
   });
 });
 
+
+
 /* Initial: Deutsch */
 applyLanguage("de");
 
+/* ⭐ Sprache automatisch ins Formular schreiben */
+function updateFormLanguage(lang) {
+  const langField = document.getElementById("language");
+  if (langField) langField.value = lang;
+}
+
+/* ⭐ Sprache beim Laden setzen */
+updateFormLanguage("de");
+
+/* ⭐ Wenn du später die Sprache wechselst, rufst du einfach auf:
+      updateFormLanguage("en") oder updateFormLanguage("fr")
+   (das baue ich dir gleich noch ein, sobald du mir deinen Language-Switcher zeigst)
+*/
 
 
 /* ⭐ Scroll-Pfeile steuern */
@@ -4256,22 +4420,48 @@ scrollUp.addEventListener("click", () => {
   });
 });
 
-/* ⭐ Klick-Aktionen */
-scrollDown.addEventListener("click", () => {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth"
-  });
-});
-
-scrollUp.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
 </script>
+
+<script>
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const status = document.getElementById("contact-status");
+
+    const data = {
+        name: form.name.value,
+        company: form.company.value,
+        email: form.email.value,
+        type: form.type.value,
+        project: form.project.value,
+        desc: form.desc.value,
+        language: form.language.value,
+        source: "Website"
+    };
+
+    status.style.display = "block";
+    status.textContent = "Senden...";
+
+    try {
+        const response = await fetch("https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2f21310a9c924a5b83a6e37960c62396/triggers/manual/paths/invoke?api-version=1", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            status.textContent = "Danke! Ihre Anfrage wurde erfolgreich gesendet.";
+            form.reset();
+        } else {
+            status.textContent = "Fehler: Anfrage konnte nicht gesendet werden.";
+        }
+    } catch (error) {
+        status.textContent = "Netzwerkfehler. Bitte später erneut versuchen.";
+    }
+});
+</script>
+
 
 </body>
 </html>
