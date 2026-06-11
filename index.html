@@ -2244,6 +2244,233 @@
 }
 
 
+#contact-status {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    /* ⭐ kompakter, eleganter, weniger Platz */
+    margin-top: 8px !important;
+    padding: 10px 14px !important;
+    font-size: 0.9rem !important;
+    line-height: 1.3 !important;
+
+    /* ⭐ Glow bleibt, aber dezenter */
+    background: rgba(34,197,94,0.12) !important;
+    color: #4ade80 !important;
+    border-radius: 8px !important;
+}
+
+
+#contact-status {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    /* ⭐ ultrakompakt */
+    margin-top: 4px !important;
+    padding: 6px 10px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+
+    /* ⭐ dezenter Glow */
+    background: rgba(34,197,94,0.10) !important;
+    color: #4ade80 !important;
+    border-radius: 6px !important;
+
+    /* ⭐ kein Layout-Sprung */
+    min-height: 0 !important;
+}
+
+
+/* ⭐ Animationen */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ⭐ Ultrakompakte, animierte Erfolgsmeldung */
+#contact-status {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    /* ultrakompakt */
+    margin-top: 4px !important;
+    padding: 6px 10px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+
+    /* dezenter Glow */
+    background: rgba(34,197,94,0.10) !important;
+    color: #4ade80 !important;
+    border-radius: 6px !important;
+
+    /* ⭐ Animation */
+    animation: fadeSlideUp 0.45s ease-out forwards;
+}
+
+/* ⭐ Glow-Border Animation */
+@keyframes glowBorder {
+    0% {
+        box-shadow: 0 0 0px rgba(74, 222, 128, 0.0);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(74, 222, 128, 0.35);
+    }
+    100% {
+        box-shadow: 0 0 0px rgba(74, 222, 128, 0.0);
+    }
+}
+
+/* ⭐ Fade + Slide Animation */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ⭐ Ultrakompakte Glow-Border Erfolgsmeldung */
+#contact-status {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    /* ultrakompakt */
+    margin-top: 4px !important;
+    padding: 6px 10px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+
+    /* dezenter Hintergrund */
+    background: rgba(34,197,94,0.10) !important;
+    color: #4ade80 !important;
+    border-radius: 6px !important;
+
+    /* ⭐ Glow-Border */
+    border: 1px solid rgba(74, 222, 128, 0.35) !important;
+    animation: fadeSlideUp 0.45s ease-out forwards,
+               glowBorder 2.4s ease-in-out infinite;
+}
+
+
+
+/* ⭐ Glow-Border Animation */
+@keyframes glowBorder {
+    0% {
+        box-shadow: 0 0 0px rgba(0, 224, 255, 0.0);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(0, 224, 255, 0.45);
+    }
+    100% {
+        box-shadow: 0 0 0px rgba(0, 224, 255, 0.0);
+    }
+}
+
+/* ⭐ Fade + Slide Animation */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ⭐ Ultrakompakte Branding-Version */
+#contact-status {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    /* ultrakompakt */
+    margin-top: 4px !important;
+    padding: 6px 10px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+
+    /* ⭐ Branding-Farben */
+    background: rgba(0, 153, 255, 0.18) !important; /* dein Blau */
+    color: #ffffff !important; /* weißer Text */
+    border-radius: 6px !important;
+
+    /* ⭐ Glow-Border in Cyan */
+    border: 1px solid rgba(0, 224, 255, 0.55) !important;
+
+    /* ⭐ Animation */
+    animation: fadeSlideUp 0.45s ease-out forwards,
+               glowBorder 2.4s ease-in-out infinite
+}
+
+/* ⭐ Fehlerzustand */
+.field input:invalid,
+.field select:invalid,
+.field textarea:invalid {
+    border: 1px solid rgba(0, 153, 255, 0.65) !important;
+    box-shadow: 0 0 8px rgba(0, 153, 255, 0.45) !important;
+}
+
+/* ⭐ Gültig */
+.field input:valid,
+.field select:valid,
+.field textarea:valid {
+    border: 1px solid rgba(0, 224, 255, 0.55) !important;
+    box-shadow: 0 0 6px rgba(0, 224, 255, 0.35) !important;
+}
+
+.validation-error {
+    color: #ffffff !important;
+    background: rgba(0, 153, 255, 0.18);
+    border-left: 3px solid #00e0ff;
+    padding: 6px 10px;
+    margin-top: 4px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    animation: fadeSlideUp 0.35s ease-out forwards;
+}
+
+/* ⭐ Premium Fehlermeldung sichtbar machen */
+.validation-error {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    /* ⭐ Premium-Branding */
+    background: rgba(0, 153, 255, 0.18);
+    color: #ffffff;
+    border-left: 3px solid #00e0ff;
+
+    /* ⭐ Kompakt */
+    padding: 6px 10px;
+    margin-top: 4px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+
+    /* ⭐ Animation */
+    animation: fadeSlideUp 0.35s ease-out forwards;
+}
+
+/* ⭐ Falls ein Container overflow versteckt */
+.field {
+    overflow: visible !important;
+}
+
   </style>
 
 
@@ -2709,69 +2936,68 @@
       </div>
     </div>
 
-    <!-- ⭐ FORMULAR -->
-    <form id="contact-form" class="contact-form" novalidate>
+<!-- ⭐ FORMULAR -->
+<form id="contact-form" class="contact-form" novalidate>
 
+  <!-- ⭐ Sprache automatisch mitsenden -->
+  <input type="hidden" id="language" name="language" value="de">
 
+  <div class="field">
+    <label for="name" data-i18n="field_name_label"></label>
+    <input id="name" name="name" type="text" data-i18n-placeholder="field_name_placeholder" />
+  </div>
 
-      <!-- ⭐ Sprache automatisch mitsenden -->
-      <input type="hidden" id="language" name="language" value="de">
+  <div class="field">
+    <label for="company" data-i18n="field_company_label"></label>
+    <input id="company" name="company" type="text" data-i18n-placeholder="field_company_placeholder" />
+  </div>
 
-      <div class="field">
-        <label for="name" data-i18n="field_name_label"></label>
-        <input id="name" name="name" type="text" data-i18n-placeholder="field_name_placeholder" required />
-      </div>
+  <div class="field">
+    <label for="email" data-i18n="field_email_label"></label>
+    <input id="email" name="email" type="email" data-i18n-placeholder="field_email_placeholder" />
+  </div>
 
-      <div class="field">
-        <label for="company" data-i18n="field_company_label"></label>
-        <input id="company" name="company" type="text" data-i18n-placeholder="field_company_placeholder" />
-      </div>
+  <div class="field">
+    <label for="type" data-i18n="field_type_label"></label>
+    <select id="type" name="type">
+      <option value="" data-i18n="field_type_option0"></option>
+      <option value="now" data-i18n="field_type_option1"></option>
+      <option value="weeks" data-i18n="field_type_option2"></option>
+      <option value="months" data-i18n="field_type_option3"></option>
+      <option value="unknown" data-i18n="field_type_option4"></option>
+    </select>
+  </div>
 
-      <div class="field">
-        <label for="email" data-i18n="field_email_label"></label>
-        <input id="email" name="email" type="email" data-i18n-placeholder="field_email_placeholder" required />
-      </div>
+  <div class="field">
+    <label for="project" data-i18n="form_project_label"></label>
+    <select id="project" name="project">
+      <option value="" data-i18n="form_project_placeholder"></option>
+      <option value="sales" data-i18n="form_project_sales"></option>
+      <option value="marketing" data-i18n="form_project_marketing"></option>
+      <option value="logistics" data-i18n="form_project_logistics"></option>
+      <option value="operations" data-i18n="form_project_operations"></option>
+      <option value="ecommerce" data-i18n="form_project_ecommerce"></option>
+      <option value="oee" data-i18n="form_project_oee"></option>
+      <option value="service" data-i18n="form_project_service"></option>
+      <option value="forecasting" data-i18n="form_project_forecasting"></option>
+      <option value="reporting" data-i18n="form_project_reporting"></option>
+      <option value="custom" data-i18n="form_project_custom"></option>
+    </select>
+  </div>
 
-      <div class="field">
-        <label for="type" data-i18n="field_type_label"></label>
-        <select id="type" name="type">
-          <option value="" data-i18n="field_type_option0"></option>
-          <option value="now" data-i18n="field_type_option1"></option>
-          <option value="weeks" data-i18n="field_type_option2"></option>
-          <option value="months" data-i18n="field_type_option3"></option>
-          <option value="unknown" data-i18n="field_type_option4"></option>
-        </select>
-      </div>
+  <div class="field">
+    <label for="desc" data-i18n="field_desc_label"></label>
+    <textarea id="desc" name="desc" data-i18n-placeholder="field_desc_placeholder"></textarea>
+  </div>
 
-      <div class="field">
-        <label for="project" data-i18n="form_project_label"></label>
-        <select id="project" name="project" required>
-          <option value="" data-i18n="form_project_placeholder"></option>
-          <option value="sales" data-i18n="form_project_sales"></option>
-          <option value="marketing" data-i18n="form_project_marketing"></option>
-          <option value="logistics" data-i18n="form_project_logistics"></option>
-          <option value="operations" data-i18n="form_project_operations"></option>
-          <option value="ecommerce" data-i18n="form_project_ecommerce"></option>
-          <option value="oee" data-i18n="form_project_oee"></option>
-          <option value="service" data-i18n="form_project_service"></option>
-          <option value="forecasting" data-i18n="form_project_forecasting"></option>
-          <option value="reporting" data-i18n="form_project_reporting"></option>
-          <option value="custom" data-i18n="form_project_custom"></option>
-        </select>
-      </div>
+  <!-- ⭐ SUCCESS / ERROR MESSAGE -->
+  <div id="contact-status" class="contact-status" aria-live="polite" style="display:none;"></div>
 
-      <div class="field">
-        <label for="desc" data-i18n="field_desc_label"></label>
-        <textarea id="desc" name="desc" data-i18n-placeholder="field_desc_placeholder" required></textarea>
-      </div>
+  <button type="submit" class="btn btn-primary" data-i18n="field_submit"></button>
+  <div class="contact-note" data-i18n="contact_note"></div>
 
-      <!-- ⭐ SUCCESS / ERROR MESSAGE -->
-      <div id="contact-status" class="contact-status" aria-live="polite" style="display:none;"></div>
+</form>
 
-      <button type="submit" class="btn btn-primary" data-i18n="field_submit"></button>
-      <div class="contact-note" data-i18n="contact_note"></div>
-
-    </form>
 
   </div>
 </section>
@@ -4432,18 +4658,81 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contact-form");
     const status = document.getElementById("contact-status");
 
+    /* ⭐⭐⭐ PREMIUM VALIDIERUNG (DE / EN / FR) ⭐⭐⭐ */
+    function validateForm() {
+        let valid = true;
+
+        // Sprache erkennen
+        const lang = document.documentElement.lang || "de";
+
+        // Fehlermeldungen für alle Sprachen
+        const messages = {
+            de: {
+                name: "Bitte geben Sie Ihren Namen ein.",
+                email: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+                project: "Bitte wählen Sie ein Projekt aus.",
+                desc: "Bitte beschreiben Sie Ihr Projekt."
+            },
+            en: {
+                name: "Please enter your name.",
+                email: "Please enter a valid email address.",
+                project: "Please select a project.",
+                desc: "Please describe your project."
+            },
+            fr: {
+                name: "Veuillez entrer votre nom.",
+                email: "Veuillez saisir une adresse e-mail valide.",
+                project: "Veuillez sélectionner un projet.",
+                desc: "Veuillez décrire votre projet."
+            }
+        };
+
+        // Alte Fehlermeldungen entfernen
+        document.querySelectorAll(".validation-error").forEach(el => el.remove());
+
+        // Pflichtfelder prüfen
+        const requiredFields = [
+            { id: "name", key: "name" },
+            { id: "email", key: "email" },
+            { id: "project", key: "project" },
+            { id: "desc", key: "desc" }
+        ];
+
+        requiredFields.forEach(field => {
+            const input = document.getElementById(field.id);
+
+            if (!input.value.trim()) {
+                valid = false;
+
+                const error = document.createElement("div");
+                error.classList.add("validation-error");
+                error.textContent = messages[lang][field.key];
+
+                input.parentElement.appendChild(error);
+            }
+        });
+
+        return valid;
+    }
+
+    /* ⭐⭐⭐ FORMULAR SENDEN ⭐⭐⭐ */
     form.addEventListener("submit", async function(e) {
         e.preventDefault();
+
+        // ⭐ Validierung ausführen
+        if (!validateForm()) {
+            return; // ❌ nicht senden, wenn Fehler
+        }
 
         // ⭐ Daten sammeln
         const data = {
             name: form.name.value,
             company: form.company.value,
             email: form.email.value,
-            type: form.type.value,          // Projektstart
-            project: form.project.value,    // Projekttyp
-            desc: form.desc.value,          // Nachricht
-            language: form.language.value,  // Sprache
+            type: form.type.value,
+            project: form.project.value,
+            desc: form.desc.value,
+            language: form.language.value,
             source: "Website"
         };
 
@@ -4462,7 +4751,27 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             if (response.ok) {
-                status.textContent = "Danke! Ihre Anfrage wurde erfolgreich gesendet.";
+
+                const lang = document.documentElement.lang;
+                let successMessage = "";
+
+                if (lang === "de") {
+                    successMessage = "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Sie erhalten in Kürze eine Bestätigungs-E-Mail. Wir melden uns anschließend bei Ihnen.";
+                }
+                else if (lang === "en") {
+                    successMessage = "Thank you! Your request has been sent successfully. You will receive a confirmation email shortly. We will get back to you afterwards.";
+                }
+                else if (lang === "fr") {
+                    successMessage = "Merci ! Votre demande a été envoyée avec succès. Vous recevrez prochainement un e-mail de confirmation. Nous vous recontacterons ensuite.";
+                }
+
+                status.style.display = "block";
+                status.textContent = successMessage;
+
+                setTimeout(() => {
+                    status.style.display = "none";
+                }, 6000);
+
                 form.reset();
             } else {
                 status.textContent = "Fehler: Anfrage konnte nicht gesendet werden. (" + response.status + ")";
@@ -4472,10 +4781,13 @@ document.addEventListener("DOMContentLoaded", () => {
             status.textContent = "Netzwerkfehler. Bitte später erneut versuchen.";
             console.error(error);
         }
+
     });
 
 });
 </script>
+
+
 
 </body>
 </html>
