@@ -2471,6 +2471,63 @@
     overflow: visible !important;
 }
 
+
+
+/* ============================================
+   ⭐ MOBILE FIX – HERO + LAYOUT + MITTIG
+============================================ */
+@media (max-width: 900px) {
+
+  /* Hero & alle Sektionen mittig */
+  section,
+  .hero,
+  .section-ueber-uns,
+  .team-strip,
+  .ueber-uns-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 16px !important;
+    text-align: center !important;
+  }
+
+  /* Flex deaktivieren – Mobile braucht Stack */
+  .section-ueber-uns {
+    display: block !important;
+  }
+
+  /* Hero-Text mittig */
+  .hero h1,
+  .hero p {
+    text-align: center !important;
+  }
+
+  /* Navigation sichtbar */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99999;
+  }
+
+  /* Kein horizontaler Overflow */
+  body {
+    overflow-x: hidden !important;
+  }
+}
+
+
+.section-ueber-uns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+
   </style>
 
 
