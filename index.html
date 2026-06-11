@@ -4425,44 +4425,55 @@ scrollUp.addEventListener("click", () => {
 
 <!-- ⭐⭐ FETCH-CODE HIER EINSETZEN ⭐⭐ -->
 
-<script>
-document.getElementById("contact-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
 
-    const form = e.target;
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("contact-form");
     const status = document.getElementById("contact-status");
 
-    const data = {
-        name: form.name.value,
-        company: form.company.value,
-        email: form.email.value,
-        type: form.type.value,
-        project: form.project.value,
-        desc: form.desc.value,
-        language: form.language.value,
-        source: "Website"
-    };
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
 
-    status.style.display = "block";
-    status.textContent = "Senden...";
+        // ⭐ Daten sammeln
+        const data = {
+            name: form.name.value,
+            company: form.company.value,
+            email: form.email.value,
+            type: form.type.value,          // Projektstart
+            project: form.project.value,    // Projekttyp
+            desc: form.desc.value,          // Nachricht
+            language: form.language.value,  // Sprache
+            source: "Website"
+        };
 
-    try {
-        const response = await fetch("https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2f21310a9c924a5b83a6e37960c62396/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=OjIHevxUkG9ZkLpvgfkyhpoHngyB-WdMfdYsTrlQ7L0", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
+        // ⭐ Status anzeigen
+        status.style.display = "block";
+        status.textContent = "Senden...";
 
-        if (response.ok) {
-            status.textContent = "Danke! Ihre Anfrage wurde erfolgreich gesendet.";
-            form.reset();
-        } else {
-            status.textContent = "Fehler: Anfrage konnte nicht gesendet werden. (" + response.status + ")";
+        try {
+            const response = await fetch(
+                "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2f21310a9c924a5b83a6e37960c62396/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=OjIHevxUkG9ZkLpvgfkyhpoHngyB-WdMfdYsTrlQ7L0",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                }
+            );
+
+            if (response.ok) {
+                status.textContent = "Danke! Ihre Anfrage wurde erfolgreich gesendet.";
+                form.reset();
+            } else {
+                status.textContent = "Fehler: Anfrage konnte nicht gesendet werden. (" + response.status + ")";
+            }
+
+        } catch (error) {
+            status.textContent = "Netzwerkfehler. Bitte später erneut versuchen.";
+            console.error(error);
         }
-    } catch (error) {
-        status.textContent = "Netzwerkfehler. Bitte später erneut versuchen.";
-        console.error(error);
-    }
+    });
+
 });
 </script>
 
