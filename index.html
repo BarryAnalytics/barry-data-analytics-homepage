@@ -2703,6 +2703,849 @@ html, body {
 }
 
 
+/* ⭐ MOBILE HEIGHT FIX – verhindert weißes Blatt unter dem Footer ⭐ */
+
+/* 1) HTML & Body korrekt strecken */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000; /* verhindert weißes Blitzen auf Mobile */
+}
+
+footer {
+    margin-top: auto;
+}
+
+footer {
+    background: #050505;
+    border-top: 1px solid rgba(0, 255, 255, 0.25);
+    box-shadow: 0 -4px 25px rgba(0, 255, 255, 0.15);
+    padding: 40px 20px;
+}
+
+.footer-title {
+    color: #00f0ff;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+.footer-link,
+.footer-legal-item,
+.footer-btn {
+    color: #c8ffff;
+    transition: 0.25s ease;
+}
+
+.footer-link:hover,
+.footer-legal-item:hover,
+.footer-btn:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+
+
+
+
+footer {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 40px 20px;
+}
+
+
+footer {
+    animation: footerGlow 4s infinite ease-in-out;
+}
+
+@keyframes footerGlow {
+    0% { box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1); }
+    50% { box-shadow: 0 -4px 30px rgba(0, 255, 255, 0.25); }
+    100% { box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1); }
+}
+
+
+/* ⭐ PREMIUM FOOTER – Glow + Modern + Clean ⭐ */
+
+footer {
+    background: #050505;
+    padding: 50px 20px 40px;
+    border-top: 1px solid rgba(0, 255, 255, 0.25);
+    box-shadow: 0 -6px 25px rgba(0, 255, 255, 0.15);
+}
+
+/* Titel im Footer */
+.footer-title {
+    color: #00f0ff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Footer-Links */
+.footer-link,
+.footer-legal-item,
+.footer-btn {
+    color: #c8ffff;
+    opacity: 0.85;
+    transition: 0.25s ease;
+}
+
+.footer-link:hover,
+.footer-legal-item:hover,
+.footer-btn:hover {
+    opacity: 1;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+/* Footer-Bottom */
+.footer-bottom {
+    border-top: 1px solid rgba(0, 255, 255, 0.15);
+    margin-top: 30px;
+    padding-top: 20px;
+    color: #88bcbc;
+    font-size: 0.9rem;
+}
+
+/* Legal Dropdown */
+.footer-legal-toggle {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #c8ffff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.25s ease;
+}
+
+.footer-legal-toggle:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+/* Legal Content Box */
+.footer-legal-content {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    backdrop-filter: blur(6px);
+}
+
+/* Tabs */
+.legal-tab {
+    color: #c8ffff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.25s ease;
+}
+
+.legal-tab:hover,
+.legal-tab.active {
+    background: rgba(0, 255, 255, 0.15);
+    color: #ffffff;
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+
+
+/* ⭐ MOBILE FOOTER OPTIMIZATION ⭐ */
+@media (max-width: 768px) {
+
+    footer {
+        padding: 40px 20px 60px;
+        background: #050505;
+        border-top: 1px solid rgba(0, 255, 255, 0.25);
+        box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.15);
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .footer-title {
+        font-size: 1.05rem;
+        color: #00f0ff;
+        margin-bottom: 10px;
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+    }
+
+    .footer-link,
+    .footer-legal-item {
+        font-size: 0.95rem;
+        color: #c8ffff;
+        opacity: 0.85;
+        margin: 4px 0;
+    }
+
+    .footer-link:hover,
+    .footer-legal-item:hover {
+        opacity: 1;
+        text-shadow: 0 0 10px #00f0ff;
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 255, 255, 0.15);
+        text-align: center;
+        font-size: 0.9rem;
+        color: #88bcbc;
+    }
+
+    /* Legal Dropdown */
+    .footer-legal-dropdown {
+        margin-top: 12px;
+        text-align: center;
+    }
+
+    .footer-legal-toggle {
+        background: rgba(0, 255, 255, 0.1);
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        padding: 10px 16px;
+        border-radius: 10px;
+        color: #c8ffff;
+        font-size: 0.95rem;
+        transition: 0.25s ease;
+    }
+
+    .footer-legal-toggle:hover {
+        background: rgba(0, 255, 255, 0.2);
+        box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    }
+
+    /* Legal Content Box */
+    .footer-legal-content {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 12px;
+        background: rgba(0, 255, 255, 0.05);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        backdrop-filter: blur(6px);
+    }
+
+    .legal-tab {
+        padding: 8px 14px;
+        border-radius: 8px;
+        color: #c8ffff;
+        font-size: 0.95rem;
+        transition: 0.25s ease;
+    }
+
+    .legal-tab.active,
+    .legal-tab:hover {
+        background: rgba(0, 255, 255, 0.15);
+        color: #ffffff;
+        text-shadow: 0 0 10px #00f0ff;
+    }
+
+    /* Footer Action Buttons */
+    .footer-actions {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .footer-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: rgba(0, 255, 255, 0.08);
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        color: #c8ffff;
+        font-size: 0.95rem;
+        transition: 0.25s ease;
+    }
+
+    .footer-btn:hover {
+        background: rgba(0, 255, 255, 0.15);
+        box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+        color: #ffffff;
+    }
+}
+
+
+.footer-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #00f0ff;
+    transition: 0.25s ease;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4));
+}
+
+.footer-btn:hover .footer-icon svg {
+    stroke: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.8));
+}
+
+
+.footer-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #e0f7ff;
+    opacity: 0.85;
+    transition: 0.25s ease;
+}
+
+.footer-btn:hover .footer-icon svg {
+    opacity: 1;
+    stroke: #ffffff;
+}
+
+
+.footer-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #b5cfd0;
+    transition: 0.25s ease;
+}
+
+.footer-btn:hover .footer-icon svg {
+    stroke: #00e0ff;
+}
+
+
+.footer-btn:hover .footer-icon {
+    transform: translateY(-2px);
+    transition: 0.25s ease;
+}
+
+
+/* ⭐ MODERNISIERTE FOOTER ICONS – MOBILE OPTIMIERT ⭐ */
+
+.footer-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #00eaff;
+    stroke-width: 1.8;
+    transition: 0.25s ease;
+    filter: drop-shadow(0 0 4px rgba(0, 234, 255, 0.4));
+    opacity: 0.9;
+}
+
+/* Hover / Tap Effekt */
+.footer-btn:hover .footer-icon svg,
+.footer-btn:active .footer-icon svg {
+    stroke: #ffffff;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 234, 255, 0.9));
+    transform: translateY(-2px);
+}
+
+/* Mobile Abstand & Ausrichtung */
+@media (max-width: 768px) {
+    .footer-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: rgba(0, 255, 255, 0.08);
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        transition: 0.25s ease;
+    }
+
+    .footer-btn:hover {
+        background: rgba(0, 255, 255, 0.15);
+        box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    }
+}
+
+
+.footer-btn:hover .footer-icon svg {
+    animation: pulseGlow 1.6s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0% { filter: drop-shadow(0 0 6px rgba(0, 234, 255, 0.6)); }
+    50% { filter: drop-shadow(0 0 14px rgba(0, 234, 255, 1)); }
+    100% { filter: drop-shadow(0 0 6px rgba(0, 234, 255, 0.6)); }
+}
+
+
+
+.footer-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #00eaff;
+    stroke-width: 1.8;
+    transition: 0.25s ease;
+    filter: drop-shadow(0 0 4px rgba(0, 234, 255, 0.4));
+    opacity: 0.9;
+}
+
+.footer-btn:hover .footer-icon svg {
+    stroke: #ffffff;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 234, 255, 0.9));
+    transform: translateY(-2px);
+}
+
+
+.footer-btn {
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: 0.25s ease;
+}
+
+.footer-btn:hover {
+    background: rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+
+/* ⭐ PREMIUM LEGAL BOX – Glow + Glass + Modern ⭐ */
+
+.footer-legal-content {
+    margin-top: 22px;
+    padding: 22px 18px;
+    border-radius: 14px;
+
+    /* Glassmorphism + Glow */
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+
+    /* Animation für Premium-Effekt */
+    animation: legalFadeIn 0.35s ease-out;
+}
+
+/* Tabs oben */
+.legal-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.legal-tab {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #c8ffff;
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    transition: 0.25s ease;
+}
+
+.legal-tab:hover,
+.legal-tab.active {
+    background: rgba(0, 255, 255, 0.18);
+    color: #ffffff;
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Text */
+.legal-text {
+    color: #e8ffff;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    white-space: pre-line;
+}
+
+/* Smooth Fade-In */
+@keyframes legalFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* ⭐ FINAL PREMIUM FOOTER – GLOBAL ⭐ */
+
+footer {
+    background: #050505;
+    padding: 50px 20px 40px;
+    border-top: 1px solid rgba(0, 255, 255, 0.25);
+    box-shadow: 0 -6px 25px rgba(0, 255, 255, 0.15);
+}
+
+/* Footer Titel */
+.footer-title {
+    color: #00f0ff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Footer Links */
+.footer-link,
+.footer-legal-item {
+    color: #c8ffff;
+    opacity: 0.85;
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.footer-link:hover,
+.footer-legal-item:hover {
+    opacity: 1;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid rgba(0, 255, 255, 0.15);
+    margin-top: 30px;
+    padding-top: 20px;
+    color: #88bcbc;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+
+/* ⭐ FOOTER ICONS – PREMIUM GLOW ⭐ */
+
+.footer-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #00eaff;
+    stroke-width: 1.8;
+    transition: 0.25s ease;
+    filter: drop-shadow(0 0 4px rgba(0, 234, 255, 0.4));
+    opacity: 0.9;
+}
+
+.footer-btn:hover .footer-icon svg,
+.footer-btn:active .footer-icon svg {
+    stroke: #ffffff;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 234, 255, 0.9));
+    transform: translateY(-2px);
+}
+
+
+/* ⭐ LEGAL BOX – FINAL PREMIUM VERSION ⭐ */
+
+.footer-legal-content {
+    margin-top: 22px;
+    padding: 22px 18px;
+    border-radius: 14px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    animation: legalFadeIn 0.35s ease-out;
+}
+
+/* Tabs */
+.legal-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.legal-tab {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #c8ffff;
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    transition: 0.25s ease;
+}
+
+.legal-tab:hover,
+.legal-tab.active {
+    background: rgba(0, 255, 255, 0.18);
+    color: #ffffff;
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Text */
+.legal-text {
+    color: #e8ffff;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    white-space: pre-line;
+}
+
+/* Animation */
+@keyframes legalFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ⭐ MOBILE FOOTER – FINAL VERSION ⭐ */
+@media (max-width: 768px) {
+
+    footer {
+        padding: 40px 20px 60px;
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .footer-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: rgba(0, 255, 255, 0.08);
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        transition: 0.25s ease;
+    }
+
+    .footer-btn:hover {
+        background: rgba(0, 255, 255, 0.15);
+        box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    }
+}
+
+
+/* ⭐ FINAL FOOTER ANIMATIONS – PREMIUM VERSION ⭐ */
+
+/* Footer Glow */
+footer {
+    animation: footerGlow 4s infinite ease-in-out;
+}
+
+@keyframes footerGlow {
+    0%   { box-shadow: 0 -6px 20px rgba(0, 255, 255, 0.10); }
+    50%  { box-shadow: 0 -6px 28px rgba(0, 255, 255, 0.25); }
+    100% { box-shadow: 0 -6px 20px rgba(0, 255, 255, 0.10); }
+}
+
+/* Icon Hover Animation */
+.footer-btn:hover .footer-icon svg {
+    transform: translateY(-2px);
+    animation: iconPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes iconPulse {
+    0%   { filter: drop-shadow(0 0 6px rgba(0, 234, 255, 0.6)); }
+    50%  { filter: drop-shadow(0 0 14px rgba(0, 234, 255, 1)); }
+    100% { filter: drop-shadow(0 0 6px rgba(0, 234, 255, 0.6)); }
+}
+
+/* Legal Box Fade-In */
+.footer-legal-content {
+    animation: legalFadeIn 0.35s ease-out;
+}
+
+@keyframes legalFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.about-title {
+    font-size: 2.4rem;
+    letter-spacing: 0.6px;
+    background: linear-gradient(90deg, #00eaff, #00bcd4);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+    margin-bottom: 14px;
+}
+
+.about-text {
+    line-height: 1.62;
+    color: #e8ffff;
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.08);
+}
+
+
+
+/* ⭐ PREMIUM SPACING – ÜBER-UNS ⭐ */
+
+/* Mehr Ruhe oben */
+.about-section {
+    padding-top: 24px;
+}
+
+/* Überschrift → Text */
+.about-title {
+    margin-bottom: 18px;
+}
+
+/* Absätze – ruhiger Rhythmus */
+.about-text p {
+    margin-bottom: 16px;
+    line-height: 1.62;
+}
+
+/* Abstand zwischen den Unterabschnitten */
+.about-text + .about-text {
+    margin-top: 10px;
+}
+
+/* Abstand zwischen Textblock und Gründerfoto */
+.about-content {
+    gap: 40px; /* nur wenn du eine .about-content Flex-Row hast */
+}
+
+
+.about-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #00eaff, transparent);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+
+
+/* --------------------------------------------- */
+/* ⭐ ÜBER-UNS – FINAL PREMIUM BLOCK ⭐ */
+/* --------------------------------------------- */
+
+/* Section Fade-In (Premium App Feeling) */
+.about-section {
+    animation: aboutFade 0.45s ease-out;
+    padding-top: 18px; /* kompakter, moderner */
+}
+
+@keyframes aboutFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Luxury Headline – Gradient + Glow + Letterspacing */
+.about-title {
+    font-size: 2.2rem; /* minimal kleiner = teurer */
+    letter-spacing: 0.6px;
+    background: linear-gradient(90deg, #00eaff, #00c8e0);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+    margin-bottom: 12px; /* kompakter, moderner */
+}
+
+/* Subtile Glow-Line unter der Überschrift */
+.about-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #00eaff, transparent);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+/* Premium Text – Micro Glow + bessere Lesbarkeit */
+.about-text {
+    line-height: 1.62;
+    color: #e8ffff;
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.08);
+}
+
+.about-text p {
+    margin-bottom: 16px; /* ruhiger, edler */
+}
+
+/* Abstand zwischen Unterabschnitten */
+.about-text + .about-text {
+    margin-top: 10px;
+}
+
+/* Founder Photo – Ultra Premium Halo Glow */
+.founder-photo {
+    box-shadow: 0 0 28px rgba(0, 255, 255, 0.18);
+}
+
+/* Abstand zwischen Textblock und Foto */
+.about-content {
+    gap: 40px; /* perfekter Premium-Abstand */
+}
+
+
+.glow-headline {
+    text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+}
+
+.glow-text {
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.08);
+}
+
+
+.glow-photo {
+    box-shadow: 0 0 28px rgba(0, 255, 255, 0.18);
+}
+
+
+.glow-btn {
+    box-shadow: 0 0 14px rgba(0, 255, 255, 0.18);
+    transition: all 0.25s ease-in-out;
+}
+
+.glow-btn:hover {
+    box-shadow: 0 0 22px rgba(0, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+.glow-btn.pulse {
+    animation: glowPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+    0%   { box-shadow: 0 0 14px rgba(0, 255, 255, 0.35); }
+    50%  { box-shadow: 0 0 22px rgba(0, 255, 255, 0.75); }
+    100% { box-shadow: 0 0 14px rgba(0, 255, 255, 0.35); }
+}
+
+.glow-icon svg {
+    filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.18));
+    transition: all 0.25s ease-in-out;
+}
+
+.glow-icon:hover svg {
+    filter: drop-shadow(0 0 14px rgba(0, 255, 255, 0.45));
+    transform: translateY(-2px);
+}
+
+.glow-line {
+    background: linear-gradient(90deg, #00eaff, transparent);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+
+.glow-headline {
+    text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+}
+
+.glow-text {
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.08);
+}
+
+.glow-photo {
+    box-shadow: 0 0 28px rgba(0, 255, 255, 0.18);
+}
+
+.glow-line {
+    background: linear-gradient(90deg, #00eaff, transparent);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+
   </style>
 
 
