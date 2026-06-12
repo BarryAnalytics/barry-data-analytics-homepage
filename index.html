@@ -2530,64 +2530,165 @@
 
 
 /* ============================================
-   ⭐ MOBILE HEADER FIX – Navigation wieder sichtbar
+   ⭐ SMARTPHONE HOCHFORMAT – FINALER BUILD
+   Navigation + Hero + Filter + Formular + Footer
 ============================================ */
-@media (max-width: 900px) {
+@media (max-width: 900px) and (orientation: portrait) {
 
-  /* Header wieder korrekt */
+  /* ============================
+     ⭐ NAVIGATION – kompakt & sichtbar
+     ============================ */
   header {
     position: sticky !important;
     top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
     z-index: 9999 !important;
     padding: 0 !important;
   }
 
-  /* Navigation nicht mittig erzwingen */
   .nav {
-    width: 100% !important;
-    max-width: 1180px !important;
-    margin: 0 auto !important;
-    padding: 10px 16px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
+    padding: 6px 10px !important;
+    gap: 6px !important;
   }
 
-  /* Logo wieder korrekt */
-  .nav-left {
-    display: flex !important;
-    align-items: center !important;
+  .logo {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .lang-switch {
+    gap: 2px !important;
+    padding: 2px !important;
+  }
+
+  .lang-btn {
+    font-size: 0.65rem !important;
+    padding: 3px 6px !important;
+  }
+
+  .btn-primary {
+    padding: 4px 8px !important;
+    font-size: 0.7rem !important;
+    white-space: nowrap !important;
+  }
+
+  .mobile-nav-toggle {
+    transform: scale(0.85) !important;
+  }
+
+  /* ============================
+     ⭐ HERO – kompakt & harmonisch
+     ============================ */
+  .hero {
+    margin-top: 6px !important;
+    gap: 12px !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-left,
+  .hero-right {
+    padding: 14px 14px 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .hero-title {
+    font-size: 1.45rem !important;
+    line-height: 1.18 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hero-cta-row {
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .hero-kpi-row {
+    gap: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hero-kpi {
+    padding: 6px !important;
+  }
+
+  .hero-chart {
+    padding: 8px !important;
+  }
+
+  /* ============================
+     ⭐ FILTER / USE‑CASES – mittig & ruhig
+     ============================ */
+  .usecases-grid {
+    grid-template-columns: 1fr !important;
     gap: 10px !important;
   }
 
-  /* Sprachbuttons sichtbar */
-  .lang-switch {
-    display: flex !important;
+  .usecase-card {
+    padding: 12px !important;
+    font-size: 0.82rem !important;
   }
 
-  /* Menü-Icon sichtbar */
-  .mobile-nav-toggle {
-    display: flex !important;
+  /* ============================
+     ⭐ FORMULAR – kompakt & perfekt lesbar
+     ============================ */
+  .contact {
+    padding: 14px !important;
+    gap: 14px !important;
+    border-radius: 14px !important;
   }
 
-  /* Navigation NICHT zentrieren */
-  .nav-center {
-    text-align: left !important;
-    justify-content: flex-start !important;
+  .field label {
+    font-size: 0.72rem !important;
+    margin-bottom: 2px !important;
   }
 
-  /* Kein globales Zentrieren auf Header anwenden */
-  header,
-  .nav,
-  .nav-left,
-  .nav-right {
-    text-align: left !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  .field input,
+  .field select,
+  .field textarea {
+    padding: 8px 10px !important;
+    font-size: 0.78rem !important;
+    border-radius: 10px !important;
+  }
+
+  .field select {
+    text-align-last: center !important;
+  }
+
+  .btn-primary {
+    padding: 8px 12px !important;
+    font-size: 0.82rem !important;
+    width: 100% !important;
+  }
+
+  /* ============================
+     ⭐ FOOTER – kompakt & sauber
+     ============================ */
+  footer {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .footer-inner {
+    gap: 14px !important;
+  }
+
+  .footer-bottom {
+    font-size: 0.72rem !important;
+    gap: 6px !important;
+  }
+
+  /* ============================
+     ⭐ Kein horizontaler Overflow
+     ============================ */
+  body {
+    overflow-x: hidden !important;
   }
 }
+
 
   </style>
 
