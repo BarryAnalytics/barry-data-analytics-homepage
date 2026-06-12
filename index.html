@@ -3546,6 +3546,136 @@ footer {
 }
 
 
+
+
+
+.deine-foto-klasse {
+    /* Macht das Bild perfekt rund */
+    border-radius: 50%; 
+    
+    /* Der dezente Rahmen, den Sie schon haben */
+    border: 2px solid #00ffcc; 
+    
+    /* NEU: Der sanfte Leuchteffekt nach außen */
+    box-shadow: 0 0 20px rgba(0, 255, 220, 0.4); 
+    
+    /* Sorgt dafür, dass das Bild bei 100% Zoom nicht verzerrt */
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    
+    /* Sanfter Übergang, falls man mit der Maus drüberfährt */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Bonus: Das Bild hebt sich leicht an, wenn man mit der Maus drüberfährt */
+.deine-foto-klasse:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 255, 220, 0.7);
+}
+
+/* Gründerfoto – feiner Glow-Rahmen direkt am Bild */
+.founder-photo {
+    border-radius: 14px;
+    border: 2px solid rgba(0, 234, 255, 0.35); /* feiner Rahmen */
+    box-shadow: 0 0 14px rgba(0, 234, 255, 0.25); /* dezente Leuchtung */
+    transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
+}
+
+/* Hover – minimal stärker, aber nicht zu viel */
+.founder-photo:hover {
+    border-color: rgba(0, 234, 255, 0.55);
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.45);
+}
+
+
+/* Gründerfoto – feiner Premium-Glow-Rahmen */
+.founder-photo {
+    border-radius: 14px;
+    border: 2px solid rgba(0, 234, 255, 0.28); /* dezenter Rahmen */
+    box-shadow: 0 0 14px rgba(0, 234, 255, 0.22); /* leichte Leuchtung */
+    transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
+}
+
+/* Hover – minimal stärker, aber nicht zu viel */
+.founder-photo:hover {
+    border-color: rgba(0, 234, 255, 0.45);
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.38);
+}
+
+
+/* Gründerfoto – heller Premium-Glow + Micro-Pulse */
+.founder-photo {
+    border-radius: 14px;
+    border: 2px solid rgba(0, 234, 255, 0.45); /* heller, klarer Rahmen */
+    box-shadow: 0 0 18px rgba(0, 234, 255, 0.35); /* sichtbarer Glow */
+    animation: founderPulse 3.2s ease-in-out infinite; /* sehr sanfter Pulse */
+    transition: border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+/* Hover – minimal stärker, aber nicht übertrieben */
+.founder-photo:hover {
+    border-color: rgba(0, 234, 255, 0.65);
+    box-shadow: 0 0 24px rgba(0, 234, 255, 0.55);
+}
+
+/* Micro-Pulse – extrem subtil (1–2%) */
+@keyframes founderPulse {
+    0%   { box-shadow: 0 0 18px rgba(0, 234, 255, 0.32); }
+    50%  { box-shadow: 0 0 22px rgba(0, 234, 255, 0.42); }
+    100% { box-shadow: 0 0 18px rgba(0, 234, 255, 0.32); }
+}
+
+/* Gründerfoto – heller Glow + etwas stärkerer Micro-Pulse */
+.founder-photo {
+    border-radius: 14px;
+    border: 2px solid rgba(0, 234, 255, 0.50); /* klarer, heller Rahmen */
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.40); /* stärkerer Grund-Glow */
+    animation: founderPulse 2.8s ease-in-out infinite; /* etwas schneller, etwas stärker */
+    transition: border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+/* Hover – leicht verstärkt, aber nicht zu viel */
+.founder-photo:hover {
+    border-color: rgba(0, 234, 255, 0.70);
+    box-shadow: 0 0 28px rgba(0, 234, 255, 0.60);
+}
+
+/* Pulse – minimal stärker (2–3% statt 1–2%) */
+@keyframes founderPulse {
+    0%   { box-shadow: 0 0 20px rgba(0, 234, 255, 0.36); }
+    50%  { box-shadow: 0 0 28px rgba(0, 234, 255, 0.52); }
+    100% { box-shadow: 0 0 20px rgba(0, 234, 255, 0.36); }
+}
+
+/* Gründerfoto – weicher Premium-Glow + sanfter Pulse */
+.founder-photo {
+    border-radius: 14px;
+    border: 2px solid rgba(0, 234, 255, 0.42); /* etwas weicher, weniger hart */
+    box-shadow:
+        0 0 26px rgba(0, 234, 255, 0.28),  /* größerer, weicherer Glow */
+        0 0 10px rgba(0, 234, 255, 0.18);  /* zweite weiche Ebene */
+    animation: founderPulse 2.8s ease-in-out infinite;
+    transition: border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+/* Hover – weich, aber sichtbar */
+.founder-photo:hover {
+    border-color: rgba(0, 234, 255, 0.60);
+    box-shadow:
+        0 0 32px rgba(0, 234, 255, 0.42),
+        0 0 14px rgba(0, 234, 255, 0.26);
+}
+
+/* Pulse – bleibt minimal stärker, aber jetzt weicher */
+@keyframes founderPulse {
+    0%   { box-shadow: 0 0 26px rgba(0, 234, 255, 0.26); }
+    50%  { box-shadow: 0 0 32px rgba(0, 234, 255, 0.38); }
+    100% { box-shadow: 0 0 26px rgba(0, 234, 255, 0.26); }
+}
+
+
+
   </style>
 
 
