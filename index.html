@@ -3675,6 +3675,104 @@ footer {
 }
 
 
+.founder-photo-container {
+    display: flex;
+    align-items: center;   /* vertikal zentrieren */
+    justify-content: center; /* optional: horizontal */
+}
+
+.founder-photo {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.seo-section {
+  margin-top: 80px;
+  padding: 40px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0,255,255,0.15);
+}
+
+.seo-preview h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00eaff;
+  text-shadow: 0 0 10px rgba(0,255,255,0.4);
+}
+
+.seo-full {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+.seo-full.expanded {
+  max-height: 5000px;
+}
+
+.seo-toggle-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #00eaff;
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.seo-toggle-btn:hover {
+  background: #00ffff;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+
+/* Toggle Button – Premium Animation */
+#seoToggle {
+  transition: all 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+/* Hover-Effekt */
+#seoToggle:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Klick-Feedback */
+#seoToggle:active {
+  transform: scale(0.96);
+}
+
+/* Text Fade Animation */
+#seoToggle.text-switch {
+  opacity: 0;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0px rgba(0,255,255,0.0); }
+  50% { box-shadow: 0 0 12px rgba(0,255,255,0.6); }
+  100% { box-shadow: 0 0 0px rgba(0,255,255,0.0); }
+}
+
+#seoToggle.pulse {
+  animation: glowPulse 0.6s ease;
+}
+
+.seo-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.seo-section h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
 
   </style>
 
@@ -4223,9 +4321,66 @@ footer {
 
 </form>
 
+  </div>
+
+</section>  <!-- Ende Contact -->
+
+<!-- ⭐ SEO-SNIPPET -->
+
+
+<section class="seo-section">
+
+  <div class="seo-preview">
+    <h2 data-i18n="seoLong10.h2"></h2>
+    <p data-i18n="seoLong10.p1"></p>
+  </div>
+
+  <div class="seo-full collapsed" id="seoFull">
+
+    <p data-i18n="seoLong10.p2"></p>
+
+    <h3 data-i18n="seoLong10.dashboards_h3"></h3>
+    <p data-i18n="seoLong10.dashboards_p1"></p>
+    <p data-i18n="seoLong10.dashboards_p2"></p>
+
+    <h3 data-i18n="seoLong10.excel_h3"></h3>
+    <p data-i18n="seoLong10.excel_p1"></p>
+    <p data-i18n="seoLong10.excel_p2"></p>
+
+    <h3 data-i18n="seoLong10.powerbi_h3"></h3>
+    <p data-i18n="seoLong10.powerbi_p1"></p>
+
+    <h3 data-i18n="seoLong10.automate_h3"></h3>
+    <p data-i18n="seoLong10.automate_p1"></p>
+    <p data-i18n="seoLong10.automate_p2"></p>
+
+    <h3 data-i18n="seoLong10.forecast_h3"></h3>
+    <p data-i18n="seoLong10.forecast_p1"></p>
+
+    <h3 data-i18n="seoLong10.target_h3"></h3>
+    <p data-i18n="seoLong10.target_p1"></p>
+
+    <ul>
+      <li data-i18n="seoLong10.target_list.0"></li>
+      <li data-i18n="seoLong10.target_list.1"></li>
+      <li data-i18n="seoLong10.target_list.2"></li>
+      <li data-i18n="seoLong10.target_list.3"></li>
+      <li data-i18n="seoLong10.target_list.4"></li>
+    </ul>
+
+    <h3 data-i18n="seoLong10.why_h3"></h3>
+    <p data-i18n="seoLong10.why_p1"></p>
+    <p data-i18n="seoLong10.why_p2"></p>
+
+    <h3 data-i18n="seoLong10.cta_h3"></h3>
+    <p data-i18n="seoLong10.cta_p1"></p>
 
   </div>
+
+  <button id="seoToggle" class="seo-toggle-btn" data-i18n="seo_toggle_more"></button>
+
 </section>
+
 
     <!-- FOOTER (LEGAL DROPDOWN + SHARE BUTTONS) -->
 
@@ -4333,6 +4488,7 @@ footer {
 
 <!-- TRANSLATION DATA -->
 <script>
+
 const languageData = {
   /* ============================================================
        🇩🇪 DEUTSCH
@@ -4436,42 +4592,32 @@ const languageData = {
     detail_col_solution: "Lösung",
     detail_col_result: "Ergebnis",
 
- /* Über uns – FINAL */
-about_section_title: "Über uns",
-about_headline: "Klare Daten. Verlässliche Entscheidungen.",
+    /* Über uns – FINAL */
+    about_section_title: "Über uns",
+    about_headline: "Klare Daten. Verlässliche Entscheidungen.",
+    about_intro_text1:
+      "Barry Data & Analytics unterstützt Unternehmen dabei, Daten sinnvoll zu nutzen, Prozesse zu vereinfachen und bessere Entscheidungen zu treffen.",
+    about_intro_text2:
+      "Ob Reporting, Analysen, Dashboards, Automatisierung oder individuelle Lösungen – wir hören zuerst zu, verstehen Ihre Herausforderungen und entwickeln anschließend einen Ansatz, der optimal zu Ihren Zielen passen.",
+    about_approach_title: "Unser Ansatz",
+    about_approach_text:
+      "Daten sollen für Sie arbeiten – nicht umgekehrt. Deshalb stehen bei uns nicht Tools oder technische Begriffe im Mittelpunkt, sondern Ihre Ziele. Wir schaffen Lösungen, die verständlich, praxisnah und sofort nutzbar sind.",
+    about_personal_title: "Persönlich & direkt",
+    about_personal_text1:
+      "Barry Data & Analytics wurde mit dem Anspruch gegründet, Unternehmen unkompliziert und zuverlässig bei datenbezogenen Herausforderungen zu unterstützen.",
+    about_personal_support:
+      "Wir hören zu, denken mit und begleiten Sie zuverlässig durch den gesamten Prozess – gemeinsam, transparent und mit Lösungen, die langfristig Bestand haben.",
 
-about_intro_text1:
-  "Barry Data & Analytics unterstützt Unternehmen dabei, Daten sinnvoll zu nutzen, Prozesse zu vereinfachen und bessere Entscheidungen zu treffen.",
-
-about_intro_text2:
-  "Ob Reporting, Analysen, Dashboards, Automatisierung oder individuelle Lösungen – wir hören zuerst zu, verstehen Ihre Herausforderungen und entwickeln anschließend einen Ansatz, der optimal zu Ihren Zielen passen.",
-
-about_approach_title: "Unser Ansatz",
-about_approach_text:
-  "Daten sollen für Sie arbeiten – nicht umgekehrt. Deshalb stehen bei uns nicht Tools oder technische Begriffe im Mittelpunkt, sondern Ihre Ziele. Wir schaffen Lösungen, die verständlich, praxisnah und sofort nutzbar sind.",
-
-about_personal_title: "Persönlich & direkt",
-about_personal_text1:
-  "Barry Data & Analytics wurde mit dem Anspruch gegründet, Unternehmen unkompliziert und zuverlässig bei datenbezogenen Herausforderungen zu unterstützen.",
-
-about_personal_support:
-  "Wir hören zu, denken mit und begleiten Sie zuverlässig durch den gesamten Prozess – gemeinsam, transparent und mit Lösungen, die langfristig Bestand haben.",
-
-/* Gründer – FINAL */
-founder_name: "Ahmed Barry",
-founder_role: "Gründer & Inhaber",
-
-founder_text1:
-  "Gute Datenlösungen beginnen damit, die Herausforderungen eines Unternehmens wirklich zu verstehen. Deshalb nehme ich mir Zeit für Ihr Anliegen, höre zu und entwickle gemeinsam mit Ihnen Lösungen, die Ihren Arbeitsalltag spürbar erleichtern.",
-
-founder_email_label: "E-Mail: ahmed@barrydataanalytics.de",
-founder_phone_label: "Telefon: +49 1575 5355849",
-founder_location: "Bochum, NRW, Deutschland",
-
-founder_text2:
-  "Ich freue mich darauf, mehr über Ihr Vorhaben zu erfahren und gemeinsam die passende Lösung für Ihr Unternehmen zu entwickeln.",
-   
-
+    /* Gründer – FINAL */
+    founder_name: "Ahmed Barry",
+    founder_role: "Gründer & Inhaber",
+    founder_text1:
+      "Gute Datenlösungen beginnen damit, die Herausforderungen eines Unternehmens wirklich zu verstehen. Deshalb nehme ich mir Zeit für Ihr Anliegen, höre zu und entwickle gemeinsam mit Ihnen Lösungen, die Ihren Arbeitsalltag spürbar erleichtern.",
+    founder_email_label: "E-Mail: ahmed@barrydataanalytics.de",
+    founder_phone_label: "Telefon: +49 1575 5355849",
+    founder_location: "Bochum, NRW, Deutschland",
+    founder_text2:
+      "Ich freue mich darauf, mehr über Ihr Vorhaben zu erfahren und gemeinsam die passende Lösung für Ihr Unternehmen zu entwickeln.",
 
     /* Formular */
     contact_eyebrow: "PROJEKTANFRAGE",
@@ -4569,12 +4715,84 @@ Verantwortlich gemäß § 18 Abs. 2 MStV: Ahmed Barry
     /* Datenschutz – Final */
     privacy_content: `
 Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO. Verarbeitete Daten umfassen insbesondere Kontaktinformationen, Projektanfragen und technische Nutzungsdaten. Die Verarbeitung erfolgt zur Beantwortung von Anfragen, zur Projektkommunikation und zur technischen Bereitstellung der Website. Eine Weitergabe an Dritte erfolgt nicht, es sei denn, es besteht eine gesetzliche Verpflichtung. Daten werden nur so lange gespeichert, wie es für den jeweiligen Zweck erforderlich ist. Betroffene Personen haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch sowie Datenübertragbarkeit. Kontakt für Datenschutzanfragen: ahmed@barrydataanalytics.de
-`
-  },
+`,
 
+/* ⭐ SEO Snippet */
+seoSnippet: {
+  p1: "Viele Unternehmen arbeiten täglich mit umfangreichen Excel-Dateien, verschiedenen Datenquellen und Berichten, die viel Zeit kosten. Barry Data & Analytics unterstützt dabei, Daten übersichtlich aufzubereiten, Abläufe zu vereinfachen und wiederkehrende Aufgaben zu automatisieren. So entstehen Lösungen, die den Arbeitsalltag klarer, ruhiger und verlässlicher machen."
+},
+
+/* ⭐ SEO Longform Block */
+seoLong10: {
+  h2: "Data Analytics, Power BI, Excel-Automatisierung, Reporting, Forecasting & Prozessoptimierung für Unternehmen",
+
+  p1: "Daten sollen verständlich sein und im Alltag helfen. Genau das ist unser Anspruch. Wir entwickeln Lösungen, die Klarheit schaffen, Abläufe entlasten und den Umgang mit Daten einfacher machen – ohne unnötige Komplexität.",
+
+  p2: "Von Bochum aus begleiten wir Unternehmen in NRW, deutschlandweit und international. Ob Power BI, Excel-Automatisierung, Reporting oder Forecasting: Wir entwickeln Lösungen, die sich an Ihren Abläufen orientieren und im täglichen Arbeiten zuverlässig funktionieren.",
+
+  dashboards_h3: "Individuelle Dashboards & KPI-Transparenz",
+
+  dashboards_p1: "Wir entwickeln Dashboards, die Informationen aus verschiedenen Quellen zusammenführen und so darstellen, dass sie schnell verstanden werden. Klar, übersichtlich und auf das Wesentliche reduziert.",
+
+  dashboards_p2: "Ob Kennzahlen für das Management, operative Auswertungen oder Forecasts – wir machen sichtbar, was für Ihre Entscheidungen wichtig ist.",
+
+  excel_h3: "Excel-Automatisierung & Prozessoptimierung",
+
+  excel_p1: "Excel ist in vielen Unternehmen ein wichtiges Werkzeug. Mit der Zeit werden Dateien jedoch größer, komplexer und fehleranfälliger. Wir vereinfachen Strukturen, automatisieren wiederkehrende Schritte und schaffen Abläufe, die ruhiger und verlässlicher funktionieren.",
+
+  excel_p2: "Von der Datenaufbereitung bis zu automatisierten Reports entwickeln wir Lösungen, die den Alltag spürbar erleichtern und Zeit freisetzen.",
+
+  powerbi_h3: "Power BI & moderne Datenanalyse",
+
+  powerbi_p1: "Mit Power BI entwickeln wir Auswertungen und Visualisierungen, die einen klaren Überblick geben. Daten aus verschiedenen Systemen werden an einem Ort sichtbar – verständlich, strukturiert und leicht zu nutzen.",
+
+  automate_h3: "Reporting-Automatisierung & Power Automate Workflows",
+
+  automate_p1: "Viele Berichte und Abläufe werden noch manuell erledigt. Wir automatisieren diese Schritte, damit Informationen regelmäßig, zuverlässig und ohne zusätzlichen Aufwand bereitstehen.",
+
+  automate_p2: "Wir verbinden Systeme, reduzieren manuelle Arbeit und schaffen Abläufe, die im Hintergrund zuverlässig laufen.",
+
+  forecast_h3: "Forecasting & Data Analytics für bessere Entscheidungen",
+
+  forecast_p1: "Wir entwickeln Prognosen und Auswertungen, die Entwicklungen früh sichtbar machen und Entscheidungen erleichtern – klar, nachvollziehbar und auf Ihre Daten abgestimmt.",
+
+  target_h3: "Für wen wir arbeiten",
+
+  target_p1: "Unsere Lösungen richten sich an Unternehmen und Organisationen, die ihre Daten sinnvoll nutzen und Abläufe einfacher gestalten möchten – unabhängig von Branche oder Größe.",
+
+  target_list: [
+    "Unternehmen, die ihre Daten übersichtlicher nutzen möchten",
+    "Organisationen, die manuelle Abläufe reduzieren wollen",
+    "Teams mit Excel-, Power-BI- oder mehreren Datenquellen",
+    "Unternehmen, die klare KPIs für ihre strategischen Entscheidungen benötigen",
+    "Organisationen, die individuelle Datenlösungen statt Standardsoftware suchen"
+  ],
+
+  why_h3: "Warum Barry Data & Analytics?",
+
+  why_p1: "Jedes Unternehmen arbeitet anders. Deshalb entstehen bei uns keine Lösungen von der Stange. Wir orientieren uns an Ihren Abläufen, Ihren Daten und dem, was Sie im Alltag wirklich brauchen.",
+
+  why_p2: "Wir arbeiten ruhig, strukturiert und mit einem klaren Blick für das Wesentliche. Unser Ziel ist es, Abläufe verständlicher zu machen, manuelle Schritte zu reduzieren und Lösungen zu entwickeln, die sich im täglichen Arbeiten bewähren.",
+
+  cta_h3: "Ihr nächster Schritt",
+
+  cta_p1: "Wenn Sie Ihre Daten besser nutzen oder wiederkehrende Abläufe vereinfachen möchten, sprechen Sie uns an. Wir schauen uns gemeinsam an, was sinnvoll ist, und entwickeln eine Lösung, die zu Ihrem Unternehmen passt."
+},
+
+/* ⭐ Toggle Button (DE) */
+seo_toggle_more: "Mehr lesen",
+seo_toggle_less: "Weniger anzeigen"
+
+   
+
+},
+
+  
   /* ============================================================
        🇬🇧 ENGLISH
     ============================================================ */
+ 
+
   en: {
 
     /* Navigation */
@@ -4673,50 +4891,38 @@ Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der DSGVO. Vera
     detail_col_solution: "Solution",
     detail_col_result: "Result",
 
-    
+    /* About us – FINAL */
+    about_section_title: "About us",
+    about_headline: "Clear data. Confident decisions.",
+    about_intro_text1:
+      "Barry Data & Analytics helps companies use data effectively, simplify processes, and make better decisions.",
+    about_intro_text2:
+      "Whether reporting, analytics, dashboards, automation, or tailored solutions – we start by listening, understanding your challenges, and then developing an approach that ideally matches your goals.",
+    about_approach_title: "Our approach",
+    about_approach_text:
+      "Data should work for you – not the other way around. That’s why we focus on your goals rather than tools or technical terms. We create solutions that are clear, practical, and ready to use.",
+    about_personal_title: "Personal & direct",
+    about_personal_text1:
+      "Barry Data & Analytics was founded with the aim of supporting companies reliably and without unnecessary complexity in all data‑related challenges.",
+    about_personal_support:
+      "We listen, think along with you, and support you throughout the entire process – collaboratively, transparently, and with solutions built to last.",
 
-/* About us – FINAL */
-about_section_title: "About us",
-about_headline: "Clear data. Confident decisions.",
-
-about_intro_text1:
-  "Barry Data & Analytics helps companies use data effectively, simplify processes, and make better decisions.",
-
-about_intro_text2:
-  "Whether reporting, analytics, dashboards, automation, or tailored solutions – we start by listening, understanding your challenges, and then developing an approach that ideally matches your goals.",
-
-about_approach_title: "Our approach",
-about_approach_text:
-  "Data should work for you – not the other way around. That’s why we focus on your goals rather than tools or technical terms. We create solutions that are clear, practical, and ready to use.",
-
-about_personal_title: "Personal & direct",
-about_personal_text1:
-  "Barry Data & Analytics was founded with the aim of supporting companies reliably and without unnecessary complexity in all data‑related challenges.",
-
-about_personal_support:
-  "We listen, think along with you, and support you throughout the entire process – collaboratively, transparently, and with solutions built to last.",
-
-/* Founder – FINAL */
-founder_name: "Ahmed Barry",
-founder_role: "Founder & Owner",
-
-founder_text1:
-  "Good data solutions start with truly understanding a company’s challenges. That’s why I take the time to listen, understand your situation, and develop solutions together with you that make your daily work noticeably easier.",
-
-founder_email_label: "Email: ahmed@barrydataanalytics.de",
-founder_phone_label: "Phone: +49 1575 5355849",
-founder_location: "Bochum, NRW, Germany",
-
-founder_text2:
-  "I look forward to learning more about your project and developing the right solution for your organization together.",
-
+    /* Founder – FINAL */
+    founder_name: "Ahmed Barry",
+    founder_role: "Founder & Owner",
+    founder_text1:
+      "Good data solutions start with truly understanding a company’s challenges. That’s why I take the time to listen, understand your situation, and develop solutions together with you that make your daily work noticeably easier.",
+    founder_email_label: "Email: ahmed@barrydataanalytics.de",
+    founder_phone_label: "Phone: +49 1575 5355849",
+    founder_location: "Bochum, NRW, Germany",
+    founder_text2:
+      "I look forward to learning more about your project and developing the right solution for your organization together.",
 
     /* Form */
     contact_eyebrow: "PROJECT INQUIRY",
     contact_title: "Request a project – clear & non‑binding",
     contact_subtitle:
       "Briefly describe your situation – we’ll get back with questions or a concrete proposal.",
-
     contact_area_title: "Where can we support you?",
     process_title: "How we work together",
     process_step1_title: "Analysis & understanding",
@@ -4730,7 +4936,6 @@ founder_text2:
 
     contact_desc_title: "Short description",
     contact_desc_text: "Briefly describe your current challenge or the transparency you want to gain.",
-
     field_name_label: "Name",
     field_name_placeholder: "Your name",
     field_company_label: "Company (optional)",
@@ -4762,7 +4967,6 @@ founder_text2:
     field_desc_label: "Short project description",
     field_desc_placeholder:
       "Short project description – which topic and which optimisation would you like to focus on.",
-
     field_submit: "Send inquiry",
     contact_note:
       "Your inquiry is non‑binding. We’ll get back with questions or a concrete proposal.",
@@ -4807,9 +5011,77 @@ Responsible according to § 18 (2) MStV: Ahmed Barry
     /* Privacy Policy – Final */
     privacy_content: `
 We process personal data exclusively in accordance with the GDPR. Processed data includes contact information, project inquiries and technical usage data. Data is processed for the purpose of responding to inquiries, project communication and the technical operation of this website. No data is shared with third parties unless legally required. Data is stored only for as long as necessary for the respective purpose. Data subjects have the right to access, rectification, deletion, restriction of processing, objection and data portability at any time. For privacy related inquiries, please contact: ahmed@barrydataanalytics.de
-`
-  },
+`,
 
+  
+/* ⭐ SEO Snippet */
+seoSnippet: {
+  p1: "Many companies work with large Excel files, multiple data sources and reports that take up a lot of time. Barry Data & Analytics helps to structure data clearly, simplify workflows and automate recurring tasks. The result is a smoother, clearer and more reliable day-to-day working environment."
+},
+
+/* ⭐ SEO Longform Block */
+seoLong10: {
+  h2: "Data Analytics, Power BI, Excel Automation, Reporting, Forecasting & Process Improvement for Businesses",
+
+  p1: "Data should be easy to understand and useful in everyday work. That is our approach. We develop solutions that bring clarity, reduce manual effort and make working with data more straightforward – without unnecessary complexity.",
+
+  p2: "From our base in Bochum, we support companies across NRW, throughout Germany and internationally. Whether Power BI, Excel automation, reporting or forecasting – we build solutions that fit your workflows and work reliably in day-to-day operations.",
+
+  dashboards_h3: "Custom Dashboards & KPI Transparency",
+
+  dashboards_p1: "We create dashboards that bring together information from different sources and present it in a way that is easy to understand – clear, structured and focused on what matters.",
+
+  dashboards_p2: "Whether management KPIs, operational insights or forecasts, we highlight the information that is relevant for your decisions.",
+
+  excel_h3: "Excel Automation & Process Simplification",
+
+  excel_p1: "Excel is an essential tool in many organisations. Over time, files often become larger, more complex and more prone to errors. We simplify structures, automate recurring steps and create workflows that run more smoothly and reliably.",
+
+  excel_p2: "From data preparation to automated reports, we develop solutions that noticeably ease the workload and free up valuable time.",
+
+  powerbi_h3: "Power BI & Modern Data Analysis",
+
+  powerbi_p1: "With Power BI, we build reports and visualisations that provide a clear overview. Data from different systems becomes visible in one place – structured, understandable and easy to use.",
+
+  automate_h3: "Reporting Automation & Power Automate Workflows",
+
+  automate_p1: "Many reports and processes are still handled manually. We automate these steps so that information is delivered regularly, reliably and without additional effort.",
+
+  automate_p2: "We connect systems, reduce manual work and create workflows that run reliably in the background.",
+
+  forecast_h3: "Forecasting & Data Analytics for Better Decisions",
+
+  forecast_p1: "We develop forecasts and analyses that make trends visible early and support well‑founded decisions – clear, transparent and based on your data.",
+
+  target_h3: "Who We Work With",
+
+  target_p1: "Our solutions are designed for organisations that want to use their data more effectively and simplify their processes – regardless of industry or size.",
+
+  target_list: [
+    "Companies that want to use their data in a clearer and more structured way",
+    "Organisations looking to reduce manual work",
+    "Teams working with Excel, Power BI or multiple data sources",
+    "Companies that need clear KPIs for their strategic decisions",
+    "Organisations seeking individual data solutions instead of standard software"
+  ],
+
+  why_h3: "Why Barry Data & Analytics?",
+
+  why_p1: "Every organisation works differently. That’s why we don’t use templates. Our solutions are shaped by your workflows, your data and what you need in day‑to‑day operations.",
+
+  why_p2: "We work calmly, clearly and with a focus on what matters. Our goal is to make processes easier to understand, reduce manual steps and develop solutions that prove themselves in everyday use.",
+
+  cta_h3: "Your Next Step",
+
+  cta_p1: "If you want to make better use of your data or simplify recurring tasks, feel free to get in touch. We will look at your situation together and develop a solution that fits your organisation."
+},
+
+/* ⭐ Toggle Button (EN) */
+seo_toggle_more: "Read more",
+seo_toggle_less: "Show less"
+  
+},
+  
   /* ============================================================
        🇫🇷 FRANÇAIS
     ============================================================ */
@@ -4948,9 +5220,6 @@ founder_text2:
   "Je me réjouis d’en savoir plus sur votre projet et de développer ensemble la solution la mieux adaptée à votre organisation.",
 
 
-
-
-
     /* Form */
     contact_eyebrow: "DEMANDE DE PROJET",
     contact_title: "Demander un projet – clair & sans engagement",
@@ -5048,8 +5317,79 @@ Responsable selon le § 18 (2) MStV : Ahmed Barry
     /* Politique de confidentialité – Final */
     privacy_content: `
 Nous traitons les données personnelles exclusivement conformément au RGPD. Les données traitées comprennent notamment les informations de contact, les demandes de projet et les données techniques d’utilisation. Les données sont traitées afin de répondre aux demandes, d’assurer la communication liée aux projets et d’assurer le fonctionnement technique de ce site. Aucune donnée n’est transmise à des tiers, sauf obligation légale. Les données sont conservées uniquement pendant la durée nécessaire à leur finalité. Les personnes concernées disposent à tout moment d’un droit d’accès, de rectification, de suppression, de limitation du traitement, d’opposition et de portabilité des données. Pour toute demande relative à la protection des données : ahmed@barrydataanalytics.de
-`
-  }
+`,
+
+
+/* ⭐ SEO Snippet */
+seoSnippet: {
+  p1: "De nombreuses entreprises travaillent chaque jour avec de grands fichiers Excel, plusieurs sources de données et des rapports qui demandent beaucoup de temps. Barry Data & Analytics aide à structurer les données, à simplifier les processus et à automatiser les tâches répétitives. Le résultat : un quotidien plus clair, plus fluide et plus fiable."
+},
+
+/* ⭐ SEO Longform Block */
+seoLong10: {
+  h2: "Data Analytics, Power BI, Automatisation Excel, Reporting, Prévisions & Amélioration des processus",
+
+  p1: "Les données doivent être faciles à comprendre et utiles au quotidien. C’est notre approche. Nous développons des solutions qui apportent de la clarté, réduisent les tâches manuelles et rendent le travail avec les données plus simple – sans complexité inutile.",
+
+  p2: "Depuis Bochum, nous accompagnons des entreprises en NRW, en Allemagne et à l’international. Power BI, automatisation Excel, reporting ou prévisions – nous créons des solutions adaptées à vos processus et fiables dans l’usage quotidien.",
+
+  dashboards_h3: "Tableaux de bord personnalisés & transparence des indicateurs",
+
+  dashboards_p1: "Nous concevons des tableaux de bord qui rassemblent des informations provenant de différentes sources et les présentent de manière claire et compréhensible.",
+
+  dashboards_p2: "Qu’il s’agisse d’indicateurs de gestion, d’analyses opérationnelles ou de prévisions, nous mettons en avant les informations essentielles pour vos décisions.",
+
+  excel_h3: "Automatisation Excel & simplification des processus",
+
+  excel_p1: "Excel est un outil central dans de nombreuses organisations. Avec le temps, les fichiers deviennent plus volumineux, plus complexes et plus sensibles aux erreurs. Nous simplifions les structures, automatisons les étapes répétitives et créons des processus plus stables et plus fiables.",
+
+  excel_p2: "De la préparation des données aux rapports automatisés, nous développons des solutions qui allègent réellement la charge de travail et libèrent du temps.",
+
+  powerbi_h3: "Power BI & analyse de données moderne",
+
+  powerbi_p1: "Avec Power BI, nous créons des analyses et des visualisations qui offrent une vue d’ensemble claire. Les données issues de différents systèmes deviennent visibles en un seul endroit – structurées, compréhensibles et faciles à utiliser.",
+
+  automate_h3: "Automatisation du reporting & workflows Power Automate",
+
+  automate_p1: "De nombreux rapports et processus sont encore réalisés manuellement. Nous automatisons ces étapes afin que les informations soient disponibles régulièrement, de manière fiable et sans effort supplémentaire.",
+
+  automate_p2: "Nous connectons les systèmes, réduisons les tâches manuelles et mettons en place des workflows qui fonctionnent en arrière‑plan, en toute fiabilité.",
+
+  forecast_h3: "Prévisions & Data Analytics pour de meilleures décisions",
+
+  forecast_p1: "Nous développons des prévisions et des analyses qui rendent les tendances visibles tôt et facilitent les décisions – de manière claire, transparente et basée sur vos données.",
+
+  target_h3: "À qui s’adressent nos solutions ?",
+
+  target_p1: "Nos solutions s’adressent aux organisations qui souhaitent utiliser leurs données plus efficacement et simplifier leurs processus – quelle que soit leur taille ou leur secteur.",
+
+  target_list: [
+    "Entreprises souhaitant utiliser leurs données de manière plus claire et structurée",
+    "Organisations cherchant à réduire les tâches manuelles",
+    "Équipes travaillant avec Excel, Power BI ou plusieurs sources de données",
+    "Entreprises ayant besoin d’indicateurs clairs pour leurs décisions stratégiques",
+    "Organisations recherchant des solutions de données individuelles plutôt que des logiciels standard"
+  ],
+
+  why_h3: "Pourquoi Barry Data & Analytics ?",
+
+  why_p1: "Chaque organisation fonctionne différemment. C’est pourquoi nous ne proposons pas de solutions pré‑construites. Nos développements s’appuient sur vos processus, vos données et vos besoins réels au quotidien.",
+
+  why_p2: "Nous travaillons avec calme, clarté et un sens précis des priorités. Notre objectif est de rendre les processus plus compréhensibles, de réduire les étapes manuelles et de créer des solutions qui font leurs preuves dans l’usage quotidien.",
+
+  cta_h3: "Votre prochaine étape",
+
+  cta_p1: "Si vous souhaitez mieux exploiter vos données ou simplifier des tâches récurrentes, n’hésitez pas à nous contacter. Nous analyserons votre situation ensemble et développerons une solution adaptée à votre organisation."
+},
+
+/* ⭐ Toggle Button (FR) */
+seo_toggle_more: "En savoir plus",
+seo_toggle_less: "Afficher moins"
+
+},
+
+
+  
 };
 </script>
 
@@ -5475,7 +5815,14 @@ const usecaseDetails = {
 
 <!-- HAUPT-JS: Sprache, Navigation, Ticker, Legal, Scroll-Pfeile -->
 <script>
+function getNestedValue(obj, path) {
+  return path.split(".").reduce((acc, part) => {
+    return acc && acc[part] !== undefined ? acc[part] : undefined;
+  }, obj);
+}
+
 let currentLang = "de";
+
 
 /* ⭐ NEU EINFÜGEN: Sprache ins Formular schreiben */
 function updateFormLanguage(lang) {
@@ -5489,19 +5836,21 @@ function applyLanguage(lang) {
 
   const dict = languageData[lang];
 
-  /* ⭐ Normale Texte aktualisieren */
+    /* ⭐ Normale Texte aktualisieren (verschachtelte Keys) */
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    if (dict[key] !== undefined) {
-      el.textContent = dict[key];
+    const value = getNestedValue(dict, key);
+    if (value !== undefined) {
+      el.textContent = value;
     }
   });
 
-  /* ⭐ Placeholder aktualisieren */
+  /* ⭐ Placeholder aktualisieren (verschachtelte Keys) */
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     const key = el.getAttribute("data-i18n-placeholder");
-    if (dict[key] !== undefined) {
-      el.placeholder = dict[key];
+    const value = getNestedValue(dict, key);
+    if (value !== undefined) {
+      el.placeholder = value;
     }
   });
 
@@ -5532,9 +5881,15 @@ function applyLanguage(lang) {
   loadLegal("imprint");
 
 /* ⭐ NEU: Sprache ins Formular schreiben */
-  updateFormLanguage(lang);
+updateFormLanguage(lang);
+
+/* ⭐ Toggle-Button Text beim Sprachwechsel setzen */
+const seoToggle = document.getElementById("seoToggle");
+if (seoToggle) {
+  seoToggle.textContent = dict.seo_toggle_more;
 }
 
+} // ← applyLanguage endet HIER
 
 
 function updateTickerLanguage(lang) {
@@ -5871,6 +6226,37 @@ scrollUp.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
+
+
+
+const seoToggle = document.getElementById("seoToggle");
+const seoFull = document.getElementById("seoFull");
+
+seoToggle.addEventListener("click", () => {
+  seoFull.classList.toggle("expanded");
+
+  const lang = document.documentElement.lang;
+  const dict = languageData[lang];
+
+  /* ⭐ Text-Fade Animation starten */
+  seoToggle.classList.add("text-switch");
+
+  setTimeout(() => {
+    if (seoFull.classList.contains("expanded")) {
+      seoToggle.textContent = dict.seo_toggle_less;
+    } else {
+      seoToggle.textContent = dict.seo_toggle_more;
+    }
+
+    seoToggle.classList.remove("text-switch");
+  }, 150);
+
+  /* ⭐ Glow-Pulse Animation */
+  seoToggle.classList.add("pulse");
+  setTimeout(() => seoToggle.classList.remove("pulse"), 600);
+});
+
 
 </script> <!-- Ende deines Haupt-JS -->
 
