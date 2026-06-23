@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Digitale Projektanalyse | Barry Data & Analytics</title>
+
+  <style>
+    :root {
+      --bg:#030712;
+      --panel:rgba(15,23,42,.94);
+      --field:#1e293b;
+      --border:#334155;
+      --soft:rgba(148,163,184,.22);
+      --muted:#94a3b8;
+      --text:#f8fafc;
+      --cyan:#00f2fe;
+      --cyan2:#00d8e4;
+      --max:900px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      background:
+        radial-gradient(circle at top left,rgba(0,242,254,.10),transparent 34%),
+        radial-gradient(circle at bottom right,rgba(37,99,235,.14),transparent 36%),
+        var(--bg);
+      color:var(--text);
+      font-family:Arial,Helvetica,sans-serif;
+      padding-top:125px;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:100;
+      background:rgba(3,7,18,.9);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(148,163,184,.18);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand-logo{
+      width:160px;
+      height:50px;
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .brand-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:left center;
+    }
+
+    .nav-badge{
+      color:var(--cyan);
+      background:rgba(0,242,254,.10);
+      border:1px solid rgba(0,242,254,.22);
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .home-link,.lang-btn{
+      border:1px solid rgba(148,163,184,.28);
+      background:rgba(30,41,59,.82);
+      color:#dbeafe;
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .home-link{
+      border-color:rgba(0,242,254,.28);
+      background:rgba(0,242,254,.08);
+      color:var(--cyan);
+    }
+
+    .lang-btn.active{
+      background:var(--cyan);
+      color:#020617;
+      border-color:var(--cyan);
+    }
+
+    .page{
+      display:flex;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max);
+      background:var(--panel);
+      border:1px solid var(--soft);
+      border-radius:26px;
+      box-shadow:0 24px 80px rgba(0,0,0,.46);
+      padding:34px;
+    }
+
+    .badge{
+      display:inline-block;
+      color:var(--cyan);
+      background:rgba(0,242,254,.08);
+      border:1px solid rgba(0,242,254,.18);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:20px 0 16px;
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.1;
+      letter-spacing:-.03em;
+      color:#ffffff;
+    }
+
+    .intro{
+      color:var(--muted);
+      line-height:1.75;
+      max-width:760px;
+      font-size:15px;
+      margin-bottom:30px;
+    }
+
+    .intro strong{color:#e2e8f0}
+
+    form{
+      display:grid;
+      gap:24px;
+    }
+
+    .section{
+      border-top:1px solid rgba(148,163,184,.18);
+      padding-top:24px;
+    }
+
+    .section-title{
+      font-size:15px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:900;
+      margin-bottom:16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    label.field-label{
+      display:block;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:#cbd5e1;
+      margin-bottom:9px;
+    }
+
+    input,select,textarea{
+      width:100%;
+      color:var(--text);
+      background:var(--field);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      outline:none;
+      font-size:15px;
+    }
+
+    textarea{
+      min-height:110px;
+      resize:vertical;
+      line-height:1.55;
+    }
+
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--cyan);
+      box-shadow:0 0 0 3px rgba(0,242,254,.14);
+    }
+
+    .options{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .choice{
+      display:flex;
+      gap:10px;
+      padding:12px;
+      border:1px solid var(--border);
+      background:rgba(30,41,59,.72);
+      border-radius:14px;
+      color:#e2e8f0;
+      font-size:14px;
+      line-height:1.45;
+      cursor:pointer;
+    }
+
+    .choice input{
+      width:auto;
+      margin-top:2px;
+      accent-color:var(--cyan);
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.55;
+      margin-top:8px;
+    }
+
+    .privacy-box{
+      display:grid;
+      gap:12px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(30,41,59,.55);
+      border:1px solid rgba(148,163,184,.20);
+      color:#cbd5e1;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .checkbox-line{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .checkbox-line input{
+      width:auto;
+      margin-top:4px;
+      accent-color:var(--cyan);
+    }
+
+    details{
+      border-top:1px solid rgba(148,163,184,.18);
+      padding-top:10px;
+    }
+
+    summary{
+      color:var(--cyan);
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    .submit-btn{
+      width:100%;
+      border:0;
+      border-radius:16px;
+      padding:17px 20px;
+      background:var(--cyan);
+      color:#020617;
+      font-size:15px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      cursor:pointer;
+      box-shadow:0 18px 40px rgba(0,242,254,.18);
+    }
+
+    .submit-btn:hover{background:var(--cyan2)}
+    .submit-btn:disabled{opacity:.6;cursor:not-allowed}
+
+    .error{
+      display:none;
+      padding:14px;
+      border-radius:14px;
+      background:rgba(239,68,68,.11);
+      border:1px solid rgba(239,68,68,.28);
+      color:#fecaca;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .success{
+      display:none;
+      text-align:center;
+      padding:42px 10px;
+    }
+
+    .success-icon{
+      width:76px;
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 24px;
+      border-radius:999px;
+      background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.35);
+      color:#4ade80;
+      font-size:38px;
+      font-weight:900;
+    }
+
+    .success h2{
+      font-size:clamp(24px,4vw,34px);
+      margin:0 0 12px;
+    }
+
+    .success p{
+      color:var(--muted);
+      line-height:1.7;
+      max-width:640px;
+      margin:0 auto 18px;
+    }
+
+    @media(max-width:760px){
+      body{padding-top:115px}
+      .topbar-inner{padding:12px 14px}
+      .brand-logo{width:125px;height:42px}
+      .nav-badge{display:none}
+      .home-link,.lang-btn{padding:8px 8px;font-size:11px}
+      .page{padding:14px}
+      .container{padding:22px;border-radius:22px}
+      .grid,.options{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://barrydataanalytics.de" class="brand-logo">
+      <img id="logo" src="/assets/img/logo-barry.png" alt="Barry Data & Analytics Logo">
+    </a>
+
+    <span class="nav-badge" id="navBadge">Digital. Strukturiert. Unverbindlich.</span>
+
+    <div class="actions">
+      <button type="button" class="lang-btn active" data-lang="de">DE</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="fr">FR</button>
+      <a href="https://barrydataanalytics.de" class="home-link" id="homeLink">Homepage</a>
+    </div>
+  </div>
+</header>
+
+<!--
+============================================================
+BARRY DATA & ANALYTICS – INTERNE PROJEKTANALYSE-INFOS
+============================================================
+
+KUNDENLINK:
+https://barrydataanalytics.de/projektanalyse/
+
+HOMEPAGE:
+https://barrydataanalytics.de
+
+POWER AUTOMATE:
+Die echte Flow-URL hier im JavaScript eintragen:
+
+const FLOW_URL = "DEINE_POWER_AUTOMATE_FLOW_URL_HIER_EINTRAGEN";
+
+WICHTIGE JSON-FELDER FÜR POWER AUTOMATE:
+language
+name
+company
+email
+phone
+project_type
+timeline
+priority
+frequency
+data_source
+goal
+challenge
+expected
+description
+privacy_accepted
+submitted_at
+source
+
+BEISPIEL-BODY, DER AN POWER AUTOMATE GESENDET WIRD:
+{
+  "language": "de",
+  "name": "Max Mustermann",
+  "company": "Muster GmbH",
+  "email": "max@example.com",
+  "phone": "+49 ...",
+  "project_type": ["Sales Performance Dashboard"],
+  "timeline": "In den nächsten Wochen",
+  "priority": "Mittel",
+  "frequency": "Wöchentlich",
+  "data_source": "Excel / CSV",
+  "goal": "...",
+  "challenge": "...",
+  "expected": "...",
+  "description": "...",
+  "privacy_accepted": true,
+  "submitted_at": "2026-01-01T10:00:00.000Z",
+  "source": "Digitale Projektanalyse"
+}
+
+KUNDEN-E-MAIL TEXT:
+Vielen Dank für Ihre Anfrage.
+
+Hier können Sie Ihre Projektinformationen strukturiert übermitteln:
+https://barrydataanalytics.de/projektanalyse/
+
+Die Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele und Ihre Anforderungen besser zu verstehen.
+
+Mit freundlichen Grüßen
+Ahmed Barry
+Founder & Owner | Barry Data & Analytics
+
+📞 +49 1575 5355849
+📧 ahmed@barrydataanalytics.de
+🌐 www.barrydataanalytics.de
+📍 Bochum, NRW
+
+Data Analytics | Business Intelligence | Power BI | Automation
+
+
+
+
+============================================================
+-->
+
+
+<main class="page">
+  <section class="container">
+
+    <div id="formArea">
+      <span class="badge" id="badgeText"></span>
+      <h1 id="mainTitle"></h1>
+      <div class="intro" id="introText"></div>
+
+      <form id="projectForm" novalidate>
+        <input type="hidden" id="language" value="de">
+
+        <div class="section">
+          <div class="section-title" id="sectionContact"></div>
+
+          <div class="grid">
+            <div>
+              <label class="field-label" id="labelName" for="name"></label>
+              <input id="name" type="text">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelCompany" for="company"></label>
+              <input id="company" type="text">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelEmail" for="email"></label>
+              <input id="email" type="email">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPhone" for="phone"></label>
+              <input id="phone" type="tel">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionProject"></div>
+
+          <label class="field-label" id="labelProjectType"></label>
+          <div class="options" id="projectOptions"></div>
+          <p class="small-note" id="projectNote"></p>
+
+          <div class="grid" style="margin-top:18px;">
+            <div>
+              <label class="field-label" id="labelTimeline" for="timeline"></label>
+              <select id="timeline"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPriority" for="priority"></label>
+              <select id="priority"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelFrequency" for="frequency"></label>
+              <select id="frequency"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelDataSource" for="data_source"></label>
+              <select id="data_source"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionGoals"></div>
+
+          <div>
+            <label class="field-label" id="labelGoal" for="goal"></label>
+            <textarea id="goal"></textarea>
+          </div>
+
+          <div>
+            <label class="field-label" id="labelChallenge" for="challenge"></label>
+            <textarea id="challenge"></textarea>
+          </div>
+
+          <div>
+            <label class="field-label" id="labelExpected" for="expected"></label>
+            <textarea id="expected"></textarea>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionMore"></div>
+
+          <div>
+            <label class="field-label" id="labelDesc" for="desc"></label>
+            <textarea id="desc"></textarea>
+          </div>
+
+          <div class="privacy-box">
+            <label class="checkbox-line">
+              <input type="checkbox" id="privacyAccepted">
+              <span id="privacyAcceptedText"></span>
+            </label>
+
+            <details>
+              <summary id="privacySummary"></summary>
+              <p id="privacyDetails"></p>
+            </details>
+
+            <p id="contactInfoText"></p>
+          </div>
+        </div>
+
+        <div class="error" id="errorBox"></div>
+
+        <button type="submit" class="submit-btn" id="submitBtn"></button>
+      </form>
+    </div>
+
+    <div class="success" id="successScreen">
+      <div class="success-icon">✓</div>
+      <h2 id="successTitle"></h2>
+      <p id="successText"></p>
+      <p id="successText2"></p>
+    </div>
+
+  </section>
+</main>
+
+<script>
+const FLOW_URL = "DEINE_POWER_AUTOMATE_FLOW_URL_HIER_EINTRAGEN";
+
+const logo = document.getElementById("logo");
+logo.onerror = function () {
+  if (this.src.includes("/assets/")) {
+    this.src = "assets/img/logo-barry.png";
+  } else if (this.src.includes("assets/img")) {
+    this.src = "../assets/img/logo-barry.png";
+  }
+};
+
+const T = {
+  de: {
+    homeLink:"Homepage",
+    navBadge:"Digital. Strukturiert. Unverbindlich.",
+    badgeText:"Projektinformationen strukturiert übermitteln",
+    mainTitle:"Digitale Projektanalyse",
+    introText:`
+      <p>Vielen Dank für Ihr Interesse an <strong>Barry Data & Analytics</strong>.</p>
+      <p>Die folgenden Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele und Ihre Anforderungen besser zu verstehen. Auf dieser Grundlage können mögliche Lösungsansätze strukturiert vorbereitet und die weiteren Schritte gezielt geplant werden.</p>
+      <p>Die Informationen dienen ausschließlich der Projektanalyse und der Bearbeitung Ihres Anliegens.</p>
+      <p>Auch wenn einzelne Punkte noch nicht vollständig feststehen, können Sie Ihr Vorhaben einfach so beschreiben, wie es aktuell geplant ist.</p>
+      <p>Nach Prüfung Ihrer Angaben werde ich mich mit Ihnen in Verbindung setzen, um die weiteren Schritte abzustimmen.</p>
+    `,
+    labels:{
+      sectionContact:"Kontaktdaten",
+      labelName:"Name *",
+      labelCompany:"Unternehmen",
+      labelEmail:"E-Mail *",
+      labelPhone:"Telefonnummer",
+      sectionProject:"Projektübersicht",
+      labelProjectType:"Projektart auswählen",
+      projectNote:"Sie können mehrere Bereiche auswählen, falls Ihr Vorhaben mehrere Themen betrifft.",
+      labelTimeline:"Projektstart",
+      labelPriority:"Dringlichkeit",
+      labelFrequency:"Reporting-Frequenz",
+      labelDataSource:"Datenquellen",
+      sectionGoals:"Anforderungen & Ziele",
+      labelGoal:"Ziel des Projekts",
+      labelChallenge:"Aktuelle Herausforderung",
+      labelExpected:"Erwartetes Ergebnis",
+      sectionMore:"Zusätzliche Informationen",
+      labelDesc:"Kurze Projektbeschreibung",
+      privacyAcceptedText:"Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage und zur Projektanalyse verarbeitet werden.",
+      privacySummary:"Datenschutzhinweise anzeigen",
+      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Eine Weitergabe an Dritte erfolgt nicht.",
+      contactInfoText:"Zur Abstimmung der weiteren Schritte kann die Kontaktaufnahme per E-Mail oder telefonisch erfolgen.",
+      submitBtn:"Projektanalyse übermitteln",
+      successTitle:"Vielen Dank.",
+      successText:"Ihre digitale Projektanalyse wurde erfolgreich übermittelt.",
+      successText2:"Ihre Angaben werden nun geprüft und für die weitere Vorbereitung Ihres Anliegens berücksichtigt.",
+      errorBox:"Bitte prüfen Sie Ihre Angaben. Name, E-Mail und Datenschutz-Zustimmung sind erforderlich.",
+      invalidEmail:"Bitte geben Sie eine gültige E-Mail-Adresse ein."
+    },
+    placeholders:{
+      name:"Ihr Name",
+      company:"Unternehmen optional",
+      email:"Ihre E-Mail-Adresse",
+      phone:"Optional für Rückfragen",
+      goal:"Was möchten Sie mit dem Projekt erreichen?",
+      challenge:"Was funktioniert aktuell nicht gut oder kostet zu viel Zeit?",
+      expected:"Wie sieht ein gutes Ergebnis für Sie aus?",
+      desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten."
+    },
+    projects:[
+      "Sales Performance Dashboard",
+      "Marketing Performance Analyse",
+      "Logistik Performance & Bestandsanalyse",
+      "Operations Effizienz-Analyse",
+      "E-Commerce Funnel & Conversion Tracking",
+      "Industrie OEE & Produktionsreporting",
+      "Service & Callcenter Performance Dashboard",
+      "Forecasting & Nachfrage-Prognosen",
+      "Reporting-Automatisierung",
+      "Individuelle Datenlösung / Sonstiges Projekt"
+    ],
+    timeline:["Sofort","In den nächsten Wochen","In den nächsten Monaten","Noch unklar"],
+    priority:["Niedrig","Mittel","Hoch","Noch unklar"],
+    frequency:["Täglich","Wöchentlich","Monatlich","Quartalsweise","Jährlich","Noch unklar"],
+    dataSources:["Excel / CSV","Google Sheets","CRM-System","ERP-System","Website / Webshop","Datenbank / SQL","Power BI / bestehendes Dashboard","Noch unklar","Sonstige Datenquellen"],
+    sending:"Wird übermittelt..."
+  },
+
+  en: {
+    homeLink:"Homepage",
+    navBadge:"Digital. Structured. Non-binding.",
+    badgeText:"Submit project information in a structured way",
+    mainTitle:"Digital Project Analysis",
+    introText:`
+      <p>Thank you for your interest in <strong>Barry Data & Analytics</strong>.</p>
+      <p>The following information helps to better understand your project, goals and requirements. Based on your input, possible solution approaches can be prepared in a structured way.</p>
+      <p>The information is used exclusively for project analysis and the preparation of your request.</p>
+      <p>Even if some details are not yet fully defined, you can simply describe your project as it is currently planned.</p>
+      <p>After reviewing your information, I will get in touch with you to coordinate the next steps.</p>
+    `,
+    labels:{
+      sectionContact:"Contact details",
+      labelName:"Name *",
+      labelCompany:"Company",
+      labelEmail:"Email *",
+      labelPhone:"Phone",
+      sectionProject:"Project overview",
+      labelProjectType:"Select project type",
+      projectNote:"You can select multiple areas if your project includes several topics.",
+      labelTimeline:"Project start",
+      labelPriority:"Urgency",
+      labelFrequency:"Reporting frequency",
+      labelDataSource:"Data sources",
+      sectionGoals:"Requirements & goals",
+      labelGoal:"Project goal",
+      labelChallenge:"Current challenge",
+      labelExpected:"Expected result",
+      sectionMore:"Additional information",
+      labelDesc:"Short project description",
+      privacyAcceptedText:"I agree that my information may be processed to handle my request and analyze the project.",
+      privacySummary:"Show privacy information",
+      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. It will not be passed on to third parties.",
+      contactInfoText:"To coordinate the next steps, contact may be made by email or phone.",
+      submitBtn:"Submit project analysis",
+      successTitle:"Thank you.",
+      successText:"Your digital project analysis has been submitted successfully.",
+      successText2:"Your information will now be reviewed and used to prepare your request.",
+      errorBox:"Please check your information. Name, email and privacy consent are required.",
+      invalidEmail:"Please enter a valid email address."
+    },
+    placeholders:{
+      name:"Your name",
+      company:"Company optional",
+      email:"Your email address",
+      phone:"Optional for follow-up questions",
+      goal:"What do you want to achieve with the project?",
+      challenge:"What is not working well today or takes too much time?",
+      expected:"What would a successful result look like for you?",
+      desc:"Briefly describe your project in your own words."
+    },
+    projects:[
+      "Sales performance dashboard",
+      "Marketing performance analysis",
+      "Logistics performance & inventory analysis",
+      "Operations efficiency analysis",
+      "E-commerce funnel & conversion tracking",
+      "Industrial OEE & production reporting",
+      "Service & call center performance dashboard",
+      "Forecasting & demand predictions",
+      "Reporting automation",
+      "Custom data solution / other project"
+    ],
+    timeline:["Immediately","In the next weeks","In the next months","Not sure yet"],
+    priority:["Low","Medium","High","Not sure yet"],
+    frequency:["Daily","Weekly","Monthly","Quarterly","Yearly","Not sure yet"],
+    dataSources:["Excel / CSV","Google Sheets","CRM system","ERP system","Website / webshop","Database / SQL","Power BI / existing dashboard","Not sure yet","Other data sources"],
+    sending:"Submitting..."
+  },
+
+  fr: {
+    homeLink:"Accueil",
+    navBadge:"Digital. Structuré. Sans engagement.",
+    badgeText:"Transmettre les informations du projet de manière structurée",
+    mainTitle:"Analyse digitale du projet",
+    introText:`
+      <p>Merci pour votre intérêt pour <strong>Barry Data & Analytics</strong>.</p>
+      <p>Les informations suivantes permettent de mieux comprendre votre projet, vos objectifs et vos besoins. Sur cette base, des pistes de solution peuvent être préparées de manière structurée.</p>
+      <p>Les informations sont utilisées exclusivement pour l’analyse du projet et la préparation de votre demande.</p>
+      <p>Même si certains points ne sont pas encore totalement définis, vous pouvez simplement décrire votre projet tel qu’il est actuellement prévu.</p>
+      <p>Après examen de vos informations, je prendrai contact avec vous afin de coordonner les prochaines étapes.</p>
+    `,
+    labels:{
+      sectionContact:"Coordonnées",
+      labelName:"Nom *",
+      labelCompany:"Entreprise",
+      labelEmail:"E-mail *",
+      labelPhone:"Téléphone",
+      sectionProject:"Aperçu du projet",
+      labelProjectType:"Choisir le type de projet",
+      projectNote:"Vous pouvez sélectionner plusieurs domaines si votre projet concerne plusieurs sujets.",
+      labelTimeline:"Démarrage du projet",
+      labelPriority:"Urgence",
+      labelFrequency:"Fréquence de reporting",
+      labelDataSource:"Sources de données",
+      sectionGoals:"Besoins & objectifs",
+      labelGoal:"Objectif du projet",
+      labelChallenge:"Défi actuel",
+      labelExpected:"Résultat attendu",
+      sectionMore:"Informations complémentaires",
+      labelDesc:"Brève description du projet",
+      privacyAcceptedText:"J’accepte que mes informations soient traitées pour répondre à ma demande et analyser le projet.",
+      privacySummary:"Afficher les informations de confidentialité",
+      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. Elles ne sont pas transmises à des tiers.",
+      contactInfoText:"Pour coordonner les prochaines étapes, le contact peut se faire par e-mail ou par téléphone.",
+      submitBtn:"Transmettre l’analyse",
+      successTitle:"Merci.",
+      successText:"Votre analyse digitale de projet a été transmise avec succès.",
+      successText2:"Vos informations seront maintenant examinées et utilisées pour préparer votre demande.",
+      errorBox:"Veuillez vérifier vos informations. Le nom, l’e-mail et le consentement sont obligatoires.",
+      invalidEmail:"Veuillez saisir une adresse e-mail valide."
+    },
+    placeholders:{
+      name:"Votre nom",
+      company:"Entreprise optionnelle",
+      email:"Votre adresse e-mail",
+      phone:"Optionnel pour les questions",
+      goal:"Quel objectif souhaitez-vous atteindre avec le projet ?",
+      challenge:"Qu’est-ce qui ne fonctionne pas bien aujourd’hui ou prend trop de temps ?",
+      expected:"À quoi ressemblerait un bon résultat pour vous ?",
+      desc:"Décrivez brièvement votre projet avec vos propres mots."
+    },
+    projects:[
+      "Tableau de bord de performance commerciale",
+      "Analyse de performance marketing",
+      "Performance logistique & analyse des stocks",
+      "Analyse d’efficacité opérationnelle",
+      "Tunnel e-commerce & suivi des conversions",
+      "OEE industriel & reporting de production",
+      "Tableau de bord service & call center",
+      "Prévisions & analyses de la demande",
+      "Automatisation du reporting",
+      "Solution de données personnalisée / autre projet"
+    ],
+    timeline:["Immédiatement","Dans les prochaines semaines","Dans les prochains mois","Pas encore sûr"],
+    priority:["Faible","Moyenne","Élevée","Pas encore sûr"],
+    frequency:["Quotidien","Hebdomadaire","Mensuel","Trimestriel","Annuel","Pas encore sûr"],
+    dataSources:["Excel / CSV","Google Sheets","Système CRM","Système ERP","Site web / boutique en ligne","Base de données / SQL","Power BI / tableau de bord existant","Pas encore sûr","Autres sources de données"],
+    sending:"Transmission..."
+  }
+};
+
+function setSelect(id, arr){
+  const el=document.getElementById(id);
+  el.innerHTML="";
+  arr.forEach(v=>{
+    const o=document.createElement("option");
+    o.value=v;
+    o.textContent=v;
+    el.appendChild(o);
+  });
+}
+
+function setProjects(arr){
+  const box=document.getElementById("projectOptions");
+  box.innerHTML="";
+  arr.forEach(v=>{
+    const label=document.createElement("label");
+    label.className="choice";
+    label.innerHTML=`<input type="checkbox" name="project_type" value="${v}"><span>${v}</span>`;
+    box.appendChild(label);
+  });
+}
+
+function setLang(lang){
+  const t=T[lang];
+
+  document.documentElement.lang=lang;
+  document.getElementById("language").value=lang;
+
+  document.querySelectorAll(".lang-btn").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.lang===lang);
+  });
+
+  document.getElementById("homeLink").textContent=t.homeLink;
+  document.getElementById("navBadge").textContent=t.navBadge;
+  document.getElementById("badgeText").textContent=t.badgeText;
+  document.getElementById("mainTitle").textContent=t.mainTitle;
+  document.getElementById("introText").innerHTML=t.introText;
+
+  Object.keys(t.labels).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent=t.labels[id];
+  });
+
+  Object.keys(t.placeholders).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.placeholder=t.placeholders[id];
+  });
+
+  setProjects(t.projects);
+  setSelect("timeline",t.timeline);
+  setSelect("priority",t.priority);
+  setSelect("frequency",t.frequency);
+  setSelect("data_source",t.dataSources);
+}
+
+function isValidEmail(email){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+document.querySelectorAll(".lang-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>setLang(btn.dataset.lang));
+});
+
+document.getElementById("projectForm").addEventListener("submit",async function(e){
+  e.preventDefault();
+
+  const lang=document.getElementById("language").value;
+  const t=T[lang];
+
+  const errorBox=document.getElementById("errorBox");
+  const submitBtn=document.getElementById("submitBtn");
+
+  errorBox.style.display="none";
+
+  const data={
+    language:lang,
+    name:document.getElementById("name").value.trim(),
+    company:document.getElementById("company").value.trim(),
+    email:document.getElementById("email").value.trim(),
+    phone:document.getElementById("phone").value.trim(),
+    project_type:[...document.querySelectorAll('input[name="project_type"]:checked')].map(x=>x.value),
+    timeline:document.getElementById("timeline").value,
+    priority:document.getElementById("priority").value,
+    frequency:document.getElementById("frequency").value,
+    data_source:document.getElementById("data_source").value,
+    goal:document.getElementById("goal").value.trim(),
+    challenge:document.getElementById("challenge").value.trim(),
+    expected:document.getElementById("expected").value.trim(),
+    description:document.getElementById("desc").value.trim(),
+    privacy_accepted:document.getElementById("privacyAccepted").checked,
+    submitted_at:new Date().toISOString(),
+    source:"Digitale Projektanalyse"
+  };
+
+  if(!data.name || !data.email || !data.privacy_accepted){
+    errorBox.textContent=t.labels.errorBox;
+    errorBox.style.display="block";
+    return;
+  }
+
+  if(!isValidEmail(data.email)){
+    errorBox.textContent=t.labels.invalidEmail;
+    errorBox.style.display="block";
+    return;
+  }
+
+  submitBtn.disabled=true;
+  submitBtn.textContent=t.sending;
+
+  try{
+    if(FLOW_URL==="DEINE_POWER_AUTOMATE_FLOW_URL_HIER_EINTRAGEN"){
+      console.log("Power Automate Payload:",data);
+    }else{
+      await fetch(FLOW_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+      });
+    }
+
+    document.getElementById("successTitle").textContent=t.labels.successTitle;
+    document.getElementById("successText").textContent=t.labels.successText;
+    document.getElementById("successText2").textContent=t.labels.successText2;
+
+    document.getElementById("projectForm").reset();
+    document.getElementById("formArea").style.display="none";
+    document.getElementById("successScreen").style.display="block";
+
+    window.scrollTo({top:0,behavior:"smooth"});
+
+  }catch(err){
+    console.error(err);
+    errorBox.textContent =
+      lang==="de" ? "Beim Übermitteln ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut." :
+      lang==="en" ? "An error occurred while submitting. Please try again." :
+      "Une erreur s’est produite lors de la transmission. Veuillez réessayer.";
+
+    errorBox.style.display="block";
+    submitBtn.disabled=false;
+    submitBtn.textContent=t.labels.submitBtn;
+  }
+});
+
+setLang("de");
+</script>
+
+</body>
+</html>
