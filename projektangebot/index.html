@@ -756,6 +756,146 @@ const providerSignature = setupSignature("providerSigCanvas");
 document.getElementById("clearSigs").addEventListener("click", () => { customerSignature.clear(); providerSignature.clear(); });
 
 function showError(msg) { const box=document.getElementById("errorBox"); box.textContent=msg; box.classList.remove("hidden"); }
+
+function snapshotEscape(value) {
+  return String(value === undefined || value === null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+function snapshotMultiline(value) {
+  return snapshotEscape(value || "-").replace(/\n/g, "<br>");
+}
+function snapshotBoolean(value) {
+  return value ? "Ja" : "Nein";
+}
+function snapshotRow(label, value) {
+  return `<tr><td>${snapshotEscape(label)}</td><td>${snapshotMultiline(value)}</td></tr>`;
+}
+function snapshotText(key) {
+  return (TEXT[lang] && TEXT[lang][key]) ? TEXT[lang][key] : key;
+}
+function snapshotProjectDetails(projects) {
+  const selected = Array.isArray(projects) ? projects : [];
+  if (!selected.length) return "<p>-</p>";
+  const details = PROJECT_DETAILS[lang] || PROJECT_DETAILS.de;
+  return selected.map(project => {
+    const found = details.find(x => x[0] === project) || [];
+    const scope = found[1] || "";
+    const rec = found[2] || "";
+    return `<div class="project-box"><h3>${snapshotEscape(project)}</h3><p>${snapshotMultiline(scope)}</p>${rec ? `<p><strong>Empfehlung:</strong> ${snapshotMultiline(rec)}</p>` : ""}</div>`;
+  }).join("\n");
+}
+function buildOfferSnapshotHtml(payload) {
+  const selected = Array.isArray(payload.selectedProjects) ? payload.selectedProjects : [];
+  const selectedText = selected.length ? selected.join(", ") : "-";
+  const providerSignature = payload.providerSignatureBase64 ? `<img src="data:image/png;base64,${payload.providerSignatureBase64}" alt="Unterschrift Auftragnehmer">` : `<p class="muted">Keine Auftragnehmer-Unterschrift im digitalen Formular hinterlegt.</p>`;
+  const agreementRows = [1,2,3,4,5,6,7].map(i => `
+    <section class="clause">
+      <h3>${snapshotEscape(snapshotText(`p${i}Title`))}</h3>
+      <p>${snapshotMultiline(snapshotText(`p${i}Text`))}</p>
+    </section>`).join("\n");
+  return `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${snapshotEscape(payload.projectNumber || "Projekt")}_Annahme_Nachweis</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;color:#111827;background:#fff;margin:36px;line-height:1.55;font-size:14px}
+    h1{font-size:26px;margin:0 0 6px;color:#0f172a} h2{font-size:18px;margin:28px 0 10px;color:#0f172a;border-bottom:1px solid #e5e7eb;padding-bottom:6px} h3{font-size:15px;margin:0 0 6px;color:#111827}
+    .meta{color:#6b7280;font-size:12px;margin-bottom:22px}.badge{display:inline-block;background:#ecfeff;border:1px solid #a5f3fc;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;color:#155e75;margin-bottom:12px}
+    table{width:100%;border-collapse:collapse;margin:8px 0 18px}td{border:1px solid #e5e7eb;padding:9px;vertical-align:top}td:first-child{width:32%;background:#f9fafb;font-weight:700;color:#374151}
+    .project-box,.signature-box,.legal-box{border:1px solid #e5e7eb;background:#f9fafb;border-radius:10px;padding:14px;margin:10px 0}.signature-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.signature-box img{max-width:100%;max-height:180px;display:block;background:#fff;border:1px solid #e5e7eb;margin-top:10px}.muted{color:#6b7280}.footer{margin-top:36px;border-top:1px solid #e5e7eb;padding-top:14px;color:#6b7280;font-size:12px}.clause{border-bottom:1px solid #f3f4f6;padding:10px 0}
+    @media print{body{margin:18mm}.signature-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <div class="badge">Barry Data & Analytics – digitaler Nachweis</div>
+  <h1>Annahme-Nachweis zum Projektangebot & zur Projektvereinbarung</h1>
+  <div class="meta">Automatisch erstellt am ${snapshotEscape(new Date().toLocaleString("de-DE"))}. Annahmezeitpunkt laut Formular: ${snapshotEscape(payload.acceptedAt || "-")}</div>
+
+  <h2>1. Projektpartner</h2>
+  <table>
+    ${snapshotRow("Auftraggeber / Kunde", payload.customerName)}
+    ${snapshotRow("Unternehmen", payload.company)}
+    ${snapshotRow("E-Mail", payload.customerEmail)}
+    ${snapshotRow("Telefon", payload.phone)}
+    ${snapshotRow("Kundenanschrift", payload.customerAddress)}
+    ${snapshotRow("Auftragnehmer", "Barry Data & Analytics – Ahmed Barry, Founder & Owner – Markstraße 335b, 44801 Bochum – ahmed@barrydataanalytics.de – +49 1575 5355849")}
+  </table>
+
+  <h2>2. Referenznummern</h2>
+  <table>
+    ${snapshotRow("Kundennummer", payload.customerId)}
+    ${snapshotRow("Projektnummer", payload.projectNumber)}
+    ${snapshotRow("Angebotsnummer", payload.offerNumber)}
+    ${snapshotRow("Rechnungsnummer", payload.invoiceId)}
+  </table>
+
+  <h2>3. Angaben aus der Projektanalyse</h2>
+  <table>
+    ${snapshotRow("Projektstart", payload.timeline)}
+    ${snapshotRow("Dringlichkeit", payload.priority)}
+    ${snapshotRow("Reporting-Frequenz", payload.frequency)}
+    ${snapshotRow("Datenquellen", payload.dataSource)}
+    ${snapshotRow("Ziel des Projekts", payload.goal)}
+    ${snapshotRow("Aktuelle Herausforderung", payload.challenge)}
+    ${snapshotRow("Erwartetes Ergebnis", payload.expected)}
+    ${snapshotRow("Projektbeschreibung", payload.description)}
+  </table>
+
+  <h2>4. Angebot & Leistungsumfang</h2>
+  <table>
+    ${snapshotRow("Projekt / Leistung", payload.projectTitle)}
+    ${snapshotRow("Ausgewählte Projektbereiche", selectedText)}
+    ${snapshotRow("Fachliche Empfehlung", payload.recommendation)}
+    ${snapshotRow("Leistungsumfang", payload.scope)}
+    ${snapshotRow("Änderungswunsch / Ergänzung", payload.changeRequest)}
+  </table>
+  ${snapshotProjectDetails(selected)}
+
+  <h2>5. Preis, Laufzeit & Zahlung</h2>
+  <table>
+    ${snapshotRow("Projektpreis", payload.price)}
+    ${snapshotRow("Zahlungsbedingungen", payload.paymentTerms)}
+    ${snapshotRow("Geplante Umsetzungsdauer", payload.deliveryTime)}
+    ${snapshotRow("Angebot gültig bis", payload.validUntil)}
+  </table>
+
+  <h2>6. Projektvereinbarung</h2>
+  <div class="legal-box">${agreementRows}</div>
+
+  <h2>7. Hinweise zur Dokumentation</h2>
+  <table>
+    ${snapshotRow(snapshotText("sectionInfoLegal"), snapshotText("infoLegalText"))}
+    ${snapshotRow("Archivierung", snapshotText("archiveText"))}
+  </table>
+
+  <h2>8. Digitale Annahme</h2>
+  <table>
+    ${snapshotRow("Annahmezeitpunkt", payload.acceptedAt)}
+    ${snapshotRow("Name der unterzeichnenden Person", payload.signerName)}
+    ${snapshotRow("Rolle / Position", payload.signerRole)}
+    ${snapshotRow(snapshotText("understoodScope"), snapshotBoolean(payload.understoodScope))}
+    ${snapshotRow(snapshotText("acceptTerms"), snapshotBoolean(payload.acceptTerms))}
+    ${snapshotRow(snapshotText("privacyAccepted"), snapshotBoolean(payload.privacyAccepted))}
+    ${snapshotRow("Link zum digitalen Angebot", payload.pageUrl)}
+  </table>
+
+  <h2>9. Unterschriften</h2>
+  <div class="signature-grid">
+    <div class="signature-box"><strong>Unterschrift Auftraggeber / Kunde</strong><img src="data:image/png;base64,${payload.customerSignatureBase64}" alt="Unterschrift Kunde"></div>
+    <div class="signature-box"><strong>Unterschrift Auftragnehmer – Barry Data & Analytics</strong>${providerSignature}</div>
+  </div>
+
+  <div class="footer">Dieser Nachweis wurde automatisch im Rahmen der digitalen Angebotsannahme erstellt. Barry Data & Analytics – Ahmed Barry – www.barrydataanalytics.de</div>
+</body>
+</html>`;
+}
+
 function showSuccess() {
   document.body.classList.add("accepted");
   const title = lang === "de" ? "Vielen Dank. Ihr Angebot und die Projektvereinbarung wurden angenommen." : lang === "en" ? "Thank you. Your offer and project agreement have been accepted." : "Merci. Votre offre et l’accord de projet ont été acceptés.";
@@ -778,7 +918,7 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
   btn.disabled = true; btn.textContent = t.sending;
   document.getElementById("errorBox").classList.add("hidden");
   const payload = {
-    formType:"digital_offer_project_agreement_final_v4_optimized",
+    formType:"digital_offer_project_agreement_final_v5_snapshot",
     offerNumber:document.getElementById("offerNumber").value,
     projectNumber:document.getElementById("projectNumber").value,
     customerId:document.getElementById("customerId") ? document.getElementById("customerId").value : "BDA-C-0001",
@@ -827,10 +967,13 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
     acceptedAt:new Date().toISOString(),
     pageUrl:window.location.href
   };
+  payload.offerSnapshotHtml = buildOfferSnapshotHtml(payload);
+  payload.offerSnapshotText = "Vollständiger Annahme-Nachweis wurde als HTML im Feld offerSnapshotHtml übertragen.";
   try {
     const hasRealFlowUrl = POWER_AUTOMATE_URL && !POWER_AUTOMATE_URL.includes("HIER_DEINE_POWER_AUTOMATE_WEBHOOK_URL_EINFUEGEN");
     if (hasRealFlowUrl) {
-      fetch(POWER_AUTOMATE_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)}).catch(err => console.warn("Power Automate konnte später nicht erreicht werden:", err));
+      const response = await fetch(POWER_AUTOMATE_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)});
+      if (!response.ok) throw new Error("Power Automate hat die Annahme nicht erfolgreich verarbeitet.");
     }
 
 
