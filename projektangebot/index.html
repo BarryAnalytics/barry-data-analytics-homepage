@@ -384,17 +384,31 @@ const DETAILS = {
 const params = new URLSearchParams(window.location.search);
 let lang = params.get("lang") || "de";
 if(!["de","en","fr"].includes(lang)) lang = "de";
+
+// Persönliche Angebotslinks können mehrere Kennungen enthalten.
+// Wichtig für mehrere Kunden / mehrere Angebote: projectNumber ist eindeutiger als nur email.
+const urlEmail = params.get("Email") || params.get("email") || "";
+const urlProjectNumber = params.get("ProjectNumber4") || params.get("projectNumber") || params.get("projectNo") || params.get("id") || "";
+const urlCustomerId = params.get("CustomerID3") || params.get("customerId") || "";
+
 const preset = {
-  offer: params.get("offer") || "BDA-O-2026-0001",
-  projectNo: params.get("projectNo") || "BDA-P-2026-0001",
+  offer: params.get("OfferNumber") || params.get("offerNumber") || params.get("offer") || "BDA-O-2026-0001",
+  projectNo: urlProjectNumber || "BDA-P-2026-0001",
   name: params.get("name") || "",
   company: params.get("company") || "",
-  email: params.get("email") || "",
+  email: urlEmail,
   amount: params.get("amount") || "",
   validUntil: params.get("validUntil") || "",
-  project: params.get("project") || "",
-  customerId: params.get("customerId") || "BDA-C-0001",
+  project: params.get("project") || params.get("projectType") || "",
+  customerId: urlCustomerId || "BDA-C-0001",
   invoiceId: params.get("invoiceId") || "BDA-R-2026-0001"
+};
+
+const offerLookup = {
+  email: urlEmail,
+  projectNumber: urlProjectNumber,
+  customerId: urlCustomerId,
+  lookup: urlProjectNumber || urlEmail || urlCustomerId
 };
 
 function firstValue(obj, keys) {
@@ -570,23 +584,23 @@ function applyOfferData(raw) {
 
 async function loadOfferDataFromFlow() {
   const hasDataFlowUrl = OFFER_DATA_FLOW_URL && !OFFER_DATA_FLOW_URL.includes("HIER_DEINE_POWER_AUTOMATE_DATENABRUF_URL_EINFUEGEN");
-  const lookup = params.get("id") || params.get("projectNumber") || params.get("projectNo") || params.get("email") || preset.email;
+  const lookup = offerLookup.lookup || preset.email;
   if (!hasDataFlowUrl || !lookup) return;
 
   try {
-    const projectNumberValue = params.get("ProjectNumber4") || params.get("projectNumber") || params.get("projectNo") || params.get("project") || "";
-    const emailValue = params.get("Email") || params.get("email") || preset.email || "";
+    const projectNumberValue = offerLookup.projectNumber || (document.getElementById("projectNumber") ? document.getElementById("projectNumber").value : "");
+    const emailValue = offerLookup.email || preset.email || "";
 
     const response = await fetch(OFFER_DATA_FLOW_URL, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         ProjectNumber4: projectNumberValue,
-        CustomerID3: params.get("CustomerID3") || params.get("customerId") || preset.customerId || "",
+        CustomerID3: offerLookup.customerId || preset.customerId || "",
         Email: emailValue,
 
         // Zusätzliche Varianten für spätere Flexibilität
-        id: params.get("id") || "",
+        id: projectNumberValue || params.get("id") || "",
         projectNumber: projectNumberValue,
         projectNo: projectNumberValue,
         email: emailValue,
@@ -896,6 +910,16 @@ function buildOfferSnapshotHtml(payload) {
 </html>`;
 }
 
+function buildPersonalOfferLink(email, projectNumber) {
+  const url = new URL(window.location.origin + window.location.pathname);
+  const cleanProjectNumber = String(projectNumber || "").trim();
+  const cleanEmail = String(email || "").trim();
+  if (cleanProjectNumber) url.searchParams.set("projectNumber", cleanProjectNumber);
+  if (cleanEmail) url.searchParams.set("email", cleanEmail);
+  if (lang) url.searchParams.set("lang", lang);
+  return url.toString();
+}
+
 function showSuccess() {
   document.body.classList.add("accepted");
   const title = lang === "de" ? "Vielen Dank. Ihr Angebot und die Projektvereinbarung wurden angenommen." : lang === "en" ? "Thank you. Your offer and project agreement have been accepted." : "Merci. Votre offre et l’accord de projet ont été acceptés.";
@@ -924,6 +948,9 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
     customerId:document.getElementById("customerId") ? document.getElementById("customerId").value : "BDA-C-0001",
     offerId:document.getElementById("offerNumber").value,
     invoiceId:document.getElementById("invoiceId") ? document.getElementById("invoiceId").value : "BDA-R-2026-0001",
+    sourceLookup:offerLookup.lookup || "",
+    sourceProjectNumber:offerLookup.projectNumber || document.getElementById("projectNumber").value || "",
+    sourceEmail:offerLookup.email || document.getElementById("customerEmail").value.trim() || "",
     language:lang,
     customerName:document.getElementById("customerName").value.trim(),
     company:document.getElementById("company").value.trim(),
@@ -965,7 +992,8 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
     customerSignatureBase64:customerSignature.dataUrl().replace(/^data:image\/png;base64,/,""),
     providerSignatureBase64:providerSignature.dataUrl().replace(/^data:image\/png;base64,/,""),
     acceptedAt:new Date().toISOString(),
-    pageUrl:window.location.href
+    pageUrl:window.location.href,
+    personalOfferLink:buildPersonalOfferLink(document.getElementById("customerEmail").value.trim(), document.getElementById("projectNumber").value)
   };
   payload.offerSnapshotHtml = buildOfferSnapshotHtml(payload);
   payload.offerSnapshotText = "Vollständiger Annahme-Nachweis wurde als HTML im Feld offerSnapshotHtml übertragen.";
@@ -985,10 +1013,13 @@ BARRY DATA & ANALYTICS – WICHTIGE INTERNE LINKS / NOTIZEN
 Öffentlicher Projektangebot-Link:
 https://www.barrydataanalytics.de/projektangebot/
 
-Projektangebot-Link mit Kundendaten:
-https://www.barrydataanalytics.de/projektangebot/?email=KUNDENEMAIL
+Projektangebot-Link mit Kundendaten – empfohlen eindeutig mit Projektnummer + E-Mail:
+https://www.barrydataanalytics.de/projektangebot/?projectNumber=PROJEKTNUMMER&email=KUNDENEMAIL
 
 Beispiel:
+https://www.barrydataanalytics.de/projektangebot/?projectNumber=BDA-P-2026-0001&email=kunde%40firma.de
+
+E-Mail-only Link funktioniert weiterhin, ist aber bei mehreren Angeboten derselben E-Mail weniger eindeutig:
 https://www.barrydataanalytics.de/projektangebot/?email=kunde%40firma.de
 
 Flow 4 – Datenabruf Projektanalyse → Angebot:
