@@ -941,20 +941,43 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
   const btn = document.getElementById("submitBtn");
   btn.disabled = true; btn.textContent = t.sending;
   document.getElementById("errorBox").classList.add("hidden");
+  const resolvedProjectNumber = (
+    offerLookup.projectNumber ||
+    params.get("ProjectNumber4") ||
+    params.get("projectNumber") ||
+    params.get("projectNo") ||
+    params.get("id") ||
+    (document.getElementById("projectNumber") ? document.getElementById("projectNumber").value : "")
+  ).trim();
+
+  const resolvedCustomerEmail = (
+    offerLookup.email ||
+    params.get("Email") ||
+    params.get("email") ||
+    (document.getElementById("customerEmail") ? document.getElementById("customerEmail").value : "")
+  ).trim();
+
+  if (!resolvedProjectNumber) {
+    showError("Interner Fehler: Die Projektnummer fehlt. Bitte öffnen Sie das Angebot erneut über den persönlichen Angebotslink.");
+    btn.disabled = false;
+    btn.textContent = t.submit;
+    return;
+  }
+
   const payload = {
     formType:"digital_offer_project_agreement_final_v5_snapshot",
     offerNumber:document.getElementById("offerNumber").value,
-    projectNumber:document.getElementById("projectNumber").value,
+    projectNumber:resolvedProjectNumber,
     customerId:document.getElementById("customerId") ? document.getElementById("customerId").value : "",
     offerId:document.getElementById("offerNumber").value,
     invoiceId:document.getElementById("invoiceId") ? document.getElementById("invoiceId").value : "",
-    sourceLookup:offerLookup.lookup || "",
-    sourceProjectNumber:offerLookup.projectNumber || document.getElementById("projectNumber").value || "",
-    sourceEmail:offerLookup.email || document.getElementById("customerEmail").value.trim() || "",
+    sourceLookup:offerLookup.lookup || resolvedProjectNumber || resolvedCustomerEmail || "",
+    sourceProjectNumber:resolvedProjectNumber,
+    sourceEmail:resolvedCustomerEmail,
     language:lang,
     customerName:document.getElementById("customerName").value.trim(),
     company:document.getElementById("company").value.trim(),
-    customerEmail:document.getElementById("customerEmail").value.trim(),
+    customerEmail:resolvedCustomerEmail,
     customerAddress:document.getElementById("customerAddress").value.trim(),
     timeline:document.getElementById("timeline").value,
     priority:document.getElementById("priority").value,
@@ -993,7 +1016,7 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
     providerSignatureBase64:providerSignature.dataUrl().replace(/^data:image\/png;base64,/,""),
     acceptedAt:new Date().toISOString(),
     pageUrl:window.location.href,
-    personalOfferLink:buildPersonalOfferLink(document.getElementById("customerEmail").value.trim(), document.getElementById("projectNumber").value)
+    personalOfferLink:buildPersonalOfferLink(resolvedCustomerEmail, resolvedProjectNumber)
   };
   payload.offerSnapshotHtml = buildOfferSnapshotHtml(payload);
   payload.offerSnapshotText = "Vollständiger Annahme-Nachweis wurde als HTML im Feld offerSnapshotHtml übertragen.";
