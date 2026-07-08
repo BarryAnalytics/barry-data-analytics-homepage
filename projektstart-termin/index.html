@@ -227,6 +227,17 @@ button:disabled{opacity:.6;cursor:not-allowed}
   font-size:13px;
   font-weight:800;
 }
+
+.time-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.time-pair select{
+  text-align:center;
+  font-weight:800;
+}
+
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -290,7 +301,7 @@ button:disabled{opacity:.6;cursor:not-allowed}
       <input type="hidden" id="projectNumber" name="projectNumber">
       <input type="hidden" id="customerId" name="customerId">
       <input type="hidden" id="lang" name="lang">
-      <input type="hidden" id="pageVersion" name="pageVersion" value="BDA-Projektstart-Termin-Ultimate-v3">
+      <input type="hidden" id="pageVersion" name="pageVersion" value="BDA-Projektstart-Termin-Ultimate-v5-hour-minute">
 
       <div class="section">
         <div class="section-title" data-i18n="section1">1. Kontakt & Projekt</div>
@@ -342,7 +353,11 @@ button:disabled{opacity:.6;cursor:not-allowed}
               </div>
               <div>
                 <label for="preferredTime" data-i18n="timeLabel">Uhrzeit</label>
-                <input id="preferredTime" name="preferredTime" type="time" required>
+                <input id="preferredTime" name="preferredTime" type="hidden" required>
+                <div class="time-pair">
+                  <select id="preferredHour" aria-label="Stunde" required></select>
+                  <select id="preferredMinute" aria-label="Minute" required></select>
+                </div>
               </div>
             </div>
           </div>
@@ -356,7 +371,11 @@ button:disabled{opacity:.6;cursor:not-allowed}
               </div>
               <div>
                 <label for="alternativeTime" data-i18n="timeLabel">Uhrzeit</label>
-                <input id="alternativeTime" name="alternativeTime" type="time">
+                <input id="alternativeTime" name="alternativeTime" type="hidden">
+                <div class="time-pair">
+                  <select id="alternativeHour" aria-label="Stunde"></select>
+                  <select id="alternativeMinute" aria-label="Minute"></select>
+                </div>
               </div>
             </div>
           </div>
@@ -621,7 +640,62 @@ function today(){
   const off = d.getTimezoneOffset();
   return new Date(d.getTime() - off*60000).toISOString().split("T")[0];
 }
+
+function fillTimeOptions(){
+  const hourSelects = ["preferredHour", "alternativeHour"];
+  const minuteSelects = ["preferredMinute", "alternativeMinute"];
+
+  hourSelects.forEach(id => {
+    const select = el(id);
+    if(!select) return;
+    select.innerHTML = "";
+    const empty = document.createElement("option");
+    empty.value = "";
+    empty.textContent = "--";
+    select.appendChild(empty);
+
+    // Maximale Flexibilität: 00 bis 23 Uhr.
+    for(let h = 0; h <= 23; h++){
+      const value = String(h).padStart(2,"0");
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      select.appendChild(option);
+    }
+  });
+
+  minuteSelects.forEach(id => {
+    const select = el(id);
+    if(!select) return;
+    select.innerHTML = "";
+    const empty = document.createElement("option");
+    empty.value = "";
+    empty.textContent = "--";
+    select.appendChild(empty);
+
+    // 5-Minuten-Schritte: 00, 05, 10 ... 55.
+    for(let m = 0; m <= 55; m += 5){
+      const value = String(m).padStart(2,"0");
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      select.appendChild(option);
+    }
+  });
+}
+
+function updateTimeValues(){
+  const ph = el("preferredHour") ? el("preferredHour").value : "";
+  const pm = el("preferredMinute") ? el("preferredMinute").value : "";
+  const ah = el("alternativeHour") ? el("alternativeHour").value : "";
+  const am = el("alternativeMinute") ? el("alternativeMinute").value : "";
+
+  if(el("preferredTime")) el("preferredTime").value = ph && pm ? `${ph}:${pm}` : "";
+  if(el("alternativeTime")) el("alternativeTime").value = ah && am ? `${ah}:${am}` : "";
+}
+
 function init(){
+  fillTimeOptions();
   el("homeLinkTop").href = HOME_URL;
   el("homeBtn").href = HOME_URL;
   el("footerHome").href = HOME_URL;
@@ -702,8 +776,15 @@ function showSuccess(data){
 document.querySelectorAll(".lang-btn").forEach(b => {
   b.addEventListener("click", () => { lang = b.dataset.lang; tr(); });
 });
+
+["preferredHour","preferredMinute","alternativeHour","alternativeMinute"].forEach(id => {
+  const node = el(id);
+  if(node) node.addEventListener("change", updateTimeValues);
+});
+
 el("startForm").addEventListener("submit", async e => {
   e.preventDefault();
+  updateTimeValues();
   const t = TEXT[lang] || TEXT.de;
 
   if(!valid()){
