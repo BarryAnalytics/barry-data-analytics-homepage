@@ -390,7 +390,7 @@ KUNDENLINK:
 https://barrydataanalytics.de/projektangebot/?email=kunde@firma.de
 https://www.barrydataanalytics.de/projektangebot/?email=DEINE-EXCEL-EMAIL
 KUNDENLINK:
-https://barrydataanalytics.de/projektanalyse/
+https://barrydataanalytics.de/projektanalyse/?projectNumber=BDA-P-2026-0025&email=kunde@firma.de
 
 HOMEPAGE:
 https://barrydataanalytics.de
@@ -411,6 +411,17 @@ timeline
 priority
 frequency
 data_source
+company_size
+user_count
+reports_exist
+automation
+collaboration_model
+process_focus
+work_environment
+preferred_meeting_mode
+preferred_contact_date
+preferred_contact_time
+preferred_contact_note
 goal
 challenge
 expected
@@ -431,6 +442,11 @@ BEISPIEL-BODY, DER AN POWER AUTOMATE GESENDET WIRD:
   "priority": "Mittel",
   "frequency": "Wöchentlich",
   "data_source": "Excel / CSV",
+  "company_size": "11–25 Mitarbeitende",
+  "user_count": "2–5 Personen",
+  "reports_exist": "Ja, aber manuell",
+  "automation": "Automatisierung gewünscht",
+  "collaboration_model": "Einmaliges Projekt",
   "goal": "...",
   "challenge": "...",
   "expected": "...",
@@ -446,7 +462,7 @@ Vielen Dank für Ihre Anfrage.
 Hier können Sie Ihre Projektinformationen strukturiert übermitteln:
 https://barrydataanalytics.de/projektanalyse/
 
-Die Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele und Ihre Anforderungen besser zu verstehen.
+Die Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele, Ihre Anforderungen und den voraussichtlichen Aufwand besser zu verstehen.
 
 Mit freundlichen Grüßen
 Ahmed Barry
@@ -457,7 +473,7 @@ Founder & Owner | Barry Data & Analytics
 🌐 www.barrydataanalytics.de
 📍 Standort: Bochum (NRW) – Remote & international
 
-Data Analytics | Business Intelligence | Power BI | Automation
+Data Analytics | Business Intelligence | Power BI | Power Query | Automation
 
 
 
@@ -535,6 +551,74 @@ Data Analytics | Business Intelligence | Power BI | Automation
         </div>
 
         <div class="section">
+          <div class="section-title" id="sectionScope"></div>
+
+          <div class="grid">
+            <div>
+              <label class="field-label" id="labelCompanySize" for="company_size"></label>
+              <select id="company_size"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelUserCount" for="user_count"></label>
+              <select id="user_count"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelReportsExist" for="reports_exist"></label>
+              <select id="reports_exist"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelAutomation" for="automation"></label>
+              <select id="automation"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelCollaborationModel" for="collaboration_model"></label>
+              <select id="collaboration_model"></select>
+            </div>
+          </div>
+
+          <p class="small-note" id="scopeNote"></p>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionProcess"></div>
+
+          <label class="field-label" id="labelProcessFocus"></label>
+          <div class="options" id="processOptions"></div>
+          <p class="small-note" id="processNote"></p>
+
+          <div class="grid" style="margin-top:18px;">
+            <div>
+              <label class="field-label" id="labelWorkEnvironment" for="work_environment"></label>
+              <select id="work_environment"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelMeetingMode" for="preferred_meeting_mode"></label>
+              <select id="preferred_meeting_mode"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPreferredDate" for="preferred_contact_date"></label>
+              <input id="preferred_contact_date" type="date">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPreferredTime" for="preferred_contact_time"></label>
+              <select id="preferred_contact_time"></select>
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="field-label" id="labelPreferredNote" for="preferred_contact_note"></label>
+              <textarea id="preferred_contact_note"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
           <div class="section-title" id="sectionGoals"></div>
 
           <div>
@@ -596,8 +680,25 @@ Data Analytics | Business Intelligence | Power BI | Automation
 const FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/cf826be8026c4cc38624686209ea3928/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Z_HMIM-VvkUx30HCsl2GoRKT9CR_GvEy-DhrtKcj-4";
 
 const urlParams = new URLSearchParams(window.location.search);
-const initialProjectNumber = (urlParams.get("projectNumber") || "").trim();
-const initialEmail = (urlParams.get("email") || "").trim();
+// Unterstützt mehrere Link-Varianten, damit alte und neue E-Mail-Links funktionieren.
+// Hauptstandard bleibt: ?projectNumber=BDA-P-YYYY-NNNN&email=kunde@firma.de
+const initialProjectNumber = (
+  urlParams.get("projectNumber") ||
+  urlParams.get("project") ||
+  urlParams.get("ProjectNumber") ||
+  urlParams.get("projectnumber") ||
+  urlParams.get("projectId") ||
+  urlParams.get("ProjectNumber4") ||
+  ""
+).trim();
+
+const initialEmail = (
+  urlParams.get("email") ||
+  urlParams.get("customerEmail") ||
+  urlParams.get("Email") ||
+  urlParams.get("mail") ||
+  ""
+).trim();
 const logo = document.getElementById("logo");
 logo.onerror = function () {
   if (this.src.includes("/assets/")) {
@@ -615,8 +716,8 @@ const T = {
     mainTitle:"Digitale Projektanalyse",
     introText:`
       <p>Vielen Dank für Ihr Interesse an <strong>Barry Data & Analytics</strong>.</p>
-      <p>Die folgenden Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele und Ihre Anforderungen besser zu verstehen. Auf dieser Grundlage können mögliche Lösungsansätze strukturiert vorbereitet und die weiteren Schritte gezielt geplant werden.</p>
-      <p>Die Informationen dienen ausschließlich der Projektanalyse und der Bearbeitung Ihres Anliegens.</p>
+      <p>Die folgenden Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele, Ihre Anforderungen, vorhandene Datenquellen und mögliche Automatisierungspotenziale besser zu verstehen. Auf dieser Grundlage können passende Lösungsansätze, Aufwand und nächste Schritte strukturiert vorbereitet werden.</p>
+      <p>Die Übermittlung ist <strong>unverbindlich</strong> und stellt noch keine Beauftragung dar. Die Informationen dienen ausschließlich der Projektanalyse und der Bearbeitung Ihres Anliegens.</p>
       <p>Auch wenn einzelne Punkte noch nicht vollständig feststehen, können Sie Ihr Vorhaben einfach so beschreiben, wie es aktuell geplant ist.</p>
       <p>Nach Prüfung Ihrer Angaben werde ich mich mit Ihnen in Verbindung setzen, um die weiteren Schritte abzustimmen.</p>
     `,
@@ -631,8 +732,23 @@ const T = {
       projectNote:"Sie können mehrere Bereiche auswählen, falls Ihr Vorhaben mehrere Themen betrifft.",
       labelTimeline:"Projektstart",
       labelPriority:"Dringlichkeit",
-      labelFrequency:"Reporting-Frequenz",
+      labelFrequency:"Häufigkeit / Reporting-Frequenz",
       labelDataSource:"Datenquellen",
+      sectionScope:"Rahmenbedingungen",
+      labelCompanySize:"Unternehmensgröße",
+      labelUserCount:"Geplante Nutzer / Empfänger",
+      labelReportsExist:"Bestehende Auswertungen / Reports",
+      labelAutomation:"Aktuelle Automatisierung",
+      labelCollaborationModel:"Gewünschte Zusammenarbeit",
+      sectionProcess:"Digitale Abläufe & Terminwunsch",
+      labelProcessFocus:"Welche Abläufe sollen verbessert werden?",
+      processNote:"Diese Auswahl hilft dabei, neben klassischen Datenprojekten auch digitale Geschäftsprozesse, interne Cockpits, Dokumentenablagen und wiederkehrende Aufgaben richtig einzuordnen.",
+      labelWorkEnvironment:"Vorhandene Arbeitsumgebung",
+      labelMeetingMode:"Gewünschte Abstimmung",
+      labelPreferredDate:"Wunschtermin / bevorzugtes Datum",
+      labelPreferredTime:"Bevorzugtes Zeitfenster",
+      labelPreferredNote:"Hinweis zum Termin oder zur Abstimmung",
+      scopeNote:"Diese Angaben helfen dabei, den passenden Lösungsrahmen und die nächsten Schritte realistisch einzuordnen. Wählen Sie einfach die Option, die Ihrem aktuellen Stand am nächsten kommt.",
       sectionGoals:"Anforderungen & Ziele",
       labelGoal:"Ziel des Projekts",
       labelChallenge:"Aktuelle Herausforderung",
@@ -641,7 +757,7 @@ const T = {
       labelDesc:"Kurze Projektbeschreibung",
       privacyAcceptedText:"Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage und zur Projektanalyse verarbeitet werden.",
       privacySummary:"Datenschutzhinweise anzeigen",
-      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Eine Weitergabe an Dritte erfolgt nicht.",
+      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Die Übermittlung ist unverbindlich. Eine Weitergabe an Dritte erfolgt nicht.",
       contactInfoText:"Zur Abstimmung der weiteren Schritte kann die Kontaktaufnahme per E-Mail oder telefonisch erfolgen.",
       submitBtn:"Projektanalyse übermitteln",
       successTitle:"Vielen Dank.",
@@ -658,24 +774,43 @@ const T = {
       goal:"Was möchten Sie mit dem Projekt erreichen?",
       challenge:"Was funktioniert aktuell nicht gut oder kostet zu viel Zeit?",
       expected:"Wie sieht ein gutes Ergebnis für Sie aus?",
-      desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten."
+      desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten.",
+      preferred_contact_note:"Optional: gewünschtes Zeitfenster, Ansprechpartner, Besonderheiten oder Rückrufhinweis."
     },
     projects:[
-      "Sales Performance Dashboard",
-      "Marketing Performance Analyse",
-      "Logistik Performance & Bestandsanalyse",
-      "Operations Effizienz-Analyse",
-      "E-Commerce Funnel & Conversion Tracking",
-      "Industrie OEE & Produktionsreporting",
-      "Service & Callcenter Performance Dashboard",
-      "Forecasting & Nachfrage-Prognosen",
+      "Vertrieb / Sales Performance",
+      "Marketing Performance",
+      "Operations / Prozessanalyse",
+      "Logistik / Lager & Supply Chain",
+      "Finance & Controlling",
+      "Management Dashboard / KPI",
+      "Industrie / Produktion / OEE",
+      "Service & Support",
+      "E-Commerce Analyse",
+      "Forecasting / Prognose",
       "Reporting-Automatisierung",
-      "Individuelle Datenlösung / Sonstiges Projekt"
+      "Power Query / Excel-Automatisierung",
+      "Datenbereinigung / Datenmigration",
+      "Individuelle Datenlösung / Sonstiges Projekt",
+      "Geschäftsprozesse digitalisieren und automatisieren",
+      "Interne Auswertungen / Management-Cockpit",
+      "Dokumenten- und Ablageprozesse",
+      "Angebot-, Rechnungs- und Reporting-Abläufe",
+      "Microsoft 365 / SharePoint / Power Automate Lösung"
     ],
-    timeline:["Sofort","In den nächsten Wochen","In den nächsten Monaten","Noch unklar"],
-    priority:["Niedrig","Mittel","Hoch","Noch unklar"],
-    frequency:["Täglich","Wöchentlich","Monatlich","Quartalsweise","Jährlich","Noch unklar"],
-    dataSources:["Excel / CSV","Google Sheets","CRM-System","ERP-System","Website / Webshop","Datenbank / SQL","Power BI / bestehendes Dashboard","Noch unklar","Sonstige Datenquellen"],
+    timeline:["Sofort","Innerhalb 1 Woche","Innerhalb 2 Wochen","Innerhalb 1 Monat","In 1–3 Monaten","Später geplant","Noch unklar","Nach Absprache"],
+    priority:["Niedrig","Mittel","Hoch","Sehr hoch","Kritisch","Noch unklar"],
+    frequency:["Täglich","Wöchentlich","Monatlich","Quartalsweise","Jährlich","Kein regelmäßiges Reporting","Noch unklar"],
+    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","CRM-System","ERP-System","Website / Webshop","Datenbank / SQL","Power BI / bestehendes Dashboard","Power Query","Power Automate","Mehrere Datenquellen","Noch unklar","Sonstige Datenquellen"],
+    companySizes:["Solo / Selbstständig","2–10 Mitarbeitende","11–25 Mitarbeitende","26–50 Mitarbeitende","51–100 Mitarbeitende","101–250 Mitarbeitende","Mehr als 250 Mitarbeitende","Noch unklar"],
+    userCounts:["1 Person","2–5 Personen","6–10 Personen","11–25 Personen","26–50 Personen","Mehr als 50 Personen","Noch unklar"],
+    reportsExist:["Nein","Ja, aber manuell","Ja, aber unvollständig","Ja, regelmäßig","Excel-Berichte vorhanden","Power BI-Berichte vorhanden","Nur Rohdaten vorhanden","Noch unklar"],
+    automation:["Keine Automatisierung","Teilweise automatisiert","Power Query vorhanden","Power Automate vorhanden","Manuelle Prozesse","Automatisierung gewünscht","Automatisierung prüfen","Noch unklar"],
+    collaborationModels:["Einmaliges Projekt","Laufende Betreuung","Monatliche Unterstützung","Retainer / Stundenkontingent","Regelmäßige Reporting-Unterstützung","Support & Optimierung","Workshop / Beratung","Noch offen"],
+    processFocus:["Geschäftsprozesse digitalisieren und automatisieren","Interne Auswertungen / Management-Cockpit","Dokumenten- und Ablageprozesse strukturieren","Angebot-, Rechnungs- und Reporting-Abläufe verbessern","Wiederkehrende Aufgaben automatisieren","Daten aus Excel, SharePoint oder Systemen zusammenführen","Management- oder KPI-Übersicht aufbauen","Bestehende Reports modernisieren","Microsoft 365 / SharePoint / Power Automate sinnvoll nutzen","Noch unklar / bitte beraten"],
+    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / lokale Dateien","Power BI vorhanden","Power Query vorhanden","Power Automate vorhanden","CRM / ERP / Fachsystem","Google Workspace","Gemischte Umgebung","Noch unklar"],
+    meetingModes:["Microsoft Teams","Telefon","E-Mail-Abstimmung","Vor-Ort-Termin nach Absprache","Noch offen"],
+    preferredTimes:["Morgens","Vormittags","Mittags","Nachmittags","Abends","Flexibel","Nach Absprache"],
     sending:"Wird übermittelt..."
   },
 
@@ -686,8 +821,8 @@ const T = {
     mainTitle:"Digital Project Analysis",
     introText:`
       <p>Thank you for your interest in <strong>Barry Data & Analytics</strong>.</p>
-      <p>The following information helps to better understand your project, goals and requirements. Based on your input, possible solution approaches can be prepared in a structured way.</p>
-      <p>The information is used exclusively for project analysis and the preparation of your request.</p>
+      <p>The following information helps to better understand your project, goals, requirements, existing data sources and possible automation potential. Based on your input, suitable solution approaches, effort and next steps can be prepared in a structured way.</p>
+      <p>The submission is <strong>non-binding</strong> and does not constitute an order. The information is used exclusively for project analysis and the preparation of your request.</p>
       <p>Even if some details are not yet fully defined, you can simply describe your project as it is currently planned.</p>
       <p>After reviewing your information, I will get in touch with you to coordinate the next steps.</p>
     `,
@@ -702,8 +837,23 @@ const T = {
       projectNote:"You can select multiple areas if your project includes several topics.",
       labelTimeline:"Project start",
       labelPriority:"Urgency",
-      labelFrequency:"Reporting frequency",
+      labelFrequency:"Frequency / reporting cadence",
       labelDataSource:"Data sources",
+      sectionScope:"Project context",
+      labelCompanySize:"Company size",
+      labelUserCount:"Planned users / recipients",
+      labelReportsExist:"Existing reports / dashboards",
+      labelAutomation:"Current automation",
+      labelCollaborationModel:"Preferred collaboration",
+      sectionProcess:"Digital workflows & preferred appointment",
+      labelProcessFocus:"Which workflows should be improved?",
+      processNote:"This selection helps to classify not only classic data projects, but also digital business processes, internal cockpits, document workflows and recurring tasks.",
+      labelWorkEnvironment:"Existing work environment",
+      labelMeetingMode:"Preferred coordination",
+      labelPreferredDate:"Preferred date",
+      labelPreferredTime:"Preferred time window",
+      labelPreferredNote:"Note regarding appointment or coordination",
+      scopeNote:"These details help define a suitable solution scope and realistic next steps. Please choose the option that best matches your current situation.",
       sectionGoals:"Requirements & goals",
       labelGoal:"Project goal",
       labelChallenge:"Current challenge",
@@ -712,7 +862,7 @@ const T = {
       labelDesc:"Short project description",
       privacyAcceptedText:"I agree that my information may be processed to handle my request and analyze the project.",
       privacySummary:"Show privacy information",
-      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. It will not be passed on to third parties.",
+      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. The submission is non-binding. It will not be passed on to third parties.",
       contactInfoText:"To coordinate the next steps, contact may be made by email or phone.",
       submitBtn:"Submit project analysis",
       successTitle:"Thank you.",
@@ -729,24 +879,43 @@ const T = {
       goal:"What do you want to achieve with the project?",
       challenge:"What is not working well today or takes too much time?",
       expected:"What would a successful result look like for you?",
-      desc:"Briefly describe your project in your own words."
+      desc:"Briefly describe your project in your own words.",
+      preferred_contact_note:"Optional: preferred time window, contact person, special notes or callback request."
     },
     projects:[
-      "Sales performance dashboard",
-      "Marketing performance analysis",
-      "Logistics performance & inventory analysis",
-      "Operations efficiency analysis",
-      "E-commerce funnel & conversion tracking",
-      "Industrial OEE & production reporting",
-      "Service & call center performance dashboard",
-      "Forecasting & demand predictions",
+      "Sales / Sales performance",
+      "Marketing performance",
+      "Operations / process analysis",
+      "Logistics / inventory & supply chain",
+      "Finance & controlling",
+      "Management dashboard / KPI",
+      "Industrial / production / OEE",
+      "Service & support",
+      "E-commerce analysis",
+      "Forecasting / prediction",
       "Reporting automation",
-      "Custom data solution / other project"
+      "Power Query / Excel automation",
+      "Data cleaning / data migration",
+      "Custom data solution / other project",
+      "Digital business process automation",
+      "Internal reporting / management cockpit",
+      "Document and filing workflows",
+      "Offer, invoice and reporting workflows",
+      "Microsoft 365 / SharePoint / Power Automate solution"
     ],
-    timeline:["Immediately","In the next weeks","In the next months","Not sure yet"],
-    priority:["Low","Medium","High","Not sure yet"],
-    frequency:["Daily","Weekly","Monthly","Quarterly","Yearly","Not sure yet"],
-    dataSources:["Excel / CSV","Google Sheets","CRM system","ERP system","Website / webshop","Database / SQL","Power BI / existing dashboard","Not sure yet","Other data sources"],
+    timeline:["Immediately","Within 1 week","Within 2 weeks","Within 1 month","In 1–3 months","Planned later","Not sure yet","By agreement"],
+    priority:["Low","Medium","High","Very high","Critical","Not sure yet"],
+    frequency:["Daily","Weekly","Monthly","Quarterly","Yearly","No regular reporting","Not sure yet"],
+    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","CRM system","ERP system","Website / webshop","Database / SQL","Power BI / existing dashboard","Power Query","Power Automate","Multiple data sources","Not sure yet","Other data sources"],
+    companySizes:["Solo / self-employed","2–10 employees","11–25 employees","26–50 employees","51–100 employees","101–250 employees","More than 250 employees","Not sure yet"],
+    userCounts:["1 person","2–5 people","6–10 people","11–25 people","26–50 people","More than 50 people","Not sure yet"],
+    reportsExist:["No","Yes, but manual","Yes, but incomplete","Yes, regularly","Excel reports available","Power BI reports available","Only raw data available","Not sure yet"],
+    automation:["No automation","Partly automated","Power Query available","Power Automate available","Manual processes","Automation desired","Automation to be reviewed","Not sure yet"],
+    collaborationModels:["One-time project","Ongoing support","Monthly support","Retainer / time package","Regular reporting support","Support & optimization","Workshop / consulting","Open / to be discussed"],
+    processFocus:["Digitize and automate business processes","Internal reporting / management cockpit","Structure document and filing workflows","Improve offer, invoice and reporting workflows","Automate recurring tasks","Combine data from Excel, SharePoint or systems","Build management or KPI overview","Modernize existing reports","Use Microsoft 365 / SharePoint / Power Automate effectively","Not sure yet / please advise"],
+    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / local files","Power BI available","Power Query available","Power Automate available","CRM / ERP / business system","Google Workspace","Mixed environment","Not sure yet"],
+    meetingModes:["Microsoft Teams","Phone","Email coordination","On-site appointment by agreement","Open / to be discussed"],
+    preferredTimes:["Morning","Late morning","Midday","Afternoon","Evening","Flexible","By agreement"],
     sending:"Submitting..."
   },
 
@@ -757,8 +926,8 @@ const T = {
     mainTitle:"Analyse digitale du projet",
     introText:`
       <p>Merci pour votre intérêt pour <strong>Barry Data & Analytics</strong>.</p>
-      <p>Les informations suivantes permettent de mieux comprendre votre projet, vos objectifs et vos besoins. Sur cette base, des pistes de solution peuvent être préparées de manière structurée.</p>
-      <p>Les informations sont utilisées exclusivement pour l’analyse du projet et la préparation de votre demande.</p>
+      <p>Les informations suivantes permettent de mieux comprendre votre projet, vos objectifs, vos besoins, vos sources de données existantes et les possibilités d’automatisation. Sur cette base, des pistes de solution, l’effort estimé et les prochaines étapes peuvent être préparés de manière structurée.</p>
+      <p>La transmission est <strong>sans engagement</strong> et ne constitue pas une commande. Les informations sont utilisées exclusivement pour l’analyse du projet et la préparation de votre demande.</p>
       <p>Même si certains points ne sont pas encore totalement définis, vous pouvez simplement décrire votre projet tel qu’il est actuellement prévu.</p>
       <p>Après examen de vos informations, je prendrai contact avec vous afin de coordonner les prochaines étapes.</p>
     `,
@@ -773,8 +942,23 @@ const T = {
       projectNote:"Vous pouvez sélectionner plusieurs domaines si votre projet concerne plusieurs sujets.",
       labelTimeline:"Démarrage du projet",
       labelPriority:"Urgence",
-      labelFrequency:"Fréquence de reporting",
+      labelFrequency:"Fréquence / cadence de reporting",
       labelDataSource:"Sources de données",
+      sectionScope:"Cadre du projet",
+      labelCompanySize:"Taille de l’entreprise",
+      labelUserCount:"Utilisateurs / destinataires prévus",
+      labelReportsExist:"Rapports / tableaux de bord existants",
+      labelAutomation:"Automatisation actuelle",
+      labelCollaborationModel:"Collaboration souhaitée",
+      sectionProcess:"Processus digitaux & rendez-vous souhaité",
+      labelProcessFocus:"Quels processus doivent être améliorés ?",
+      processNote:"Cette sélection permet de classer non seulement les projets de données classiques, mais aussi les processus métier digitaux, les cockpits internes, les flux documentaires et les tâches récurrentes.",
+      labelWorkEnvironment:"Environnement de travail existant",
+      labelMeetingMode:"Mode d’échange souhaité",
+      labelPreferredDate:"Date souhaitée",
+      labelPreferredTime:"Créneau préféré",
+      labelPreferredNote:"Remarque concernant le rendez-vous ou la coordination",
+      scopeNote:"Ces informations permettent de définir un cadre de solution adapté et les prochaines étapes de manière réaliste. Veuillez choisir l’option qui correspond le mieux à votre situation actuelle.",
       sectionGoals:"Besoins & objectifs",
       labelGoal:"Objectif du projet",
       labelChallenge:"Défi actuel",
@@ -783,7 +967,7 @@ const T = {
       labelDesc:"Brève description du projet",
       privacyAcceptedText:"J’accepte que mes informations soient traitées pour répondre à ma demande et analyser le projet.",
       privacySummary:"Afficher les informations de confidentialité",
-      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. Elles ne sont pas transmises à des tiers.",
+      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. La transmission est sans engagement. Elles ne sont pas transmises à des tiers.",
       contactInfoText:"Pour coordonner les prochaines étapes, le contact peut se faire par e-mail ou par téléphone.",
       submitBtn:"Transmettre l’analyse",
       successTitle:"Merci.",
@@ -800,24 +984,43 @@ const T = {
       goal:"Quel objectif souhaitez-vous atteindre avec le projet ?",
       challenge:"Qu’est-ce qui ne fonctionne pas bien aujourd’hui ou prend trop de temps ?",
       expected:"À quoi ressemblerait un bon résultat pour vous ?",
-      desc:"Décrivez brièvement votre projet avec vos propres mots."
+      desc:"Décrivez brièvement votre projet avec vos propres mots.",
+      preferred_contact_note:"Optionnel : créneau souhaité, personne de contact, particularités ou demande de rappel."
     },
     projects:[
-      "Tableau de bord de performance commerciale",
-      "Analyse de performance marketing",
-      "Performance logistique & analyse des stocks",
-      "Analyse d’efficacité opérationnelle",
-      "Tunnel e-commerce & suivi des conversions",
-      "OEE industriel & reporting de production",
-      "Tableau de bord service & call center",
-      "Prévisions & analyses de la demande",
+      "Vente / performance commerciale",
+      "Performance marketing",
+      "Opérations / analyse des processus",
+      "Logistique / stock & supply chain",
+      "Finance & controlling",
+      "Tableau de bord management / KPI",
+      "Industrie / production / OEE",
+      "Service & support",
+      "Analyse e-commerce",
+      "Prévisions / forecasting",
       "Automatisation du reporting",
-      "Solution de données personnalisée / autre projet"
+      "Power Query / automatisation Excel",
+      "Nettoyage / migration de données",
+      "Solution de données personnalisée / autre projet",
+      "Digitalisation et automatisation des processus métier",
+      "Analyses internes / cockpit de management",
+      "Processus documentaires et classement",
+      "Processus d’offre, facture et reporting",
+      "Solution Microsoft 365 / SharePoint / Power Automate"
     ],
-    timeline:["Immédiatement","Dans les prochaines semaines","Dans les prochains mois","Pas encore sûr"],
-    priority:["Faible","Moyenne","Élevée","Pas encore sûr"],
-    frequency:["Quotidien","Hebdomadaire","Mensuel","Trimestriel","Annuel","Pas encore sûr"],
-    dataSources:["Excel / CSV","Google Sheets","Système CRM","Système ERP","Site web / boutique en ligne","Base de données / SQL","Power BI / tableau de bord existant","Pas encore sûr","Autres sources de données"],
+    timeline:["Immédiatement","Sous 1 semaine","Sous 2 semaines","Sous 1 mois","Dans 1–3 mois","Prévu plus tard","Pas encore sûr","Selon accord"],
+    priority:["Faible","Moyenne","Élevée","Très élevée","Critique","Pas encore sûr"],
+    frequency:["Quotidien","Hebdomadaire","Mensuel","Trimestriel","Annuel","Pas de reporting régulier","Pas encore sûr"],
+    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","Système CRM","Système ERP","Site web / boutique en ligne","Base de données / SQL","Power BI / tableau de bord existant","Power Query","Power Automate","Plusieurs sources de données","Pas encore sûr","Autres sources de données"],
+    companySizes:["Solo / indépendant","2–10 employés","11–25 employés","26–50 employés","51–100 employés","101–250 employés","Plus de 250 employés","Pas encore sûr"],
+    userCounts:["1 personne","2–5 personnes","6–10 personnes","11–25 personnes","26–50 personnes","Plus de 50 personnes","Pas encore sûr"],
+    reportsExist:["Non","Oui, mais manuel","Oui, mais incomplet","Oui, régulièrement","Rapports Excel disponibles","Rapports Power BI disponibles","Uniquement des données brutes","Pas encore sûr"],
+    automation:["Aucune automatisation","Partiellement automatisé","Power Query disponible","Power Automate disponible","Processus manuels","Automatisation souhaitée","Automatisation à vérifier","Pas encore sûr"],
+    collaborationModels:["Projet ponctuel","Accompagnement régulier","Support mensuel","Retainer / forfait d’heures","Support reporting régulier","Support & optimisation","Workshop / conseil","Ouvert / à discuter"],
+    processFocus:["Digitaliser et automatiser les processus métier","Analyses internes / cockpit de management","Structurer les processus documentaires et de classement","Améliorer les processus d’offre, facture et reporting","Automatiser les tâches récurrentes","Regrouper les données depuis Excel, SharePoint ou des systèmes","Créer une vue management ou KPI","Moderniser les rapports existants","Utiliser Microsoft 365 / SharePoint / Power Automate efficacement","Pas encore sûr / conseil souhaité"],
+    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / fichiers locaux","Power BI disponible","Power Query disponible","Power Automate disponible","CRM / ERP / système métier","Google Workspace","Environnement mixte","Pas encore sûr"],
+    meetingModes:["Microsoft Teams","Téléphone","Coordination par e-mail","Rendez-vous sur place selon accord","Ouvert / à discuter"],
+    preferredTimes:["Matin","Fin de matinée","Midi","Après-midi","Soir","Flexible","Selon accord"],
     sending:"Transmission..."
   }
 };
@@ -840,6 +1043,18 @@ function setProjects(arr){
     const label=document.createElement("label");
     label.className="choice";
     label.innerHTML=`<input type="checkbox" name="project_type" value="${v}"><span>${v}</span>`;
+    box.appendChild(label);
+  });
+}
+
+function setProcessOptions(arr){
+  const box=document.getElementById("processOptions");
+  if(!box) return;
+  box.innerHTML="";
+  arr.forEach(v=>{
+    const label=document.createElement("label");
+    label.className="choice";
+    label.innerHTML=`<input type="checkbox" name="process_focus" value="${v}"><span>${v}</span>`;
     box.appendChild(label);
   });
 }
@@ -875,6 +1090,15 @@ function setLang(lang){
   setSelect("priority",t.priority);
   setSelect("frequency",t.frequency);
   setSelect("data_source",t.dataSources);
+  setSelect("company_size",t.companySizes);
+  setSelect("user_count",t.userCounts);
+  setSelect("reports_exist",t.reportsExist);
+  setSelect("automation",t.automation);
+  setSelect("collaboration_model",t.collaborationModels);
+  setProcessOptions(t.processFocus || []);
+  setSelect("work_environment",t.workEnvironments || []);
+  setSelect("preferred_meeting_mode",t.meetingModes || []);
+  setSelect("preferred_contact_time",t.preferredTimes || []);
 }
 
 function isValidEmail(email){
@@ -908,6 +1132,17 @@ document.getElementById("projectForm").addEventListener("submit",async function(
     priority:document.getElementById("priority").value,
     frequency:document.getElementById("frequency").value,
     data_source:document.getElementById("data_source").value,
+    company_size:document.getElementById("company_size").value,
+    user_count:document.getElementById("user_count").value,
+    reports_exist:document.getElementById("reports_exist").value,
+    automation:document.getElementById("automation").value,
+    collaboration_model:document.getElementById("collaboration_model").value,
+    process_focus:[...document.querySelectorAll('input[name="process_focus"]:checked')].map(x=>x.value),
+    work_environment:document.getElementById("work_environment").value,
+    preferred_meeting_mode:document.getElementById("preferred_meeting_mode").value,
+    preferred_contact_date:document.getElementById("preferred_contact_date").value,
+    preferred_contact_time:document.getElementById("preferred_contact_time").value,
+    preferred_contact_note:document.getElementById("preferred_contact_note").value.trim(),
     goal:document.getElementById("goal").value.trim(),
     challenge:document.getElementById("challenge").value.trim(),
     expected:document.getElementById("expected").value.trim(),
