@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Barry Data & Analytics – Sicherer Projektbereich</title>
+<style>
+:root{
+  --bg:#030712;
+  --panel:rgba(15,23,42,.92);
+  --panelSoft:rgba(30,41,59,.70);
+  --card:rgba(15,23,42,.78);
+  --line:rgba(148,163,184,.22);
+  --lineStrong:rgba(0,242,254,.35);
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --muted2:#cbd5e1;
+  --cyan:#00f2fe;
+  --cyanSoft:rgba(0,242,254,.10);
+  --green:#22c55e;
+  --yellow:#f59e0b;
+  --red:#ef4444;
+  --shadow:0 24px 80px rgba(0,0,0,.42);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 10% 6%,rgba(0,242,254,.16),transparent 30%),
+    radial-gradient(circle at 90% 4%,rgba(98,184,255,.15),transparent 34%),
+    radial-gradient(circle at 55% 100%,rgba(34,197,94,.07),transparent 36%),
+    var(--bg);
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+.shell{width:min(1180px,calc(100% - 34px));margin:0 auto;padding:22px 0 54px}
+.topbar{
+  position:sticky;top:14px;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:14px 16px;border:1px solid var(--line);border-radius:24px;
+  background:rgba(3,7,18,.84);backdrop-filter:blur(18px);box-shadow:var(--shadow)
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logoMark{
+  width:52px;height:52px;border-radius:17px;
+  display:grid;place-items:center;flex:0 0 auto;
+  color:#041018;font-weight:950;letter-spacing:-1px;
+  background:linear-gradient(135deg,var(--cyan),#7dd3fc);
+  box-shadow:0 0 24px rgba(0,242,254,.24);
+  border:1px solid rgba(255,255,255,.32);
+}
+.brandText h1{font-size:15px;margin:0;line-height:1.2;white-space:nowrap}
+.brandText p{font-size:12px;margin:4px 0 0;color:var(--muted)}
+.nav{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.langSwitch{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);background:rgba(30,41,59,.72);border-radius:999px}
+.langBtn,.pill{
+  border:1px solid var(--line);background:rgba(30,41,59,.75);color:#dbeafe;
+  border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;cursor:pointer;transition:.18s ease
+}
+.langBtn{padding:6px 9px}
+.langBtn:hover,.langBtn.active,.pill:hover,.pill.active{border-color:var(--lineStrong);color:#041018;background:var(--cyan);box-shadow:0 0 22px rgba(0,242,254,.18)}
+.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;align-items:stretch;padding:34px 0 22px}
+.panel,.heroCard{
+  border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);
+  border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.heroCard{padding:30px;position:relative;overflow:hidden}
+.heroCard:before{content:"";position:absolute;right:-80px;top:-90px;width:260px;height:260px;border-radius:999px;background:rgba(0,242,254,.12);filter:blur(3px)}
+.heroCard>*{position:relative;z-index:1}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(0,242,254,.28);background:rgba(0,242,254,.075);
+  color:var(--cyan);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px
+}
+.dot{width:8px;height:8px;border-radius:999px;background:var(--cyan);box-shadow:0 0 15px rgba(0,242,254,.8);flex:0 0 auto}
+h2.big{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 16px;letter-spacing:-1.8px}
+.lead{color:#cbd5e1;line-height:1.75;font-size:16px;max-width:760px;margin:0}
+.heroSide{padding:22px;display:grid;gap:12px}
+.statusMini{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;background:rgba(15,23,42,.82);border:1px solid var(--line)}
+.statusMini strong{display:block;margin-bottom:3px;font-size:14px}
+.statusMini span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+.sectionTitle{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:30px 0 14px}
+.sectionTitle h2{font-size:26px;margin:0;letter-spacing:-.4px}
+.sectionTitle p{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;border:1px solid rgba(0,242,254,.28);background:rgba(0,242,254,.08);color:#bffcff;font-size:12px;font-weight:900;white-space:nowrap}
+.badge.warn{border-color:rgba(245,158,11,.42);background:rgba(245,158,11,.12);color:#fde68a}
+.panel{padding:22px;margin-top:14px}
+.customerHeader{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);background:rgba(15,23,42,.78);border-radius:22px;padding:18px;margin-bottom:16px}
+.customerHeader h3{font-size:24px;margin:0 0 6px}
+.customerHeader p{margin:0;color:var(--muted);line-height:1.5}
+.infoGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 0}
+.infoItem{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045);padding:12px}
+.infoItem span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:900;margin-bottom:6px}
+.infoItem b{display:block;color:#e2e8f0;font-size:13px;word-break:break-word}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0}
+.step{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px;padding:12px;min-height:92px}
+.step b{display:block;font-size:13px;margin-bottom:7px}
+.step span{display:block;color:var(--muted);font-size:12px;line-height:1.4}
+.step.done{border-color:rgba(34,197,94,.38);background:rgba(34,197,94,.075)}
+.step.active{border-color:rgba(0,242,254,.55);background:rgba(0,242,254,.075);box-shadow:0 0 0 3px rgba(0,242,254,.05)}
+.step.locked{opacity:.62}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.card{border:1px solid var(--line);background:rgba(15,23,42,.78);border-radius:22px;padding:18px;min-height:205px;display:flex;flex-direction:column;justify-content:space-between;transition:.18s ease}
+.card:hover{transform:translateY(-3px);border-color:rgba(0,242,254,.45);box-shadow:0 18px 40px rgba(0,242,254,.10)}
+.icon{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;font-size:21px;margin-bottom:14px;border:1px solid rgba(0,242,254,.24);background:rgba(0,242,254,.09)}
+.card h3{font-size:18px;margin:0 0 8px}
+.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;border:1px solid rgba(0,242,254,.45);background:linear-gradient(135deg,rgba(0,242,254,.25),rgba(98,184,255,.12));color:#eefbff;padding:11px 14px;font-size:13px;font-weight:900;cursor:pointer}
+.btn:hover{box-shadow:0 0 22px rgba(0,242,254,.18)}
+.btn.secondary{background:rgba(30,41,59,.72);border-color:var(--line);color:#dbeafe}
+.btn.disabled{opacity:.62;cursor:not-allowed}
+.twoCol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.notice{border:1px solid rgba(245,158,11,.32);background:rgba(245,158,11,.08);color:#fde68a;border-radius:18px;padding:14px;line-height:1.55;font-size:14px}
+.notice.ok{border-color:rgba(34,197,94,.34);background:rgba(34,197,94,.08);color:#dcfce7}
+.notice.info{border-color:rgba(0,242,254,.28);background:rgba(0,242,254,.07);color:#dffcff}
+.notice.danger{border-color:rgba(239,68,68,.34);background:rgba(239,68,68,.08);color:#fecaca}
+.fileFormatGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:14px}
+.fileFormat{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:16px;padding:12px 10px;text-align:center;min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.fileFormat b{font-size:13px;color:#e2e8f0}.fileFormat span{color:var(--muted);font-size:11px;line-height:1.25}
+.loadingBar{display:flex;align-items:center;gap:10px;border:1px solid rgba(0,242,254,.26);background:rgba(0,242,254,.07);border-radius:16px;padding:12px 14px;color:#dffcff;font-size:13px;margin:16px 0 0}
+.spinner{width:14px;height:14px;border:2px solid rgba(0,242,254,.18);border-top-color:var(--cyan);border-radius:50%;animation:spin .9s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.footer{margin-top:32px;text-align:center;color:var(--muted);font-size:12px;line-height:1.55}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.38);display:none;align-items:center;justify-content:center;padding:20px;z-index:80;backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.modalCard{width:min(620px,100%);border:1px solid var(--line);background:#07111d;border-radius:26px;box-shadow:var(--shadow);padding:24px}
+.modalCard h3{margin:0 0 8px;font-size:23px}.modalCard p{margin:0 0 15px;color:#cbd5e1;line-height:1.6}
+.inputGrid{display:grid;gap:10px;margin:14px 0}.inputGrid label{font-size:12px;font-weight:900;color:#dbeafe;text-transform:uppercase;letter-spacing:.06em}.inputGrid input{width:100%;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--text);border-radius:14px;padding:12px 13px;outline:none}.inputGrid input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,242,254,.10)}
+.errorText{display:none;color:#fecaca;background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.24);border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.45}.errorText.show{display:block}
+.verifiedBar{display:none;margin-top:12px;border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.075);color:#dcfce7;border-radius:16px;padding:11px 13px;font-size:13px}.verifiedBar.show{display:block}
+.modalLang{display:flex;justify-content:flex-end;gap:6px;margin-bottom:12px}.modalLang button{border:1px solid var(--line);background:rgba(30,41,59,.75);color:#dbeafe;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:900;cursor:pointer}.modalLang button.active{background:var(--cyan);color:#041018;border-color:var(--lineStrong)}
+@media(max-width:960px){.hero,.twoCol{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.infoGrid{grid-template-columns:1fr 1fr}.brandText{display:none}.fileFormatGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.shell{width:min(100% - 24px,1180px)}.topbar{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}.hero{padding-top:24px}.heroCard{padding:22px}.grid,.steps,.infoGrid{grid-template-columns:1fr}.fileFormatGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.modal{align-items:flex-end}.modalCard{border-radius:24px 24px 18px 18px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <a class="logoMark" href="https://www.barrydataanalytics.de" aria-label="Barry Data & Analytics">BDA</a>
+      <div class="brandText">
+        <h1>Barry Data &amp; Analytics</h1>
+        <p data-i18n="brandSub">Sicherer Datenaustausch · Microsoft 365</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="langSwitch">
+        <button class="langBtn active" data-lang="de" type="button">DE</button>
+        <button class="langBtn" data-lang="en" type="button">EN</button>
+        <button class="langBtn" data-lang="fr" type="button">FR</button>
+      </div>
+      <button class="pill active" type="button" onclick="scrollToArea('projectArea')" data-i18n="navProject">Projekt</button>
+      <button class="pill" type="button" onclick="scrollToArea('actionsArea')" data-i18n="navActions">Aktionen</button>
+      <button class="pill" type="button" onclick="scrollToArea('helpArea')" data-i18n="navHelp">Hilfe</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="heroCard">
+      <div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">Projektstart &amp; sicherer Datenaustausch</span></div>
+      <h2 class="big" data-i18n="heroTitle">Willkommen in Ihrem sicheren Projektbereich.</h2>
+      <p class="lead" data-i18n="heroLead">Hier finden Sie alle wichtigen Projektaktionen an einem Ort: Unterlagen sicher hochladen, Informationen ergänzen, Ergebnisse abrufen und bei Bedarf Rückfragen senden oder einen Termin abstimmen.</p>
+      <div class="verifiedBar" id="verifiedBar"></div>
+      <div class="loadingBar" id="loadingBar" style="display:none;"><span class="spinner"></span><span id="loadingText">Projektinformationen werden geladen …</span></div>
+      <div class="btnrow">
+        <button class="btn" onclick="openConfiguredLink('uploadLink','upload')" data-i18n="heroBtnUpload">Unterlagen sicher hochladen</button>
+        <button class="btn secondary" onclick="openConfiguredLink('reportLink','report')" data-i18n="heroBtnReport">Ergebnis öffnen</button>
+        <button class="btn secondary" onclick="openMail('question')" data-i18n="heroBtnQuestion">Rückfrage senden</button>
+      </div>
+    </div>
+    <aside class="heroSide heroCard">
+      <div class="statusMini"><span class="dot"></span><div><strong data-i18n="status1Title">Ihr Projektbereich ist bereit</strong><span data-i18n="status1Text">Alle wichtigen Projektaktionen sind zentral für Sie vorbereitet.</span></div></div>
+      <div class="statusMini"><span class="dot"></span><div><strong data-i18n="status2Title">Sicherer Datenaustausch</strong><span data-i18n="status2Text">Upload, Ergebnisse und Dokumente laufen über geschützte Microsoft-365-Links.</span></div></div>
+      <div class="statusMini"><span class="dot"></span><div><strong data-i18n="status3Title">Projektbezogene Freigaben</strong><span data-i18n="status3Text">Jedes Projekt erhält eigene Links, Ordner und Berechtigungen.</span></div></div>
+      <div class="statusMini"><span class="dot"></span><div><strong data-i18n="status4Title">Klare Orientierung</strong><span data-i18n="status4Text">Sie sehen direkt, welcher Schritt für Ihr Projekt relevant ist.</span></div></div>
+    </aside>
+  </section>
+
+  <main id="projectArea">
+    <section>
+      <div class="sectionTitle">
+        <div><h2 data-i18n="projectTitle">Ihr Projekt auf einen Blick</h2><p data-i18n="projectSub">Die wichtigsten Informationen, Schritte und Zugänge für Ihr Projekt.</p></div>
+        <span class="badge" id="customerIdBadge">Projekt wird geladen</span>
+      </div>
+      <div class="panel">
+        <div class="customerHeader">
+          <div><h3 id="customerName">Ihr Projektbereich</h3><p id="customerProject">Projektinformationen werden aus dem Link oder aus dem CRM geladen.</p></div>
+          <span class="badge" id="customerStatus">Projektstart / Datenaustausch</span>
+        </div>
+        <div class="infoGrid">
+          <div class="infoItem"><span>Kundennummer</span><b id="customerNumber">—</b></div>
+          <div class="infoItem"><span>Projektnummer</span><b id="projectNumberView">—</b></div>
+          <div class="infoItem"><span>Angebotsnummer</span><b id="offerNumberView">—</b></div>
+          <div class="infoItem"><span>Rechnungsnummer</span><b id="invoiceNumberView">—</b></div>
+        </div>
+        <div class="steps">
+          <div class="step done"><b data-i18n="step1">1. Anfrage</b><span data-i18n="step1t">Ihre Anfrage wurde aufgenommen.</span></div>
+          <div class="step done"><b data-i18n="step2">2. Analyse</b><span data-i18n="step2t">Projektumfang und Bedarf werden geklärt.</span></div>
+          <div class="step active"><b data-i18n="step3">3. Daten</b><span data-i18n="step3t">Daten und Informationen bereitstellen.</span></div>
+          <div class="step locked"><b data-i18n="step4">4. Auswertung</b><span data-i18n="step4t">Analyse, Dashboard oder Report wird vorbereitet.</span></div>
+          <div class="step locked"><b data-i18n="step5">5. Freigabe</b><span data-i18n="step5t">Feedback, Abnahme und Abschluss.</span></div>
+        </div>
+        <div class="notice info"><strong>Hinweis:</strong><br><span data-i18n="accessNote">Bitte laden Sie nur projektbezogene Dateien hoch. Zugangsdaten oder Passwörter sollten nicht über diese Seite übermittelt werden.</span></div>
+      </div>
+    </section>
+
+    <section id="actionsArea">
+      <div class="sectionTitle">
+        <div><h2 data-i18n="actionsTitle">Projektaktionen</h2><p data-i18n="actionsSub">Wählen Sie den passenden Schritt aus. Jeder Button öffnet den dafür vorgesehenen sicheren Projektlink.</p></div>
+      </div>
+      <div class="grid">
+        <article class="card"><div><div class="icon">⬆</div><h3 data-i18n="c1">Daten hochladen</h3><p data-i18n="c1t">Öffnet den Upload-Link für projektbezogene Dateien wie Excel, CSV oder Exporte.</p></div><div class="btnrow"><button class="btn" onclick="openConfiguredLink('uploadLink','upload')" data-i18n="c1b">Upload öffnen</button></div></article>
+        <article class="card"><div><div class="icon">✍</div><h3 data-i18n="c2">Informationen ergänzen</h3><p data-i18n="c2t">Öffnet die digitale Projektanalyse oder ein Zusatzformular für Projektinformationen.</p></div><div class="btnrow"><button class="btn" onclick="openConfiguredLink('projectFormLink','project_form')" data-i18n="c2b">Formular öffnen</button></div></article>
+        <article class="card"><div><div class="icon">📊</div><h3 data-i18n="c3">Ergebnisse öffnen</h3><p data-i18n="c3t">Öffnet freigegebene Ergebnisse, Reports oder Dashboard-Dateien für Ihr Projekt.</p></div><div class="btnrow"><button class="btn" onclick="openConfiguredLink('reportLink','report')" data-i18n="c3b">Ergebnis öffnen</button></div></article>
+        <article class="card"><div><div class="icon">✅</div><h3 data-i18n="c4">Feedback / Freigabe</h3><p data-i18n="c4t">Senden Sie bei Bedarf eine Rückmeldung, eine Freigabe oder einen Änderungswunsch.</p></div><div class="btnrow"><button class="btn" onclick="openMail('feedback')" data-i18n="c4b">Feedback senden</button></div></article>
+        <article class="card"><div><div class="icon">💬</div><h3 data-i18n="c5">Rückfrage stellen</h3><p data-i18n="c5t">Schreiben Sie direkt eine projektbezogene Rückfrage per E-Mail.</p></div><div class="btnrow"><button class="btn" onclick="openMail('question')" data-i18n="c5b">Nachricht senden</button></div></article>
+        <article class="card"><div><div class="icon">📅</div><h3 data-i18n="c6">Termin optional abstimmen</h3><p data-i18n="c6t">Falls ein weiterer Abstimmungstermin benötigt wird, können Sie hier einen Termin anfragen oder vereinbaren.</p></div><div class="btnrow"><button class="btn" onclick="openConfiguredLink('meetingLink','meeting')" data-i18n="c6b">Termin abstimmen</button></div></article>
+      </div>
+    </section>
+
+    <section id="filesArea">
+      <div class="sectionTitle">
+        <div><h2 data-i18n="fileTitle">Dateien, Ergebnisse &amp; Präsentationen</h2><p data-i18n="fileSub">Welche Inhalte Sie bereitstellen oder später im Projekt abrufen können.</p></div>
+      </div>
+      <div class="panel">
+        <div class="fileFormatGrid">
+          <div class="fileFormat"><b>Excel</b><span>XLSX, CSV, Exporte</span></div>
+          <div class="fileFormat"><b>Power BI</b><span>PBIX, PDF, Bilder</span></div>
+          <div class="fileFormat"><b>PDF</b><span>Reports &amp; Freigaben</span></div>
+          <div class="fileFormat"><b>PowerPoint</b><span>Präsentationen</span></div>
+          <div class="fileFormat"><b>ZIP</b><span>gebündelte Daten</span></div>
+          <div class="fileFormat"><b>Bilder</b><span>Screenshots &amp; Belege</span></div>
+        </div>
+        <div class="twoCol">
+          <div class="notice info"><strong data-i18n="printTitle">Projektbereich speichern oder drucken</strong><br><span data-i18n="printText">Sie können diese Projektübersicht über Ihren Browser drucken oder als PDF speichern. Die eigentlichen Dateien und Reports werden über die vorbereiteten Microsoft-Links geöffnet.</span><div class="btnrow"><button class="btn secondary" onclick="window.print()" data-i18n="printBtn">Seite drucken / als PDF speichern</button></div></div>
+          <div class="notice ok"><strong data-i18n="safeBoxTitle">Ihre Daten werden nicht in diesem Kundenbereich gespeichert.</strong><br><span data-i18n="safeBoxText">Dieser Projektbereich dient als zentrale Navigation. Uploads, Dokumente, Reports und Freigaben laufen über projektspezifische Microsoft-365-Links.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="helpArea">
+      <div class="sectionTitle">
+        <div><h2 data-i18n="securityTitle">Datenschutz &amp; Sicherheit</h2><p data-i18n="securitySub">Kurze Orientierung für einen sicheren Datenaustausch.</p></div>
+      </div>
+      <div class="twoCol">
+        <div class="notice ok"><strong data-i18n="safeBoxTitle2">Ihre Daten werden nicht in diesem Kundenbereich gespeichert.</strong><br><span data-i18n="safeBoxText2">Diese Seite ist eine sichere Orientierung und Navigation. Der eigentliche Datenaustausch läuft über projektspezifische Microsoft-365-Links und Berechtigungen.</span></div>
+        <div class="notice"><strong data-i18n="notUploadTitle">Bitte nicht hochladen:</strong><br><span data-i18n="notUploadText">Keine Passwörter, keine privaten Daten ohne Projektbezug und keine fremden Kundendaten.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Barry Data &amp; Analytics · Bochum (NRW) · Remote &amp; international · ahmed@barrydataanalytics.de</footer>
+</div>
+
+<div class="modal" id="verifyModal">
+  <div class="modalCard">
+    <div class="modalLang" aria-label="Language">
+      <button type="button" data-modal-lang="de">DE</button>
+      <button type="button" data-modal-lang="en">EN</button>
+      <button type="button" data-modal-lang="fr">FR</button>
+    </div>
+    <h3 data-i18n="verifyTitle">Kurze Kundenbestätigung</h3>
+    <p data-i18n="verifyText">Bitte bestätigen Sie kurz, wer diesen Projektbereich nutzt. Die Bestätigung hilft uns, Projektaktionen besser zuzuordnen und den Datenaustausch nachvollziehbar zu halten.</p>
+    <div class="inputGrid">
+      <label for="verifyName" data-i18n="nameLabel">Ihr Name</label>
+      <input id="verifyName" type="text" autocomplete="name" />
+      <label for="verifyEmail" data-i18n="emailLabel">E-Mail optional</label>
+      <input id="verifyEmail" type="email" autocomplete="email" />
+      <label for="verifyCode" data-i18n="codeLabel">Projektcode</label>
+      <input id="verifyCode" type="text" autocomplete="off" />
+    </div>
+    <div class="errorText" id="verifyError" data-i18n="verifyError">Bitte geben Sie Ihren Namen und die richtige Projektnummer ein.</div>
+    <div class="btnrow">
+      <button class="btn" onclick="confirmVisitor()" data-i18n="verifyBtn">Bestätigen</button>
+      <button class="btn secondary" onclick="closeVerify()" data-i18n="laterBtn">Später</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="infoModal">
+  <div class="modalCard">
+    <h3 id="infoTitle">Hinweis</h3>
+    <p id="infoText"></p>
+    <div class="btnrow"><button class="btn" onclick="closeInfo()">OK</button></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// BDA Projektbereich Dynamic Visible Final v2
+// Wichtig: Diese Seite ist auch ohne Flow sichtbar.
+// Optional kann sie später über Flow 08A echte CRM-Daten laden.
+// ============================================================
+
+const CONFIG = {
+  contactEmail: "ahmed@barrydataanalytics.de",
+  website: "https://barrydataanalytics.de",
+  // Später hier die HTTP-URL von Flow 08A einfügen. Solange leer, bleibt die Seite trotzdem sichtbar.
+  dataFlowUrl: "",
+  dataToken: "BDA_PROJECT_AREA"
+};
+
+const FALLBACK_PROJECT = "BDA-P-2026-XXXX";
+
+const T = {
+  de:{
+    brandSub:"Sicherer Datenaustausch · Microsoft 365", navProject:"Projekt", navActions:"Aktionen", navHelp:"Hilfe",
+    eyebrow:"Projektstart & sicherer Datenaustausch", heroTitle:"Willkommen in Ihrem sicheren Projektbereich.",
+    heroLead:"Hier finden Sie alle wichtigen Projektaktionen an einem Ort: Unterlagen sicher hochladen, Informationen ergänzen, Ergebnisse abrufen und bei Bedarf Rückfragen senden oder einen Termin abstimmen.",
+    heroBtnUpload:"Unterlagen sicher hochladen", heroBtnReport:"Ergebnis öffnen", heroBtnQuestion:"Rückfrage senden",
+    status1Title:"Ihr Projektbereich ist bereit", status1Text:"Alle wichtigen Projektaktionen sind zentral für Sie vorbereitet.",
+    status2Title:"Sicherer Datenaustausch", status2Text:"Upload, Ergebnisse und Dokumente laufen über geschützte Microsoft-365-Links.",
+    status3Title:"Projektbezogene Freigaben", status3Text:"Jedes Projekt erhält eigene Links, Ordner und Berechtigungen.",
+    status4Title:"Klare Orientierung", status4Text:"Sie sehen direkt, welcher Schritt für Ihr Projekt relevant ist.",
+    projectTitle:"Ihr Projekt auf einen Blick", projectSub:"Die wichtigsten Informationen, Schritte und Zugänge für Ihr Projekt.",
+    step1:"1. Anfrage", step1t:"Ihre Anfrage wurde aufgenommen.", step2:"2. Analyse", step2t:"Projektumfang und Bedarf werden geklärt.", step3:"3. Daten", step3t:"Daten und Informationen bereitstellen.", step4:"4. Auswertung", step4t:"Analyse, Dashboard oder Report wird vorbereitet.", step5:"5. Freigabe", step5t:"Feedback, Abnahme und Abschluss.",
+    accessNote:"Bitte laden Sie nur projektbezogene Dateien hoch. Zugangsdaten oder Passwörter sollten nicht über diese Seite übermittelt werden.",
+    actionsTitle:"Projektaktionen", actionsSub:"Wählen Sie den passenden Schritt aus. Jeder Button öffnet den dafür vorgesehenen sicheren Projektlink.",
+    c1:"Daten hochladen", c1t:"Öffnet den Upload-Link für projektbezogene Dateien wie Excel, CSV oder Exporte.", c1b:"Upload öffnen",
+    c2:"Informationen ergänzen", c2t:"Öffnet die digitale Projektanalyse oder ein Zusatzformular für Projektinformationen.", c2b:"Formular öffnen",
+    c3:"Ergebnisse öffnen", c3t:"Öffnet freigegebene Ergebnisse, Reports oder Dashboard-Dateien für Ihr Projekt.", c3b:"Ergebnis öffnen",
+    c4:"Feedback / Freigabe", c4t:"Senden Sie bei Bedarf eine Rückmeldung, eine Freigabe oder einen Änderungswunsch.", c4b:"Feedback senden",
+    c5:"Rückfrage stellen", c5t:"Schreiben Sie direkt eine projektbezogene Rückfrage per E-Mail.", c5b:"Nachricht senden",
+    c6:"Termin optional abstimmen", c6t:"Falls ein weiterer Abstimmungstermin benötigt wird, können Sie hier einen Termin anfragen oder vereinbaren.", c6b:"Termin abstimmen",
+    fileTitle:"Dateien, Ergebnisse & Präsentationen", fileSub:"Welche Inhalte Sie bereitstellen oder später im Projekt abrufen können.", printTitle:"Projektbereich speichern oder drucken", printText:"Sie können diese Projektübersicht über Ihren Browser drucken oder als PDF speichern. Die eigentlichen Dateien und Reports werden über die vorbereiteten Microsoft-Links geöffnet.", printBtn:"Seite drucken / als PDF speichern",
+    securityTitle:"Datenschutz & Sicherheit", securitySub:"Kurze Orientierung für einen sicheren Datenaustausch.", safeBoxTitle:"Ihre Daten werden nicht in diesem Kundenbereich gespeichert.", safeBoxText:"Dieser Projektbereich dient als zentrale Navigation. Uploads, Dokumente, Reports und Freigaben laufen über projektspezifische Microsoft-365-Links.", safeBoxTitle2:"Ihre Daten werden nicht in diesem Kundenbereich gespeichert.", safeBoxText2:"Diese Seite ist eine sichere Orientierung und Navigation. Der eigentliche Datenaustausch läuft über projektspezifische Microsoft-365-Links und Berechtigungen.", notUploadTitle:"Bitte nicht hochladen:", notUploadText:"Keine Passwörter, keine privaten Daten ohne Projektbezug und keine fremden Kundendaten.",
+    verifyTitle:"Kurze Kundenbestätigung", verifyText:"Bitte bestätigen Sie kurz, wer diesen Projektbereich nutzt. Die Bestätigung hilft uns, Projektaktionen besser zuzuordnen und den Datenaustausch nachvollziehbar zu halten.", nameLabel:"Ihr Name", emailLabel:"E-Mail optional", codeLabel:"Projektcode", verifyBtn:"Bestätigen", laterBtn:"Später", verifyError:"Bitte geben Sie Ihren Namen und die richtige Projektnummer ein.", verified:"Bestätigt für: ",
+    linkMissingTitle:"Link noch nicht bereit", linkMissingText:"Dieser Projektlink ist noch nicht in der CRM-Zeile hinterlegt. Bitte antworten Sie auf die Projekt-E-Mail oder senden Sie eine kurze Nachricht.", beforeActionTitle:"Kurze Kundenbestätigung erforderlich", beforeActionText:"Bitte bestätigen Sie zuerst kurz Ihren Namen und die Projektnummer. Danach können Sie die Projektlinks öffnen.",
+    loading:"Projektinformationen werden geladen …", loaded:"Projektinformationen geladen.", fallback:"Projektbereich ist sichtbar. Zusätzliche CRM-Daten werden geladen, sobald der Datenabruf verbunden ist."
+  },
+  en:{
+    brandSub:"Secure data exchange · Microsoft 365", navProject:"Project", navActions:"Actions", navHelp:"Help",
+    eyebrow:"Project start & secure data exchange", heroTitle:"Welcome to your secure project area.", heroLead:"Here you will find all important project actions in one place: upload files securely, add information, access results and, if needed, send questions or coordinate a meeting.", heroBtnUpload:"Upload files securely", heroBtnReport:"Open results", heroBtnQuestion:"Send a question",
+    status1Title:"Your project area is ready", status1Text:"All key project actions are prepared for you in one central place.", status2Title:"Secure data exchange", status2Text:"Uploads, results and documents are handled through protected Microsoft 365 links.", status3Title:"Project-specific access", status3Text:"Each project receives its own links, folders and permissions.", status4Title:"Clear orientation", status4Text:"You can directly see which step is relevant for your project.",
+    projectTitle:"Your project at a glance", projectSub:"The most important information, steps and access points for your project.", step1:"1. Request", step1t:"Your request has been received.", step2:"2. Analysis", step2t:"Scope and requirements are being clarified.", step3:"3. Data", step3t:"Provide data and project information.", step4:"4. Reporting", step4t:"Analysis, dashboard or report is prepared.", step5:"5. Approval", step5t:"Feedback, acceptance and completion.",
+    accessNote:"Please upload only project-related files. Access credentials or passwords should not be submitted through this page.", actionsTitle:"Project actions", actionsSub:"Select the appropriate step. Each button opens the secure project link prepared for that action.", c1:"Upload data", c1t:"Opens the upload link for project-related files such as Excel, CSV or exports.", c1b:"Open upload", c2:"Add information", c2t:"Opens the digital project analysis or an additional project form.", c2b:"Open form", c3:"Open results", c3t:"Opens approved results, reports or dashboard files for your project.", c3b:"Open results", c4:"Feedback / approval", c4t:"If needed, send feedback, approval or a change request.", c4b:"Send feedback", c5:"Ask a question", c5t:"Send a project-related question by email.", c5b:"Send message", c6:"Coordinate optional meeting", c6t:"If another coordination meeting is needed, you can request or book it here.", c6b:"Coordinate meeting",
+    fileTitle:"Files, results & presentations", fileSub:"Which content you can provide or access later in the project.", printTitle:"Save or print project area", printText:"You can print this project overview through your browser or save it as a PDF. The actual files and reports are opened through the prepared Microsoft links.", printBtn:"Print page / save as PDF", securityTitle:"Privacy & security", securitySub:"Brief guidance for secure project communication.", safeBoxTitle:"Your data is not stored in this client area.", safeBoxText:"This project area serves as a central navigation page. Uploads, documents, reports and approvals are handled through project-specific Microsoft 365 links.", safeBoxTitle2:"Your data is not stored in this client area.", safeBoxText2:"This page is a secure orientation and navigation point. The actual data exchange runs through project-specific Microsoft 365 links and permissions.", notUploadTitle:"Please do not upload:", notUploadText:"No passwords, no private data without project relevance and no third-party client data.",
+    verifyTitle:"Short client confirmation", verifyText:"Please briefly confirm who is using this project area. The confirmation helps us assign project actions and keep the data exchange traceable.", nameLabel:"Your name", emailLabel:"Email optional", codeLabel:"Project code", verifyBtn:"Confirm", laterBtn:"Later", verifyError:"Please enter your name and the correct project number.", verified:"Confirmed for: ", linkMissingTitle:"Link not ready yet", linkMissingText:"This project link has not yet been stored in the CRM row. Please reply to the project email or send a short message.", beforeActionTitle:"Short client confirmation required", beforeActionText:"Please confirm your name and project number first. Then you can open the project links.", loading:"Loading project information …", loaded:"Project information loaded.", fallback:"Project area is visible. Additional CRM data will load once the data connection is configured."
+  },
+  fr:{
+    brandSub:"Échange de données sécurisé · Microsoft 365", navProject:"Projet", navActions:"Actions", navHelp:"Aide", eyebrow:"Démarrage du projet & échange sécurisé", heroTitle:"Bienvenue dans votre espace projet sécurisé.", heroLead:"Vous trouverez ici toutes les actions importantes du projet : transmettre des fichiers en toute sécurité, compléter les informations, consulter les résultats et, si nécessaire, poser des questions ou coordonner un rendez-vous.", heroBtnUpload:"Transmettre les fichiers", heroBtnReport:"Ouvrir les résultats", heroBtnQuestion:"Poser une question", status1Title:"Votre espace projet est prêt", status1Text:"Toutes les actions importantes du projet sont centralisées pour vous.", status2Title:"Échange de données sécurisé", status2Text:"Les envois, résultats et documents passent par des liens Microsoft 365 protégés.", status3Title:"Accès spécifique au projet", status3Text:"Chaque projet reçoit ses propres liens, dossiers et autorisations.", status4Title:"Orientation claire", status4Text:"Vous voyez directement quelle étape est pertinente pour votre projet.", projectTitle:"Votre projet en un coup d’œil", projectSub:"Les informations, étapes et accès les plus importants pour votre projet.", step1:"1. Demande", step1t:"Votre demande a été reçue.", step2:"2. Analyse", step2t:"Le périmètre et les besoins sont clarifiés.", step3:"3. Données", step3t:"Transmettre les données et informations.", step4:"4. Rapport", step4t:"L’analyse, le tableau de bord ou le rapport est préparé.", step5:"5. Validation", step5t:"Feedback, acceptation et clôture.", accessNote:"Veuillez transmettre uniquement des fichiers liés au projet. Les identifiants ou mots de passe ne doivent pas être envoyés via cette page.", actionsTitle:"Actions du projet", actionsSub:"Choisissez l’étape adaptée. Chaque bouton ouvre le lien sécurisé prévu pour le projet.", c1:"Transmettre des données", c1t:"Ouvre le lien d’envoi pour les fichiers liés au projet, par exemple Excel, CSV ou exports.", c1b:"Ouvrir l’envoi", c2:"Compléter les informations", c2t:"Ouvre l’analyse digitale du projet ou un formulaire complémentaire.", c2b:"Ouvrir le formulaire", c3:"Ouvrir les résultats", c3t:"Ouvre les résultats, rapports ou tableaux de bord partagés pour votre projet.", c3b:"Ouvrir les résultats", c4:"Feedback / validation", c4t:"Si nécessaire, envoyez un feedback, une validation ou une demande de modification.", c4b:"Envoyer le feedback", c5:"Poser une question", c5t:"Envoyez une question liée au projet par e-mail.", c5b:"Envoyer un message", c6:"Coordonner un rendez-vous optionnel", c6t:"Si un autre rendez-vous de coordination est nécessaire, vous pouvez le demander ou le réserver ici.", c6b:"Coordonner un rendez-vous", fileTitle:"Fichiers, résultats & présentations", fileSub:"Quels contenus vous pouvez transmettre ou consulter plus tard dans le projet.", printTitle:"Enregistrer ou imprimer l’espace projet", printText:"Vous pouvez imprimer cet aperçu du projet via votre navigateur ou l’enregistrer en PDF. Les fichiers et rapports réels s’ouvrent via les liens Microsoft préparés.", printBtn:"Imprimer / enregistrer en PDF", securityTitle:"Confidentialité & sécurité", securitySub:"Orientation courte pour un échange de données sécurisé.", safeBoxTitle:"Vos données ne sont pas stockées dans cet espace client.", safeBoxText:"Cet espace projet sert de navigation centrale. Les envois, documents, rapports et validations passent par des liens Microsoft 365 spécifiques au projet.", safeBoxTitle2:"Vos données ne sont pas stockées dans cet espace client.", safeBoxText2:"Cette page sert d’orientation et de navigation sécurisée. L’échange réel de données passe par des liens et autorisations Microsoft 365 spécifiques au projet.", notUploadTitle:"Veuillez ne pas transmettre :", notUploadText:"Aucun mot de passe, aucune donnée privée sans lien avec le projet et aucune donnée de clients tiers.", verifyTitle:"Confirmation rapide du client", verifyText:"Veuillez confirmer brièvement qui utilise cet espace projet. Cette confirmation aide à attribuer les actions du projet et à garder l’échange de données traçable.", nameLabel:"Votre nom", emailLabel:"E-mail optionnel", codeLabel:"Code projet", verifyBtn:"Confirmer", laterBtn:"Plus tard", verifyError:"Veuillez saisir votre nom et le bon numéro de projet.", verified:"Confirmé pour : ", linkMissingTitle:"Lien pas encore prêt", linkMissingText:"Ce lien de projet n’a pas encore été enregistré dans la ligne CRM. Veuillez répondre à l’e-mail du projet ou envoyer un court message.", beforeActionTitle:"Confirmation rapide du client requise", beforeActionText:"Veuillez d’abord confirmer votre nom et le numéro de projet. Vous pourrez ensuite ouvrir les liens du projet.", loading:"Chargement des informations du projet …", loaded:"Informations du projet chargées.", fallback:"L’espace projet est visible. Les données CRM supplémentaires seront chargées dès que la connexion sera configurée."
+  }
+};
+
+let lang = "de";
+let visitor = null;
+let customer = initialCustomerFromUrl();
+
+function qp(name){ return new URLSearchParams(window.location.search).get(name) || ""; }
+function dec(v){ try{return decodeURIComponent(v || "").trim();}catch(e){return (v||"").trim();} }
+function clean(v){ return dec(v).replace(/\+/g," "); }
+function fallback(v, f){ return (v && String(v).trim()) ? String(v).trim() : f; }
+
+function initialCustomerFromUrl(){
+  const projectNumber = clean(qp("project") || qp("projectNumber") || qp("ProjectNumber4")) || FALLBACK_PROJECT;
+  const email = clean(qp("email") || qp("customerEmail"));
+  const customerId = clean(qp("customer") || qp("customerId"));
+  const name = clean(qp("name"));
+  const company = clean(qp("company"));
+  const projectName = clean(qp("projectName") || qp("projectTitle") || qp("type"));
+  const offer = clean(qp("offer") || qp("offerNumber"));
+  const invoice = clean(qp("invoice") || qp("invoiceNumber"));
+  const upload = clean(qp("upload") || qp("uploadLink"));
+  const report = clean(qp("report") || qp("reportLink"));
+  const meeting = clean(qp("meeting") || qp("meetingLink"));
+  const form = clean(qp("form") || qp("projectFormLink"));
+  return {
+    id: projectNumber,
+    projectNumber,
+    projectCode: projectNumber,
+    name: company || name || "Ihr Unternehmen / Projekt",
+    customerName: name || "",
+    company: company || "",
+    email,
+    project: projectName || "Ihr Daten- und Analyseprojekt",
+    status: "Projektstart / Datenaustausch",
+    customerId: customerId || "—",
+    offerNumber: offer || "—",
+    invoiceNumber: invoice || "—",
+    uploadLink: upload,
+    reportLink: report,
+    meetingLink: meeting || buildMeetingLink(projectNumber, customerId, email, company, name, offer, invoice),
+    projectFormLink: form || buildProjectFormLink(projectNumber, email),
+    contactEmail: CONFIG.contactEmail
+  };
+}
+function buildProjectFormLink(projectNumber,email){
+  if(!projectNumber || projectNumber === FALLBACK_PROJECT) return "";
+  return CONFIG.website + "/projektanalyse/?projectNumber=" + encodeURIComponent(projectNumber) + (email ? "&email=" + encodeURIComponent(email) : "");
+}
+function buildMeetingLink(projectNumber, customerId, email, company, name, offer, invoice){
+  if(!projectNumber || projectNumber === FALLBACK_PROJECT) return "";
+  const p = new URLSearchParams({project:projectNumber, customer:customerId || "", lang:"de", name:name || "", email:email || "", company:company || "", offer:offer || "", invoice:invoice || ""});
+  return CONFIG.website + "/projektstart-termin/?" + p.toString();
+}
+function mergeCustomer(data){
+  if(!data) return;
+  const d = data.data || data;
+  customer = {
+    ...customer,
+    id: fallback(d.projectNumber || d.ProjectNumber4, customer.projectNumber),
+    projectNumber: fallback(d.projectNumber || d.ProjectNumber4, customer.projectNumber),
+    projectCode: fallback(d.projectNumber || d.ProjectNumber4, customer.projectNumber),
+    name: fallback(d.company || d.Company || d.name || d.Name, customer.name),
+    customerName: fallback(d.name || d.Name, customer.customerName),
+    company: fallback(d.company || d.Company, customer.company),
+    email: fallback(d.email || d.Email, customer.email),
+    project: fallback(d.project || d.projectType || d.Project || d.ProjType || d.solutionType || d.SolType, customer.project),
+    status: fallback(d.projectAreaStatus || d.ProjectAreaStatus || d.status || d.Status, customer.status),
+    customerId: fallback(d.customerId || d.CustomerID3, customer.customerId),
+    offerNumber: fallback(d.offerNumber || d.OfferNumber, customer.offerNumber),
+    invoiceNumber: fallback(d.invoiceNumber || d.InvoiceNumber, customer.invoiceNumber),
+    uploadLink: fallback(d.uploadLink || d.UploadLink, customer.uploadLink),
+    reportLink: fallback(d.reportLink || d.ReportLink, customer.reportLink),
+    meetingLink: fallback(d.meetingLink || d.ProjectStartLink || d.projectStartLink || d.MeetingLink2, customer.meetingLink),
+    projectFormLink: fallback(d.projectFormLink || d.ProjectFormLink, customer.projectFormLink)
+  };
+  if(!customer.projectFormLink) customer.projectFormLink = buildProjectFormLink(customer.projectNumber, customer.email);
+  if(!customer.meetingLink) customer.meetingLink = buildMeetingLink(customer.projectNumber, customer.customerId, customer.email, customer.company, customer.customerName, customer.offerNumber, customer.invoiceNumber);
+  applyCustomer();
+}
+
+function setLang(nextLang){
+  lang = T[nextLang] ? nextLang : "de";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if(T[lang][key]) el.textContent = T[lang][key];
+  });
+  document.querySelectorAll("[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+  document.querySelectorAll("[data-modal-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.modalLang === lang));
+  applyCustomer();
+  updateVerifiedBar();
+}
+function applyCustomer(){
+  const projectLabel = customer.projectNumber && customer.projectNumber !== FALLBACK_PROJECT ? customer.projectNumber : "Projektlink ohne Nummer";
+  document.getElementById("customerIdBadge").textContent = projectLabel;
+  document.getElementById("customerIdBadge").classList.toggle("warn", customer.projectNumber === FALLBACK_PROJECT);
+  document.getElementById("customerName").textContent = customer.name || "Ihr Projektbereich";
+  document.getElementById("customerProject").textContent = customer.project || "Projektinformationen werden geladen.";
+  document.getElementById("customerStatus").textContent = customer.status || "Projektstart / Datenaustausch";
+  document.getElementById("customerNumber").textContent = customer.customerId || "—";
+  document.getElementById("projectNumberView").textContent = customer.projectNumber || "—";
+  document.getElementById("offerNumberView").textContent = customer.offerNumber || "—";
+  document.getElementById("invoiceNumberView").textContent = customer.invoiceNumber || "—";
+  document.getElementById("verifyCode").placeholder = customer.projectCode || FALLBACK_PROJECT;
+  document.getElementById("verifyEmail").value = document.getElementById("verifyEmail").value || customer.email || "";
+}
+function isPlaceholder(url){ return !url || url.includes("HIER_") || url === "#" || url === "—"; }
+function visitorKey(){ return "bda_visitor_" + (customer.projectNumber || FALLBACK_PROJECT); }
+function loadVisitor(){ try{ visitor = JSON.parse(sessionStorage.getItem(visitorKey()) || "null"); }catch(e){ visitor = null; } }
+function saveVisitor(){ sessionStorage.setItem(visitorKey(), JSON.stringify(visitor)); updateVerifiedBar(); }
+function updateVerifiedBar(){
+  const bar = document.getElementById("verifiedBar");
+  if(visitor && visitor.name){
+    bar.textContent = T[lang].verified + visitor.name + " · " + (customer.projectNumber || FALLBACK_PROJECT);
+    bar.classList.add("show");
+  } else bar.classList.remove("show");
+}
+function showVerify(){ document.getElementById("verifyError").classList.remove("show"); document.getElementById("verifyModal").classList.add("open"); }
+function closeVerify(){ document.getElementById("verifyModal").classList.remove("open"); }
+function normalize(s){ return (s || "").trim().toLowerCase(); }
+function confirmVisitor(){
+  const name = document.getElementById("verifyName").value.trim();
+  const email = document.getElementById("verifyEmail").value.trim();
+  const code = document.getElementById("verifyCode").value.trim();
+  const expected = customer.projectCode || customer.projectNumber || FALLBACK_PROJECT;
+  if(!name || normalize(code) !== normalize(expected)){
+    document.getElementById("verifyError").classList.add("show");
+    return;
+  }
+  visitor = {name,email,code,confirmedAt:new Date().toISOString()};
+  saveVisitor();
+  closeVerify();
+}
+function requireVisitor(){
+  if(visitor && visitor.name) return true;
+  openInfo(T[lang].beforeActionTitle, T[lang].beforeActionText);
+  setTimeout(showVerify, 250);
+  return false;
+}
+function openConfiguredLink(key, action){
+  if(!requireVisitor()) return;
+  const url = customer[key];
+  if(isPlaceholder(url)){
+    openInfo(T[lang].linkMissingTitle, T[lang].linkMissingText + "<br><br><strong>Projekt:</strong> " + escapeHtml(customer.projectNumber));
+    return;
+  }
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+function openMail(type){
+  if(!requireVisitor()) return;
+  const subjectBase = type === "feedback" ? "Feedback / Freigabe zum Projekt " : "Rückfrage zum Projekt ";
+  const subject = encodeURIComponent(subjectBase + (customer.projectNumber || ""));
+  const body = encodeURIComponent(
+    "Hallo Herr Barry,\n\n" +
+    (type === "feedback" ? "hier ist mein Feedback / meine Rückmeldung zum Projekt.\n\n" : "ich habe eine Rückfrage zum Projekt.\n\n") +
+    "Projekt: " + (customer.projectNumber || "") + "\n" +
+    "Unternehmen: " + (customer.company || customer.name || "") + "\n" +
+    "E-Mail: " + (customer.email || "") + "\n\n" +
+    "Nachricht:\n"
+  );
+  window.location.href = "mailto:" + CONFIG.contactEmail + "?subject=" + subject + "&body=" + body;
+}
+function openInfo(title,text){ document.getElementById("infoTitle").textContent = title; document.getElementById("infoText").innerHTML = text; document.getElementById("infoModal").classList.add("open"); }
+function closeInfo(){ document.getElementById("infoModal").classList.remove("open"); }
+function scrollToArea(id){ document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"}); }
+function escapeHtml(s){ return String(s || "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c])); }
+async function loadFromFlow(){
+  const bar = document.getElementById("loadingBar");
+  const text = document.getElementById("loadingText");
+  if(!CONFIG.dataFlowUrl || CONFIG.dataFlowUrl.includes("HIER_")){
+    bar.style.display = "flex";
+    bar.querySelector(".spinner").style.display = "none";
+    text.textContent = T[lang].fallback;
+    return;
+  }
+  bar.style.display = "flex";
+  bar.querySelector(".spinner").style.display = "inline-block";
+  text.textContent = T[lang].loading;
+  try{
+    const res = await fetch(CONFIG.dataFlowUrl, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        projectNumber: customer.projectNumber,
+        email: customer.email,
+        token: CONFIG.dataToken,
+        source:"BDA Projektbereich Dynamic Visible Final v2"
+      })
+    });
+    const data = await res.json();
+    if(data && data.success !== false){ mergeCustomer(data.data || data); text.textContent = T[lang].loaded; }
+    else { text.textContent = data.message || T[lang].fallback; }
+  }catch(e){ text.textContent = T[lang].fallback; }
+  finally{ bar.querySelector(".spinner").style.display = "none"; }
+}
+
+document.querySelectorAll("[data-lang]").forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
+document.querySelectorAll("[data-modal-lang]").forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.modalLang)));
+
+setLang("de");
+loadVisitor();
+applyCustomer();
+loadFromFlow();
+setTimeout(() => { if(!visitor) showVerify(); }, 900);
+</script>
+</body>
+</html>
