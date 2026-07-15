@@ -172,6 +172,7 @@ h2.big{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 16px;letter-spaci
 .messageBox textarea{min-height:150px;resize:vertical;line-height:1.55}
 .copyHint{display:none;margin-top:10px;color:#dcfce7;background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.22);border-radius:14px;padding:9px 12px;font-size:13px}
 .copyHint.show{display:block}
+.copyHint.error{color:#fecaca;background:rgba(239,68,68,.10);border-color:rgba(239,68,68,.24)}
 .modalLang{display:flex;justify-content:flex-end;gap:6px;margin-bottom:12px}.modalLang button{border:1px solid var(--line);background:rgba(30,41,59,.75);color:#dbeafe;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:900;cursor:pointer}.modalLang button.active{background:var(--cyan);color:#041018;border-color:var(--lineStrong)}
 @media(max-width:960px){.hero,.twoCol{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.infoGrid{grid-template-columns:1fr 1fr}.brandText{display:none}.fileFormatGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:640px){.shell{width:min(100% - 24px,1180px)}.topbar{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}.hero{padding-top:24px}.heroCard{padding:22px}.grid,.steps,.infoGrid{grid-template-columns:1fr}.fileFormatGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.modal{align-items:flex-end}.modalCard{border-radius:24px 24px 18px 18px}}
@@ -326,7 +327,7 @@ h2.big{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 16px;letter-spaci
 <div class="modal" id="messageModal">
   <div class="modalCard">
     <h3 id="messageTitle">Projektbezogene Nachricht</h3>
-    <p id="messageIntro">Kopieren Sie die vorbereitete Nachricht und senden Sie sie über Ihr bevorzugtes E-Mail-Programm.</p>
+    <p id="messageIntro">Schreiben Sie Ihre Nachricht direkt hier im Projektbereich. Nach dem Absenden wird sie sicher übermittelt und Ihrem Projekt zugeordnet.</p>
 
     <div class="messageBox">
       <label for="messageTo">Empfänger</label>
@@ -339,15 +340,14 @@ h2.big{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 16px;letter-spaci
     </div>
 
     <div class="messageBox">
-      <label for="messageBody">Nachrichtenvorlage</label>
+      <label for="messageBody" id="messageBodyLabel">Nachricht</label>
       <textarea id="messageBody"></textarea>
-      <div class="copyHint" id="copyHint">Kopiert. Sie können die Nachricht jetzt in Ihr E-Mail-Programm einfügen.</div>
+      <div class="copyHint" id="copyHint">Ihre Nachricht wurde erfolgreich übermittelt.</div>
     </div>
 
     <div class="btnrow">
-      <button class="btn" type="button" onclick="copyPreparedMessage()">Nachricht kopieren</button>
-      <button class="btn secondary" type="button" onclick="copyEmailAddress()">E-Mail-Adresse kopieren</button>
-      <button class="btn secondary" type="button" onclick="openOutlookWeb()">Outlook Web öffnen</button>
+      <button class="btn" id="sendMessageBtn" type="button" onclick="sendProjectMessage()">Nachricht senden</button>
+      <button class="btn secondary" id="copyFallbackBtn" type="button" onclick="copyPreparedMessage()">Nachricht kopieren</button>
       <button class="btn secondary" type="button" onclick="closeMessage()">Schließen</button>
     </div>
   </div>
@@ -371,9 +371,12 @@ h2.big{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 16px;letter-spaci
 const CONFIG = {
   contactEmail: "ahmed@barrydataanalytics.de",
   website: "https://barrydataanalytics.de",
-  // Später hier die HTTP-URL von Flow 08A einfügen. Solange leer, bleibt die Seite trotzdem sichtbar.
+  // Flow 08A: Projektbereich-Daten laden.
   dataFlowUrl: "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/01/workflows/db4542c940ec436795232fcc2ee429a4/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=rZSsqoJJzOdLIEoJAstfLD6krPJZXlEyAL678XrntmA",
-  dataToken: "BDA_PROJECT_AREA"
+  dataToken: "BDA_PROJECT_AREA",
+  // Flow 08D: Rückfrage / Feedback direkt aus dem Projektbereich senden.
+  messageFlowUrl: "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/08/workflows/1702e43fc59b4a4090edc77cc2bba0da/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FazHVP3uHoxtI13R_HLuPqkTt2IfZc6H-FjAwHBhDA8",
+  messageToken: "BDA_PROJECT_MESSAGE"
 };
 
 const FALLBACK_PROJECT = "BDA-P-2026-XXXX";
@@ -565,49 +568,69 @@ function openConfiguredLink(key, action){
   }
   window.open(url, "_blank", "noopener,noreferrer");
 }
+let currentMessageType = "question";
+
 function messageLabels(type){
   const isFeedback = type === "feedback";
   const labels = {
     de:{
       title:isFeedback ? "Feedback / Freigabe senden" : "Rückfrage zum Projekt senden",
-      intro:"Kopieren Sie die vorbereitete Nachricht und senden Sie sie über Ihr bevorzugtes E-Mail-Programm. So bleibt der Projektbezug erhalten, ohne dass der Browser ein unübersichtliches Mail-Programm-Fenster öffnet.",
+      intro:"Schreiben Sie Ihre Nachricht direkt hier im Projektbereich. Nach dem Absenden wird sie sicher übermittelt und automatisch Ihrem Projekt zugeordnet.",
+      bodyLabel:"Nachricht",
+      sendBtn:"Nachricht senden",
+      sending:"Nachricht wird gesendet …",
+      success:"Vielen Dank. Ihre Nachricht wurde erfolgreich übermittelt.",
+      error:"Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kopieren Sie die Nachricht als Ersatz.",
+      copyHint:"Kopiert. Sie können die Nachricht als Ersatz in Ihr E-Mail-Programm einfügen.",
+      messageType:isFeedback ? "Feedback" : "Rückfrage",
       subject:(isFeedback ? "Feedback / Freigabe zum Projekt " : "Rückfrage zum Projekt ") + (customer.projectNumber || ""),
       body:
-        "Hallo Herr Barry,\n\n" +
-        (isFeedback ? "hier ist mein Feedback / meine Rückmeldung zum Projekt.\n\n" : "ich habe eine Rückfrage zum Projekt.\n\n") +
+        (isFeedback ? "Feedback / Freigabe zum Projekt" : "Rückfrage zum Projekt") + "\n\n" +
         "Projekt: " + (customer.projectNumber || "") + "\n" +
         "Kundennummer: " + (customer.customerId || "") + "\n" +
         "Unternehmen: " + (customer.company || customer.name || "") + "\n" +
         "Name: " + ((visitor && visitor.name) ? visitor.name : (customer.customerName || "")) + "\n" +
-        "E-Mail: " + (customer.email || "") + "\n\n" +
+        "E-Mail: " + ((visitor && visitor.email) ? visitor.email : (customer.email || "")) + "\n\n" +
         "Nachricht:\n"
     },
     en:{
       title:isFeedback ? "Send feedback / approval" : "Send a project question",
-      intro:"Copy the prepared message and send it through your preferred email program. This keeps the project reference clear without opening an unclear browser mail-app selection window.",
+      intro:"Write your message directly in this project area. After sending, it will be securely submitted and assigned to your project.",
+      bodyLabel:"Message",
+      sendBtn:"Send message",
+      sending:"Sending message …",
+      success:"Thank you. Your message was submitted successfully.",
+      error:"The message could not be sent. Please try again or copy the message as a fallback.",
+      copyHint:"Copied. You can paste the message into your email program as a fallback.",
+      messageType:isFeedback ? "Feedback" : "Rückfrage",
       subject:(isFeedback ? "Feedback / approval for project " : "Question about project ") + (customer.projectNumber || ""),
       body:
-        "Hello Mr Barry,\n\n" +
-        (isFeedback ? "here is my feedback / response regarding the project.\n\n" : "I have a question regarding the project.\n\n") +
+        (isFeedback ? "Feedback / approval for project" : "Question about project") + "\n\n" +
         "Project: " + (customer.projectNumber || "") + "\n" +
         "Customer number: " + (customer.customerId || "") + "\n" +
         "Company: " + (customer.company || customer.name || "") + "\n" +
         "Name: " + ((visitor && visitor.name) ? visitor.name : (customer.customerName || "")) + "\n" +
-        "Email: " + (customer.email || "") + "\n\n" +
+        "Email: " + ((visitor && visitor.email) ? visitor.email : (customer.email || "")) + "\n\n" +
         "Message:\n"
     },
     fr:{
       title:isFeedback ? "Envoyer un feedback / une validation" : "Envoyer une question liée au projet",
-      intro:"Copiez le message préparé et envoyez-le via votre programme e-mail préféré. La référence au projet reste claire sans ouvrir une fenêtre confuse de sélection d’application e-mail.",
+      intro:"Rédigez votre message directement dans cet espace projet. Après l’envoi, il sera transmis de manière sécurisée et attribué à votre projet.",
+      bodyLabel:"Message",
+      sendBtn:"Envoyer le message",
+      sending:"Envoi du message …",
+      success:"Merci. Votre message a été transmis avec succès.",
+      error:"Le message n’a pas pu être envoyé. Veuillez réessayer ou copier le message comme solution de secours.",
+      copyHint:"Copié. Vous pouvez coller le message dans votre programme e-mail comme solution de secours.",
+      messageType:isFeedback ? "Feedback" : "Rückfrage",
       subject:(isFeedback ? "Feedback / validation pour le projet " : "Question concernant le projet ") + (customer.projectNumber || ""),
       body:
-        "Bonjour Monsieur Barry,\n\n" +
-        (isFeedback ? "voici mon feedback / ma réponse concernant le projet.\n\n" : "j’ai une question concernant le projet.\n\n") +
+        (isFeedback ? "Feedback / validation pour le projet" : "Question concernant le projet") + "\n\n" +
         "Projet : " + (customer.projectNumber || "") + "\n" +
         "Numéro client : " + (customer.customerId || "") + "\n" +
         "Entreprise : " + (customer.company || customer.name || "") + "\n" +
         "Nom : " + ((visitor && visitor.name) ? visitor.name : (customer.customerName || "")) + "\n" +
-        "E-mail : " + (customer.email || "") + "\n\n" +
+        "E-mail : " + ((visitor && visitor.email) ? visitor.email : (customer.email || "")) + "\n\n" +
         "Message :\n"
     }
   };
@@ -615,39 +638,105 @@ function messageLabels(type){
 }
 function openMessage(type){
   if(!requireVisitor()) return;
-  const m = messageLabels(type);
+  currentMessageType = type || "question";
+  const m = messageLabels(currentMessageType);
+  const hint = document.getElementById("copyHint");
+  const sendBtn = document.getElementById("sendMessageBtn");
   document.getElementById("messageTitle").textContent = m.title;
   document.getElementById("messageIntro").textContent = m.intro;
   document.getElementById("messageTo").value = CONFIG.contactEmail;
   document.getElementById("messageSubject").value = m.subject;
+  document.getElementById("messageBodyLabel").textContent = m.bodyLabel;
   document.getElementById("messageBody").value = m.body;
-  document.getElementById("copyHint").classList.remove("show");
+  hint.textContent = "";
+  hint.classList.remove("show","error");
+  sendBtn.disabled = false;
+  sendBtn.textContent = m.sendBtn;
   document.getElementById("messageModal").classList.add("open");
+  setTimeout(() => document.getElementById("messageBody").focus(), 100);
 }
 function closeMessage(){ document.getElementById("messageModal").classList.remove("open"); }
+function messagePayload(){
+  const m = messageLabels(currentMessageType);
+  return {
+    token: CONFIG.messageToken,
+    lang: lang || "de",
+    messageType: m.messageType,
+    customerId: customer.customerId || "",
+    projectNumber: customer.projectNumber || "",
+    offerNumber: customer.offerNumber || "",
+    invoiceNumber: customer.invoiceNumber || "",
+    name: (visitor && visitor.name) ? visitor.name : (customer.customerName || customer.name || ""),
+    email: (visitor && visitor.email) ? visitor.email : (customer.email || ""),
+    company: customer.company || customer.name || "",
+    subject: document.getElementById("messageSubject").value || m.subject,
+    message: document.getElementById("messageBody").value || "",
+    pageUrl: window.location.href,
+    source: "Projektbereich"
+  };
+}
+async function sendProjectMessage(){
+  const m = messageLabels(currentMessageType);
+  const hint = document.getElementById("copyHint");
+  const sendBtn = document.getElementById("sendMessageBtn");
+  const payload = messagePayload();
+  hint.classList.remove("show","error");
+
+  if(!CONFIG.messageFlowUrl || CONFIG.messageFlowUrl.includes("HIER_")){
+    hint.textContent = m.error;
+    hint.classList.add("show","error");
+    return;
+  }
+  if(!payload.projectNumber || payload.projectNumber === FALLBACK_PROJECT || !payload.name || !payload.email || !payload.message.trim()){
+    hint.textContent = m.error;
+    hint.classList.add("show","error");
+    return;
+  }
+
+  sendBtn.disabled = true;
+  sendBtn.textContent = m.sending;
+  try{
+    const res = await fetch(CONFIG.messageFlowUrl, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
+    });
+    let data = {};
+    try{ data = await res.json(); }catch(e){}
+    if(!res.ok || data.success === false) throw new Error("Flow response failed");
+    hint.textContent = data.message || m.success;
+    hint.classList.remove("error");
+    hint.classList.add("show");
+    sendBtn.textContent = m.sendBtn;
+  }catch(e){
+    hint.textContent = m.error;
+    hint.classList.add("show","error");
+    sendBtn.textContent = m.sendBtn;
+  }finally{
+    sendBtn.disabled = false;
+  }
+}
 async function copyToClipboard(text){
+  const m = messageLabels(currentMessageType);
   try{
     await navigator.clipboard.writeText(text);
-    document.getElementById("copyHint").classList.add("show");
+    const hint = document.getElementById("copyHint");
+    hint.textContent = m.copyHint;
+    hint.classList.remove("error");
+    hint.classList.add("show");
   }catch(e){
     const box = document.getElementById("messageBody");
     box.focus();
     box.select();
-    document.getElementById("copyHint").textContent = "Bitte manuell kopieren: STRG+C / CMD+C.";
-    document.getElementById("copyHint").classList.add("show");
+    const hint = document.getElementById("copyHint");
+    hint.textContent = "Bitte manuell kopieren: STRG+C / CMD+C.";
+    hint.classList.add("show","error");
   }
 }
 function copyPreparedMessage(){
   const subject = document.getElementById("messageSubject").value;
   const body = document.getElementById("messageBody").value;
   copyToClipboard("An: " + CONFIG.contactEmail + "\nBetreff: " + subject + "\n\n" + body);
-}
-function copyEmailAddress(){ copyToClipboard(CONFIG.contactEmail); }
-function openOutlookWeb(){
-  const subject = encodeURIComponent(document.getElementById("messageSubject").value);
-  const body = encodeURIComponent(document.getElementById("messageBody").value);
-  const url = "https://outlook.office.com/mail/deeplink/compose?to=" + encodeURIComponent(CONFIG.contactEmail) + "&subject=" + subject + "&body=" + body;
-  window.open(url, "_blank", "noopener,noreferrer");
 }
 function openInfo(title,text){ document.getElementById("infoTitle").textContent = title; document.getElementById("infoText").innerHTML = text; document.getElementById("infoModal").classList.add("open"); }
 function closeInfo(){ document.getElementById("infoModal").classList.remove("open"); }
