@@ -122,6 +122,8 @@ h2.big{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 16px;letter-spaci
 .btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;border:1px solid rgba(0,242,254,.45);background:linear-gradient(135deg,rgba(0,242,254,.25),rgba(98,184,255,.12));color:#eefbff;padding:11px 14px;font-size:13px;font-weight:900;cursor:pointer}
 .btn:hover{box-shadow:0 0 22px rgba(0,242,254,.18)}
+.btn:disabled{opacity:.58;cursor:not-allowed;box-shadow:none;filter:saturate(.65)}
+.btn:disabled:hover{box-shadow:none}
 .btn.secondary{background:rgba(30,41,59,.72);border-color:var(--line);color:#dbeafe}
 .btn.disabled{opacity:.62;cursor:not-allowed}
 .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
@@ -569,6 +571,7 @@ function openConfiguredLink(key, action){
   window.open(url, "_blank", "noopener,noreferrer");
 }
 let currentMessageType = "question";
+let messageSending = false;
 
 function messageLabels(type){
   const isFeedback = type === "feedback";
@@ -579,6 +582,7 @@ function messageLabels(type){
       bodyLabel:"Nachricht",
       sendBtn:"Nachricht senden",
       sending:"Nachricht wird gesendet …",
+      sent:"Nachricht gesendet",
       success:"Vielen Dank. Ihre Nachricht wurde erfolgreich übermittelt.",
       error:"Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kopieren Sie die Nachricht als Ersatz.",
       copyHint:"Kopiert. Sie können die Nachricht als Ersatz in Ihr E-Mail-Programm einfügen.",
@@ -599,6 +603,7 @@ function messageLabels(type){
       bodyLabel:"Message",
       sendBtn:"Send message",
       sending:"Sending message …",
+      sent:"Message sent",
       success:"Thank you. Your message was submitted successfully.",
       error:"The message could not be sent. Please try again or copy the message as a fallback.",
       copyHint:"Copied. You can paste the message into your email program as a fallback.",
@@ -619,6 +624,7 @@ function messageLabels(type){
       bodyLabel:"Message",
       sendBtn:"Envoyer le message",
       sending:"Envoi du message …",
+      sent:"Message envoyé",
       success:"Merci. Votre message a été transmis avec succès.",
       error:"Le message n’a pas pu être envoyé. Veuillez réessayer ou copier le message comme solution de secours.",
       copyHint:"Copié. Vous pouvez coller le message dans votre programme e-mail comme solution de secours.",
@@ -650,8 +656,10 @@ function openMessage(type){
   document.getElementById("messageBody").value = m.body;
   hint.textContent = "";
   hint.classList.remove("show","error");
+  messageSending = false;
   sendBtn.disabled = false;
   sendBtn.textContent = m.sendBtn;
+  sendBtn.removeAttribute("data-sent");
   document.getElementById("messageModal").classList.add("open");
   setTimeout(() => document.getElementById("messageBody").focus(), 100);
 }
@@ -676,12 +684,19 @@ function messagePayload(){
   };
 }
 async function sendProjectMessage(){
+  if(messageSending) return;
   const m = messageLabels(currentMessageType);
   const hint = document.getElementById("copyHint");
   const sendBtn = document.getElementById("sendMessageBtn");
   const payload = messagePayload();
   hint.classList.remove("show","error");
 
+  if(sendBtn.getAttribute("data-sent") === "true"){
+    hint.textContent = m.success;
+    hint.classList.remove("error");
+    hint.classList.add("show");
+    return;
+  }
   if(!CONFIG.messageFlowUrl || CONFIG.messageFlowUrl.includes("HIER_")){
     hint.textContent = m.error;
     hint.classList.add("show","error");
@@ -693,6 +708,7 @@ async function sendProjectMessage(){
     return;
   }
 
+  messageSending = true;
   sendBtn.disabled = true;
   sendBtn.textContent = m.sending;
   try{
@@ -707,13 +723,16 @@ async function sendProjectMessage(){
     hint.textContent = data.message || m.success;
     hint.classList.remove("error");
     hint.classList.add("show");
-    sendBtn.textContent = m.sendBtn;
+    sendBtn.textContent = m.sent || m.sendBtn;
+    sendBtn.setAttribute("data-sent", "true");
+    sendBtn.disabled = true;
   }catch(e){
     hint.textContent = m.error;
     hint.classList.add("show","error");
     sendBtn.textContent = m.sendBtn;
-  }finally{
     sendBtn.disabled = false;
+  }finally{
+    messageSending = false;
   }
 }
 async function copyToClipboard(text){
