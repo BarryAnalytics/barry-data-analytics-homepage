@@ -3934,6 +3934,68 @@ footer {
   font-size:.82rem;
   line-height:1.5;
 }
+.bda-tool-cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:14px 0 14px;
+}
+.bda-tool-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(39,243,217,.26);
+  background:radial-gradient(circle at top left,rgba(39,243,217,.10),rgba(15,23,42,.92) 42%,rgba(2,6,23,.96));
+  padding:16px;
+  min-height:132px;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease;
+}
+.bda-tool-card.primary{
+  border-color:rgba(39,243,217,.46);
+  box-shadow:0 0 28px rgba(39,243,217,.12);
+}
+.bda-tool-card::after{
+  content:"";
+  position:absolute;
+  right:-34px;
+  top:-34px;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:rgba(39,243,217,.08);
+  filter:blur(2px);
+}
+.bda-tool-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(39,243,217,.72);
+  box-shadow:0 18px 40px rgba(39,243,217,.18);
+  background:radial-gradient(circle at top left,rgba(39,243,217,.14),rgba(17,24,39,.95) 44%,rgba(2,6,23,.98));
+}
+.bda-tool-kicker{
+  position:relative;
+  z-index:1;
+  color:var(--accent);
+  font-size:.70rem;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.bda-tool-card h3{
+  position:relative;
+  z-index:1;
+  margin:0 0 8px;
+  font-size:1rem;
+  color:#f8fafc;
+}
+.bda-tool-card p{
+  position:relative;
+  z-index:1;
+  margin:0;
+  color:#cbd5e1;
+  font-size:.84rem;
+  line-height:1.52;
+}
 .bda-capability-tags{
   display:flex;
   flex-wrap:wrap;
@@ -4013,7 +4075,198 @@ footer {
   .bda-wow-grid,.bda-capability-shell{padding:14px}
 }
 
-  </style>
+
+/* =========================================================
+   BDA FINAL – Formularbereich Premium Layout / keine Flow-Änderung
+   Nur Optik: linke Prozesskarten, Abstände, Textfeld, Hinweis.
+   Formular-IDs, Feldnamen, Dropdown-Werte und JavaScript bleiben unverändert.
+========================================================= */
+.contact {
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+  gap: 24px;
+  padding: 22px;
+}
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.contact-steps-title {
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.process-cards {
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.process-card {
+  position: relative;
+  min-height: 130px;
+  padding: 14px 14px 13px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0 0, rgba(39, 243, 217, 0.10), transparent 36%),
+    linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.98));
+  border: 1px solid rgba(148, 163, 184, 0.34);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+}
+.process-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(39, 243, 217, 0.08), transparent 48%);
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+.process-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(39, 243, 217, 0.68);
+  box-shadow: 0 18px 40px rgba(39, 243, 217, 0.18), 0 14px 32px rgba(0,0,0,0.36);
+}
+.process-card:hover::after { opacity: 1; }
+.process-card-icon {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 8px;
+  border-color: rgba(39, 243, 217, 0.55);
+  background: rgba(39, 243, 217, 0.10);
+  color: var(--accent);
+  box-shadow: 0 0 14px rgba(39, 243, 217, 0.24);
+  font-weight: 800;
+}
+.process-card h4 {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  font-size: 0.86rem;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.process-card p {
+  position: relative;
+  z-index: 1;
+  color: #dbeafe;
+  font-size: 0.80rem;
+  line-height: 1.48;
+}
+.about-pill-row {
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+.about-pill {
+  height: 7px;
+  width: 22px;
+  padding: 0;
+  font-size: 0;
+  border-color: rgba(39, 243, 217, 0.35);
+  background: linear-gradient(90deg, rgba(39,243,217,0.18), rgba(148,163,184,0.12));
+}
+.bda-flow-mini {
+  margin-top: 8px;
+  padding: 16px;
+  border-color: rgba(39, 243, 217, 0.34);
+  background:
+    radial-gradient(circle at top left, rgba(39,243,217,0.09), transparent 38%),
+    linear-gradient(145deg, rgba(15,23,42,0.93), rgba(2,6,23,0.98));
+  box-shadow: 0 0 26px rgba(39, 243, 217, 0.10), 0 20px 45px rgba(0,0,0,0.32);
+}
+.bda-flow-mini h3 {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+.bda-flow-mini ol { gap: 8px; }
+.bda-flow-mini li {
+  color: #e2e8f0;
+  font-size: 0.805rem;
+}
+.bda-flow-mini li::before {
+  background: rgba(39, 243, 217, 0.15);
+  border-color: rgba(39, 243, 217, 0.56);
+  box-shadow: 0 0 12px rgba(39, 243, 217, 0.18);
+}
+.bda-flow-mini-note {
+  color: #b6c2d6;
+  line-height: 1.45;
+}
+.contact-form {
+  gap: 12px;
+  padding-top: 18px;
+  align-self: stretch;
+}
+.field { gap: 5px; }
+.field label { color: #cbd5e1; }
+.field input,
+.field select,
+.field textarea {
+  padding: 11px 12px;
+  border-color: rgba(39, 243, 217, 0.38);
+  box-shadow: 0 0 0 rgba(39, 243, 217, 0);
+}
+.field textarea {
+  min-height: 210px;
+  resize: vertical;
+}
+.contact-form .btn-primary {
+  margin-top: 2px;
+  justify-content: center;
+  min-height: 42px;
+}
+.contact-note {
+  margin-top: 7px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(39, 243, 217, 0.28);
+  background: rgba(39, 243, 217, 0.06);
+  color: #dbeafe;
+  line-height: 1.38;
+  box-shadow: 0 0 18px rgba(39, 243, 217, 0.08);
+}
+@media (max-width: 880px) {
+  .contact {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    gap: 18px;
+  }
+  .contact-form { padding-top: 0; }
+  .field textarea { min-height: 160px; }
+}
+@media (max-width: 620px) {
+  .process-card { min-height: auto; }
+}
+
+
+/* BDA FINAL – Statusfeld nur sichtbar, wenn wirklich gesendet/geprüft wird */
+#contact-status {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+#contact-status[style*="display: block"] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin-top: 4px !important;
+  padding: 7px 10px !important;
+  min-height: 0 !important;
+  border: 1px solid rgba(0, 224, 255, 0.55) !important;
+  box-shadow: 0 0 12px rgba(0, 224, 255, 0.35) !important;
+}
+
+  
+/* BDA Business-Tools responsive safety */
+@media (max-width: 720px){
+  .bda-tool-cards{grid-template-columns:1fr!important;}
+}
+</style>
 
 
 
@@ -4467,6 +4720,19 @@ footer {
           <div class="bda-capability-note" data-i18n="capabilities_note"></div>
         </div>
 
+        <div class="bda-tool-cards" aria-label="Erweiterbare Projektbausteine">
+          <div class="bda-tool-card primary">
+            <div class="bda-tool-kicker" data-i18n="tool_1_kicker"></div>
+            <h3 data-i18n="tool_1_title"></h3>
+            <p data-i18n="tool_1_text"></p>
+          </div>
+          <div class="bda-tool-card">
+            <div class="bda-tool-kicker" data-i18n="tool_2_kicker"></div>
+            <h3 data-i18n="tool_2_title"></h3>
+            <p data-i18n="tool_2_text"></p>
+          </div>
+        </div>
+
         <div class="bda-capability-tags">
           <span class="bda-capability-tag" data-i18n="cap_1"></span>
           <span class="bda-capability-tag" data-i18n="cap_2"></span>
@@ -4553,7 +4819,7 @@ footer {
   </div>
 
   <div class="contact">
-    <div>
+    <div class="contact-left">
 
       <div class="contact-steps-title" data-i18n="process_title"></div>
 
@@ -5021,7 +5287,7 @@ const languageData = {
 
     field_submit: "Anfrage senden",
     contact_note:
-      "Ihre Anfrage ist unverbindlich. Wir melden uns mit Rückfragen oder einem konkreten Vorschlag.",
+      "Datenschutz ab dem ersten Kontakt: Im Erstformular fragen wir keine Passwörter, keine Zugangsdaten und keine vertraulichen Unternehmensdateien ab.",
 
     /* Footer */
     footer_company: "Barry Data & Analytics",
@@ -5623,7 +5889,7 @@ founder_text2:
 
     field_submit: "Envoyer la demande",
     contact_note:
-      "Votre demande est sans engagement. Nous reviendrons vers vous avec des questions ou une proposition concrète.",
+      "Protection des données dès le premier contact : ce premier formulaire ne demande aucun mot de passe, accès ou fichier confidentiel de l’entreprise.",
 
     /* Footer */
     footer_company: "Barry Data & Analytics",
@@ -5781,8 +6047,14 @@ Object.assign(languageData.de, {
   "flow_9": "Ergebnis & Abschluss",
   "capabilities_eyebrow": "AUCH MÖGLICH",
   "capabilities_title": "Mehr als ein Dashboard – wenn es zum Projekt passt.",
-  "capabilities_subtitle": "Das Anfrageformular bleibt bewusst einfach. Weitere Themen können später in der digitalen Projektanalyse sauber eingeordnet werden.",
-  "capabilities_note": "So bleibt die erste Anfrage leicht verständlich, während komplexere Anforderungen trotzdem professionell aufgenommen werden können.",
+  "capabilities_subtitle": "Nicht jedes Projekt ist nur ein Dashboard. Je nach Bedarf entstehen auch klare Arbeitsoberflächen für interne Abläufe, Daten, Dokumente und Kommunikation.",
+  "capabilities_note": "Das Anfrageformular bleibt bewusst einfach. Weitere Themen werden später in der digitalen Projektanalyse sauber eingeordnet.",
+  "tool_1_kicker": "Interne Abläufe",
+  "tool_1_title": "Business-Tools & Prozess-Cockpits",
+  "tool_1_text": "Strukturierte Arbeitsoberflächen für Anfragen, Angebote, Rechnungen, Projektstatus, Uploads, Rückfragen oder Abschlussprozesse – passend zum bestehenden Arbeitsalltag.",
+  "tool_2_kicker": "CRM-nahe Automatisierung",
+  "tool_2_title": "Vom Kontakt bis zum Projektabschluss",
+  "tool_2_text": "Statuslogik, automatische E-Mails, Dokumente, Ordner, Freigaben und Nachverfolgung können zu einem klaren, nachvollziehbaren Prozess verbunden werden.",
   "cap_1": "Excel- & Power-Query-Automatisierung",
   "cap_2": "Datenbereinigung & Datenstruktur",
   "cap_3": "KPI-Definition & Reporting-Konzept",
@@ -5794,11 +6066,11 @@ Object.assign(languageData.de, {
   "cap_9": "Prozessdokumentation & Übergabe",
   "process_title": "So arbeiten wir zusammen",
   "process_step1_title": "Kurze Anfrage",
-  "process_step1_text": "Sie schildern kurz Ihre Situation. Wir prüfen, ob und wie wir sinnvoll unterstützen können.",
+  "process_step1_text": "Sie schildern kurz, worum es geht. Wir prüfen strukturiert, ob und wie wir sinnvoll unterstützen können.",
   "process_step2_title": "Digitale Projektanalyse",
-  "process_step2_text": "Bei passender Anfrage erhalten Sie eine strukturierte Projektanalyse, damit Ziele, Daten, Prozesse und Erwartungen sauber verstanden werden.",
+  "process_step2_text": "Bei passender Anfrage erhalten Sie eine strukturierte Projektanalyse. So werden Ziele, Daten, Prozesse und Erwartungen sauber eingeordnet.",
   "process_step3_title": "Lösungsvorschlag & Angebot",
-  "process_step3_text": "Aus Ihren Angaben entsteht ein klarer Vorschlag mit Vorgehen, Leistungsumfang und nächsten Schritten.",
+  "process_step3_text": "Aus Ihren Angaben entsteht ein klarer Vorschlag mit Vorgehen, Leistungsumfang und den nächsten Schritten.",
   "process_step4_title": "Start, Umsetzung & Abschluss",
   "process_step4_text": "Nach Annahme folgen Rechnung, Projektstart-Vorbereitung, sicherer Projektbereich, Umsetzung, Ergebnisbereitstellung und Projektabschluss.",
   "flowmini_title": "Der Ablauf bleibt klar",
@@ -5853,8 +6125,14 @@ Object.assign(languageData.en, {
   "flow_9": "Results & completion",
   "capabilities_eyebrow": "ALSO POSSIBLE",
   "capabilities_title": "More than a dashboard – when the project needs it.",
-  "capabilities_subtitle": "The request form stays intentionally simple. Additional topics can be clarified properly in the digital project analysis.",
-  "capabilities_note": "This keeps the first request easy to understand while still allowing more complex requirements to be captured professionally.",
+  "capabilities_subtitle": "Not every project is just a dashboard. When needed, we also create clear internal workspaces for processes, data, documents and communication.",
+  "capabilities_note": "The request form stays intentionally simple. Additional topics are clarified properly in the digital project analysis.",
+  "tool_1_kicker": "Internal processes",
+  "tool_1_title": "Business tools & process cockpits",
+  "tool_1_text": "Structured workspaces for requests, offers, invoices, project status, uploads, questions or completion steps – designed around the existing way of working.",
+  "tool_2_kicker": "CRM-related automation",
+  "tool_2_title": "From contact to project completion",
+  "tool_2_text": "Status logic, automated emails, documents, folders, approvals and follow-up can be connected into one clear, traceable process.",
   "cap_1": "Excel & Power Query automation",
   "cap_2": "Data cleaning & data structure",
   "cap_3": "KPI definition & reporting concept",
@@ -5866,11 +6144,11 @@ Object.assign(languageData.en, {
   "cap_9": "Process documentation & handover",
   "process_title": "How we work together",
   "process_step1_title": "Short request",
-  "process_step1_text": "You briefly describe your situation. We review whether and how we can support you in a meaningful way.",
+  "process_step1_text": "You briefly describe what the project is about. We review in a structured way whether and how we can support you meaningfully.",
   "process_step2_title": "Digital project analysis",
-  "process_step2_text": "If the request fits, you receive a structured project analysis so goals, data, processes and expectations can be understood clearly.",
+  "process_step2_text": "If the request fits, you receive a structured project analysis. This helps clarify goals, data, processes and expectations.",
   "process_step3_title": "Solution proposal & offer",
-  "process_step3_text": "Based on your information, we prepare a clear proposal with approach, scope and next steps.",
+  "process_step3_text": "Based on your information, we prepare a clear proposal with approach, scope and the next steps.",
   "process_step4_title": "Start, implementation & completion",
   "process_step4_text": "After acceptance, invoice, project start preparation, secure project area, implementation, result delivery and project completion follow.",
   "flowmini_title": "The process stays clear",
@@ -5925,8 +6203,14 @@ Object.assign(languageData.fr, {
   "flow_9": "Résultat & clôture",
   "capabilities_eyebrow": "AUSSI POSSIBLE",
   "capabilities_title": "Plus qu’un tableau de bord – si le projet le nécessite.",
-  "capabilities_subtitle": "Le formulaire de demande reste volontairement simple. Les sujets complémentaires peuvent être clarifiés proprement dans l’analyse digitale du projet.",
-  "capabilities_note": "Ainsi, la première demande reste facile à comprendre tout en permettant de traiter des besoins plus complexes de manière professionnelle.",
+  "capabilities_subtitle": "Tous les projets ne sont pas seulement des tableaux de bord. Selon le besoin, des espaces de travail internes peuvent aussi être structurés pour les processus, les données, les documents et la communication.",
+  "capabilities_note": "Le formulaire de demande reste volontairement simple. Les sujets complémentaires sont ensuite clarifiés proprement dans l’analyse digitale du projet.",
+  "tool_1_kicker": "Processus internes",
+  "tool_1_title": "Outils business & cockpits de processus",
+  "tool_1_text": "Des espaces de travail structurés pour les demandes, offres, factures, statuts de projet, uploads, questions ou étapes de clôture – adaptés au fonctionnement existant.",
+  "tool_2_kicker": "Automatisation proche du CRM",
+  "tool_2_title": "Du premier contact à la clôture du projet",
+  "tool_2_text": "Logique de statut, e-mails automatiques, documents, dossiers, validations et suivi peuvent être reliés dans un processus clair et traçable.",
   "cap_1": "Automatisation Excel & Power Query",
   "cap_2": "Nettoyage & structuration des données",
   "cap_3": "Définition des KPI & concept de reporting",
@@ -5938,9 +6222,9 @@ Object.assign(languageData.fr, {
   "cap_9": "Documentation de processus & transfert",
   "process_title": "Comment nous travaillons ensemble",
   "process_step1_title": "Demande courte",
-  "process_step1_text": "Vous décrivez brièvement votre situation. Nous vérifions si et comment nous pouvons vous accompagner utilement.",
+  "process_step1_text": "Vous décrivez brièvement votre projet. Nous vérifions de manière structurée si et comment nous pouvons vous accompagner utilement.",
   "process_step2_title": "Analyse digitale du projet",
-  "process_step2_text": "Si la demande est pertinente, vous recevez une analyse structurée afin de comprendre clairement les objectifs, données, processus et attentes.",
+  "process_step2_text": "Si la demande est pertinente, vous recevez une analyse structurée du projet afin de clarifier les objectifs, données, processus et attentes.",
   "process_step3_title": "Proposition & offre",
   "process_step3_text": "À partir de vos informations, nous préparons une proposition claire avec l’approche, le périmètre et les prochaines étapes.",
   "process_step4_title": "Démarrage, mise en œuvre & clôture",
