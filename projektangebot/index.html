@@ -42,6 +42,15 @@ input,select,textarea{width:100%;color:var(--text);background:var(--field);borde
 textarea{min-height:112px;resize:vertical;line-height:1.55}
 input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,242,254,.14)}
 .offer-box{border:1px solid rgba(0,242,254,.22);background:rgba(0,242,254,.06);border-radius:20px;padding:18px;display:grid;gap:12px}
+.offer-summary-box{margin-top:14px;background:linear-gradient(145deg,rgba(0,242,254,.075),rgba(15,23,42,.72));border-color:rgba(0,242,254,.28)}
+.offer-summary-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.offer-summary-title{font-size:13px;color:var(--cyan);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.offer-summary-intro{margin:0;color:#cbd5e1;font-size:13px;line-height:1.55}
+.offer-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+.offer-summary-item{border:1px solid rgba(148,163,184,.18);background:rgba(30,41,59,.48);border-radius:14px;padding:12px}
+.offer-summary-item strong{display:block;color:#e2e8f0;font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.offer-summary-item span{display:block;color:#cbd5e1;font-size:13px;line-height:1.45;white-space:pre-wrap}
+@media(max-width:700px){.offer-summary-grid{grid-template-columns:1fr}}
 .price{font-size:34px;font-weight:900;color:#fff;letter-spacing:-.03em} .small{font-size:12px;color:var(--muted);line-height:1.5}
 .trust-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .trust-item,.choice{padding:12px;border:1px solid var(--border);border-radius:14px;background:rgba(30,41,59,.65);font-size:14px;color:#e2e8f0}
@@ -187,6 +196,43 @@ details{border-top:1px solid rgba(148,163,184,.15);padding:12px 0} summary{curso
         <div class="section-title" data-i18n="sectionOffer"></div>
         <label class="field-label" data-i18n="projectType"></label>
         <div class="multi-select" id="projectMultiSelect"><button type="button" class="multi-select-button" id="projectMultiButton"></button><div class="multi-select-panel" id="projectTypeList"></div></div>
+        <div class="offer-box offer-summary-box" id="recognizedSummaryBox">
+          <div class="offer-summary-head">
+            <div class="offer-summary-title" data-i18n="recognizedTitle"></div>
+          </div>
+          <p class="offer-summary-intro" data-i18n="recognizedIntro"></p>
+          <div class="offer-summary-grid">
+            <div class="offer-summary-item">
+              <strong data-i18n="recognizedProjectType"></strong>
+              <span id="summaryProjectTypes">-</span>
+            </div>
+            <div class="offer-summary-item">
+              <strong data-i18n="recognizedFocus"></strong>
+              <span id="summaryProcessFocus">-</span>
+            </div>
+            <div class="offer-summary-item">
+              <strong data-i18n="recognizedSystems"></strong>
+              <span id="summarySystems">-</span>
+            </div>
+            <div class="offer-summary-item">
+              <strong data-i18n="recognizedAutomation"></strong>
+              <span id="summaryAutomation">-</span>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="systems">
+        <input type="hidden" id="dataLocation">
+        <input type="hidden" id="reportsExist">
+        <input type="hidden" id="automation">
+        <input type="hidden" id="userCount">
+        <input type="hidden" id="urgency">
+        <input type="hidden" id="requirements">
+        <input type="hidden" id="additionalInfo">
+        <input type="hidden" id="analysisSummary">
+        <input type="hidden" id="processFocus">
+        <input type="hidden" id="workEnvironment">
+        <input type="hidden" id="companySize">
+        <input type="hidden" id="collaborationModel">
         <div style="margin-top:14px"><label class="field-label" for="projectTitle" data-i18n="projectTitle"></label><input id="projectTitle"></div>
         <div style="margin-top:14px"><label class="field-label" for="scope" data-i18n="scope"></label><textarea id="scope"></textarea></div>
         <div id="projectScopeCards" class="project-card-list"></div>
@@ -254,21 +300,21 @@ const OFFER_DATA_FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.en
 
 const DATA = {
   de: {
-    projects:["Sales Performance Dashboard","Marketing Performance Analyse","Logistik Performance & Bestandsanalyse","Operations Effizienz-Analyse","E-Commerce Funnel & Conversion Tracking","Industrie OEE & Produktionsreporting","Service & Callcenter Performance Dashboard","Forecasting & Nachfrage-Prognosen","Reporting-Automatisierung","Individuelle Datenlösung / Sonstiges Projekt"],
+    projects:["Sales Performance Dashboard","Marketing Performance Analyse","Logistik Performance & Bestandsanalyse","Operations Effizienz-Analyse","E-Commerce Funnel & Conversion Tracking","Industrie OEE & Produktionsreporting","Service & Callcenter Performance Dashboard","Forecasting & Nachfrage-Prognosen","Reporting-Automatisierung","Interne Business-Tools / Prozess-Cockpit","CRM-nahe Prozessautomatisierung","Individuelle Datenlösung / Sonstiges Projekt"],
     timeline:["Sofort","In den nächsten Wochen","In den nächsten Monaten","Noch unklar"],
     priority:["Niedrig","Mittel","Hoch","Noch unklar"],
     frequency:["Täglich","Wöchentlich","Monatlich","Quartalsweise","Jährlich","Bei Bedarf","Noch unklar"],
     dataSource:["Excel / CSV","Google Sheets","CRM-System","ERP-System","Website / Webshop","Datenbank / SQL","Power BI / bestehendes Dashboard","Noch unklar","Sonstige Datenquellen"]
   },
   en: {
-    projects:["Sales performance dashboard","Marketing performance analysis","Logistics performance & inventory analysis","Operations efficiency analysis","E-commerce funnel & conversion tracking","Industrial OEE & production reporting","Service & call center performance dashboard","Forecasting & demand predictions","Reporting automation","Custom data solution / other project"],
+    projects:["Sales performance dashboard","Marketing performance analysis","Logistics performance & inventory analysis","Operations efficiency analysis","E-commerce funnel & conversion tracking","Industrial OEE & production reporting","Service & call center performance dashboard","Forecasting & demand predictions","Reporting automation","Internal business tools / process cockpit","CRM-related process automation","Custom data solution / other project"],
     timeline:["Immediately","In the next weeks","In the next months","Not sure yet"],
     priority:["Low","Medium","High","Not sure yet"],
     frequency:["Daily","Weekly","Monthly","Quarterly","Yearly","On demand","Not sure yet"],
     dataSource:["Excel / CSV","Google Sheets","CRM system","ERP system","Website / webshop","Database / SQL","Power BI / existing dashboard","Not sure yet","Other data sources"]
   },
   fr: {
-    projects:["Tableau de bord de performance commerciale","Analyse de performance marketing","Performance logistique & analyse des stocks","Analyse d’efficacité opérationnelle","Tunnel e-commerce & suivi des conversions","OEE industriel & reporting de production","Tableau de bord service & call center","Prévisions & analyses de la demande","Automatisation du reporting","Solution de données personnalisée / autre projet"],
+    projects:["Tableau de bord de performance commerciale","Analyse de performance marketing","Performance logistique & analyse des stocks","Analyse d’efficacité opérationnelle","Tunnel e-commerce & suivi des conversions","OEE industriel & reporting de production","Tableau de bord service & call center","Prévisions & analyses de la demande","Automatisation du reporting","Outils métier internes / cockpit de processus","Automatisation des processus proches du CRM","Solution de données personnalisée / autre projet"],
     timeline:["Immédiatement","Dans les prochaines semaines","Dans les prochains mois","Pas encore sûr"],
     priority:["Faible","Moyenne","Élevée","Pas encore sûr"],
     frequency:["Quotidien","Hebdomadaire","Mensuel","Trimestriel","Annuel","Selon les besoins","Pas encore sûr"],
@@ -287,7 +333,7 @@ const TEXT = {
     sectionPartner:"1. Projektpartner", customerName:"Auftraggeber (Kunde) *", company:"Unternehmen", email:"E-Mail *", customerAddress:"Kundenanschrift", projectNumber:"Projektnummer", provider:"Auftragnehmer",
     sectionImported:"2. Angaben aus der Projektanalyse", timeline:"Projektstart", priority:"Dringlichkeit", frequency:"Reporting-Frequenz", dataSource:"Datenquellen", phone:"Telefon", phonePh:"Telefonnummer aus der Projektanalyse",
     sectionAnalysis:"3. Projektziel & fachliche Einordnung", analysisIntro:"Auf Grundlage Ihrer digitalen Projektanalyse wurden Ihre Ziele, Herausforderungen und Anforderungen fachlich eingeordnet. Die folgenden Angaben bilden die Grundlage für die empfohlene Lösung und den Leistungsumfang.", goal:"Ziel des Projekts", challenge:"Aktuelle Herausforderung", expected:"Erwartetes Ergebnis", description:"Projektbeschreibung", recommendation:"Fachliche Empfehlung auf Basis Ihrer Projektanalyse", recommendationIntro:"Auf Grundlage Ihrer Angaben ergibt sich folgende erste fachliche Empfehlung:", recommendationFallback:"Die empfohlene Lösung orientiert sich an Ihren Angaben aus der digitalen Projektanalyse und wird im nächsten Schritt fachlich finalisiert.",
-    sectionOffer:"4. Empfohlener Leistungsumfang & Projektbereiche", projectType:"Ausgewählte Projektart(en)", projectMultiPlaceholder:"Projektart auswählen",referenceNote:"Diese Referenznummern dienen der eindeutigen Zuordnung Ihres Projekts und Ihrer Unterlagen. Bitte geben Sie diese Nummern bei Rückfragen an.",customerIdLabel:"Kundennummer",projectIdLabel:"Projektnummer",offerIdLabel:"Angebotsnummer",invoiceIdLabel:"Rechnungsnummer",lockedProjectNote:"Die ausgewählten Projektbereiche und der empfohlene Leistungsumfang wurden auf Grundlage Ihrer digitalen Projektanalyse vorbereitet. Änderungen oder Erweiterungen werden separat geprüft und können Preis, Zeitplan und Leistungsumfang beeinflussen.",changeRequestLabel:"Änderungswunsch / Ergänzung zum Angebot",changeRequestPh:"Falls Sie eine Änderung oder Erweiterung wünschen, können Sie diese hier kurz notieren. Die Annahme dieses Angebots gilt für den oben beschriebenen Leistungsumfang.", projectTitle:"Projekt / Leistung", scope:"Leistungsumfang",
+    sectionOffer:"4. Empfohlener Leistungsumfang & Projektbereiche", projectType:"Ausgewählte Projektart(en)", projectMultiPlaceholder:"Projektart auswählen", recognizedTitle:"Projektbereiche & fachliche Schwerpunkte", recognizedIntro:"Die folgenden Punkte wurden aus Ihrer digitalen Projektanalyse übernommen und dienen als fachliche Grundlage für dieses Angebot.", recognizedProjectType:"Projektart / Lösungstyp", recognizedFocus:"Prozess- und Umsetzungsschwerpunkte", recognizedSystems:"Daten- und Systemumfeld", recognizedAutomation:"Automatisierungswunsch",referenceNote:"Diese Referenznummern dienen der eindeutigen Zuordnung Ihres Projekts und Ihrer Unterlagen. Bitte geben Sie diese Nummern bei Rückfragen an.",customerIdLabel:"Kundennummer",projectIdLabel:"Projektnummer",offerIdLabel:"Angebotsnummer",invoiceIdLabel:"Rechnungsnummer",lockedProjectNote:"Die ausgewählten Projektbereiche und der empfohlene Leistungsumfang wurden auf Grundlage Ihrer digitalen Projektanalyse vorbereitet. Änderungen oder Erweiterungen werden separat geprüft und können Preis, Zeitplan und Leistungsumfang beeinflussen.",changeRequestLabel:"Änderungswunsch / Ergänzung zum Angebot",changeRequestPh:"Falls Sie eine Änderung oder Erweiterung wünschen, können Sie diese hier kurz notieren. Die Annahme dieses Angebots gilt für den oben beschriebenen Leistungsumfang.", projectTitle:"Projekt / Leistung", scope:"Leistungsumfang",
     sectionPrice:"5. Preis, Laufzeit & Zahlung", deliveryTime:"Geplante Umsetzungsdauer", price:"Projektpreis", paymentTerms:"Zahlungsbedingungen", priceNote:"Projektpreis", taxNote:"Hinweis zur Abrechnung: Der angegebene Betrag wird gemäß den geltenden steuerlichen Vorgaben ohne gesonderten Umsatzsteuerausweis berechnet.",
     sectionTrust:"6. Warum Barry Data & Analytics?", trust1:"Individuelle Lösungen statt Standardsoftware", trust2:"100 % digitale Zusammenarbeit", trust3:"Transparente Kommunikation", trust4:"DSGVO-bewusste Projektbearbeitung", trust5:"Persönlicher Ansprechpartner", trust6:"Moderne BI-, Reporting- und Automatisierungslösungen",
     sectionAgreement:"7. Projektvereinbarung", p1Title:"§1 Gegenstand und Leistungsumfang", p1Text:"Gegenstand dieser Projektvereinbarung sind die in diesem Dokument ausgewählten Projektbereiche und der dazugehörige Leistungsumfang.", p2Title:"§2 Vergütung und Zahlungsbedingungen", p2Text:"Die Vergütung richtet sich nach dem angegebenen Projektpreis. Die Zahlung erfolgt gemäß den in diesem Dokument genannten Zahlungsbedingungen.", p3Title:"§3 Projektlaufzeit und Abnahme", p3Text:"Das Projekt beginnt nach digitaler Annahme dieses Dokuments und gemeinsamer Abstimmung der nächsten Schritte. Es endet mit Übergabe und Abnahme der vereinbarten Leistung, sofern keine separate Wartungs- oder Servicevereinbarung getroffen wurde.", p4Title:"§4 Mitwirkungspflichten", p4Text:"Der Auftraggeber stellt die für die Umsetzung erforderlichen Informationen, Zugänge, Dateien und Ansprechpartner rechtzeitig zur Verfügung.", p5Title:"§5 Datenschutz und Vertraulichkeit", p5Text:"Beide Parteien behandeln projektbezogene Informationen vertraulich. Personenbezogene Daten werden ausschließlich im Rahmen der Projektbearbeitung verarbeitet.", p6Title:"§6 Haftung", p6Text:"Die Haftung richtet sich nach den gesetzlichen Vorschriften. Für besonders haftungsrelevante oder regulierte Projekte können ergänzende, juristisch geprüfte Bedingungen vereinbart werden.", p7Title:"§7 Elektronische Kommunikation und Dokumentation", p7Text:"Die Parteien stimmen der elektronischen Kommunikation, digitalen Dokumentation und digitalen Annahme dieses Dokuments zu.",
@@ -308,7 +354,7 @@ const TEXT = {
     sectionPartner:"1. Project partners", customerName:"Client / principal *", company:"Company", email:"Email *", customerAddress:"Customer address", projectNumber:"Project number", provider:"Service provider",
     sectionImported:"2. Information from project analysis", timeline:"Project start", priority:"Urgency", frequency:"Reporting frequency", dataSource:"Data sources", phone:"Phone", phonePh:"Phone number from the project analysis",
     sectionAnalysis:"3. Project goal & professional assessment", analysisIntro:"Based on your digital project analysis, your goals, challenges and requirements have been professionally assessed. The following information forms the basis for the recommended solution and scope of services.", goal:"Project goal", challenge:"Current challenge", expected:"Expected result", description:"Project description", recommendation:"Professional recommendation based on your project analysis", recommendationIntro:"Based on your information, the following initial professional recommendation is proposed:", recommendationFallback:"The recommended solution is aligned with your information from the digital project analysis and will be professionally finalized in the next step.",
-    sectionOffer:"4. Recommended scope & project areas", projectType:"Selected project area(s)", projectMultiPlaceholder:"Select project area",referenceNote:"These reference numbers are used to clearly assign your project and documents. Please quote these numbers in case of questions.",customerIdLabel:"Customer number",projectIdLabel:"Project number",offerIdLabel:"Offer number",invoiceIdLabel:"Invoice number",lockedProjectNote:"The selected project areas and the recommended scope were prepared based on your digital project analysis. Changes or extensions will be reviewed separately and may affect price, timeline and scope.",changeRequestLabel:"Change request / addition to the offer",changeRequestPh:"If you would like to request a change or extension, you can briefly note it here. Acceptance of this offer applies to the scope described above.", projectTitle:"Project / service", scope:"Scope of services",
+    sectionOffer:"4. Recommended scope & project areas", projectType:"Selected project area(s)", projectMultiPlaceholder:"Select project area", recognizedTitle:"Project areas & professional focus", recognizedIntro:"The following points were taken from your digital project analysis and form the professional basis for this offer.", recognizedProjectType:"Project type / solution type", recognizedFocus:"Process and implementation focus", recognizedSystems:"Data and system environment", recognizedAutomation:"Automation requirement",referenceNote:"These reference numbers are used to clearly assign your project and documents. Please quote these numbers in case of questions.",customerIdLabel:"Customer number",projectIdLabel:"Project number",offerIdLabel:"Offer number",invoiceIdLabel:"Invoice number",lockedProjectNote:"The selected project areas and the recommended scope were prepared based on your digital project analysis. Changes or extensions will be reviewed separately and may affect price, timeline and scope.",changeRequestLabel:"Change request / addition to the offer",changeRequestPh:"If you would like to request a change or extension, you can briefly note it here. Acceptance of this offer applies to the scope described above.", projectTitle:"Project / service", scope:"Scope of services",
     sectionPrice:"5. Price, duration & payment", deliveryTime:"Planned delivery time", price:"Project price", paymentTerms:"Payment terms", priceNote:"Project price", taxNote:"Billing note: The stated amount is calculated in accordance with the applicable tax requirements without a separate VAT statement.",
     sectionTrust:"6. Why Barry Data & Analytics?", trust1:"Individual solutions instead of standard software", trust2:"100% digital collaboration", trust3:"Transparent communication", trust4:"GDPR-conscious project handling", trust5:"Personal contact person", trust6:"Modern BI, reporting and automation solutions",
     sectionAgreement:"7. Project agreement", p1Title:"§1 Subject and scope", p1Text:"The subject of this project agreement is the selected project areas and the related scope of services described in this document.", p2Title:"§2 Fee and payment terms", p2Text:"The fee is based on the stated project price. Payment is made according to the payment terms stated in this document.", p3Title:"§3 Project duration and acceptance", p3Text:"The project begins after digital acceptance of this document and mutual coordination of the next steps. It ends with handover and acceptance of the agreed service, unless a separate maintenance or service agreement has been concluded.", p4Title:"§4 Customer cooperation", p4Text:"The client provides the information, access, files and contacts required for implementation in good time.", p5Title:"§5 Data protection and confidentiality", p5Text:"Both parties treat project-related information confidentially. Personal data is processed only within the scope of project work.", p6Title:"§6 Liability", p6Text:"Liability is governed by statutory provisions. For projects with particular liability relevance or regulatory requirements, additional legally reviewed terms may be agreed.", p7Title:"§7 Electronic communication and documentation", p7Text:"The parties agree to electronic communication, digital documentation and digital acceptance of this document.",
@@ -329,7 +375,7 @@ const TEXT = {
     sectionPartner:"1. Partenaires du projet", customerName:"Client / donneur d’ordre *", company:"Entreprise", email:"E-mail *", customerAddress:"Adresse du client", projectNumber:"Numéro de projet", provider:"Prestataire",
     sectionImported:"2. Informations issues de l’analyse", timeline:"Démarrage du projet", priority:"Urgence", frequency:"Fréquence de reporting", dataSource:"Sources de données", phone:"Téléphone", phonePh:"Téléphone de l’analyse du projet",
     sectionAnalysis:"3. Objectif du projet & appréciation professionnelle", analysisIntro:"Sur la base de votre analyse numérique du projet, vos objectifs, défis et exigences ont été appréciés de manière professionnelle. Les informations suivantes constituent la base de la solution recommandée et du périmètre des services.", goal:"Objectif du projet", challenge:"Défi actuel", expected:"Résultat attendu", description:"Description du projet", recommendation:"Recommandation professionnelle basée sur votre analyse de projet", recommendationIntro:"Sur la base de vos informations, la recommandation professionnelle initiale suivante est proposée :", recommendationFallback:"La solution recommandée est alignée sur vos informations issues de l’analyse numérique du projet et sera finalisée professionnellement à l’étape suivante.",
-    sectionOffer:"4. Périmètre recommandé & domaines du projet", projectType:"Domaine(s) de projet sélectionné(s)", projectMultiPlaceholder:"Choisir le domaine du projet",referenceNote:"Ces numéros de référence permettent d’identifier clairement votre projet et vos documents. Veuillez les indiquer en cas de questions.",customerIdLabel:"Numéro client",projectIdLabel:"Numéro de projet",offerIdLabel:"Numéro d’offre",invoiceIdLabel:"Numéro de facture",lockedProjectNote:"Les domaines sélectionnés et le périmètre recommandé ont été préparés sur la base de votre analyse numérique du projet. Les modifications ou extensions seront examinées séparément et peuvent influencer le prix, le calendrier et le périmètre.",changeRequestLabel:"Demande de modification / ajout à l’offre",changeRequestPh:"Si vous souhaitez demander une modification ou une extension, vous pouvez l’indiquer brièvement ici. L’acceptation de cette offre concerne le périmètre décrit ci-dessus.", projectTitle:"Projet / service", scope:"Périmètre des services",
+    sectionOffer:"4. Périmètre recommandé & domaines du projet", projectType:"Domaine(s) de projet sélectionné(s)", projectMultiPlaceholder:"Choisir le domaine du projet", recognizedTitle:"Domaines du projet & axes professionnels", recognizedIntro:"Les éléments suivants ont été repris de votre analyse numérique du projet et constituent la base professionnelle de cette offre.", recognizedProjectType:"Type de projet / solution", recognizedFocus:"Axes de processus et de mise en œuvre", recognizedSystems:"Environnement de données et systèmes", recognizedAutomation:"Besoin d’automatisation",referenceNote:"Ces numéros de référence permettent d’identifier clairement votre projet et vos documents. Veuillez les indiquer en cas de questions.",customerIdLabel:"Numéro client",projectIdLabel:"Numéro de projet",offerIdLabel:"Numéro d’offre",invoiceIdLabel:"Numéro de facture",lockedProjectNote:"Les domaines sélectionnés et le périmètre recommandé ont été préparés sur la base de votre analyse numérique du projet. Les modifications ou extensions seront examinées séparément et peuvent influencer le prix, le calendrier et le périmètre.",changeRequestLabel:"Demande de modification / ajout à l’offre",changeRequestPh:"Si vous souhaitez demander une modification ou une extension, vous pouvez l’indiquer brièvement ici. L’acceptation de cette offre concerne le périmètre décrit ci-dessus.", projectTitle:"Projet / service", scope:"Périmètre des services",
     sectionPrice:"5. Prix, durée & paiement", deliveryTime:"Durée prévue", price:"Prix du projet", paymentTerms:"Conditions de paiement", priceNote:"Prix du projet", taxNote:"Remarque de facturation : le montant indiqué est calculé conformément aux exigences fiscales applicables, sans mention séparée de TVA.",
     sectionTrust:"6. Pourquoi Barry Data & Analytics ?", trust1:"Solutions individuelles au lieu de logiciels standards", trust2:"Collaboration 100 % numérique", trust3:"Communication transparente", trust4:"Traitement du projet conforme à l’esprit du RGPD", trust5:"Interlocuteur personnel", trust6:"Solutions modernes de BI, reporting et automatisation",
     sectionAgreement:"7. Accord de projet", p1Title:"§1 Objet et périmètre", p1Text:"L’objet de cet accord de projet est constitué des domaines sélectionnés et du périmètre des services décrit dans ce document.", p2Title:"§2 Rémunération et conditions de paiement", p2Text:"La rémunération est basée sur le prix du projet indiqué. Le paiement s’effectue selon les conditions indiquées dans ce document.", p3Title:"§3 Durée du projet et acceptation", p3Text:"Le projet commence après l’acceptation numérique de ce document et la coordination des prochaines étapes. Il se termine avec la remise et l’acceptation du service convenu, sauf accord séparé de maintenance ou de service.", p4Title:"§4 Coopération du client", p4Text:"Le client fournit en temps utile les informations, accès, fichiers et contacts nécessaires à la mise en œuvre.", p5Title:"§5 Protection des données et confidentialité", p5Text:"Les deux parties traitent les informations liées au projet de manière confidentielle. Les données personnelles sont traitées uniquement dans le cadre du projet.", p6Title:"§6 Responsabilité", p6Text:"La responsabilité est régie par les dispositions légales. Pour les projets présentant des exigences particulières, des conditions complémentaires vérifiées juridiquement peuvent être convenues.", p7Title:"§7 Communication électronique et documentation", p7Text:"Les parties acceptent la communication électronique, la documentation numérique et l’acceptation numérique de ce document.",
@@ -353,6 +399,8 @@ const DETAILS = {
     ["Service & Callcenter Performance Dashboard","Konzeption eines Service- oder Callcenter-Dashboards zur Auswertung von Anfragen, Bearbeitungszeiten, Servicequalität, Rückständen, Erreichbarkeit und Team-Performance.","Empfohlen wird ein Service-Performance-Dashboard, damit Arbeitslast, Reaktionszeiten, Rückstände und Servicequalität klar überwacht werden können."],
     ["Forecasting & Nachfrage-Prognosen","Aufbereitung historischer Daten und Erstellung von Forecasting-Ansätzen zur Einschätzung von Nachfrage, Umsatzentwicklung, Kapazitäten oder relevanten Planungsgrößen.","Empfohlen wird eine Forecasting-Auswertung, um zukünftige Entwicklungen besser einzuschätzen und Planungssicherheit zu erhöhen."],
     ["Reporting-Automatisierung","Automatisierung bestehender Reporting-Prozesse, Reduzierung manueller Excel-Arbeit, strukturierte Datenaufbereitung und Aufbau wiederholbarer digitaler Auswertungen.","Empfohlen wird eine Reporting-Automatisierung mit dem Ziel, wiederkehrende manuelle Arbeit deutlich zu reduzieren, Fehlerquellen zu minimieren und Berichte zuverlässiger bereitzustellen."],
+    ["Interne Business-Tools / Prozess-Cockpit","Konzeption und Umsetzung einer einfachen, strukturierten Arbeitsoberfläche für interne Abläufe wie Anfrage, Angebot, Rechnung, Projektstatus, Uploads, Rückfragen oder Abschlussprozesse.","Empfohlen wird ein internes Business-Tool bzw. Prozess-Cockpit, damit wichtige Schritte zentral sichtbar werden und wiederkehrende Abläufe einfacher gesteuert werden können."],
+    ["CRM-nahe Prozessautomatisierung","Strukturierung und Automatisierung kundenbezogener Abläufe von Anfrage und Projektanalyse über Angebot, Rechnung, Projektstart, Kommunikation und Abschluss.","Empfohlen wird eine CRM-nahe Prozessautomatisierung, damit Status, Dokumente, E-Mails, Freigaben und nächste Schritte nachvollziehbar miteinander verbunden werden."],
     ["Individuelle Datenlösung / Sonstiges Projekt","Individuelle Analyse, Konzeption und Umsetzung einer passenden Daten-, Reporting- oder Automatisierungslösung auf Basis der konkreten Anforderungen.","Empfohlen wird eine individuelle Projektabstimmung, damit Anforderungen, Datenquellen und Zielbild sauber eingeordnet und in eine passende Lösung übersetzt werden können."]
   ],
   en: [
@@ -365,6 +413,8 @@ const DETAILS = {
     ["Service & call center performance dashboard","Design of a service or call center dashboard to analyze requests, processing times, service quality, backlog, availability and team performance.","A service performance dashboard is recommended to monitor workload, response times, backlog and service quality clearly."],
     ["Forecasting & demand predictions","Preparation of historical data and creation of forecasting approaches to estimate demand, revenue development, capacity or relevant planning figures.","A forecasting analysis is recommended to better estimate future developments and improve planning reliability."],
     ["Reporting automation","Automation of existing reporting processes, reduction of manual Excel work, structured data preparation and setup of repeatable digital reports.","Reporting automation is recommended to significantly reduce recurring manual work, minimize error sources and provide reports more reliably."],
+    ["Internal business tools / process cockpit","Design and implementation of a simple, structured workspace for internal processes such as inquiries, offers, invoices, project status, uploads, questions or closing steps.","An internal business tool or process cockpit is recommended so that important steps become centrally visible and recurring processes can be managed more easily."],
+    ["CRM-related process automation","Structuring and automation of customer-related workflows from inquiry and project analysis to offer, invoice, project start, communication and project closure.","CRM-related process automation is recommended so that statuses, documents, emails, approvals and next steps are connected in a traceable way."],
     ["Custom data solution / other project","Individual analysis, design and implementation of a suitable data, reporting or automation solution based on the specific requirements.","An individual project alignment is recommended so that requirements, data sources and target vision can be translated into a suitable solution."]
   ],
   fr: [
@@ -377,6 +427,8 @@ const DETAILS = {
     ["Tableau de bord service & call center","Conception d’un tableau de bord service ou call center pour analyser les demandes, les délais de traitement, la qualité de service, les retards, la disponibilité et la performance des équipes.","Un tableau de bord de performance service est recommandé afin de suivre clairement la charge de travail, les temps de réponse et la qualité de service."],
     ["Prévisions & analyses de la demande","Préparation des données historiques et création d’approches de prévision afin d’estimer la demande, l’évolution du chiffre d’affaires, les capacités ou les indicateurs de planification pertinents.","Une analyse prévisionnelle est recommandée afin de mieux estimer les évolutions futures et d’améliorer la fiabilité de la planification."],
     ["Automatisation du reporting","Automatisation des processus de reporting existants, réduction du travail manuel dans Excel, préparation structurée des données et mise en place de rapports numériques répétables.","Une automatisation du reporting est recommandée afin de réduire nettement les tâches manuelles récurrentes et de fournir les rapports de manière plus fiable."],
+    ["Outils métier internes / cockpit de processus","Conception et mise en œuvre d’un espace de travail simple et structuré pour des processus internes tels que demandes, offres, factures, statut de projet, uploads, questions ou clôture.","Un outil métier interne ou cockpit de processus est recommandé afin de rendre les étapes importantes visibles au même endroit et de piloter plus facilement les processus récurrents."],
+    ["Automatisation des processus proches du CRM","Structuration et automatisation des flux liés aux clients, de la demande et l’analyse du projet jusqu’à l’offre, la facture, le démarrage, la communication et la clôture.","Une automatisation proche du CRM est recommandée afin de relier de façon traçable les statuts, documents, e-mails, validations et prochaines étapes."],
     ["Solution de données personnalisée / autre projet","Analyse, conception et mise en œuvre individuelles d’une solution de données, de reporting ou d’automatisation adaptée aux exigences spécifiques.","Un cadrage individuel du projet est recommandé afin de traduire les exigences, les sources de données et l’objectif cible en une solution adaptée."]
   ]
 };
@@ -465,6 +517,71 @@ function setProjectSelection(values) {
   updateProjectText();
 }
 
+let offerAnalysisData = {};
+
+function cleanSummaryValue(value) {
+  if (Array.isArray(value)) return value.map(x => String(x).trim()).filter(Boolean).join(", ");
+  if (value === undefined || value === null) return "";
+  const text = String(value).trim();
+  if (!text) return "";
+  try {
+    const parsed = JSON.parse(text);
+    if (Array.isArray(parsed)) return parsed.map(x => String(x).trim()).filter(Boolean).join(", ");
+  } catch(e) {}
+  return text;
+}
+
+function joinSummaryValues(values) {
+  const seen = new Set();
+  return values
+    .map(cleanSummaryValue)
+    .filter(Boolean)
+    .filter(v => {
+      const key = v.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .join(" | ");
+}
+
+function setHiddenValue(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.value = cleanSummaryValue(value);
+}
+
+function setSummaryText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = cleanSummaryValue(value) || "-";
+}
+
+function updateRecognizedSummary(d = offerAnalysisData) {
+  const selected = selectedProjects().join(", ");
+  const projectTypes = selected || cleanSummaryValue(d.projectTypes);
+  const processFocus = joinSummaryValues([d.processFocus, d.requirements]);
+  const systems = joinSummaryValues([d.systems, d.dataSource, d.dataLocation]);
+  const automation = joinSummaryValues([d.automation, d.frequency, d.companySize]);
+
+  setSummaryText("summaryProjectTypes", projectTypes);
+  setSummaryText("summaryProcessFocus", processFocus);
+  setSummaryText("summarySystems", systems);
+  setSummaryText("summaryAutomation", automation);
+
+  setHiddenValue("processFocus", d.processFocus);
+  setHiddenValue("requirements", d.requirements);
+  setHiddenValue("systems", d.systems || d.dataSource);
+  setHiddenValue("dataLocation", d.dataLocation);
+  setHiddenValue("reportsExist", d.reportsExist);
+  setHiddenValue("automation", d.automation);
+  setHiddenValue("userCount", d.userCount);
+  setHiddenValue("urgency", d.urgency);
+  setHiddenValue("additionalInfo", d.additionalInfo);
+  setHiddenValue("workEnvironment", d.workEnvironment);
+  setHiddenValue("companySize", d.companySize);
+  setHiddenValue("collaborationModel", d.collaborationModel);
+  setHiddenValue("analysisSummary", buildAnalysisSummary(d));
+}
+
 function normalizeOfferData(raw) {
   const data = Array.isArray(raw) ? raw[0] : raw;
   if (!data || typeof data !== "object") return {};
@@ -494,9 +611,13 @@ function normalizeOfferData(raw) {
     reportsExist: firstValue(data, ["ReportsExist", "reportsExist", "Bestehende_Berichte", "Bestehende Berichte"]),
     goal: firstValue(data, ["ProjectGoal", "goal", "Projektziel"]),
     automation: firstValue(data, ["Automation", "automation", "Automatisierung"]),
-    userCount: firstValue(data, ["UserCount", "userCount", "Nutzeranzahl"]),
+    userCount: firstValue(data, ["UserCount", "user_count", "userCount", "Nutzeranzahl"]),
     urgency: urgencyValue,
     requirements: firstValue(data, ["Requirements", "requirements", "Besondere_Anforderungen", "Besondere Anforderungen"]),
+    processFocus: firstValue(data, ["process_focus", "ProcessFocus", "processFocus", "Prozessfokus", "Schwerpunkt"]),
+    workEnvironment: firstValue(data, ["work_environment", "WorkEnvironment", "workEnvironment", "Arbeitsumgebung"]),
+    companySize: firstValue(data, ["company_size", "CompanySize", "companySize", "Unternehmensgroesse", "Unternehmensgröße"]),
+    collaborationModel: firstValue(data, ["collaboration_model", "CollaborationModel", "collaborationModel", "Zusammenarbeit"]),
     additionalInfo: firstValue(data, ["AdditionalInfo", "additionalInfo", "Zusatzinformationen", "Zusätzliche Informationen"]),
     challenge: firstValue(data, ["challenge", "Challenge", "AktuelleHerausforderung", "CurrentChallenge", "Requirements", "requirements"]),
     expected: firstValue(data, ["expected", "Expected", "ExpectedResult", "ErwartetesErgebnis"]),
@@ -516,7 +637,7 @@ function buildAnalysisSummary(d) {
       ["Projektstart", d.timeline], ["Dringlichkeit", d.priority || d.urgency], ["Reporting-Frequenz", d.frequency], ["Datenquellen", d.dataSource],
       ["Ausgewählte Projektbereiche", asArray(d.projectTypes).join(", ")], ["Aktuelle Systeme", d.systems], ["Datenstandort", d.dataLocation],
       ["Bestehende Berichte", d.reportsExist], ["Projektziel", d.goal], ["Automatisierung", d.automation], ["Nutzeranzahl", d.userCount],
-      ["Besondere Anforderungen", d.requirements], ["Aktuelle Herausforderung", d.challenge], ["Erwartetes Ergebnis", d.expected],
+      ["Besondere Anforderungen", d.requirements], ["Prozess- und Umsetzungsschwerpunkte", d.processFocus], ["Arbeitsumgebung", d.workEnvironment], ["Unternehmensgröße", d.companySize], ["Aktuelle Herausforderung", d.challenge], ["Erwartetes Ergebnis", d.expected],
       ["Projektbeschreibung", d.description], ["Zusätzliche Informationen", d.additionalInfo]
     ],
     en: [
@@ -524,7 +645,7 @@ function buildAnalysisSummary(d) {
       ["Project start", d.timeline], ["Urgency", d.priority || d.urgency], ["Reporting frequency", d.frequency], ["Data sources", d.dataSource],
       ["Selected project areas", asArray(d.projectTypes).join(", ")], ["Current systems", d.systems], ["Data location", d.dataLocation],
       ["Existing reports", d.reportsExist], ["Project goal", d.goal], ["Automation", d.automation], ["Number of users", d.userCount],
-      ["Special requirements", d.requirements], ["Current challenge", d.challenge], ["Expected result", d.expected],
+      ["Special requirements", d.requirements], ["Process and implementation focus", d.processFocus], ["Work environment", d.workEnvironment], ["Company size", d.companySize], ["Current challenge", d.challenge], ["Expected result", d.expected],
       ["Project description", d.description], ["Additional information", d.additionalInfo]
     ],
     fr: [
@@ -532,7 +653,7 @@ function buildAnalysisSummary(d) {
       ["Démarrage", d.timeline], ["Urgence", d.priority || d.urgency], ["Fréquence de reporting", d.frequency], ["Sources de données", d.dataSource],
       ["Domaines sélectionnés", asArray(d.projectTypes).join(", ")], ["Systèmes actuels", d.systems], ["Emplacement des données", d.dataLocation],
       ["Rapports existants", d.reportsExist], ["Objectif", d.goal], ["Automatisation", d.automation], ["Nombre d’utilisateurs", d.userCount],
-      ["Exigences particulières", d.requirements], ["Défi actuel", d.challenge], ["Résultat attendu", d.expected],
+      ["Exigences particulières", d.requirements], ["Axes de processus et de mise en œuvre", d.processFocus], ["Environnement de travail", d.workEnvironment], ["Taille de l’entreprise", d.companySize], ["Défi actuel", d.challenge], ["Résultat attendu", d.expected],
       ["Description du projet", d.description], ["Informations complémentaires", d.additionalInfo]
     ]
   };
@@ -571,7 +692,9 @@ function applyOfferData(raw) {
   setManualValue("expected", d.expected);
   setManualValue("description", d.description || d.additionalInfo);
 
+  offerAnalysisData = d;
   setProjectSelection(d.projectTypes);
+  updateRecognizedSummary(d);
 
   setManualValue("deliveryTime", d.deliveryTime);
   setManualValue("price", d.price);
@@ -579,6 +702,7 @@ function applyOfferData(raw) {
   setManualValue("validUntilInput", d.validUntil);
 
   updateProjectText();
+  updateRecognizedSummary(d);
   updateViews();
 }
 
@@ -696,6 +820,7 @@ function updateProjectText() {
     rec.value = t.recommendationFallback || (lang==="de" ? "Die empfohlene Lösung orientiert sich an Ihren Angaben aus der digitalen Projektanalyse." : lang==="en" ? "The recommended solution is aligned with the information from your digital project analysis." : "La solution recommandée est alignée sur les informations issues de votre analyse numérique du projet.");
     scope.value = lang==="de" ? "Der konkrete Leistungsumfang ergibt sich aus den ausgewählten Projektbereichen und den nachfolgenden Leistungsbeschreibungen." : lang==="en" ? "The specific scope results from the selected project areas and the following service descriptions." : "Le périmètre concret résulte des domaines sélectionnés et des descriptions de prestations suivantes.";
     cards.innerHTML = "";
+    updateRecognizedSummary();
     updateViews();
     return;
   }
@@ -705,6 +830,7 @@ function updateProjectText() {
   rec.value = ((t.recommendationIntro || "") + "\n\n" + detail.map(x => "• " + x[0] + ": " + x[2]).join("\n\n")).trim();
   scope.value = detail.map(x => "• " + x[0] + ": " + x[1]).join("\n\n");
   cards.innerHTML = detail.map((x,i) => `<div class="project-card"><div class="project-number">Leistung ${String(i+1).padStart(2,"0")}</div><h4>${x[0]}</h4><p>${x[1]}</p></div>`).join("");
+  updateRecognizedSummary();
   updateViews();
 }
 
@@ -856,6 +982,9 @@ function buildOfferSnapshotHtml(payload) {
     ${snapshotRow("Dringlichkeit", payload.priority)}
     ${snapshotRow("Reporting-Frequenz", payload.frequency)}
     ${snapshotRow("Datenquellen", payload.dataSource)}
+    ${snapshotRow("Prozess- und Umsetzungsschwerpunkte", payload.processFocus)}
+    ${snapshotRow("Daten- und Systemumfeld", payload.systems || payload.dataSource)}
+    ${snapshotRow("Automatisierungswunsch", payload.automation)}
     ${snapshotRow("Ziel des Projekts", payload.goal)}
     ${snapshotRow("Aktuelle Herausforderung", payload.challenge)}
     ${snapshotRow("Erwartetes Ergebnis", payload.expected)}
@@ -866,6 +995,7 @@ function buildOfferSnapshotHtml(payload) {
   <table>
     ${snapshotRow("Projekt / Leistung", payload.projectTitle)}
     ${snapshotRow("Ausgewählte Projektbereiche", selectedText)}
+    ${snapshotRow("Projektbereiche & fachliche Schwerpunkte", payload.analysisSummary)}
     ${snapshotRow("Fachliche Empfehlung", payload.recommendation)}
     ${snapshotRow("Leistungsumfang", payload.scope)}
     ${snapshotRow("Änderungswunsch / Ergänzung", payload.changeRequest)}
@@ -993,6 +1123,10 @@ document.getElementById("agreementForm").addEventListener("submit", async e => {
     urgency:document.getElementById("urgency") ? document.getElementById("urgency").value.trim() : "",
     projectStartText:document.getElementById("projectStartText") ? document.getElementById("projectStartText").value.trim() : "",
     requirements:document.getElementById("requirements") ? document.getElementById("requirements").value.trim() : "",
+    processFocus:document.getElementById("processFocus") ? document.getElementById("processFocus").value.trim() : "",
+    workEnvironment:document.getElementById("workEnvironment") ? document.getElementById("workEnvironment").value.trim() : "",
+    companySize:document.getElementById("companySize") ? document.getElementById("companySize").value.trim() : "",
+    collaborationModel:document.getElementById("collaborationModel") ? document.getElementById("collaborationModel").value.trim() : "",
     additionalInfo:document.getElementById("additionalInfo") ? document.getElementById("additionalInfo").value.trim() : "",
     analysisSummary:document.getElementById("analysisSummary") ? document.getElementById("analysisSummary").value.trim() : "",
     goal:document.getElementById("goal").value.trim(),
