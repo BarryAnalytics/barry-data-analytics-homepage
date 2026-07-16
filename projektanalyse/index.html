@@ -162,6 +162,94 @@
 
     .intro strong{color:#e2e8f0}
 
+    .request-context{
+      display:none;
+      margin:0 0 28px;
+      padding:18px;
+      border-radius:20px;
+      border:1px solid rgba(0,242,254,.22);
+      background:
+        linear-gradient(135deg,rgba(0,242,254,.10),rgba(37,99,235,.07)),
+        rgba(15,23,42,.72);
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+    }
+
+    .request-context-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .request-context-title{
+      color:#ffffff;
+      font-size:17px;
+      font-weight:900;
+      margin:0 0 6px;
+    }
+
+    .request-context-lead{
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    .project-pill{
+      color:#020617;
+      background:var(--cyan);
+      border-radius:999px;
+      padding:8px 11px;
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+      box-shadow:0 0 18px rgba(0,242,254,.22);
+    }
+
+    .context-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .context-item{
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(15,23,42,.42);
+      border-radius:14px;
+      padding:12px;
+      min-width:0;
+    }
+
+    .context-label{
+      display:block;
+      color:#94a3b8;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      margin-bottom:5px;
+    }
+
+    .context-value{
+      color:#e2e8f0;
+      font-size:14px;
+      line-height:1.45;
+      overflow-wrap:anywhere;
+    }
+
+    .other-project-box{
+      margin-top:14px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(0,242,254,.16);
+      background:rgba(30,41,59,.44);
+    }
+
+    .other-project-box textarea{
+      min-height:84px;
+    }
+
     form{
       display:grid;
       gap:24px;
@@ -490,6 +578,33 @@ Data Analytics | Business Intelligence | Power BI | Power Query | Automation
       <h1 id="mainTitle"></h1>
       <div class="intro" id="introText"></div>
 
+      <div class="request-context" id="requestContext">
+        <div class="request-context-head">
+          <div>
+            <p class="request-context-title" id="requestContextTitle"></p>
+            <p class="request-context-lead" id="requestContextLead"></p>
+          </div>
+          <span class="project-pill" id="ctxProjectNumber"></span>
+        </div>
+
+        <div class="context-grid">
+          <div class="context-item" id="ctxProjectTypeWrap">
+            <span class="context-label" id="ctxProjectTypeLabel"></span>
+            <span class="context-value" id="ctxProjectType"></span>
+          </div>
+
+          <div class="context-item" id="ctxTimelineWrap">
+            <span class="context-label" id="ctxTimelineLabel"></span>
+            <span class="context-value" id="ctxTimeline"></span>
+          </div>
+
+          <div class="context-item" id="ctxDescriptionWrap" style="grid-column:1/-1;">
+            <span class="context-label" id="ctxDescriptionLabel"></span>
+            <span class="context-value" id="ctxDescription"></span>
+          </div>
+        </div>
+      </div>
+
       <form id="projectForm" novalidate>
         <input type="hidden" id="language" value="de">
         <input type="hidden" id="projectNumber" value="">
@@ -526,6 +641,12 @@ Data Analytics | Business Intelligence | Power BI | Power Query | Automation
           <label class="field-label" id="labelProjectType"></label>
           <div class="options" id="projectOptions"></div>
           <p class="small-note" id="projectNote"></p>
+
+          <div class="other-project-box">
+            <label class="field-label" id="labelProjectOther" for="project_type_other"></label>
+            <textarea id="project_type_other"></textarea>
+            <p class="small-note" id="projectOtherNote"></p>
+          </div>
 
           <div class="grid" style="margin-top:18px;">
             <div>
@@ -699,6 +820,32 @@ const initialEmail = (
   urlParams.get("mail") ||
   ""
 ).trim();
+
+function cleanParamValue(value){
+  try{
+    return decodeURIComponent(value || "").replace(/\+/g," ").trim();
+  }catch(e){
+    return String(value || "").replace(/\+/g," ").trim();
+  }
+}
+
+function getParamAny(names){
+  for(const n of names){
+    const v = urlParams.get(n);
+    if(v !== null && String(v).trim() !== ""){
+      return cleanParamValue(v);
+    }
+  }
+  return "";
+}
+
+const initialLang = (getParamAny(["lang","language","sprache"]) || "de").toLowerCase();
+const initialName = getParamAny(["name","Name","customerName"]);
+const initialCompany = getParamAny(["company","Company","firma","unternehmen"]);
+const initialPhone = getParamAny(["phone","Phone","telefon","telephone"]);
+const initialProjectType = getParamAny(["type","projectType","project_type","ProjType","SolType","projectName","projectTitle"]);
+const initialTimeline = getParamAny(["start","startOpt","StartOpt","timeline","projectStart"]);
+const initialDescription = getParamAny(["desc","description","projectDescription","projektbeschreibung","Project"]);
 const logo = document.getElementById("logo");
 logo.onerror = function () {
   if (this.src.includes("/assets/")) {
@@ -764,7 +911,14 @@ const T = {
       successText:"Ihre digitale Projektanalyse wurde erfolgreich übermittelt.",
       successText2:"Ihre Angaben werden nun geprüft und für die weitere Vorbereitung Ihres Anliegens berücksichtigt.",
       errorBox:"Bitte prüfen Sie Ihre Angaben. Name, E-Mail und Datenschutz-Zustimmung sind erforderlich.",
-      invalidEmail:"Bitte geben Sie eine gültige E-Mail-Adresse ein."
+      invalidEmail:"Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      requestContextTitle:"Ihre Anfrage wurde erkannt",
+      requestContextLead:"Einige Angaben aus Ihrer ursprünglichen Anfrage wurden bereits übernommen. Bitte prüfen und ergänzen Sie die Informationen.",
+      ctxProjectTypeLabel:"Ausgewählter Projektbereich",
+      ctxTimelineLabel:"Geplanter Start",
+      ctxDescriptionLabel:"Erste Projektbeschreibung",
+      labelProjectOther:"Nicht gefunden? Eigenes Thema kurz beschreiben",
+      projectOtherNote:"Falls Ihr Vorhaben nicht genau zu den Auswahlfeldern passt, beschreiben Sie es kurz. Ich ordne es intern dem passenden Lösungsbereich zu."
     },
     placeholders:{
       name:"Ihr Name",
@@ -775,7 +929,8 @@ const T = {
       challenge:"Was funktioniert aktuell nicht gut oder kostet zu viel Zeit?",
       expected:"Wie sieht ein gutes Ergebnis für Sie aus?",
       desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten.",
-      preferred_contact_note:"Optional: gewünschtes Zeitfenster, Ansprechpartner, Besonderheiten oder Rückrufhinweis."
+      preferred_contact_note:"Optional: gewünschtes Zeitfenster, Ansprechpartner, Besonderheiten oder Rückrufhinweis.",
+      project_type_other:"Beispiel: Excel-Vorlage verbessern, individuelle Auswertung, interner Ablauf, Speziallösung ..."
     },
     projects:[
       "Vertrieb / Sales Performance",
@@ -792,6 +947,7 @@ const T = {
       "Power Query / Excel-Automatisierung",
       "Datenbereinigung / Datenmigration",
       "Individuelle Datenlösung / Sonstiges Projekt",
+      "Sonstiges / eigenes Projekt kurz beschreiben",
       "Geschäftsprozesse digitalisieren und automatisieren",
       "Interne Auswertungen / Management-Cockpit",
       "Dokumenten- und Ablageprozesse",
@@ -869,7 +1025,14 @@ const T = {
       successText:"Your digital project analysis has been submitted successfully.",
       successText2:"Your information will now be reviewed and used to prepare your request.",
       errorBox:"Please check your information. Name, email and privacy consent are required.",
-      invalidEmail:"Please enter a valid email address."
+      invalidEmail:"Please enter a valid email address.",
+      requestContextTitle:"Your request has been recognized",
+      requestContextLead:"Some details from your initial request have already been transferred. Please review and complete the information.",
+      ctxProjectTypeLabel:"Selected project area",
+      ctxTimelineLabel:"Planned start",
+      ctxDescriptionLabel:"Initial project description",
+      labelProjectOther:"Not listed? Briefly describe your own topic",
+      projectOtherNote:"If your project does not exactly match the options, briefly describe it here. I will assign it internally to the appropriate solution area."
     },
     placeholders:{
       name:"Your name",
@@ -880,7 +1043,8 @@ const T = {
       challenge:"What is not working well today or takes too much time?",
       expected:"What would a successful result look like for you?",
       desc:"Briefly describe your project in your own words.",
-      preferred_contact_note:"Optional: preferred time window, contact person, special notes or callback request."
+      preferred_contact_note:"Optional: preferred time window, contact person, special notes or callback request.",
+      project_type_other:"Example: improve an Excel template, custom analysis, internal workflow, special solution ..."
     },
     projects:[
       "Sales / Sales performance",
@@ -897,6 +1061,7 @@ const T = {
       "Power Query / Excel automation",
       "Data cleaning / data migration",
       "Custom data solution / other project",
+      "Other / briefly describe your own project",
       "Digital business process automation",
       "Internal reporting / management cockpit",
       "Document and filing workflows",
@@ -974,7 +1139,14 @@ const T = {
       successText:"Votre analyse digitale de projet a été transmise avec succès.",
       successText2:"Vos informations seront maintenant examinées et utilisées pour préparer votre demande.",
       errorBox:"Veuillez vérifier vos informations. Le nom, l’e-mail et le consentement sont obligatoires.",
-      invalidEmail:"Veuillez saisir une adresse e-mail valide."
+      invalidEmail:"Veuillez saisir une adresse e-mail valide.",
+      requestContextTitle:"Votre demande a été reconnue",
+      requestContextLead:"Certaines informations de votre demande initiale ont déjà été reprises. Veuillez les vérifier et les compléter.",
+      ctxProjectTypeLabel:"Domaine de projet sélectionné",
+      ctxTimelineLabel:"Démarrage prévu",
+      ctxDescriptionLabel:"Première description du projet",
+      labelProjectOther:"Non trouvé ? Décrivez brièvement votre propre sujet",
+      projectOtherNote:"Si votre projet ne correspond pas exactement aux options, décrivez-le brièvement ici. Je l’attribuerai en interne au domaine de solution approprié."
     },
     placeholders:{
       name:"Votre nom",
@@ -985,7 +1157,8 @@ const T = {
       challenge:"Qu’est-ce qui ne fonctionne pas bien aujourd’hui ou prend trop de temps ?",
       expected:"À quoi ressemblerait un bon résultat pour vous ?",
       desc:"Décrivez brièvement votre projet avec vos propres mots.",
-      preferred_contact_note:"Optionnel : créneau souhaité, personne de contact, particularités ou demande de rappel."
+      preferred_contact_note:"Optionnel : créneau souhaité, personne de contact, particularités ou demande de rappel.",
+      project_type_other:"Exemple : améliorer un modèle Excel, analyse personnalisée, processus interne, solution spécifique ..."
     },
     projects:[
       "Vente / performance commerciale",
@@ -1002,6 +1175,7 @@ const T = {
       "Power Query / automatisation Excel",
       "Nettoyage / migration de données",
       "Solution de données personnalisée / autre projet",
+      "Autre / décrire brièvement votre propre projet",
       "Digitalisation et automatisation des processus métier",
       "Analyses internes / cockpit de management",
       "Processus documentaires et classement",
@@ -1120,6 +1294,13 @@ document.getElementById("projectForm").addEventListener("submit",async function(
 
   errorBox.style.display="none";
 
+  const selectedProjectTypes = [...document.querySelectorAll('input[name="project_type"]:checked')].map(x=>x.value);
+  const otherProjectType = document.getElementById("project_type_other").value.trim();
+
+  if(otherProjectType){
+    selectedProjectTypes.push("Sonstiges: " + otherProjectType);
+  }
+
   const data={
     language:lang,
     name:document.getElementById("name").value.trim(),
@@ -1127,7 +1308,11 @@ document.getElementById("projectForm").addEventListener("submit",async function(
     email:document.getElementById("email").value.trim() || initialEmail,
     projectNumber:document.getElementById("projectNumber").value.trim(),
     phone:document.getElementById("phone").value.trim(),
-    project_type:[...document.querySelectorAll('input[name="project_type"]:checked')].map(x=>x.value),
+    project_type:selectedProjectTypes,
+    project_type_other:otherProjectType,
+    initial_project_type:initialProjectType,
+    initial_project_start:initialTimeline,
+    initial_project_description:initialDescription,
     timeline:document.getElementById("timeline").value,
     priority:document.getElementById("priority").value,
     frequency:document.getElementById("frequency").value,
@@ -1214,20 +1399,105 @@ document.getElementById("projectForm").addEventListener("submit",async function(
   }
 });
 
-function applyUrlParams(){
-  const projectNumberEl = document.getElementById("projectNumber");
-  const emailEl = document.getElementById("email");
+function normalizeValue(v){
+  return String(v || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g," ")
+    .trim();
+}
 
-  if(projectNumberEl){
-    projectNumberEl.value = initialProjectNumber;
-  }
-
-  if(emailEl && initialEmail && !emailEl.value){
-    emailEl.value = initialEmail;
+function setInputValue(id,value,onlyIfEmpty=false){
+  const el=document.getElementById(id);
+  if(el && value && (!onlyIfEmpty || !el.value)){
+    el.value=value;
   }
 }
 
-setLang("de");
+function setSelectSmart(id,value){
+  const el=document.getElementById(id);
+  if(!el || !value) return;
+
+  const n = normalizeValue(value);
+  const timelineMap = {
+    "sofort starten":"Sofort",
+    "sofort":"Sofort",
+    "naechste woche":"Innerhalb 1 Woche",
+    "nachste woche":"Innerhalb 1 Woche",
+    "nächste woche":"Innerhalb 1 Woche",
+    "naechster monat":"Innerhalb 1 Monat",
+    "nachster monat":"Innerhalb 1 Monat",
+    "nächster monat":"Innerhalb 1 Monat",
+    "unklar":"Noch unklar"
+  };
+
+  const mapped = timelineMap[n] || value;
+  const mappedN = normalizeValue(mapped);
+
+  for(const opt of el.options){
+    if(normalizeValue(opt.value) === mappedN || normalizeValue(opt.textContent) === mappedN){
+      el.value = opt.value;
+      return;
+    }
+  }
+}
+
+function checkProjectType(value){
+  if(!value) return;
+
+  const wanted = normalizeValue(value);
+  const boxes = [...document.querySelectorAll('input[name="project_type"]')];
+  let found=false;
+
+  boxes.forEach(cb=>{
+    const current = normalizeValue(cb.value);
+    if(current === wanted || current.includes(wanted) || wanted.includes(current)){
+      cb.checked=true;
+      found=true;
+    }
+  });
+
+  if(!found){
+    const other = document.getElementById("project_type_other");
+    if(other && !other.value) other.value=value;
+
+    const fallback = boxes.find(cb=>normalizeValue(cb.value).includes("sonstiges") || normalizeValue(cb.value).includes("other") || normalizeValue(cb.value).includes("autre"));
+    if(fallback) fallback.checked=true;
+  }
+}
+
+function updateRequestContext(){
+  const hasContext = initialProjectNumber || initialProjectType || initialTimeline || initialDescription;
+  const box = document.getElementById("requestContext");
+  if(!box || !hasContext) return;
+
+  box.style.display="block";
+  document.getElementById("ctxProjectNumber").textContent = initialProjectNumber || "Projektanalyse";
+  document.getElementById("ctxProjectType").textContent = initialProjectType || "—";
+  document.getElementById("ctxTimeline").textContent = initialTimeline || "—";
+  document.getElementById("ctxDescription").textContent = initialDescription || "—";
+
+  document.getElementById("ctxProjectTypeWrap").style.display = initialProjectType ? "block" : "none";
+  document.getElementById("ctxTimelineWrap").style.display = initialTimeline ? "block" : "none";
+  document.getElementById("ctxDescriptionWrap").style.display = initialDescription ? "block" : "none";
+}
+
+function applyUrlParams(){
+  setInputValue("projectNumber", initialProjectNumber);
+  setInputValue("email", initialEmail, true);
+  setInputValue("name", initialName, true);
+  setInputValue("company", initialCompany, true);
+  setInputValue("phone", initialPhone, true);
+  setInputValue("desc", initialDescription, true);
+
+  setSelectSmart("timeline", initialTimeline);
+  checkProjectType(initialProjectType);
+  updateRequestContext();
+}
+
+const startLang = ["de","en","fr"].includes(initialLang) ? initialLang : "de";
+setLang(startLang);
 applyUrlParams();
 </script>
 
