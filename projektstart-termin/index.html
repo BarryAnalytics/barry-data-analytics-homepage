@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex,nofollow" />
-<title>Projektstart-Termin | Barry Data & Analytics</title>
-<meta name="description" content="Terminwunsch für die Projektstart-Abstimmung bei Barry Data & Analytics übermitteln.">
+<title>Projektstart vorbereiten | Barry Data & Analytics</title>
+<meta name="description" content="Angaben zur Projektstart-Vorbereitung bei Barry Data & Analytics übermitteln.">
 <style>
 :root{
   --bg:#030712;
@@ -284,16 +284,16 @@ button:disabled{opacity:.6;cursor:not-allowed}
   <section class="card">
     <div class="hero">
       <div>
-        <span class="badge" data-i18n="badge">Terminwunsch</span>
-        <h1 data-i18n="title">Projektstart abstimmen.</h1>
-        <p data-i18n="intro">Übermitteln Sie einen bevorzugten Termin und optional eine Alternative für die Projektstart-Abstimmung. Der finale Termin wird anschließend bestätigt.</p>
-        <div class="note"><strong data-i18n="noteStrong">Hinweis:</strong> <span data-i18n="note">Dies ist noch keine automatische Terminbestätigung, sondern ein Terminwunsch zur Abstimmung.</span></div>
+        <span class="badge" data-i18n="badge">Projektstart</span>
+        <h1 data-i18n="title">Projektstart vorbereiten.</h1>
+        <p data-i18n="intro">Übermitteln Sie kurz, welches Datum oder Zeitfenster für eine mögliche Startabstimmung gut passen würde. Ein Gespräch per Microsoft Teams oder Telefon ist optional und nur sinnvoll, wenn vor dem Projektstart noch etwas abgestimmt werden soll.</p>
+        <div class="note"><strong data-i18n="noteStrong">Hinweis:</strong> <span data-i18n="note">Dies ist keine automatische Terminbuchung. Ihre Angaben helfen bei der Vorbereitung des Projektstarts und werden Ihrem Projekt zugeordnet.</span></div>
       </div>
       <div class="meta">
         <div class="meta-row"><span data-i18n="customerNo">Kundennummer</span><span id="viewCustomerId">-</span></div>
         <div class="meta-row"><span data-i18n="projectNo">Projektnummer</span><span id="viewProjectNumber">-</span></div>
         <div class="meta-row"><span data-i18n="language">Sprache</span><span id="viewLang">DE</span></div>
-        <div class="meta-row"><span data-i18n="statusLabel">Status</span><span data-i18n="statusValue">Terminwunsch</span></div>
+        <div class="meta-row"><span data-i18n="statusLabel">Status</span><span data-i18n="statusValue">Projektstart-Vorbereitung</span></div>
       </div>
     </div>
 
@@ -342,10 +342,10 @@ button:disabled{opacity:.6;cursor:not-allowed}
       </div>
 
       <div class="section">
-        <div class="section-title" data-i18n="section2">2. Terminwunsch</div>
+        <div class="section-title" data-i18n="section2">2. Projektstart-Vorbereitung</div>
         <div class="slot-grid">
           <div class="slot primary">
-            <div class="mini-title" data-i18n="slot1">Gewünschter Termin</div>
+            <div class="mini-title" data-i18n="slot1">Bevorzugtes Datum / Zeitfenster</div>
             <div class="inline2">
               <div>
                 <label for="preferredDate" data-i18n="dateLabel">Datum</label>
@@ -363,7 +363,7 @@ button:disabled{opacity:.6;cursor:not-allowed}
           </div>
 
           <div class="slot">
-            <div class="mini-title" data-i18n="slot2">Alternative</div>
+            <div class="mini-title" data-i18n="slot2">Optionale Alternative</div>
             <div class="inline2">
               <div>
                 <label for="alternativeDate" data-i18n="dateLabel">Datum</label>
@@ -381,8 +381,8 @@ button:disabled{opacity:.6;cursor:not-allowed}
           </div>
 
           <div class="slot">
-            <div class="mini-title" data-i18n="coordination">Abstimmung</div>
-            <label for="meetingMode" data-i18n="modeLabel">Weg</label>
+            <div class="mini-title" data-i18n="coordination">Abstimmung optional</div>
+            <label for="meetingMode" data-i18n="modeLabel">Abstimmungsweg</label>
             <select id="meetingMode" name="meetingMode" required>
               <option value="Microsoft Teams">Microsoft Teams</option>
               <option value="Telefon" data-i18n="phoneOption">Telefon</option>
@@ -394,18 +394,18 @@ button:disabled{opacity:.6;cursor:not-allowed}
         </div>
 
         <div style="margin-top:12px">
-          <label for="notes" data-i18n="notesLabel">Hinweise</label>
-          <textarea id="notes" name="notes" data-i18n-placeholder="notesPlaceholder" placeholder="Optional: besondere Verfügbarkeit, Ansprechpartner oder organisatorische Hinweise."></textarea>
-          <div class="help" data-i18n="securityHint">Bitte tragen Sie hier nur Informationen zur Terminabstimmung ein. Falls für das Projekt Unterlagen, Dateien oder technische Zugänge benötigt werden, erhalten Sie hierfür eine separate Information zum sicheren Bereitstellungsweg.</div>
+          <label for="notes" data-i18n="notesLabel">Hinweise / Ansprechpartner</label>
+          <textarea id="notes" name="notes" data-i18n-placeholder="notesPlaceholder" placeholder="Optional: Name, E-Mail-Adresse und Rolle/Funktion von Ansprechpartnern oder Personen, die später Informationen zum sicheren Projektbereich erhalten sollen."></textarea>
+          <div class="help" data-i18n="securityHint">Bitte senden Sie hier keine Passwörter oder Zugangsdaten. Unterlagen, Dateien oder technische Informationen werden später separat über den sicheren Projektbereich abgestimmt.</div>
         </div>
 
         <label class="check">
           <input id="privacy" name="privacy" type="checkbox" required>
-          <span data-i18n="privacy">Ich bin damit einverstanden, dass meine Angaben zur Projektstart-Abstimmung verarbeitet und meinem Projekt zugeordnet werden.</span>
+          <span data-i18n="privacy">Ich bin damit einverstanden, dass meine Angaben zur Projektstart-Vorbereitung verarbeitet und meinem Projekt zugeordnet werden.</span>
         </label>
 
         <div class="btnrow">
-          <button id="submitBtn" class="submit" type="submit" data-i18n="submit">Terminwunsch übermitteln</button>
+          <button id="submitBtn" class="submit" type="submit" data-i18n="submit">Angaben zum Projektstart übermitteln</button>
           <button class="print" type="button" onclick="window.print()" data-i18n="print">Drucken / PDF</button>
           <a class="btn-link" id="homeBtn" href="https://www.barrydataanalytics.de/" data-i18n="homeBtn">Zur Homepage</a>
         </div>
@@ -413,10 +413,10 @@ button:disabled{opacity:.6;cursor:not-allowed}
         <div id="messageBox" class="msg"></div>
 
         <div id="successPanel" class="success-panel">
-          <h3 data-i18n="successTitle">Terminwunsch übermittelt</h3>
-          <p data-i18n="successLine1">Vielen Dank. Ihr Terminwunsch wurde erfolgreich übermittelt und Ihrem Projekt zugeordnet.</p>
+          <h3 data-i18n="successTitle">Angaben übermittelt</h3>
+          <p data-i18n="successLine1">Vielen Dank. Ihre Angaben zur Projektstart-Vorbereitung wurden erfolgreich übermittelt und Ihrem Projekt zugeordnet.</p>
           <p><strong data-i18n="successProject">Projekt:</strong> <span id="successProjectNo">-</span></p>
-          <p><strong data-i18n="successAppointment">Terminwunsch:</strong> <span id="successAppointmentText">-</span></p>
+          <p><strong data-i18n="successAppointment">Übermittelter Terminwunsch:</strong> <span id="successAppointmentText">-</span></p>
         </div>
       </div>
     </form>
@@ -449,17 +449,17 @@ if(!["de","en","fr"].includes(lang)) lang = "de";
 
 const TEXT = {
   de: {
-    headerSubtitle:"Projektstart-Abstimmung",
-    badge:"Terminwunsch",
-    title:"Projektstart abstimmen.",
-    intro:"Übermitteln Sie einen bevorzugten Termin und optional eine Alternative für die Projektstart-Abstimmung. Der finale Termin wird anschließend bestätigt.",
+    headerSubtitle:"Projektstart vorbereiten",
+    badge:"Projektstart",
+    title:"Projektstart vorbereiten.",
+    intro:"Übermitteln Sie kurz, welches Datum oder Zeitfenster für eine mögliche Startabstimmung gut passen würde. Ein Gespräch per Microsoft Teams oder Telefon ist optional und nur sinnvoll, wenn vor dem Projektstart noch etwas abgestimmt werden soll.",
     noteStrong:"Hinweis:",
-    note:"Dies ist noch keine automatische Terminbestätigung, sondern ein Terminwunsch zur Abstimmung.",
+    note:"Dies ist keine automatische Terminbuchung. Ihre Angaben helfen bei der Vorbereitung des Projektstarts und werden Ihrem Projekt zugeordnet.",
     customerNo:"Kundennummer",
     projectNo:"Projektnummer",
     language:"Sprache",
     statusLabel:"Status",
-    statusValue:"Terminwunsch",
+    statusValue:"Projektstart-Vorbereitung",
     section1:"1. Kontakt & Projekt",
     nameLabel:"Name",
     emailLabel:"E-Mail",
@@ -469,48 +469,48 @@ const TEXT = {
     customerIdLabel:"Kundennummer",
     offerLabel:"Angebotsnummer",
     invoiceLabel:"Rechnungsnummer",
-    section2:"2. Terminwunsch",
-    slot1:"Gewünschter Termin",
-    slot2:"Alternative",
+    section2:"2. Projektstart-Vorbereitung",
+    slot1:"Bevorzugtes Datum / Zeitfenster",
+    slot2:"Optionale Alternative",
     dateLabel:"Datum",
     timeLabel:"Uhrzeit",
-    coordination:"Abstimmung",
-    modeLabel:"Weg",
+    coordination:"Abstimmung optional",
+    modeLabel:"Abstimmungsweg",
     phoneOption:"Telefon",
     afterAgreementOption:"Nach Abstimmung",
     timezoneLabel:"Zeitzone",
-    notesLabel:"Hinweise",
-    notesPlaceholder:"Optional: besondere Verfügbarkeit, Ansprechpartner oder organisatorische Hinweise.",
-    securityHint:"Bitte tragen Sie hier nur Informationen zur Terminabstimmung ein. Falls für das Projekt Unterlagen, Dateien oder technische Zugänge benötigt werden, erhalten Sie hierfür eine separate Information zum sicheren Bereitstellungsweg.",
-    privacy:"Ich bin damit einverstanden, dass meine Angaben zur Projektstart-Abstimmung verarbeitet und meinem Projekt zugeordnet werden.",
-    submit:"Terminwunsch übermitteln",
+    notesLabel:"Hinweise / Ansprechpartner",
+    notesPlaceholder:"Optional: Name, E-Mail-Adresse und Rolle/Funktion von Ansprechpartnern oder Personen, die später Informationen zum sicheren Projektbereich erhalten sollen.",
+    securityHint:"Bitte senden Sie hier keine Passwörter oder Zugangsdaten. Unterlagen, Dateien oder technische Informationen werden später separat über den sicheren Projektbereich abgestimmt.",
+    privacy:"Ich bin damit einverstanden, dass meine Angaben zur Projektstart-Vorbereitung verarbeitet und meinem Projekt zugeordnet werden.",
+    submit:"Angaben zum Projektstart übermitteln",
     print:"Drucken / PDF",
     homeBtn:"Zur Homepage",
     home:"Homepage",
     privacyLink:"Datenschutz",
     imprint:"Impressum",
-    sending:"Terminwunsch wird übermittelt ...",
-    success:"Vielen Dank. Ihr Terminwunsch wurde erfolgreich übermittelt und Ihrem Projekt zugeordnet.",
-    successTitle:"Terminwunsch übermittelt",
-    successLine1:"Vielen Dank. Ihr Terminwunsch wurde erfolgreich übermittelt und Ihrem Projekt zugeordnet.",
+    sending:"Angaben werden übermittelt ...",
+    success:"Vielen Dank. Ihre Angaben zur Projektstart-Vorbereitung wurden erfolgreich übermittelt und Ihrem Projekt zugeordnet.",
+    successTitle:"Angaben übermittelt",
+    successLine1:"Vielen Dank. Ihre Angaben zur Projektstart-Vorbereitung wurden erfolgreich übermittelt und Ihrem Projekt zugeordnet.",
     successProject:"Projekt:",
-    successAppointment:"Terminwunsch:",
-    error:"Der Terminwunsch konnte nicht übermittelt werden. Bitte versuchen Sie es erneut oder kontaktieren Sie Barry Data & Analytics.",
+    successAppointment:"Übermittelter Terminwunsch:",
+    error:"Ihre Angaben konnten nicht übermittelt werden. Bitte versuchen Sie es erneut oder kontaktieren Sie Barry Data & Analytics.",
     missingFlow:"Die technische Verbindung ist noch nicht eingerichtet.",
-    required:"Bitte prüfen Sie Ihre Eingaben. Name, E-Mail, gewünschter Termin und Zustimmung sind erforderlich."
+    required:"Bitte prüfen Sie Ihre Eingaben. Name, E-Mail, bevorzugtes Datum/Zeitfenster und Zustimmung sind erforderlich."
   },
   en: {
-    headerSubtitle:"Project start coordination",
-    badge:"Appointment request",
-    title:"Coordinate project start.",
-    intro:"Submit a preferred appointment and optionally an alternative for project start coordination. The final appointment will be confirmed afterwards.",
+    headerSubtitle:"Project start preparation",
+    badge:"Project start",
+    title:"Prepare project start.",
+    intro:"Briefly let us know which date or time window would work well for a possible start coordination. A Microsoft Teams or phone call is optional and only useful if something needs to be clarified before the project starts.",
     noteStrong:"Note:",
-    note:"This is not an automatic appointment confirmation yet, but an appointment request for coordination.",
+    note:"This is not an automatic appointment booking. Your information helps prepare the project start and will be assigned to your project.",
     customerNo:"Customer number",
     projectNo:"Project number",
     language:"Language",
     statusLabel:"Status",
-    statusValue:"Appointment request",
+    statusValue:"Project start preparation",
     section1:"1. Contact & project",
     nameLabel:"Name",
     emailLabel:"Email",
@@ -520,48 +520,48 @@ const TEXT = {
     customerIdLabel:"Customer number",
     offerLabel:"Offer number",
     invoiceLabel:"Invoice number",
-    section2:"2. Appointment request",
-    slot1:"Preferred appointment",
-    slot2:"Alternative",
+    section2:"2. Project start preparation",
+    slot1:"Preferred date / time window",
+    slot2:"Optional alternative",
     dateLabel:"Date",
     timeLabel:"Time",
-    coordination:"Coordination",
-    modeLabel:"Method",
+    coordination:"Optional coordination",
+    modeLabel:"Coordination method",
     phoneOption:"Phone",
     afterAgreementOption:"By agreement",
     timezoneLabel:"Time zone",
-    notesLabel:"Notes",
-    notesPlaceholder:"Optional: availability, contact person or organizational notes.",
-    securityHint:"Please only enter information related to appointment coordination here. If project documents, files or technical access details are required, you will receive separate information about the secure provisioning method.",
-    privacy:"I agree that my information will be processed for project start coordination and assigned to my project.",
-    submit:"Submit appointment request",
+    notesLabel:"Notes / contacts",
+    notesPlaceholder:"Optional: name, email address and role/function of contact persons or people who should later receive information about the secure project area.",
+    securityHint:"Please do not send passwords or access credentials here. Documents, files or technical information will be coordinated later via the secure project area.",
+    privacy:"I agree that my information will be processed for project start preparation and assigned to my project.",
+    submit:"Submit project start information",
     print:"Print / PDF",
     homeBtn:"Homepage",
     home:"Homepage",
     privacyLink:"Privacy",
     imprint:"Legal notice",
-    sending:"Submitting appointment request ...",
-    success:"Thank you. Your appointment request has been submitted successfully and assigned to your project.",
-    successTitle:"Appointment request submitted",
-    successLine1:"Thank you. Your appointment request has been submitted successfully and assigned to your project.",
+    sending:"Submitting information ...",
+    success:"Thank you. Your project start information has been submitted successfully and assigned to your project.",
+    successTitle:"Information submitted",
+    successLine1:"Thank you. Your project start information has been submitted successfully and assigned to your project.",
     successProject:"Project:",
-    successAppointment:"Appointment request:",
-    error:"The appointment request could not be submitted. Please try again or contact Barry Data & Analytics.",
+    successAppointment:"Preferred appointment:",
+    error:"Your information could not be submitted. Please try again or contact Barry Data & Analytics.",
     missingFlow:"The technical connection is not set up yet.",
-    required:"Please check your entries. Name, email, preferred appointment and consent are required."
+    required:"Please check your entries. Name, email, preferred date/time window and consent are required."
   },
   fr: {
-    headerSubtitle:"Coordination du démarrage du projet",
-    badge:"Souhait de rendez-vous",
-    title:"Coordonner le démarrage du projet.",
-    intro:"Transmettez un rendez-vous souhaité et, si possible, une alternative pour la coordination du démarrage du projet. Le rendez-vous final sera confirmé ensuite.",
+    headerSubtitle:"Préparation du démarrage du projet",
+    badge:"Démarrage du projet",
+    title:"Préparer le démarrage du projet.",
+    intro:"Indiquez brièvement quelle date ou quel créneau conviendrait pour une éventuelle coordination de démarrage. Un échange par Microsoft Teams ou par téléphone est optionnel et seulement utile si certains points doivent être clarifiés avant le démarrage du projet.",
     noteStrong:"Remarque :",
-    note:"Il ne s’agit pas encore d’une confirmation automatique de rendez-vous, mais d’un souhait de rendez-vous pour coordination.",
+    note:"Il ne s’agit pas d’une réservation automatique de rendez-vous. Vos informations aident à préparer le démarrage du projet et seront rattachées à votre projet.",
     customerNo:"Numéro client",
     projectNo:"Numéro de projet",
     language:"Langue",
     statusLabel:"Statut",
-    statusValue:"Souhait de rendez-vous",
+    statusValue:"Préparation du démarrage",
     section1:"1. Contact & projet",
     nameLabel:"Nom",
     emailLabel:"E-mail",
@@ -571,35 +571,35 @@ const TEXT = {
     customerIdLabel:"Numéro client",
     offerLabel:"Numéro d’offre",
     invoiceLabel:"Numéro de facture",
-    section2:"2. Souhait de rendez-vous",
-    slot1:"Rendez-vous souhaité",
-    slot2:"Alternative",
+    section2:"2. Préparation du démarrage",
+    slot1:"Date / créneau préféré",
+    slot2:"Alternative optionnelle",
     dateLabel:"Date",
     timeLabel:"Heure",
-    coordination:"Coordination",
-    modeLabel:"Mode",
+    coordination:"Coordination optionnelle",
+    modeLabel:"Mode de coordination",
     phoneOption:"Téléphone",
     afterAgreementOption:"Après coordination",
     timezoneLabel:"Fuseau horaire",
-    notesLabel:"Remarques",
-    notesPlaceholder:"Optionnel : disponibilité particulière, interlocuteur ou remarques organisationnelles.",
-    securityHint:"Veuillez saisir ici uniquement des informations relatives à la coordination du rendez-vous. Si des documents, fichiers ou accès techniques sont nécessaires, vous recevrez une information séparée concernant le moyen de transmission sécurisé.",
-    privacy:"J’accepte que mes informations soient traitées pour la coordination du démarrage du projet et associées à mon projet.",
-    submit:"Transmettre le souhait",
+    notesLabel:"Remarques / interlocuteurs",
+    notesPlaceholder:"Optionnel : nom, adresse e-mail et rôle/fonction des interlocuteurs ou personnes qui doivent recevoir plus tard les informations concernant l’espace projet sécurisé.",
+    securityHint:"Veuillez ne pas envoyer de mots de passe ou de données d’accès ici. Les documents, fichiers ou informations techniques seront coordonnés plus tard via l’espace projet sécurisé.",
+    privacy:"J’accepte que mes informations soient traitées pour la préparation du démarrage du projet et associées à mon projet.",
+    submit:"Transmettre les informations de démarrage",
     print:"Imprimer / PDF",
     homeBtn:"Accueil",
     home:"Accueil",
     privacyLink:"Confidentialité",
     imprint:"Mentions légales",
-    sending:"Transmission du souhait de rendez-vous ...",
-    success:"Merci. Votre souhait de rendez-vous a été transmis avec succès et associé à votre projet.",
-    successTitle:"Souhait de rendez-vous transmis",
-    successLine1:"Merci. Votre souhait de rendez-vous a été transmis avec succès et associé à votre projet.",
+    sending:"Transmission des informations ...",
+    success:"Merci. Vos informations pour la préparation du démarrage du projet ont été transmises avec succès et rattachées à votre projet.",
+    successTitle:"Informations transmises",
+    successLine1:"Merci. Vos informations pour la préparation du démarrage du projet ont été transmises avec succès et rattachées à votre projet.",
     successProject:"Projet :",
     successAppointment:"Rendez-vous souhaité :",
-    error:"Le souhait de rendez-vous n’a pas pu être transmis. Veuillez réessayer ou contacter Barry Data & Analytics.",
+    error:"Vos informations n’ont pas pu être transmises. Veuillez réessayer ou contacter Barry Data & Analytics.",
     missingFlow:"La connexion technique n’est pas encore configurée.",
-    required:"Veuillez vérifier vos informations. Le nom, l’e-mail, le rendez-vous souhaité et le consentement sont obligatoires."
+    required:"Veuillez vérifier vos informations. Le nom, l’e-mail, la date/le créneau préféré et le consentement sont obligatoires."
   }
 };
 
