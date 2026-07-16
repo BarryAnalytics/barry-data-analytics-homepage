@@ -3774,6 +3774,245 @@ footer {
   margin-bottom: 0.8rem;
 }
 
+  
+
+/* ============================================================
+   BDA WOW / TRUST / SALES FLOW ADD-ON – FINAL
+   Bewusst additiv: keine Formularwerte, keine Power-Automate-Felder geändert.
+============================================================ */
+.bda-wow-section,
+.bda-capability-section{
+  margin-top:30px;
+}
+.bda-wow-shell,
+.bda-capability-shell,
+.bda-flow-mini{
+  border-radius:var(--radius-lg);
+  background:linear-gradient(145deg,rgba(13,17,23,.96),rgba(2,3,8,.98));
+  border:1px solid rgba(148,163,184,.22);
+  box-shadow:var(--shadow-soft);
+  overflow:hidden;
+}
+.bda-wow-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr .95fr;
+  gap:14px;
+  padding:18px;
+}
+.bda-wow-card{
+  position:relative;
+  border-radius:16px;
+  padding:16px;
+  background:radial-gradient(circle at top left,rgba(15,23,42,.96),rgba(2,6,23,.96));
+  border:1px solid rgba(148,163,184,.28);
+  overflow:hidden;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease;
+}
+.bda-wow-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(39,243,217,.58);
+  box-shadow:0 18px 38px rgba(39,243,217,.16);
+  background:radial-gradient(circle at top left,rgba(17,24,39,.98),rgba(2,6,23,.98));
+}
+.bda-wow-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(135deg,rgba(39,243,217,.10),transparent 45%);
+}
+.bda-wow-card.danger{border-color:rgba(255,107,129,.34)}
+.bda-wow-card.success{border-color:rgba(61,220,151,.38)}
+.bda-wow-card.trust{border-color:rgba(39,243,217,.42);box-shadow:0 0 26px rgba(39,243,217,.14)}
+.bda-wow-card h3,
+.bda-capability-shell h3,
+.bda-flow-mini h3{
+  position:relative;
+  z-index:1;
+  font-size:.98rem;
+  margin-bottom:10px;
+  color:var(--text-main);
+}
+.bda-wow-list{
+  position:relative;
+  z-index:1;
+  list-style:none;
+  display:grid;
+  gap:8px;
+}
+.bda-wow-list li{
+  font-size:.84rem;
+  color:var(--text-muted);
+  line-height:1.45;
+  padding-left:20px;
+  position:relative;
+}
+.bda-wow-card.danger .bda-wow-list li::before{
+  content:"×";
+  position:absolute;
+  left:0;
+  color:var(--danger);
+  font-weight:800;
+}
+.bda-wow-card.success .bda-wow-list li::before,
+.bda-wow-card.trust .bda-wow-list li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:800;
+}
+.bda-trust-text{
+  position:relative;
+  z-index:1;
+  color:#cbd5e1;
+  font-size:.86rem;
+  line-height:1.55;
+  margin-bottom:10px;
+}
+.bda-flow-strip{
+  border-top:1px solid rgba(148,163,184,.16);
+  padding:14px 18px 18px;
+  background:linear-gradient(90deg,rgba(39,243,217,.06),transparent);
+}
+.bda-flow-strip-title{
+  color:var(--accent);
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  margin-bottom:10px;
+  font-weight:700;
+}
+.bda-flow-steps{
+  display:grid;
+  grid-template-columns:repeat(9,minmax(108px,1fr));
+  gap:8px;
+}
+.bda-flow-step{
+  min-height:76px;
+  border-radius:14px;
+  border:1px solid rgba(148,163,184,.22);
+  background:rgba(15,23,42,.75);
+  padding:10px;
+  font-size:.76rem;
+  color:#cbd5e1;
+  line-height:1.35;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.bda-flow-step:hover{
+  transform:translateY(-2px);
+  border-color:rgba(39,243,217,.55);
+  box-shadow:0 0 20px rgba(39,243,217,.18);
+  background:rgba(15,23,42,.95);
+}
+.bda-flow-step strong{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;
+  height:20px;
+  border-radius:999px;
+  background:rgba(39,243,217,.13);
+  border:1px solid rgba(39,243,217,.42);
+  color:var(--accent);
+  margin-bottom:6px;
+  font-size:.7rem;
+}
+.bda-capability-shell{
+  padding:18px;
+}
+.bda-capability-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-end;
+  margin-bottom:14px;
+}
+.bda-capability-note{
+  max-width:360px;
+  color:var(--text-muted);
+  font-size:.82rem;
+  line-height:1.5;
+}
+.bda-capability-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.bda-capability-tag{
+  border-radius:999px;
+  border:1px solid rgba(39,243,217,.28);
+  background:rgba(15,23,42,.9);
+  color:#dbeafe;
+  padding:8px 11px;
+  font-size:.8rem;
+  transition:transform var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast);
+}
+.bda-capability-tag:hover{
+  transform:translateY(-1px);
+  border-color:rgba(39,243,217,.7);
+  box-shadow:0 0 18px rgba(39,243,217,.18);
+}
+.bda-flow-mini{
+  margin-top:12px;
+  padding:14px;
+  border-color:rgba(39,243,217,.24);
+  background:linear-gradient(145deg,rgba(15,23,42,.88),rgba(2,6,23,.96));
+}
+.bda-flow-mini h3{
+  color:var(--accent);
+  font-size:.9rem;
+  margin-bottom:8px;
+}
+.bda-flow-mini ol{
+  list-style:none;
+  display:grid;
+  gap:7px;
+  counter-reset:bda-flow;
+}
+.bda-flow-mini li{
+  counter-increment:bda-flow;
+  color:#cbd5e1;
+  font-size:.8rem;
+  line-height:1.38;
+  padding-left:28px;
+  position:relative;
+}
+.bda-flow-mini li::before{
+  content:counter(bda-flow);
+  position:absolute;
+  left:0;
+  top:0;
+  width:19px;
+  height:19px;
+  border-radius:999px;
+  background:rgba(39,243,217,.12);
+  border:1px solid rgba(39,243,217,.36);
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.68rem;
+  font-weight:800;
+}
+.bda-flow-mini-note{
+  margin-top:10px;
+  font-size:.76rem;
+  color:var(--text-muted);
+  border-top:1px solid rgba(148,163,184,.14);
+  padding-top:9px;
+}
+@media(max-width:980px){
+  .bda-wow-grid{grid-template-columns:1fr}
+  .bda-flow-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bda-capability-head{flex-direction:column;align-items:flex-start}
+  .bda-capability-note{max-width:none}
+}
+@media(max-width:620px){
+  .bda-flow-steps{grid-template-columns:1fr}
+  .bda-wow-grid,.bda-capability-shell{padding:14px}
+}
+
   </style>
 
 
@@ -4057,6 +4296,70 @@ footer {
       </div>
     </section>
 
+
+
+    <!-- BDA WOW / VERTRAUEN – Vorher/Nachher + sicherer Ablauf -->
+    <section class="bda-wow-section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow" data-i18n="wow_eyebrow"></div>
+          <h2 class="section-title" data-i18n="wow_title"></h2>
+        </div>
+        <div class="section-subtitle" data-i18n="wow_subtitle"></div>
+      </div>
+
+      <div class="bda-wow-shell">
+        <div class="bda-wow-grid">
+          <article class="bda-wow-card danger">
+            <h3 data-i18n="before_title"></h3>
+            <ul class="bda-wow-list">
+              <li data-i18n="before_1"></li>
+              <li data-i18n="before_2"></li>
+              <li data-i18n="before_3"></li>
+              <li data-i18n="before_4"></li>
+              <li data-i18n="before_5"></li>
+            </ul>
+          </article>
+
+          <article class="bda-wow-card success">
+            <h3 data-i18n="after_title"></h3>
+            <ul class="bda-wow-list">
+              <li data-i18n="after_1"></li>
+              <li data-i18n="after_2"></li>
+              <li data-i18n="after_3"></li>
+              <li data-i18n="after_4"></li>
+              <li data-i18n="after_5"></li>
+            </ul>
+          </article>
+
+          <article class="bda-wow-card trust">
+            <h3 data-i18n="trust_title"></h3>
+            <p class="bda-trust-text" data-i18n="trust_text"></p>
+            <ul class="bda-wow-list">
+              <li data-i18n="trust_point1"></li>
+              <li data-i18n="trust_point2"></li>
+              <li data-i18n="trust_point3"></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="bda-flow-strip">
+          <div class="bda-flow-strip-title" data-i18n="flow_title"></div>
+          <div class="bda-flow-steps">
+            <div class="bda-flow-step"><strong>1</strong><br><span data-i18n="flow_1"></span></div>
+            <div class="bda-flow-step"><strong>2</strong><br><span data-i18n="flow_2"></span></div>
+            <div class="bda-flow-step"><strong>3</strong><br><span data-i18n="flow_3"></span></div>
+            <div class="bda-flow-step"><strong>4</strong><br><span data-i18n="flow_4"></span></div>
+            <div class="bda-flow-step"><strong>5</strong><br><span data-i18n="flow_5"></span></div>
+            <div class="bda-flow-step"><strong>6</strong><br><span data-i18n="flow_6"></span></div>
+            <div class="bda-flow-step"><strong>7</strong><br><span data-i18n="flow_7"></span></div>
+            <div class="bda-flow-step"><strong>8</strong><br><span data-i18n="flow_8"></span></div>
+            <div class="bda-flow-step"><strong>9</strong><br><span data-i18n="flow_9"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- USE CASES + DETAIL PANEL -->
     <section>
       <div class="section-header">
@@ -4149,6 +4452,35 @@ footer {
         </div>
       </div>
     </section>
+
+
+
+    <!-- BDA ZUSÄTZLICHE MÖGLICHKEITEN – ohne Formularwerte zu verändern -->
+    <section class="bda-capability-section">
+      <div class="bda-capability-shell">
+        <div class="bda-capability-head">
+          <div>
+            <div class="section-eyebrow" data-i18n="capabilities_eyebrow"></div>
+            <h2 class="section-title" data-i18n="capabilities_title"></h2>
+            <div class="section-subtitle" data-i18n="capabilities_subtitle"></div>
+          </div>
+          <div class="bda-capability-note" data-i18n="capabilities_note"></div>
+        </div>
+
+        <div class="bda-capability-tags">
+          <span class="bda-capability-tag" data-i18n="cap_1"></span>
+          <span class="bda-capability-tag" data-i18n="cap_2"></span>
+          <span class="bda-capability-tag" data-i18n="cap_3"></span>
+          <span class="bda-capability-tag" data-i18n="cap_4"></span>
+          <span class="bda-capability-tag" data-i18n="cap_5"></span>
+          <span class="bda-capability-tag" data-i18n="cap_6"></span>
+          <span class="bda-capability-tag" data-i18n="cap_7"></span>
+          <span class="bda-capability-tag" data-i18n="cap_8"></span>
+          <span class="bda-capability-tag" data-i18n="cap_9"></span>
+        </div>
+      </div>
+    </section>
+
 
     
 <!-- ÜBER UNS + GRÜNDER -->
@@ -4256,6 +4588,22 @@ footer {
       <div class="about-pill-row">
         <div class="about-pill" data-i18n="contact_pill1"></div>
         <div class="about-pill" data-i18n="contact_pill2"></div>
+      </div>
+
+      <div class="bda-flow-mini">
+        <h3 data-i18n="flowmini_title"></h3>
+        <ol>
+          <li data-i18n="flowmini_1"></li>
+          <li data-i18n="flowmini_2"></li>
+          <li data-i18n="flowmini_3"></li>
+          <li data-i18n="flowmini_4"></li>
+          <li data-i18n="flowmini_5"></li>
+          <li data-i18n="flowmini_6"></li>
+          <li data-i18n="flowmini_7"></li>
+          <li data-i18n="flowmini_8"></li>
+          <li data-i18n="flowmini_9"></li>
+        </ol>
+        <div class="bda-flow-mini-note" data-i18n="flowmini_note"></div>
       </div>
     </div>
 
@@ -4552,8 +4900,8 @@ const languageData = {
       "Transparente Pipeline, klare Zielerreichung, weniger Abstimmungsaufwand – mehr Zeit für Vertrieb statt für Excel.",
     project_timeline_label: "Vorher → Lösung → Nachher",
     project_cta_text:
-      "Klingt ähnlich zu Ihrer Situation? Dann lassen Sie uns kurz sprechen.",
-    project_cta_btn: "Nächstes Projekt besprechen",
+      "Erkennen Sie diese Herausforderungen wieder? Lassen Sie uns unverbindlich darüber sprechen.",
+    project_cta_btn: "Ihr Projekt besprechen",
 
     /* Use Cases */
     usecases_eyebrow: "USE CASES",
@@ -4851,8 +5199,8 @@ seo_toggle_less: "Weniger anzeigen"
     project_step3_text:
       "Transparent pipeline, clear target achievement, less coordination effort – more time for selling.",
     project_timeline_label: "Before → Solution → After",
-    project_cta_text: "Sounds similar to your situation? Let’s talk briefly.",
-    project_cta_btn: "Discuss next project",
+    project_cta_text: "Do these challenges sound familiar? Let’s talk about your project without obligation.",
+    project_cta_btn: "Discuss your project",
 
     /* Use cases */
     usecases_eyebrow: "USE CASES",
@@ -5143,8 +5491,8 @@ seo_toggle_less: "Show less"
     project_step3_text:
       "Pipeline transparent, objectifs clairs, moins de coordination – plus de temps pour vendre.",
     project_timeline_label: "Avant → Solution → Après",
-    project_cta_text: "Situation similaire ? Discutons brièvement.",
-    project_cta_btn: "Discuter du prochain projet",
+    project_cta_text: "Vous reconnaissez ces défis ? Parlons-en simplement, sans engagement.",
+    project_cta_btn: "Parler de votre projet",
 
     /* Use cases */
     usecases_eyebrow: "CAS D’USAGE",
@@ -5391,6 +5739,301 @@ seo_toggle_less: "Afficher moins"
 
   
 };
+
+/* BDA WOW / TRUST / SALES FLOW TRANSLATIONS – FINAL */
+Object.assign(languageData.de, {
+  "project_subtitle": "Ein Praxisbeispiel, wie aus verstreuten Daten, manuellen Auswertungen und offenen Fragen ein klares, nutzbares System entsteht.",
+  "project_step1_title": "Excel-Chaos & unklare Kennzahlen",
+  "project_step1_text": "Daten liegen verstreut, Reports kosten wertvolle Zeit, Kennzahlen widersprechen sich und Entscheidungen werden unnötig erschwert.",
+  "project_step2_title": "Strukturierte Analyse",
+  "project_step2_text": "Wir prüfen Situation, Ziele, Datenquellen und Engpässe – zielgerichtet, nachvollziehbar und ohne unnötige Komplexität.",
+  "project_step3_title": "Klare Lösung & Umsetzung",
+  "project_step3_text": "Aus der Analyse entsteht eine passende Lösung: automatisierte Reports, ein übersichtliches Dashboard, eine saubere Datenstruktur oder eine individuelle Automatisierung.",
+  "wow_eyebrow": "VORHER / NACHHER",
+  "wow_title": "Vom Datenchaos zur Struktur: So verändert sich Ihr Arbeitsalltag",
+  "wow_subtitle": "Keine komplizierte Technik – sondern verständliche Systeme für echte Probleme im Unternehmen.",
+  "before_title": "Vorher: typisch im Arbeitsalltag",
+  "before_1": "Excel-Dateien liegen verstreut und müssen mühsam manuell gepflegt werden.",
+  "before_2": "Reports dauern zu lange und weichen je nach Datenquelle voneinander ab.",
+  "before_3": "Wichtige Kennzahlen müssen jedes Mal neu gesucht und geprüft werden.",
+  "before_4": "Teams verlieren wertvolle Zeit mit Abstimmungen statt Entscheidungen zu treffen.",
+  "before_5": "Es fehlt der schnelle Überblick, welche Zahlen aktuell wirklich relevant sind.",
+  "after_title": "Nachher: klar, strukturiert, nutzbar",
+  "after_1": "Alle wichtigen Kennzahlen sind zentral auf einen Blick sichtbar.",
+  "after_2": "Analysen und Reportings laufen automatisiert im Hintergrund.",
+  "after_3": "Daten, Prozesse und Ziele sind transparent nachvollziehbar.",
+  "after_4": "Entscheidungen werden schneller, sicherer und faktenbasierter getroffen.",
+  "after_5": "Die Lösung passt sich Ihrem Arbeitsalltag an – nicht umgekehrt.",
+  "trust_title": "Sicherer Start ohne Hürde",
+  "trust_text": "Der erste Schritt bleibt bewusst unkompliziert. Im Erstkontakt fragen wir nicht nach Passwörtern, sensiblen Zugangsdaten oder internen Unternehmensdateien.",
+  "trust_point1": "Projektinformationen werden vertraulich behandelt.",
+  "trust_point2": "Datenstrukturen und Details werden erst im Verlauf gemeinsam abgestimmt.",
+  "trust_point3": "Bei Bedarf folgt ein geschützter Projektbereich für Unterlagen, Rückfragen und Ergebnisse.",
+  "flow_title": "So wird aus einer Anfrage ein professionell begleitetes Projekt",
+  "flow_1": "Anfrage senden",
+  "flow_2": "Digitale Projektanalyse",
+  "flow_3": "Anforderungen prüfen",
+  "flow_4": "Lösung & Angebot",
+  "flow_5": "Digitale Annahme",
+  "flow_6": "Projektstart vorbereiten",
+  "flow_7": "Sicherer Projektbereich",
+  "flow_8": "Umsetzung & Kommunikation",
+  "flow_9": "Ergebnis & Abschluss",
+  "capabilities_eyebrow": "AUCH MÖGLICH",
+  "capabilities_title": "Mehr als ein Dashboard – wenn es zum Projekt passt.",
+  "capabilities_subtitle": "Das Anfrageformular bleibt bewusst einfach. Weitere Themen können später in der digitalen Projektanalyse sauber eingeordnet werden.",
+  "capabilities_note": "So bleibt die erste Anfrage leicht verständlich, während komplexere Anforderungen trotzdem professionell aufgenommen werden können.",
+  "cap_1": "Excel- & Power-Query-Automatisierung",
+  "cap_2": "Datenbereinigung & Datenstruktur",
+  "cap_3": "KPI-Definition & Reporting-Konzept",
+  "cap_4": "Power-BI-Dashboard-Konzept",
+  "cap_5": "Microsoft-365- & SharePoint-Automatisierung",
+  "cap_6": "PDF-, E-Mail- & Workflow-Automatisierung",
+  "cap_7": "Forecasting & Planungslogik",
+  "cap_8": "Datenexporte & Vorlagen",
+  "cap_9": "Prozessdokumentation & Übergabe",
+  "process_title": "So arbeiten wir zusammen",
+  "process_step1_title": "Kurze Anfrage",
+  "process_step1_text": "Sie schildern kurz Ihre Situation. Wir prüfen, ob und wie wir sinnvoll unterstützen können.",
+  "process_step2_title": "Digitale Projektanalyse",
+  "process_step2_text": "Bei passender Anfrage erhalten Sie eine strukturierte Projektanalyse, damit Ziele, Daten, Prozesse und Erwartungen sauber verstanden werden.",
+  "process_step3_title": "Lösungsvorschlag & Angebot",
+  "process_step3_text": "Aus Ihren Angaben entsteht ein klarer Vorschlag mit Vorgehen, Leistungsumfang und nächsten Schritten.",
+  "process_step4_title": "Start, Umsetzung & Abschluss",
+  "process_step4_text": "Nach Annahme folgen Rechnung, Projektstart-Vorbereitung, sicherer Projektbereich, Umsetzung, Ergebnisbereitstellung und Projektabschluss.",
+  "flowmini_title": "Der Ablauf bleibt klar",
+  "flowmini_1": "Anfrage senden",
+  "flowmini_2": "Digitale Projektanalyse ausfüllen",
+  "flowmini_3": "Anforderungen werden geprüft",
+  "flowmini_4": "Lösungsvorschlag und Angebot erhalten",
+  "flowmini_5": "Projektangebot digital annehmen",
+  "flowmini_6": "Projektstart vorbereiten",
+  "flowmini_7": "Sicherer Projektbereich für Unterlagen und Ergebnisse",
+  "flowmini_8": "Umsetzung, Rückfragen und laufende Projektkommunikation",
+  "flowmini_9": "Ergebnisbereitstellung, Feedback und Projektabschluss",
+  "flowmini_note": "So bleibt der Ablauf vom ersten Kontakt bis zum Projektabschluss klar nachvollziehbar – ohne unnötige Komplexität."
+});
+Object.assign(languageData.en, {
+  "project_subtitle": "A practical example of how scattered data, manual reporting and open questions become a clear, usable system.",
+  "project_step1_title": "Excel chaos & unclear KPIs",
+  "project_step1_text": "Data is scattered, reports cost valuable time, KPIs contradict each other and decisions become unnecessarily difficult.",
+  "project_step2_title": "Structured analysis",
+  "project_step2_text": "We review the situation, goals, data sources and bottlenecks – focused, transparent and without unnecessary complexity.",
+  "project_step3_title": "Clear solution & implementation",
+  "project_step3_text": "Based on the analysis, we build the right direction: automated reports, a clear dashboard, a clean data structure or a tailored automation.",
+  "wow_eyebrow": "BEFORE / AFTER",
+  "wow_title": "From data chaos to structure: how daily work changes",
+  "wow_subtitle": "No complicated tech – just understandable systems for real business problems.",
+  "before_title": "Before: common daily reality",
+  "before_1": "Excel files are scattered and have to be maintained manually.",
+  "before_2": "Reports take too long and differ depending on the data source.",
+  "before_3": "Important KPIs have to be searched and checked again and again.",
+  "before_4": "Teams lose valuable time in coordination instead of making decisions.",
+  "before_5": "There is no quick overview of which numbers really matter right now.",
+  "after_title": "After: clear, structured, usable",
+  "after_1": "All important KPIs are visible centrally at a glance.",
+  "after_2": "Analyses and reports run automatically in the background.",
+  "after_3": "Data, processes and goals are transparently traceable.",
+  "after_4": "Decisions are made faster, more securely and based on facts.",
+  "after_5": "The solution fits your daily work – not the other way around.",
+  "trust_title": "A secure start without friction",
+  "trust_text": "The first step is intentionally simple. In the first contact, we do not ask for passwords, sensitive access details or internal company files.",
+  "trust_point1": "Project information is treated confidentially.",
+  "trust_point2": "Data structures and details are coordinated together later in the process.",
+  "trust_point3": "If needed, a secure project area follows for documents, questions and results.",
+  "flow_title": "How a request becomes a professionally guided project",
+  "flow_1": "Send request",
+  "flow_2": "Digital analysis",
+  "flow_3": "Review needs",
+  "flow_4": "Solution & offer",
+  "flow_5": "Digital acceptance",
+  "flow_6": "Prepare start",
+  "flow_7": "Secure project area",
+  "flow_8": "Work & communication",
+  "flow_9": "Results & completion",
+  "capabilities_eyebrow": "ALSO POSSIBLE",
+  "capabilities_title": "More than a dashboard – when the project needs it.",
+  "capabilities_subtitle": "The request form stays intentionally simple. Additional topics can be clarified properly in the digital project analysis.",
+  "capabilities_note": "This keeps the first request easy to understand while still allowing more complex requirements to be captured professionally.",
+  "cap_1": "Excel & Power Query automation",
+  "cap_2": "Data cleaning & data structure",
+  "cap_3": "KPI definition & reporting concept",
+  "cap_4": "Power BI dashboard concept",
+  "cap_5": "Microsoft 365 & SharePoint automation",
+  "cap_6": "PDF, email & workflow automation",
+  "cap_7": "Forecasting & planning logic",
+  "cap_8": "Data exports & templates",
+  "cap_9": "Process documentation & handover",
+  "process_title": "How we work together",
+  "process_step1_title": "Short request",
+  "process_step1_text": "You briefly describe your situation. We review whether and how we can support you in a meaningful way.",
+  "process_step2_title": "Digital project analysis",
+  "process_step2_text": "If the request fits, you receive a structured project analysis so goals, data, processes and expectations can be understood clearly.",
+  "process_step3_title": "Solution proposal & offer",
+  "process_step3_text": "Based on your information, we prepare a clear proposal with approach, scope and next steps.",
+  "process_step4_title": "Start, implementation & completion",
+  "process_step4_text": "After acceptance, invoice, project start preparation, secure project area, implementation, result delivery and project completion follow.",
+  "flowmini_title": "The process stays clear",
+  "flowmini_1": "Send a request",
+  "flowmini_2": "Complete the digital project analysis",
+  "flowmini_3": "Requirements are reviewed",
+  "flowmini_4": "Receive proposal and offer",
+  "flowmini_5": "Accept the project offer digitally",
+  "flowmini_6": "Prepare the project start",
+  "flowmini_7": "Secure project area for files and results",
+  "flowmini_8": "Implementation, questions and ongoing project communication",
+  "flowmini_9": "Result delivery, feedback and project completion",
+  "flowmini_note": "This way, the process remains clear from first contact to project completion – without unnecessary complexity."
+});
+Object.assign(languageData.fr, {
+  "project_subtitle": "Un exemple concret montrant comment des données dispersées, des rapports manuels et des questions ouvertes deviennent un système clair et utilisable.",
+  "project_step1_title": "Chaos Excel & indicateurs peu clairs",
+  "project_step1_text": "Les données sont dispersées, les rapports prennent un temps précieux, les indicateurs se contredisent et les décisions deviennent inutilement difficiles.",
+  "project_step2_title": "Analyse structurée",
+  "project_step2_text": "Nous examinons la situation, les objectifs, les sources de données et les blocages – de manière ciblée, compréhensible et sans complexité inutile.",
+  "project_step3_title": "Solution claire & mise en œuvre",
+  "project_step3_text": "À partir de l’analyse, une solution adaptée se construit : rapports automatisés, tableau de bord clair, structure de données propre ou automatisation individuelle.",
+  "wow_eyebrow": "AVANT / APRÈS",
+  "wow_title": "Du chaos des données à une structure claire : ce qui change au quotidien",
+  "wow_subtitle": "Pas de technologie compliquée – des systèmes compréhensibles pour de vrais problèmes métier.",
+  "before_title": "Avant : une réalité fréquente",
+  "before_1": "Les fichiers Excel sont dispersés et doivent être entretenus manuellement.",
+  "before_2": "Les rapports prennent trop de temps et varient selon la source de données.",
+  "before_3": "Les indicateurs importants doivent être recherchés et vérifiés à chaque fois.",
+  "before_4": "Les équipes perdent un temps précieux en coordination au lieu de décider.",
+  "before_5": "Il manque une vue rapide sur les chiffres réellement importants.",
+  "after_title": "Après : clair, structuré, utilisable",
+  "after_1": "Tous les indicateurs importants sont visibles au même endroit.",
+  "after_2": "Les analyses et rapports fonctionnent automatiquement en arrière-plan.",
+  "after_3": "Les données, processus et objectifs sont traçables de manière transparente.",
+  "after_4": "Les décisions sont prises plus vite, avec plus de sécurité et sur la base des faits.",
+  "after_5": "La solution s’adapte à votre quotidien – et non l’inverse.",
+  "trust_title": "Un démarrage sécurisé et simple",
+  "trust_text": "Le premier pas reste volontairement simple. Lors du premier contact, nous ne demandons ni mots de passe, ni accès sensibles, ni fichiers internes de l’entreprise.",
+  "trust_point1": "Les informations du projet sont traitées de manière confidentielle.",
+  "trust_point2": "Les structures de données et les détails sont coordonnés ensemble plus tard dans le processus.",
+  "trust_point3": "Si nécessaire, un espace projet sécurisé suit pour les documents, questions et résultats.",
+  "flow_title": "Comment une demande devient un projet accompagné professionnellement",
+  "flow_1": "Envoyer la demande",
+  "flow_2": "Analyse digitale",
+  "flow_3": "Vérifier les besoins",
+  "flow_4": "Solution & offre",
+  "flow_5": "Acceptation digitale",
+  "flow_6": "Préparer le démarrage",
+  "flow_7": "Espace sécurisé",
+  "flow_8": "Mise en œuvre & échanges",
+  "flow_9": "Résultat & clôture",
+  "capabilities_eyebrow": "AUSSI POSSIBLE",
+  "capabilities_title": "Plus qu’un tableau de bord – si le projet le nécessite.",
+  "capabilities_subtitle": "Le formulaire de demande reste volontairement simple. Les sujets complémentaires peuvent être clarifiés proprement dans l’analyse digitale du projet.",
+  "capabilities_note": "Ainsi, la première demande reste facile à comprendre tout en permettant de traiter des besoins plus complexes de manière professionnelle.",
+  "cap_1": "Automatisation Excel & Power Query",
+  "cap_2": "Nettoyage & structuration des données",
+  "cap_3": "Définition des KPI & concept de reporting",
+  "cap_4": "Concept de tableau de bord Power BI",
+  "cap_5": "Automatisation Microsoft 365 & SharePoint",
+  "cap_6": "Automatisation PDF, e-mail & workflow",
+  "cap_7": "Prévisions & logique de planification",
+  "cap_8": "Exports de données & modèles",
+  "cap_9": "Documentation de processus & transfert",
+  "process_title": "Comment nous travaillons ensemble",
+  "process_step1_title": "Demande courte",
+  "process_step1_text": "Vous décrivez brièvement votre situation. Nous vérifions si et comment nous pouvons vous accompagner utilement.",
+  "process_step2_title": "Analyse digitale du projet",
+  "process_step2_text": "Si la demande est pertinente, vous recevez une analyse structurée afin de comprendre clairement les objectifs, données, processus et attentes.",
+  "process_step3_title": "Proposition & offre",
+  "process_step3_text": "À partir de vos informations, nous préparons une proposition claire avec l’approche, le périmètre et les prochaines étapes.",
+  "process_step4_title": "Démarrage, mise en œuvre & clôture",
+  "process_step4_text": "Après acceptation suivent la facture, la préparation du démarrage, l’espace projet sécurisé, la mise en œuvre, la remise des résultats et la clôture du projet.",
+  "flowmini_title": "Le déroulement reste clair",
+  "flowmini_1": "Envoyer une demande",
+  "flowmini_2": "Remplir l’analyse digitale du projet",
+  "flowmini_3": "Les besoins sont vérifiés",
+  "flowmini_4": "Recevoir une proposition et une offre",
+  "flowmini_5": "Accepter l’offre de projet digitalement",
+  "flowmini_6": "Préparer le démarrage du projet",
+  "flowmini_7": "Espace projet sécurisé pour fichiers et résultats",
+  "flowmini_8": "Mise en œuvre, questions et communication continue",
+  "flowmini_9": "Remise des résultats, feedback et clôture du projet",
+  "flowmini_note": "Le déroulement reste ainsi clair du premier contact jusqu’à la clôture du projet – sans complexité inutile."
+});
+/* BDA SEO / READABILITY REFINEMENT – FINAL */
+Object.assign(languageData.de.seoLong10, {
+  "h2": "Datenanalyse, Power BI, Excel-Automatisierung & Reporting – klar, sicher, praxisnah",
+  "p1": "Daten sollen nicht belasten, sondern Entscheidungen einfacher machen. Wir entwickeln Dashboards, Auswertungen und Automatisierungen, die Klarheit schaffen und sich an Ihrem Arbeitsalltag orientieren.",
+  "p2": "Von Bochum aus unterstützen wir Unternehmen in NRW, deutschlandweit und international – mit Lösungen für Reporting, Prozessoptimierung, Forecasting, Microsoft 365, Excel und Power BI.",
+  "dashboards_h3": "Dashboards, die Entscheidungen einfacher machen",
+  "dashboards_p1": "Wir verbinden relevante Datenquellen und stellen Kennzahlen so dar, dass sie schnell verstanden und im Alltag genutzt werden können.",
+  "dashboards_p2": "Ob Management, Vertrieb, Marketing, Service, Logistik oder Produktion – der Fokus liegt auf Übersicht, Klarheit und konkretem Nutzen.",
+  "excel_h3": "Excel automatisieren, statt jeden Bericht neu bauen",
+  "excel_p1": "Viele Unternehmen arbeiten mit starken Excel-Dateien, aber zu viel manueller Aufwand kostet Zeit und erhöht die Fehleranfälligkeit.",
+  "excel_p2": "Wir helfen dabei, wiederkehrende Auswertungen zu strukturieren, zu automatisieren und in zuverlässige Reporting-Prozesse zu überführen.",
+  "powerbi_h3": "Power BI für klare Kennzahlen und Management-Übersicht",
+  "powerbi_p1": "Power BI kann aus verstreuten Daten eine zentrale Sicht schaffen – mit klaren KPIs, Filtern und Dashboards, die zu Ihren Entscheidungen passen.",
+  "automate_h3": "Automatisierung für wiederkehrende Aufgaben",
+  "automate_p1": "Wiederkehrende Schritte wie Datenaufbereitung, PDF-Erstellung, E-Mail-Versand oder Projektinformationen können strukturiert automatisiert werden.",
+  "automate_p2": "Dadurch entstehen ruhigere Abläufe, weniger manuelle Arbeit und mehr Sicherheit im Prozess.",
+  "forecast_h3": "Forecasting & Planung mit nachvollziehbarer Logik",
+  "forecast_p1": "Wir entwickeln Prognosen und Planungslogiken, die Trends sichtbar machen und Entscheidungen besser vorbereiten – nachvollziehbar, transparent und auf Basis Ihrer Daten.",
+  "target_h3": "Für Unternehmen, die weniger Chaos und mehr Klarheit wollen",
+  "target_p1": "Unsere Lösungen richten sich an Unternehmen und Teams, die Daten besser nutzen, manuelle Arbeit reduzieren und verlässlicher entscheiden möchten.",
+  "why_h3": "Warum Barry Data & Analytics?",
+  "why_p1": "Jedes Unternehmen arbeitet anders. Deshalb steht am Anfang nicht ein Standard-Tool, sondern das Verständnis Ihrer Situation, Ihrer Daten und Ihrer Prozesse.",
+  "why_p2": "Das Ergebnis soll nicht komplizierter werden, sondern klarer: weniger Reibung, bessere Übersicht und Lösungen, die im Tagesgeschäft funktionieren.",
+  "cta_h3": "Der nächste Schritt bleibt einfach",
+  "cta_p1": "Beschreiben Sie kurz Ihre Situation. Danach prüfen wir, ob eine digitale Projektanalyse, ein Angebot oder zunächst eine kurze Abstimmung sinnvoll ist."
+});
+Object.assign(languageData.en.seoLong10, {
+  "h2": "Data analytics, Power BI, Excel automation & reporting – clear, secure, practical",
+  "p1": "Data should not slow you down. It should make decisions easier. We build dashboards, reports and automations that create clarity and fit your daily work.",
+  "p2": "From Bochum, we support companies in NRW, across Germany and internationally with solutions for reporting, process optimisation, forecasting, Microsoft 365, Excel and Power BI.",
+  "dashboards_h3": "Dashboards that make decisions easier",
+  "dashboards_p1": "We connect relevant data sources and present key metrics in a way that is easy to understand and useful in daily operations.",
+  "dashboards_p2": "Whether management, sales, marketing, service, logistics or production – the focus is on clarity, overview and practical value.",
+  "excel_h3": "Automate Excel instead of rebuilding every report",
+  "excel_p1": "Many companies rely on strong Excel files, but too much manual work costs time and increases the risk of errors.",
+  "excel_p2": "We help structure recurring analyses, automate them and turn them into reliable reporting processes.",
+  "powerbi_h3": "Power BI for clear KPIs and management overview",
+  "powerbi_p1": "Power BI can turn scattered data into a central view – with clear KPIs, filters and dashboards that support your decisions.",
+  "automate_h3": "Automation for recurring tasks",
+  "automate_p1": "Recurring steps such as data preparation, PDF creation, email sending or project information can be automated in a structured way.",
+  "automate_p2": "This creates calmer workflows, less manual work and more process reliability.",
+  "forecast_h3": "Forecasting & planning with transparent logic",
+  "forecast_p1": "We develop forecasts and planning logic that make trends visible and support better decisions – transparent, traceable and based on your data.",
+  "target_h3": "For companies that want less chaos and more clarity",
+  "target_p1": "Our solutions are designed for companies and teams that want to use data better, reduce manual work and make more reliable decisions.",
+  "why_h3": "Why Barry Data & Analytics?",
+  "why_p1": "Every company works differently. That is why we start by understanding your situation, data and processes – not by forcing a standard tool.",
+  "why_p2": "The result should not become more complicated. It should become clearer: less friction, better overview and solutions that work in daily business.",
+  "cta_h3": "The next step stays simple",
+  "cta_p1": "Briefly describe your situation. We then review whether a digital project analysis, an offer or a short clarification is the right next step."
+});
+Object.assign(languageData.fr.seoLong10, {
+  "h2": "Data analytics, Power BI, automatisation Excel & reporting – clair, sécurisé, pratique",
+  "p1": "Les données ne doivent pas ralentir le travail. Elles doivent faciliter les décisions. Nous développons des tableaux de bord, rapports et automatisations qui apportent de la clarté au quotidien.",
+  "p2": "Depuis Bochum, nous accompagnons des entreprises en NRW, en Allemagne et à l’international avec des solutions de reporting, optimisation des processus, prévisions, Microsoft 365, Excel et Power BI.",
+  "dashboards_h3": "Des tableaux de bord qui facilitent les décisions",
+  "dashboards_p1": "Nous connectons les sources de données pertinentes et présentons les indicateurs de manière claire, compréhensible et utile au quotidien.",
+  "dashboards_p2": "Direction, ventes, marketing, service, logistique ou production : l’objectif reste la clarté, la vue d’ensemble et la valeur concrète.",
+  "excel_h3": "Automatiser Excel au lieu de reconstruire chaque rapport",
+  "excel_p1": "De nombreuses entreprises utilisent des fichiers Excel puissants, mais trop de travail manuel coûte du temps et augmente le risque d’erreurs.",
+  "excel_p2": "Nous aidons à structurer les analyses récurrentes, à les automatiser et à les transformer en processus de reporting fiables.",
+  "powerbi_h3": "Power BI pour des indicateurs clairs et une vue de pilotage",
+  "powerbi_p1": "Power BI peut transformer des données dispersées en une vue centrale – avec des KPIs, filtres et tableaux de bord adaptés à vos décisions.",
+  "automate_h3": "Automatisation des tâches récurrentes",
+  "automate_p1": "Les étapes répétitives comme la préparation des données, la création de PDF, l’envoi d’e-mails ou les informations de projet peuvent être automatisées de manière structurée.",
+  "automate_p2": "Cela permet des processus plus calmes, moins de travail manuel et plus de fiabilité.",
+  "forecast_h3": "Prévisions & planification avec une logique transparente",
+  "forecast_p1": "Nous développons des prévisions et logiques de planification qui rendent les tendances visibles et soutiennent de meilleures décisions – de manière transparente et basée sur vos données.",
+  "target_h3": "Pour les entreprises qui veulent moins de chaos et plus de clarté",
+  "target_p1": "Nos solutions s’adressent aux entreprises et équipes qui souhaitent mieux utiliser leurs données, réduire le travail manuel et prendre des décisions plus fiables.",
+  "why_h3": "Pourquoi Barry Data & Analytics ?",
+  "why_p1": "Chaque entreprise fonctionne différemment. C’est pourquoi nous commençons par comprendre votre situation, vos données et vos processus – au lieu d’imposer un outil standard.",
+  "why_p2": "Le résultat ne doit pas devenir plus compliqué, mais plus clair : moins de friction, meilleure vue d’ensemble et solutions utilisables au quotidien.",
+  "cta_h3": "La prochaine étape reste simple",
+  "cta_p1": "Décrivez brièvement votre situation. Nous vérifions ensuite si une analyse digitale du projet, une offre ou un court échange est la bonne prochaine étape."
+});
+
 </script>
 
 <!-- USECASE DETAILS -->
@@ -6402,6 +7045,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-
 
 
