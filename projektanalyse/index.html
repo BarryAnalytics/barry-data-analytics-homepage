@@ -250,6 +250,96 @@
       min-height:84px;
     }
 
+
+    .business-tools-box{
+      margin-top:16px;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(0,242,254,.20);
+      background:
+        radial-gradient(circle at top left,rgba(0,242,254,.10),transparent 42%),
+        rgba(15,23,42,.60);
+      box-shadow:0 18px 46px rgba(0,0,0,.22),0 0 26px rgba(0,242,254,.08);
+    }
+
+    .business-tools-kicker{
+      display:inline-flex;
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .business-tools-box strong.business-tools-title{
+      display:block;
+      color:#f8fafc;
+      font-size:17px;
+      letter-spacing:-.02em;
+      margin-bottom:6px;
+    }
+
+    .business-tools-box p{
+      margin:0;
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .business-tools-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .business-tool-card{
+      padding:12px;
+      border-radius:15px;
+      background:rgba(30,41,59,.62);
+      border:1px solid rgba(148,163,184,.18);
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+    }
+
+    .business-tool-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(0,242,254,.42);
+      background:rgba(30,41,59,.82);
+      box-shadow:0 16px 34px rgba(0,242,254,.10);
+    }
+
+    .business-tool-card span.business-tool-icon{
+      display:inline-flex;
+      width:28px;
+      height:28px;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      border:1px solid rgba(0,242,254,.28);
+      background:rgba(0,242,254,.08);
+      color:var(--cyan);
+      font-size:14px;
+      margin-bottom:8px;
+    }
+
+    .business-tool-card strong{
+      display:block;
+      color:#e0f2fe;
+      font-size:13px;
+      margin-bottom:5px;
+    }
+
+    .business-tool-card p{
+      color:#94a3b8;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    @media(max-width:760px){
+      .business-tools-grid{grid-template-columns:1fr}
+    }
+
     form{
       display:grid;
       gap:24px;
@@ -648,6 +738,38 @@ Data Analytics | Business Intelligence | Power BI | Power Query | Automation
             <p class="small-note" id="projectOtherNote"></p>
           </div>
 
+          <div class="business-tools-box">
+            <span class="business-tools-kicker" id="businessToolsKicker"></span>
+            <strong class="business-tools-title" id="businessToolsTitle"></strong>
+            <p id="businessToolsLead"></p>
+
+            <div class="business-tools-grid">
+              <div class="business-tool-card">
+                <span class="business-tool-icon">▣</span>
+                <strong id="businessTool1Title"></strong>
+                <p id="businessTool1Text"></p>
+              </div>
+              <div class="business-tool-card">
+                <span class="business-tool-icon">↻</span>
+                <strong id="businessTool2Title"></strong>
+                <p id="businessTool2Text"></p>
+              </div>
+              <div class="business-tool-card">
+                <span class="business-tool-icon">✓</span>
+                <strong id="businessTool3Title"></strong>
+                <p id="businessTool3Text"></p>
+              </div>
+              <div class="business-tool-card">
+                <span class="business-tool-icon">↗</span>
+                <strong id="businessTool4Title"></strong>
+                <p id="businessTool4Text"></p>
+              </div>
+            </div>
+
+            <p class="small-note" id="businessToolsNote"></p>
+          </div>
+
+
           <div class="grid" style="margin-top:18px;">
             <div>
               <label class="field-label" id="labelTimeline" for="timeline"></label>
@@ -876,7 +998,7 @@ const T = {
       labelPhone:"Telefonnummer",
       sectionProject:"Projektübersicht",
       labelProjectType:"Projektart auswählen",
-      projectNote:"Sie können mehrere Bereiche auswählen, falls Ihr Vorhaben mehrere Themen betrifft.",
+      projectNote:"Sie können mehrere Bereiche auswählen. Falls es um interne Business-Tools, Prozess-Cockpits oder CRM-nahe Abläufe geht, wählen Sie den nächstpassenden Bereich und ergänzen Sie die Details im Textfeld.",
       labelTimeline:"Projektstart",
       labelPriority:"Dringlichkeit",
       labelFrequency:"Häufigkeit / Reporting-Frequenz",
@@ -887,9 +1009,9 @@ const T = {
       labelReportsExist:"Bestehende Auswertungen / Reports",
       labelAutomation:"Aktuelle Automatisierung",
       labelCollaborationModel:"Gewünschte Zusammenarbeit",
-      sectionProcess:"Digitale Abläufe & Terminwunsch",
-      labelProcessFocus:"Welche Abläufe sollen verbessert werden?",
-      processNote:"Diese Auswahl hilft dabei, neben klassischen Datenprojekten auch digitale Geschäftsprozesse, interne Cockpits, Dokumentenablagen und wiederkehrende Aufgaben richtig einzuordnen.",
+      sectionProcess:"Digitale Abläufe, Business-Tools & Terminwunsch",
+      labelProcessFocus:"Welche Abläufe oder internen Tools sollen verbessert werden?",
+      processNote:"Diese Auswahl hilft dabei, neben klassischen Datenprojekten auch interne Business-Tools, Prozess-Cockpits, CRM-nahe Abläufe, Dokumentenprozesse und wiederkehrende Aufgaben richtig einzuordnen.",
       labelWorkEnvironment:"Vorhandene Arbeitsumgebung",
       labelMeetingMode:"Gewünschte Abstimmung",
       labelPreferredDate:"Wunschtermin / bevorzugtes Datum",
@@ -918,7 +1040,19 @@ const T = {
       ctxTimelineLabel:"Geplanter Start",
       ctxDescriptionLabel:"Erste Projektbeschreibung",
       labelProjectOther:"Nicht gefunden? Eigenes Thema kurz beschreiben",
-      projectOtherNote:"Falls Ihr Vorhaben nicht genau zu den Auswahlfeldern passt, beschreiben Sie es kurz. Ich ordne es intern dem passenden Lösungsbereich zu."
+      projectOtherNote:"Falls Ihr Vorhaben nicht genau zu den Auswahlfeldern passt, beschreiben Sie es kurz. Ich ordne es intern dem passenden Lösungsbereich zu.",
+      businessToolsKicker:"Auch möglich – wenn es zum Projekt passt",
+      businessToolsTitle:"Interne Business-Tools & Prozess-Cockpits",
+      businessToolsLead:"Nicht jedes Projekt ist nur ein Dashboard. Je nach Bedarf können auch einfache, strukturierte Arbeitsoberflächen für interne Abläufe entstehen – passend zu Ihrer vorhandenen Arbeitsweise.",
+      businessTool1Title:"Anfrage, Angebot & Rechnung",
+      businessTool1Text:"Strukturierte Abläufe von der Kundenanfrage bis zur Rechnung – mit klaren Status, Dokumenten und nächsten Schritten.",
+      businessTool2Title:"Prozess-Cockpit",
+      businessTool2Text:"Eine zentrale Übersicht für Aufgaben, Projektstatus, Rückfragen, Uploads oder interne Entscheidungen.",
+      businessTool3Title:"CRM-nahe Abläufe",
+      businessTool3Text:"Kunden-, Projekt- und Kommunikationsdaten sauber zusammenführen, ohne direkt ein komplexes neues System einzuführen.",
+      businessTool4Title:"Microsoft 365 Automatisierung",
+      businessTool4Text:"Excel, SharePoint, Power Query, Power Automate und E-Mail-Prozesse sinnvoll miteinander verbinden.",
+      businessToolsNote:"Diese Beispiele dienen nur zur Orientierung. Ihre Auswahl wird weiterhin über die bestehenden Projekt- und Prozessfelder übermittelt."
     },
     placeholders:{
       name:"Ihr Name",
@@ -930,7 +1064,7 @@ const T = {
       expected:"Wie sieht ein gutes Ergebnis für Sie aus?",
       desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten.",
       preferred_contact_note:"Optional: gewünschtes Zeitfenster, Ansprechpartner, Besonderheiten oder Rückrufhinweis.",
-      project_type_other:"Beispiel: Excel-Vorlage verbessern, individuelle Auswertung, interner Ablauf, Speziallösung ..."
+      project_type_other:"Beispiel: Prozess-Cockpit, Anfrage-/Angebots-/Rechnungsablauf, interne Arbeitsoberfläche, Excel-Vorlage, Speziallösung ..."
     },
     projects:[
       "Vertrieb / Sales Performance",
@@ -950,6 +1084,8 @@ const T = {
       "Sonstiges / eigenes Projekt kurz beschreiben",
       "Geschäftsprozesse digitalisieren und automatisieren",
       "Interne Auswertungen / Management-Cockpit",
+      "Interne Business-Tools / Prozess-Cockpit",
+      "CRM-nahe Prozessautomatisierung",
       "Dokumenten- und Ablageprozesse",
       "Angebot-, Rechnungs- und Reporting-Abläufe",
       "Microsoft 365 / SharePoint / Power Automate Lösung"
@@ -963,7 +1099,7 @@ const T = {
     reportsExist:["Nein","Ja, aber manuell","Ja, aber unvollständig","Ja, regelmäßig","Excel-Berichte vorhanden","Power BI-Berichte vorhanden","Nur Rohdaten vorhanden","Noch unklar"],
     automation:["Keine Automatisierung","Teilweise automatisiert","Power Query vorhanden","Power Automate vorhanden","Manuelle Prozesse","Automatisierung gewünscht","Automatisierung prüfen","Noch unklar"],
     collaborationModels:["Einmaliges Projekt","Laufende Betreuung","Monatliche Unterstützung","Retainer / Stundenkontingent","Regelmäßige Reporting-Unterstützung","Support & Optimierung","Workshop / Beratung","Noch offen"],
-    processFocus:["Geschäftsprozesse digitalisieren und automatisieren","Interne Auswertungen / Management-Cockpit","Dokumenten- und Ablageprozesse strukturieren","Angebot-, Rechnungs- und Reporting-Abläufe verbessern","Wiederkehrende Aufgaben automatisieren","Daten aus Excel, SharePoint oder Systemen zusammenführen","Management- oder KPI-Übersicht aufbauen","Bestehende Reports modernisieren","Microsoft 365 / SharePoint / Power Automate sinnvoll nutzen","Noch unklar / bitte beraten"],
+    processFocus:["Geschäftsprozesse digitalisieren und automatisieren","Interne Auswertungen / Management-Cockpit","Interne Business-Tools oder Prozess-Cockpits aufbauen","CRM-nahe Kunden-, Angebots- und Projektabläufe strukturieren","Projektstatus, Uploads, Rückfragen und Abschlussprozesse verbessern","Dokumenten- und Ablageprozesse strukturieren","Angebot-, Rechnungs- und Reporting-Abläufe verbessern","Wiederkehrende Aufgaben automatisieren","Daten aus Excel, SharePoint oder Systemen zusammenführen","Management- oder KPI-Übersicht aufbauen","Bestehende Reports modernisieren","Microsoft 365 / SharePoint / Power Automate sinnvoll nutzen","Noch unklar / bitte beraten"],
     workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / lokale Dateien","Power BI vorhanden","Power Query vorhanden","Power Automate vorhanden","CRM / ERP / Fachsystem","Google Workspace","Gemischte Umgebung","Noch unklar"],
     meetingModes:["Microsoft Teams","Telefon","E-Mail-Abstimmung","Vor-Ort-Termin nach Absprache","Noch offen"],
     preferredTimes:["Morgens","Vormittags","Mittags","Nachmittags","Abends","Flexibel","Nach Absprache"],
@@ -990,7 +1126,7 @@ const T = {
       labelPhone:"Phone",
       sectionProject:"Project overview",
       labelProjectType:"Select project type",
-      projectNote:"You can select multiple areas if your project includes several topics.",
+      projectNote:"You can select multiple areas. If your request involves internal business tools, process cockpits or CRM-related workflows, choose the closest area and add details in the text field.",
       labelTimeline:"Project start",
       labelPriority:"Urgency",
       labelFrequency:"Frequency / reporting cadence",
@@ -1001,9 +1137,9 @@ const T = {
       labelReportsExist:"Existing reports / dashboards",
       labelAutomation:"Current automation",
       labelCollaborationModel:"Preferred collaboration",
-      sectionProcess:"Digital workflows & preferred appointment",
-      labelProcessFocus:"Which workflows should be improved?",
-      processNote:"This selection helps to classify not only classic data projects, but also digital business processes, internal cockpits, document workflows and recurring tasks.",
+      sectionProcess:"Digital workflows, business tools & preferred appointment",
+      labelProcessFocus:"Which workflows or internal tools should be improved?",
+      processNote:"This selection helps classify not only classic data projects, but also internal business tools, process cockpits, CRM-related workflows, document processes and recurring tasks.",
       labelWorkEnvironment:"Existing work environment",
       labelMeetingMode:"Preferred coordination",
       labelPreferredDate:"Preferred date",
@@ -1032,7 +1168,19 @@ const T = {
       ctxTimelineLabel:"Planned start",
       ctxDescriptionLabel:"Initial project description",
       labelProjectOther:"Not listed? Briefly describe your own topic",
-      projectOtherNote:"If your project does not exactly match the options, briefly describe it here. I will assign it internally to the appropriate solution area."
+      projectOtherNote:"If your project does not exactly match the options, briefly describe it here. I will assign it internally to the appropriate solution area.",
+      businessToolsKicker:"Also possible – if it fits the project",
+      businessToolsTitle:"Internal business tools & process cockpits",
+      businessToolsLead:"Not every project is just a dashboard. Depending on the need, simple and structured workspaces for internal workflows can also be created – aligned with your existing way of working.",
+      businessTool1Title:"Request, offer & invoice",
+      businessTool1Text:"Structured workflows from customer request to invoice – with clear status, documents and next steps.",
+      businessTool2Title:"Process cockpit",
+      businessTool2Text:"A central overview for tasks, project status, follow-up questions, uploads or internal decisions.",
+      businessTool3Title:"CRM-related workflows",
+      businessTool3Text:"Bring customer, project and communication data together without immediately introducing a complex new system.",
+      businessTool4Title:"Microsoft 365 automation",
+      businessTool4Text:"Connect Excel, SharePoint, Power Query, Power Automate and email workflows in a practical way.",
+      businessToolsNote:"These examples are for orientation only. Your selection is still submitted through the existing project and process fields."
     },
     placeholders:{
       name:"Your name",
@@ -1044,7 +1192,7 @@ const T = {
       expected:"What would a successful result look like for you?",
       desc:"Briefly describe your project in your own words.",
       preferred_contact_note:"Optional: preferred time window, contact person, special notes or callback request.",
-      project_type_other:"Example: improve an Excel template, custom analysis, internal workflow, special solution ..."
+      project_type_other:"Example: process cockpit, request/offer/invoice workflow, internal workspace, Excel template, special solution ..."
     },
     projects:[
       "Sales / Sales performance",
@@ -1064,6 +1212,8 @@ const T = {
       "Other / briefly describe your own project",
       "Digital business process automation",
       "Internal reporting / management cockpit",
+      "Internal business tools / process cockpit",
+      "CRM-related workflow automation",
       "Document and filing workflows",
       "Offer, invoice and reporting workflows",
       "Microsoft 365 / SharePoint / Power Automate solution"
@@ -1077,7 +1227,7 @@ const T = {
     reportsExist:["No","Yes, but manual","Yes, but incomplete","Yes, regularly","Excel reports available","Power BI reports available","Only raw data available","Not sure yet"],
     automation:["No automation","Partly automated","Power Query available","Power Automate available","Manual processes","Automation desired","Automation to be reviewed","Not sure yet"],
     collaborationModels:["One-time project","Ongoing support","Monthly support","Retainer / time package","Regular reporting support","Support & optimization","Workshop / consulting","Open / to be discussed"],
-    processFocus:["Digitize and automate business processes","Internal reporting / management cockpit","Structure document and filing workflows","Improve offer, invoice and reporting workflows","Automate recurring tasks","Combine data from Excel, SharePoint or systems","Build management or KPI overview","Modernize existing reports","Use Microsoft 365 / SharePoint / Power Automate effectively","Not sure yet / please advise"],
+    processFocus:["Digitize and automate business processes","Internal reporting / management cockpit","Build internal business tools or process cockpits","Structure CRM-related customer, offer and project workflows","Improve project status, uploads, questions and closing processes","Structure document and filing workflows","Improve offer, invoice and reporting workflows","Automate recurring tasks","Combine data from Excel, SharePoint or systems","Build management or KPI overview","Modernize existing reports","Use Microsoft 365 / SharePoint / Power Automate effectively","Not sure yet / please advise"],
     workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / local files","Power BI available","Power Query available","Power Automate available","CRM / ERP / business system","Google Workspace","Mixed environment","Not sure yet"],
     meetingModes:["Microsoft Teams","Phone","Email coordination","On-site appointment by agreement","Open / to be discussed"],
     preferredTimes:["Morning","Late morning","Midday","Afternoon","Evening","Flexible","By agreement"],
@@ -1104,7 +1254,7 @@ const T = {
       labelPhone:"Téléphone",
       sectionProject:"Aperçu du projet",
       labelProjectType:"Choisir le type de projet",
-      projectNote:"Vous pouvez sélectionner plusieurs domaines si votre projet concerne plusieurs sujets.",
+      projectNote:"Vous pouvez sélectionner plusieurs domaines. Si votre demande concerne des outils métier internes, des cockpits de processus ou des processus proches du CRM, choisissez le domaine le plus proche et ajoutez les détails dans le champ texte.",
       labelTimeline:"Démarrage du projet",
       labelPriority:"Urgence",
       labelFrequency:"Fréquence / cadence de reporting",
@@ -1115,9 +1265,9 @@ const T = {
       labelReportsExist:"Rapports / tableaux de bord existants",
       labelAutomation:"Automatisation actuelle",
       labelCollaborationModel:"Collaboration souhaitée",
-      sectionProcess:"Processus digitaux & rendez-vous souhaité",
-      labelProcessFocus:"Quels processus doivent être améliorés ?",
-      processNote:"Cette sélection permet de classer non seulement les projets de données classiques, mais aussi les processus métier digitaux, les cockpits internes, les flux documentaires et les tâches récurrentes.",
+      sectionProcess:"Processus digitaux, outils métier & rendez-vous souhaité",
+      labelProcessFocus:"Quels processus ou outils internes doivent être améliorés ?",
+      processNote:"Cette sélection permet de classer non seulement les projets de données classiques, mais aussi les outils métier internes, les cockpits de processus, les processus proches du CRM, les documents et les tâches récurrentes.",
       labelWorkEnvironment:"Environnement de travail existant",
       labelMeetingMode:"Mode d’échange souhaité",
       labelPreferredDate:"Date souhaitée",
@@ -1146,7 +1296,19 @@ const T = {
       ctxTimelineLabel:"Démarrage prévu",
       ctxDescriptionLabel:"Première description du projet",
       labelProjectOther:"Non trouvé ? Décrivez brièvement votre propre sujet",
-      projectOtherNote:"Si votre projet ne correspond pas exactement aux options, décrivez-le brièvement ici. Je l’attribuerai en interne au domaine de solution approprié."
+      projectOtherNote:"Si votre projet ne correspond pas exactement aux options, décrivez-le brièvement ici. Je l’attribuerai en interne au domaine de solution approprié.",
+      businessToolsKicker:"Également possible – si cela correspond au projet",
+      businessToolsTitle:"Outils métier internes & cockpits de processus",
+      businessToolsLead:"Tous les projets ne sont pas uniquement des tableaux de bord. Selon le besoin, des espaces de travail simples et structurés pour les processus internes peuvent également être créés – adaptés à votre façon de travailler.",
+      businessTool1Title:"Demande, offre & facture",
+      businessTool1Text:"Des processus structurés de la demande client jusqu’à la facture – avec statuts clairs, documents et prochaines étapes.",
+      businessTool2Title:"Cockpit de processus",
+      businessTool2Text:"Une vue centrale pour les tâches, le statut du projet, les questions, les uploads ou les décisions internes.",
+      businessTool3Title:"Processus proches du CRM",
+      businessTool3Text:"Regrouper les données clients, projets et communications sans introduire immédiatement un nouveau système complexe.",
+      businessTool4Title:"Automatisation Microsoft 365",
+      businessTool4Text:"Relier Excel, SharePoint, Power Query, Power Automate et les processus e-mail de manière pratique.",
+      businessToolsNote:"Ces exemples servent uniquement d’orientation. Votre sélection est toujours transmise via les champs projet et processus existants."
     },
     placeholders:{
       name:"Votre nom",
@@ -1158,7 +1320,7 @@ const T = {
       expected:"À quoi ressemblerait un bon résultat pour vous ?",
       desc:"Décrivez brièvement votre projet avec vos propres mots.",
       preferred_contact_note:"Optionnel : créneau souhaité, personne de contact, particularités ou demande de rappel.",
-      project_type_other:"Exemple : améliorer un modèle Excel, analyse personnalisée, processus interne, solution spécifique ..."
+      project_type_other:"Exemple : cockpit de processus, demande/offre/facture, espace de travail interne, modèle Excel, solution spécifique ..."
     },
     projects:[
       "Vente / performance commerciale",
@@ -1178,6 +1340,8 @@ const T = {
       "Autre / décrire brièvement votre propre projet",
       "Digitalisation et automatisation des processus métier",
       "Analyses internes / cockpit de management",
+      "Outils métier internes / cockpit de processus",
+      "Automatisation de processus proches du CRM",
       "Processus documentaires et classement",
       "Processus d’offre, facture et reporting",
       "Solution Microsoft 365 / SharePoint / Power Automate"
@@ -1191,7 +1355,7 @@ const T = {
     reportsExist:["Non","Oui, mais manuel","Oui, mais incomplet","Oui, régulièrement","Rapports Excel disponibles","Rapports Power BI disponibles","Uniquement des données brutes","Pas encore sûr"],
     automation:["Aucune automatisation","Partiellement automatisé","Power Query disponible","Power Automate disponible","Processus manuels","Automatisation souhaitée","Automatisation à vérifier","Pas encore sûr"],
     collaborationModels:["Projet ponctuel","Accompagnement régulier","Support mensuel","Retainer / forfait d’heures","Support reporting régulier","Support & optimisation","Workshop / conseil","Ouvert / à discuter"],
-    processFocus:["Digitaliser et automatiser les processus métier","Analyses internes / cockpit de management","Structurer les processus documentaires et de classement","Améliorer les processus d’offre, facture et reporting","Automatiser les tâches récurrentes","Regrouper les données depuis Excel, SharePoint ou des systèmes","Créer une vue management ou KPI","Moderniser les rapports existants","Utiliser Microsoft 365 / SharePoint / Power Automate efficacement","Pas encore sûr / conseil souhaité"],
+    processFocus:["Digitaliser et automatiser les processus métier","Analyses internes / cockpit de management","Créer des outils métier internes ou cockpits de processus","Structurer les processus clients, offres et projets proches du CRM","Améliorer le statut de projet, les uploads, les questions et la clôture","Structurer les processus documentaires et de classement","Améliorer les processus d’offre, facture et reporting","Automatiser les tâches récurrentes","Regrouper les données depuis Excel, SharePoint ou des systèmes","Créer une vue management ou KPI","Moderniser les rapports existants","Utiliser Microsoft 365 / SharePoint / Power Automate efficacement","Pas encore sûr / conseil souhaité"],
     workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / fichiers locaux","Power BI disponible","Power Query disponible","Power Automate disponible","CRM / ERP / système métier","Google Workspace","Environnement mixte","Pas encore sûr"],
     meetingModes:["Microsoft Teams","Téléphone","Coordination par e-mail","Rendez-vous sur place selon accord","Ouvert / à discuter"],
     preferredTimes:["Matin","Fin de matinée","Midi","Après-midi","Soir","Flexible","Selon accord"],
