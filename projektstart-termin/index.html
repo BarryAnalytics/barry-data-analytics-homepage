@@ -177,6 +177,12 @@ input[readonly]{color:#cbd5e1;background:rgba(15,23,42,.45)}
 .help{color:#9fb3c8;font-size:12px;line-height:1.45;margin-top:8px}
 .check{display:flex;gap:9px;align-items:flex-start;color:#cbd5e1;font-size:13px;line-height:1.5;margin-top:12px}
 .check input{width:auto;margin-top:2px;accent-color:#00f2fe}
+
+.legal-mini-links{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:10px 0 4px 30px}
+.legal-mini-links a{color:var(--cyan);text-decoration:none;border:1px solid rgba(0,242,254,.22);background:rgba(0,242,254,.06);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900}
+.legal-mini-links a:hover{background:rgba(0,242,254,.12);border-color:rgba(0,242,254,.42)}
+@media(max-width:560px){.legal-mini-links{margin-left:0}}
+
 .btnrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
 button,.btn-link{
   border:0;
@@ -401,8 +407,14 @@ button:disabled{opacity:.6;cursor:not-allowed}
 
         <label class="check">
           <input id="privacy" name="privacy" type="checkbox" required>
-          <span data-i18n="privacy">Ich bin damit einverstanden, dass meine Angaben zur Projektstart-Vorbereitung verarbeitet und meinem Projekt zugeordnet werden.</span>
+          <span data-i18n="privacy">Ich habe die Datenschutzerklärung gelesen und stimme zu, dass meine Angaben zur Projektstart-Vorbereitung verarbeitet und meinem Projekt zugeordnet werden.</span>
         </label>
+
+        <div class="legal-mini-links" aria-label="Rechtliche Informationen">
+          <a href="/rechtliches.html#datenschutz" target="_blank" rel="noopener" data-i18n="privacyLink">Datenschutz</a>
+          <a href="/rechtliches.html#agb" target="_blank" rel="noopener" data-i18n="termsLink">AGB</a>
+          <a href="/rechtliches.html#impressum" target="_blank" rel="noopener" data-i18n="imprint">Impressum</a>
+        </div>
 
         <div class="btnrow">
           <button id="submitBtn" class="submit" type="submit" data-i18n="submit">Angaben zum Projektstart übermitteln</button>
@@ -425,8 +437,9 @@ button:disabled{opacity:.6;cursor:not-allowed}
 
 <footer class="footer">
   <a id="footerHome" href="https://www.barrydataanalytics.de/" data-i18n="home">Homepage</a>
-  <a id="footerPrivacy" href="https://www.barrydataanalytics.de/datenschutz/" data-i18n="privacyLink">Datenschutz</a>
-  <a id="footerImprint" href="https://www.barrydataanalytics.de/impressum/" data-i18n="imprint">Impressum</a>
+  <a id="footerPrivacy" href="/rechtliches.html#datenschutz" target="_blank" rel="noopener" data-i18n="privacyLink">Datenschutz</a>
+  <a id="footerTerms" href="/rechtliches.html#agb" target="_blank" rel="noopener" data-i18n="termsLink">AGB</a>
+  <a id="footerImprint" href="/rechtliches.html#impressum" target="_blank" rel="noopener" data-i18n="imprint">Impressum</a>
 </footer>
 
 <script>
@@ -440,8 +453,9 @@ const FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.environment.a
 // Falls Datenschutz oder Impressum auf deiner Website anders heißen,
 // musst du nur diese URLs anpassen.
 const HOME_URL = "https://www.barrydataanalytics.de/";
-const PRIVACY_URL = "https://www.barrydataanalytics.de/datenschutz/";
-const IMPRINT_URL = "https://www.barrydataanalytics.de/impressum/";
+const PRIVACY_URL = "/rechtliches.html#datenschutz";
+const TERMS_URL = "/rechtliches.html#agb";
+const IMPRINT_URL = "/rechtliches.html#impressum";
 
 const params = new URLSearchParams(window.location.search);
 let lang = (params.get("lang") || "de").toLowerCase();
@@ -482,12 +496,13 @@ const TEXT = {
     notesLabel:"Hinweise / Ansprechpartner",
     notesPlaceholder:"Optional: Name, E-Mail-Adresse und Rolle/Funktion von Ansprechpartnern oder Personen, die später Informationen zum sicheren Projektbereich erhalten sollen.",
     securityHint:"Bitte senden Sie hier keine Passwörter oder Zugangsdaten. Unterlagen, Dateien oder technische Informationen werden später separat über den sicheren Projektbereich abgestimmt.",
-    privacy:"Ich bin damit einverstanden, dass meine Angaben zur Projektstart-Vorbereitung verarbeitet und meinem Projekt zugeordnet werden.",
+    privacy:"Ich habe die Datenschutzerklärung gelesen und stimme zu, dass meine Angaben zur Projektstart-Vorbereitung verarbeitet und meinem Projekt zugeordnet werden.",
     submit:"Angaben zum Projektstart übermitteln",
     print:"Drucken / PDF",
     homeBtn:"Zur Homepage",
     home:"Homepage",
     privacyLink:"Datenschutz",
+    termsLink:"AGB",
     imprint:"Impressum",
     sending:"Angaben werden übermittelt ...",
     success:"Vielen Dank. Ihre Angaben zur Projektstart-Vorbereitung wurden erfolgreich übermittelt und Ihrem Projekt zugeordnet.",
@@ -497,7 +512,7 @@ const TEXT = {
     successAppointment:"Übermittelter Terminwunsch:",
     error:"Ihre Angaben konnten nicht übermittelt werden. Bitte versuchen Sie es erneut oder kontaktieren Sie Barry Data & Analytics.",
     missingFlow:"Die technische Verbindung ist noch nicht eingerichtet.",
-    required:"Bitte prüfen Sie Ihre Eingaben. Name, E-Mail, bevorzugtes Datum/Zeitfenster und Zustimmung sind erforderlich."
+    required:"Bitte prüfen Sie Ihre Eingaben. Name, E-Mail, bevorzugtes Datum/Zeitfenster und Zustimmung zur Datenschutzerklärung sind erforderlich."
   },
   en: {
     headerSubtitle:"Project start preparation",
@@ -533,12 +548,13 @@ const TEXT = {
     notesLabel:"Notes / contacts",
     notesPlaceholder:"Optional: name, email address and role/function of contact persons or people who should later receive information about the secure project area.",
     securityHint:"Please do not send passwords or access credentials here. Documents, files or technical information will be coordinated later via the secure project area.",
-    privacy:"I agree that my information will be processed for project start preparation and assigned to my project.",
+    privacy:"I have read the privacy policy and agree that my information will be processed for project start preparation and assigned to my project.",
     submit:"Submit project start information",
     print:"Print / PDF",
     homeBtn:"Homepage",
     home:"Homepage",
     privacyLink:"Privacy",
+    termsLink:"Terms",
     imprint:"Legal notice",
     sending:"Submitting information ...",
     success:"Thank you. Your project start information has been submitted successfully and assigned to your project.",
@@ -548,7 +564,7 @@ const TEXT = {
     successAppointment:"Preferred appointment:",
     error:"Your information could not be submitted. Please try again or contact Barry Data & Analytics.",
     missingFlow:"The technical connection is not set up yet.",
-    required:"Please check your entries. Name, email, preferred date/time window and consent are required."
+    required:"Please check your entries. Name, email, preferred date/time window and privacy consent are required."
   },
   fr: {
     headerSubtitle:"Préparation du démarrage du projet",
@@ -584,12 +600,13 @@ const TEXT = {
     notesLabel:"Remarques / interlocuteurs",
     notesPlaceholder:"Optionnel : nom, adresse e-mail et rôle/fonction des interlocuteurs ou personnes qui doivent recevoir plus tard les informations concernant l’espace projet sécurisé.",
     securityHint:"Veuillez ne pas envoyer de mots de passe ou de données d’accès ici. Les documents, fichiers ou informations techniques seront coordonnés plus tard via l’espace projet sécurisé.",
-    privacy:"J’accepte que mes informations soient traitées pour la préparation du démarrage du projet et associées à mon projet.",
+    privacy:"J’ai lu la déclaration de confidentialité et j’accepte que mes informations soient traitées pour la préparation du démarrage du projet et associées à mon projet.",
     submit:"Transmettre les informations de démarrage",
     print:"Imprimer / PDF",
     homeBtn:"Accueil",
     home:"Accueil",
     privacyLink:"Confidentialité",
+    termsLink:"Conditions",
     imprint:"Mentions légales",
     sending:"Transmission des informations ...",
     success:"Merci. Vos informations pour la préparation du démarrage du projet ont été transmises avec succès et rattachées à votre projet.",
@@ -599,7 +616,7 @@ const TEXT = {
     successAppointment:"Rendez-vous souhaité :",
     error:"Vos informations n’ont pas pu être transmises. Veuillez réessayer ou contacter Barry Data & Analytics.",
     missingFlow:"La connexion technique n’est pas encore configurée.",
-    required:"Veuillez vérifier vos informations. Le nom, l’e-mail, la date/le créneau préféré et le consentement sont obligatoires."
+    required:"Veuillez vérifier vos informations. Le nom, l’e-mail, la date/le créneau préféré et le consentement confidentialité sont obligatoires."
   }
 };
 
@@ -700,6 +717,7 @@ function init(){
   el("homeBtn").href = HOME_URL;
   el("footerHome").href = HOME_URL;
   el("footerPrivacy").href = PRIVACY_URL;
+  if(el("footerTerms")) el("footerTerms").href = TERMS_URL;
   el("footerImprint").href = IMPRINT_URL;
 
   const project = p(["project","projectNumber","ProjectNumber4","ProjectNumber","id"]);
