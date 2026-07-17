@@ -4266,6 +4266,61 @@ footer {
 @media (max-width: 720px){
   .bda-tool-cards{grid-template-columns:1fr!important;}
 }
+/* ⭐ Kompakte Rechts-/Datenschutz-Hinweise im Kontaktformular */
+.contact-legal-box{
+  margin-top:4px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(39,243,217,.18);
+  background:rgba(15,23,42,.52);
+}
+
+.contact-legal-box .contact-note{
+  margin-bottom:8px;
+  font-size:.76rem;
+  color:var(--text-muted);
+  line-height:1.45;
+}
+
+.privacy-consent{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  font-size:.76rem;
+  line-height:1.45;
+  color:#cbd5e1;
+}
+
+.privacy-consent input{
+  width:auto;
+  min-width:15px;
+  height:15px;
+  margin-top:2px;
+  accent-color:var(--accent);
+}
+
+.privacy-consent a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+
+.privacy-consent a:hover{
+  color:#7cf9ff;
+}
+
+/* ⭐ Zentrale Rechtsseite statt langer Doppeltexte im Footer */
+.footer-legal-content{
+  display:none !important;
+}
+
+.footer-legal-item{
+  display:block;
+  color:var(--text-muted);
+  text-decoration:none;
+}
+
 </style>
 
 
@@ -4927,11 +4982,23 @@ footer {
     <textarea id="desc" name="desc" data-i18n-placeholder="field_desc_placeholder"></textarea>
   </div>
 
+  <div class="contact-legal-box">
+    <div class="contact-note" data-i18n="contact_note"></div>
+
+    <label class="privacy-consent" for="homepagePrivacyAccepted">
+      <input type="checkbox" id="homepagePrivacyAccepted" required>
+      <span>
+        <span data-i18n="privacy_consent_before"></span>
+        <a href="/rechtliches.html#datenschutz" target="_blank" rel="noopener" data-i18n="footer_privacy"></a>
+        <span data-i18n="privacy_consent_after"></span>
+      </span>
+    </label>
+  </div>
+
   <!-- ⭐ SUCCESS / ERROR MESSAGE -->
   <div id="contact-status" class="contact-status" aria-live="polite" style="display:none;"></div>
 
   <button type="submit" class="btn btn-primary" data-i18n="field_submit"></button>
-  <div class="contact-note" data-i18n="contact_note"></div>
 
 </form>
 
@@ -5030,9 +5097,9 @@ footer {
       </button>
 
       <div class="footer-legal-menu" id="legal-menu">
-        <div class="footer-legal-item" data-legal="imprint" data-i18n="footer_imprint"></div>
-        <div class="footer-legal-item" data-legal="privacy" data-i18n="footer_privacy"></div>
-        <div class="footer-legal-item" data-legal="terms" data-i18n="footer_terms"></div>
+        <a class="footer-legal-item" href="/rechtliches.html#impressum" data-i18n="footer_imprint"></a>
+        <a class="footer-legal-item" href="/rechtliches.html#datenschutz" data-i18n="footer_privacy"></a>
+        <a class="footer-legal-item" href="/rechtliches.html#agb" data-i18n="footer_terms"></a>
       </div>
     </div>
   </div>
@@ -5288,6 +5355,8 @@ const languageData = {
     field_submit: "Anfrage senden",
     contact_note:
       "Datenschutz ab dem ersten Kontakt: Im Erstformular fragen wir keine Passwörter, keine Zugangsdaten und keine vertraulichen Unternehmensdateien ab.",
+    privacy_consent_before: "Ich habe die ",
+    privacy_consent_after: " gelesen und verstanden und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.",
 
     /* Footer */
     footer_company: "Barry Data & Analytics",
@@ -5583,7 +5652,9 @@ seo_toggle_less: "Weniger anzeigen"
       "Short project description – which topic and which optimisation would you like to focus on.",
     field_submit: "Send inquiry",
     contact_note:
-      "Your inquiry is non‑binding. We’ll get back with questions or a concrete proposal.",
+      "Privacy from the first contact: this initial form does not ask for passwords, access credentials or confidential company files.",
+    privacy_consent_before: "I have read and understood the ",
+    privacy_consent_after: " and agree that my information may be processed to handle my request.",
 
     /* Footer */
     footer_company: "Barry Data & Analytics",
@@ -5890,6 +5961,8 @@ founder_text2:
     field_submit: "Envoyer la demande",
     contact_note:
       "Protection des données dès le premier contact : ce premier formulaire ne demande aucun mot de passe, accès ou fichier confidentiel de l’entreprise.",
+    privacy_consent_before: "J’ai lu et compris la ",
+    privacy_consent_after: " et j’accepte le traitement de mes informations pour répondre à ma demande.",
 
     /* Footer */
     footer_company: "Barry Data & Analytics",
@@ -6802,10 +6875,9 @@ function applyLanguage(lang) {
     }
   });
 
-  /* ⭐ Detailpanel, Ticker, Legal-Content aktualisieren */
+  /* ⭐ Detailpanel und Ticker aktualisieren */
   updateDetailPanel("sales");
   updateTickerLanguage(lang);
-  loadLegal("imprint");
 
 /* ⭐ NEU: Sprache ins Formular schreiben */
 updateFormLanguage(lang);
@@ -6977,8 +7049,10 @@ if (langBtn) {
   }
 
   const legalItem = e.target.closest(".footer-legal-item");
-  if (legalItem) {
+  if (legalItem && legalItem.dataset.legal) {
     loadLegal(legalItem.dataset.legal);
+    legalMenu.classList.remove("open");
+  } else if (legalItem && legalMenu) {
     legalMenu.classList.remove("open");
   }
 
@@ -7209,19 +7283,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 name: "Bitte geben Sie Ihren Namen ein.",
                 email: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
                 project: "Bitte wählen Sie ein Projekt aus.",
-                desc: "Bitte beschreiben Sie Ihr Projekt."
+                desc: "Bitte beschreiben Sie Ihr Projekt.",
+                privacy: "Bitte bestätigen Sie kurz die Datenschutzerklärung."
             },
             en: {
                 name: "Please enter your name.",
                 email: "Please enter a valid email address.",
                 project: "Please select a project.",
-                desc: "Please describe your project."
+                desc: "Please describe your project.",
+                privacy: "Please briefly confirm the privacy policy."
             },
             fr: {
                 name: "Veuillez entrer votre nom.",
                 email: "Veuillez saisir une adresse e-mail valide.",
                 project: "Veuillez sélectionner un projet.",
-                desc: "Veuillez décrire votre projet."
+                desc: "Veuillez décrire votre projet.",
+                privacy: "Veuillez confirmer la politique de confidentialité."
             }
         };
 
@@ -7249,6 +7326,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 input.parentElement.appendChild(error);
             }
         });
+
+        const privacyAccepted = document.getElementById("homepagePrivacyAccepted");
+        if (privacyAccepted && !privacyAccepted.checked) {
+            valid = false;
+
+            const error = document.createElement("div");
+            error.classList.add("validation-error");
+            error.textContent = messages[lang].privacy;
+
+            const box = privacyAccepted.closest(".contact-legal-box") || privacyAccepted.parentElement;
+            box.appendChild(error);
+        }
 
         return valid;
     }
