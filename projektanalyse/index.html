@@ -453,6 +453,37 @@
       accent-color:var(--cyan);
     }
 
+    .privacy-box a{
+      color:var(--cyan);
+      text-decoration:none;
+      font-weight:800;
+      border-bottom:1px solid rgba(0,242,254,.35);
+    }
+
+    .privacy-box a:hover{
+      border-bottom-color:var(--cyan);
+    }
+
+    .legal-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
+    }
+
+    .legal-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,242,254,.22);
+      background:rgba(0,242,254,.07);
+      font-size:12px;
+      line-height:1;
+      white-space:nowrap;
+    }
+
     details{
       border-top:1px solid rgba(148,163,184,.18);
       padding-top:10px;
@@ -890,9 +921,15 @@ Data Analytics | Business Intelligence | Power BI | Power Query | Automation
 
           <div class="privacy-box">
             <label class="checkbox-line">
-              <input type="checkbox" id="privacyAccepted">
+              <input type="checkbox" id="privacyAccepted" required>
               <span id="privacyAcceptedText"></span>
             </label>
+
+            <div class="legal-links" aria-label="Rechtliche Hinweise">
+              <a class="legal-link" id="legalImprint" href="/rechtliches.html#impressum" target="_blank" rel="noopener"></a>
+              <a class="legal-link" id="legalPrivacy" href="/rechtliches.html#datenschutz" target="_blank" rel="noopener"></a>
+              <a class="legal-link" id="legalTerms" href="/rechtliches.html#agb" target="_blank" rel="noopener"></a>
+            </div>
 
             <details>
               <summary id="privacySummary"></summary>
@@ -1024,10 +1061,13 @@ const T = {
       labelExpected:"Erwartetes Ergebnis",
       sectionMore:"Zusätzliche Informationen",
       labelDesc:"Kurze Projektbeschreibung",
-      privacyAcceptedText:"Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage und zur Projektanalyse verarbeitet werden.",
-      privacySummary:"Datenschutzhinweise anzeigen",
-      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Die Übermittlung ist unverbindlich. Eine Weitergabe an Dritte erfolgt nicht.",
-      contactInfoText:"Zur Abstimmung der weiteren Schritte kann die Kontaktaufnahme per E-Mail oder telefonisch erfolgen.",
+      privacyAcceptedText:"Ich habe die <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> gelesen und verstanden und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.",
+      privacySummary:"Kurze Datenschutzhinweise anzeigen",
+      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Im ersten Kontakt werden keine Passwörter, keine sensiblen Zugangsdaten und keine vertraulichen Unternehmensdateien abgefragt. Die Übermittlung ist unverbindlich. Eine Weitergabe an Dritte erfolgt nicht, sofern keine gesetzliche Pflicht besteht.",
+      contactInfoText:"Weitere Informationen: <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Impressum</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">AGB / Allgemeine Hinweise</a>.",
+      legalImprint:"Impressum",
+      legalPrivacy:"Datenschutz",
+      legalTerms:"AGB",
       submitBtn:"Projektanalyse übermitteln",
       successTitle:"Vielen Dank.",
       successText:"Ihre digitale Projektanalyse wurde erfolgreich übermittelt.",
@@ -1152,10 +1192,13 @@ const T = {
       labelExpected:"Expected result",
       sectionMore:"Additional information",
       labelDesc:"Short project description",
-      privacyAcceptedText:"I agree that my information may be processed to handle my request and analyze the project.",
-      privacySummary:"Show privacy information",
-      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. The submission is non-binding. It will not be passed on to third parties.",
-      contactInfoText:"To coordinate the next steps, contact may be made by email or phone.",
+      privacyAcceptedText:"I have read and understood the <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">privacy policy</a> and agree that my information may be processed to handle my request.",
+      privacySummary:"Show short privacy information",
+      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. In the first contact step, no passwords, sensitive access data or confidential company files are requested. The submission is non-binding. Your information will not be passed on to third parties unless legally required.",
+      contactInfoText:"Further information: <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Legal notice</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">Terms / General information</a>.",
+      legalImprint:"Legal notice",
+      legalPrivacy:"Privacy",
+      legalTerms:"Terms",
       submitBtn:"Submit project analysis",
       successTitle:"Thank you.",
       successText:"Your digital project analysis has been submitted successfully.",
@@ -1280,10 +1323,13 @@ const T = {
       labelExpected:"Résultat attendu",
       sectionMore:"Informations complémentaires",
       labelDesc:"Brève description du projet",
-      privacyAcceptedText:"J’accepte que mes informations soient traitées pour répondre à ma demande et analyser le projet.",
-      privacySummary:"Afficher les informations de confidentialité",
-      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. La transmission est sans engagement. Elles ne sont pas transmises à des tiers.",
-      contactInfoText:"Pour coordonner les prochaines étapes, le contact peut se faire par e-mail ou par téléphone.",
+      privacyAcceptedText:"J’ai lu et compris la <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">politique de confidentialité</a> et j’accepte que mes informations soient traitées pour répondre à ma demande.",
+      privacySummary:"Afficher les informations de confidentialité résumées",
+      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. Lors du premier contact, aucun mot de passe, aucune donnée d’accès sensible ni aucun fichier confidentiel de l’entreprise ne sont demandés. La transmission est sans engagement. Vos informations ne sont pas transmises à des tiers, sauf obligation légale.",
+      contactInfoText:"Informations complémentaires : <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Mentions légales</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">Conditions / informations générales</a>.",
+      legalImprint:"Mentions légales",
+      legalPrivacy:"Confidentialité",
+      legalTerms:"Conditions",
       submitBtn:"Transmettre l’analyse",
       successTitle:"Merci.",
       successText:"Votre analyse digitale de projet a été transmise avec succès.",
@@ -1415,7 +1461,13 @@ function setLang(lang){
 
   Object.keys(t.labels).forEach(id=>{
     const el=document.getElementById(id);
-    if(el) el.textContent=t.labels[id];
+    if(el){
+      if(["privacyAcceptedText","privacyDetails","contactInfoText"].includes(id)){
+        el.innerHTML=t.labels[id];
+      }else{
+        el.textContent=t.labels[id];
+      }
+    }
   });
 
   Object.keys(t.placeholders).forEach(id=>{
