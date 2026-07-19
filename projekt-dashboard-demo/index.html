@@ -128,7 +128,7 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
 @media(max-width:1050px){.hero{grid-template-columns:1fr}.control{min-height:auto}.service-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.brand img{width:190px;height:48px}.live{display:none}.hero-copy{padding:28px 22px}.control{padding:12px}.kpis{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.compare{grid-template-columns:1fr}.transform{height:70px}.service-grid{grid-template-columns:1fr}.cta{grid-template-columns:1fr}}
 
-/* ===== FINAL 2026: Storytelling, Video und internes Studio ===== */
+/* ===== FINAL 2026: Storytelling und öffentliche Video-Demo ===== */
 .story-flow{
   display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px
 }
@@ -210,6 +210,9 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
 }
 
+
+/* Public website version: internal editing controls are intentionally hidden. */
+#studioBtn,.studio-panel{display:none!important}
 </style>
 </head>
 <body>
@@ -384,19 +387,8 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
     </span>
   </footer>
 </div>
-<div class="presentation">
-  <button id="studioBtn" title="Internes Video-Studio">✎</button>
-  <button id="focusBtn" title="Präsentationsmodus">⛶</button>
-</div>
-<div class="studio-panel" id="studioPanel">
-  <h3 data-i18n="studioTitle">Internes Video-Studio</h3>
-  <p data-i18n="studioText">Hier können Sie lokal eine andere MP4 auswählen und sofort in der Seite prüfen. Die Datei wird nicht hochgeladen und nicht gespeichert.</p>
-  <div class="studio-actions">
-    <label><span data-i18n="studioChoose">MP4 auswählen</span><input id="localVideoInput" type="file" accept="video/mp4,video/webm"></label>
-    <button type="button" id="resetVideoBtn" data-i18n="studioReset">Standardvideo</button>
-    <button type="button" id="closeStudioBtn" data-i18n="studioClose">Schließen</button>
-  </div>
-  <div class="editor-warning" data-i18n="studioWarning">Für die Live-Website müssen HTML, Cover und MP4 im gleichen Ordner liegen. Der öffentliche Hauptbutton führt weiterhin zuerst zur Homepage und damit in Ihren bestehenden Anfrage- und Power-Automate-Ablauf.</div>
+<div class="presentation"><button id="focusBtn" title="Präsentationsmodus">⛶</button></div>
+<div class="editor-warning" data-i18n="studioWarning">Für die Live-Website müssen HTML, Cover und MP4 im gleichen Ordner liegen. Der öffentliche Hauptbutton führt weiterhin zuerst zur Homepage und damit in Ihren bestehenden Anfrage- und Power-Automate-Ablauf.</div>
 </div>
 
 <script>
@@ -478,7 +470,7 @@ de:{
  mediaKicker:"Video · LinkedIn · Website",mediaTitle:'Die Geschichte auch als <span class="shine">kurzes Video.</span>',
  mediaText:"Die 14-Sekunden-Version zeigt das Kundenproblem, den Vorher-Nachher-Wechsel und eine moderne Reporting-Ansicht. Sie eignet sich für LinkedIn, die eigene Website und Präsentationen.",
  mediaPoint1:"LinkedIn-Format 4:5",mediaPoint2:"Fiktive Werte klar gekennzeichnet",mediaPoint3:"Deutsch, Englisch und Französisch verfügbar",
- videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video-Datei nicht gefunden",videoMissingText:"Legen Sie die MP4-Datei zusammen mit dieser HTML-Datei in denselben Ordner oder wählen Sie sie über das interne Studio aus.",
+ videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video-Datei nicht gefunden",videoMissingText:"Das Video konnte nicht geladen werden. Bitte laden Sie die Seite neu oder versuchen Sie es später erneut.",
  studioTitle:"Internes Video-Studio",studioText:"Hier können Sie lokal eine andere MP4 auswählen und sofort in der Seite prüfen. Die Datei wird nicht hochgeladen und nicht gespeichert.",
  studioChoose:"MP4 auswählen",studioReset:"Standardvideo",studioClose:"Schließen",
  studioWarning:"Für die Live-Website müssen HTML, Cover und MP4 im gleichen Ordner liegen. Der öffentliche Hauptbutton führt weiterhin zuerst zur Homepage und damit in Ihren bestehenden Anfrage- und Power-Automate-Ablauf."
@@ -492,7 +484,7 @@ en:{
  mediaKicker:"Video · LinkedIn · Website",mediaTitle:'Tell the story as a <span class="shine">short video.</span>',
  mediaText:"The 14-second version shows the business problem, the before-and-after transition and a modern reporting view. It is suitable for LinkedIn, the website and presentations.",
  mediaPoint1:"LinkedIn format 4:5",mediaPoint2:"Illustrative values clearly labelled",mediaPoint3:"German, English and French versions available",
- videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video file not found",videoMissingText:"Place the MP4 next to this HTML file or select it through the internal studio.",
+ videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video file not found",videoMissingText:"The video could not be loaded. Please refresh the page or try again later.",
  studioTitle:"Internal video studio",studioText:"Select another MP4 locally and preview it instantly. The file is not uploaded or stored.",
  studioChoose:"Choose MP4",studioReset:"Default video",studioClose:"Close",
  studioWarning:"For the live website, the HTML, cover and MP4 must be in the same folder. The public main button continues to lead to the homepage and the existing enquiry and Power Automate flow."
@@ -506,7 +498,7 @@ fr:{
  mediaKicker:"Vidéo · LinkedIn · Site web",mediaTitle:'Raconter aussi l’histoire en <span class="shine">vidéo courte.</span>',
  mediaText:"La version de 14 secondes montre le problème, la transition avant-après et une vue moderne du reporting. Elle convient à LinkedIn, au site web et aux présentations.",
  mediaPoint1:"Format LinkedIn 4:5",mediaPoint2:"Valeurs illustratives clairement indiquées",mediaPoint3:"Versions allemande, anglaise et française disponibles",
- videoLabel:"VIDÉO BDA · DÉMO",videoMissingTitle:"Fichier vidéo introuvable",videoMissingText:"Placez le MP4 avec ce fichier HTML ou sélectionnez-le via le studio interne.",
+ videoLabel:"VIDÉO BDA · DÉMO",videoMissingTitle:"Fichier vidéo introuvable",videoMissingText:"La vidéo n’a pas pu être chargée. Actualisez la page ou réessayez plus tard.",
  studioTitle:"Studio vidéo interne",studioText:"Sélectionnez localement un autre MP4 et prévisualisez-le immédiatement. Le fichier n’est ni téléversé ni enregistré.",
  studioChoose:"Choisir un MP4",studioReset:"Vidéo standard",studioClose:"Fermer",
  studioWarning:"Pour le site en ligne, le HTML, la couverture et le MP4 doivent se trouver dans le même dossier. Le bouton public principal mène toujours d’abord à la page d’accueil et au flux de demande existant."
@@ -529,35 +521,16 @@ function render(l){
 document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>render(b.dataset.lang)));
 document.getElementById("focusBtn").addEventListener("click",()=>document.body.classList.toggle("focus"));
 
-const studioPanel=document.getElementById("studioPanel");
 const storyVideo=document.getElementById("storyVideo");
-const storyVideoSource=document.getElementById("storyVideoSource");
 const videoFallback=document.getElementById("videoFallback");
-let localVideoUrl=null;
+
 function setDefaultMedia(selectedLang){
- if(localVideoUrl)return;
  const media=LANGUAGE_MEDIA[selectedLang]||LANGUAGE_MEDIA.de;
  storyVideo.poster=media.poster;
  storyVideo.src=media.video;
  storyVideo.load();
 }
 
-document.getElementById("studioBtn").addEventListener("click",()=>studioPanel.classList.toggle("open"));
-document.getElementById("closeStudioBtn").addEventListener("click",()=>studioPanel.classList.remove("open"));
-document.getElementById("localVideoInput").addEventListener("change",event=>{
- const file=event.target.files?.[0];
- if(!file)return;
- if(localVideoUrl)URL.revokeObjectURL(localVideoUrl);
- localVideoUrl=URL.createObjectURL(file);
- storyVideo.src=localVideoUrl;
- videoFallback.classList.add("hidden");
- storyVideo.load();
- storyVideo.play().catch(()=>{});
-});
-document.getElementById("resetVideoBtn").addEventListener("click",()=>{
- if(localVideoUrl){URL.revokeObjectURL(localVideoUrl);localVideoUrl=null}
- setDefaultMedia(lang);
-});
 storyVideo.addEventListener("error",()=>videoFallback.classList.remove("hidden"));
 storyVideo.addEventListener("loadeddata",()=>videoFallback.classList.add("hidden"));
 
