@@ -176,25 +176,6 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
   background:rgba(3,11,20,.8);backdrop-filter:blur(10px);border:1px solid #1c4866;
   color:#aeeeff;font-size:11px;font-weight:850;letter-spacing:.08em
 }
-.studio-panel{
-  position:fixed;right:20px;bottom:88px;z-index:80;width:min(440px,calc(100vw - 32px));
-  padding:20px;border-radius:24px;border:1px solid #1f4a68;background:rgba(3,11,20,.96);
-  backdrop-filter:blur(18px);box-shadow:0 24px 90px rgba(0,0,0,.62);display:none
-}
-.studio-panel.open{display:block}
-.studio-panel h3{margin:0 0 8px;font-size:20px}
-.studio-panel p{font-size:13px;color:#91a9c1;line-height:1.55;margin:0 0 15px}
-.studio-actions{display:flex;flex-wrap:wrap;gap:9px}
-.studio-actions label,.studio-actions button{
-  cursor:pointer;padding:10px 13px;border-radius:13px;border:1px solid #1d4562;
-  color:#d9eefb;background:#071725;font:inherit;font-size:13px
-}
-.studio-actions label:hover,.studio-actions button:hover{border-color:#00c6f3;color:#75ecff}
-.studio-actions input{display:none}
-.editor-warning{
-  margin-top:14px;padding:11px 12px;border-radius:13px;border:1px dashed rgba(255,184,77,.28);
-  color:#d7b97f;background:rgba(255,184,77,.055);font-size:12px;line-height:1.5
-}
 .presentation{display:flex;gap:9px}
 .contact-links a{color:#8cefff;text-decoration:none}
 .contact-links a:hover{text-decoration:underline}
@@ -211,8 +192,6 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
 }
 
 
-/* Public website version: internal editing controls are intentionally hidden. */
-#studioBtn,.studio-panel{display:none!important}
 </style>
 </head>
 <body>
@@ -327,7 +306,7 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
           <div class="video-fallback hidden" id="videoFallback">
             <div>
               <strong data-i18n="videoMissingTitle">Video-Datei nicht gefunden</strong>
-              <span data-i18n="videoMissingText">Legen Sie die MP4-Datei zusammen mit dieser HTML-Datei in denselben Ordner oder wählen Sie sie über das interne Studio aus.</span>
+              <span data-i18n="videoMissingText">Das Video konnte nicht geladen werden. Bitte laden Sie die Seite neu oder versuchen Sie es später erneut.</span>
             </div>
           </div>
         </div>
@@ -388,8 +367,6 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
   </footer>
 </div>
 <div class="presentation"><button id="focusBtn" title="Präsentationsmodus">⛶</button></div>
-<div class="editor-warning" data-i18n="studioWarning">Für die Live-Website müssen HTML, Cover und MP4 im gleichen Ordner liegen. Der öffentliche Hauptbutton führt weiterhin zuerst zur Homepage und damit in Ihren bestehenden Anfrage- und Power-Automate-Ablauf.</div>
-</div>
 
 <script>
 const DATA={
@@ -470,10 +447,7 @@ de:{
  mediaKicker:"Video · LinkedIn · Website",mediaTitle:'Die Geschichte auch als <span class="shine">kurzes Video.</span>',
  mediaText:"Die 14-Sekunden-Version zeigt das Kundenproblem, den Vorher-Nachher-Wechsel und eine moderne Reporting-Ansicht. Sie eignet sich für LinkedIn, die eigene Website und Präsentationen.",
  mediaPoint1:"LinkedIn-Format 4:5",mediaPoint2:"Fiktive Werte klar gekennzeichnet",mediaPoint3:"Deutsch, Englisch und Französisch verfügbar",
- videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video-Datei nicht gefunden",videoMissingText:"Das Video konnte nicht geladen werden. Bitte laden Sie die Seite neu oder versuchen Sie es später erneut.",
- studioTitle:"Internes Video-Studio",studioText:"Hier können Sie lokal eine andere MP4 auswählen und sofort in der Seite prüfen. Die Datei wird nicht hochgeladen und nicht gespeichert.",
- studioChoose:"MP4 auswählen",studioReset:"Standardvideo",studioClose:"Schließen",
- studioWarning:"Für die Live-Website müssen HTML, Cover und MP4 im gleichen Ordner liegen. Der öffentliche Hauptbutton führt weiterhin zuerst zur Homepage und damit in Ihren bestehenden Anfrage- und Power-Automate-Ablauf."
+ videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video-Datei nicht gefunden",videoMissingText:"Das Video konnte nicht geladen werden. Bitte laden Sie die Seite neu oder versuchen Sie es später erneut."
 },
 en:{
  storyTitle:'From the problem to a <span class="shine">solution people can use.</span>',
@@ -484,10 +458,7 @@ en:{
  mediaKicker:"Video · LinkedIn · Website",mediaTitle:'Tell the story as a <span class="shine">short video.</span>',
  mediaText:"The 14-second version shows the business problem, the before-and-after transition and a modern reporting view. It is suitable for LinkedIn, the website and presentations.",
  mediaPoint1:"LinkedIn format 4:5",mediaPoint2:"Illustrative values clearly labelled",mediaPoint3:"German, English and French versions available",
- videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video file not found",videoMissingText:"The video could not be loaded. Please refresh the page or try again later.",
- studioTitle:"Internal video studio",studioText:"Select another MP4 locally and preview it instantly. The file is not uploaded or stored.",
- studioChoose:"Choose MP4",studioReset:"Default video",studioClose:"Close",
- studioWarning:"For the live website, the HTML, cover and MP4 must be in the same folder. The public main button continues to lead to the homepage and the existing enquiry and Power Automate flow."
+ videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video file not found",videoMissingText:"The video could not be loaded. Please refresh the page or try again later."
 },
 fr:{
  storyTitle:'Du problème à une <span class="shine">solution vraiment utilisable.</span>',
@@ -498,10 +469,7 @@ fr:{
  mediaKicker:"Vidéo · LinkedIn · Site web",mediaTitle:'Raconter aussi l’histoire en <span class="shine">vidéo courte.</span>',
  mediaText:"La version de 14 secondes montre le problème, la transition avant-après et une vue moderne du reporting. Elle convient à LinkedIn, au site web et aux présentations.",
  mediaPoint1:"Format LinkedIn 4:5",mediaPoint2:"Valeurs illustratives clairement indiquées",mediaPoint3:"Versions allemande, anglaise et française disponibles",
- videoLabel:"VIDÉO BDA · DÉMO",videoMissingTitle:"Fichier vidéo introuvable",videoMissingText:"La vidéo n’a pas pu être chargée. Actualisez la page ou réessayez plus tard.",
- studioTitle:"Studio vidéo interne",studioText:"Sélectionnez localement un autre MP4 et prévisualisez-le immédiatement. Le fichier n’est ni téléversé ni enregistré.",
- studioChoose:"Choisir un MP4",studioReset:"Vidéo standard",studioClose:"Fermer",
- studioWarning:"Pour le site en ligne, le HTML, la couverture et le MP4 doivent se trouver dans le même dossier. Le bouton public principal mène toujours d’abord à la page d’accueil et au flux de demande existant."
+ videoLabel:"VIDÉO BDA · DÉMO",videoMissingTitle:"Fichier vidéo introuvable",videoMissingText:"La vidéo n’a pas pu être chargée. Actualisez la page ou réessayez plus tard."
 }
 };
 
