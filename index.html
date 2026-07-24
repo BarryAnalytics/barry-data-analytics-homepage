@@ -4484,7 +4484,7 @@ footer {
     <div class="nav-center">
       <div class="nav-link active" data-scroll="#hero" data-i18n="nav_home"></div>
       <div class="nav-link" data-scroll="#services" data-i18n="nav_services"></div>
-      <a class="nav-link nav-live-demo" href="/projekt-dashboard-demo/" target="_blank" rel="noopener noreferrer" aria-label="Live-Demo in einem neuen Tab öffnen" title="Interaktive Live-Demo öffnen"><span class="live-demo-dot" aria-hidden="true"></span><span>Live-Demo</span></a>
+      <a class="nav-link nav-live-demo" href="/demo/" target="_blank" rel="noopener noreferrer" aria-label="Live-Demo in einem neuen Tab öffnen" title="Interaktive Live-Demo öffnen"><span class="live-demo-dot" aria-hidden="true"></span><span>Live-Demos</span></a>
       <div class="nav-link" data-scroll="#about" data-i18n="nav_about"></div>
       <div class="nav-link" data-scroll="#contact" data-i18n="nav_contact"></div>
     </div>
@@ -4526,7 +4526,7 @@ footer {
     <!-- MITTE -->
     <div class="mobile-link" data-scroll="#hero" data-i18n="nav_home"></div>
     <div class="mobile-link" data-scroll="#services" data-i18n="nav_services"></div>
-    <a class="mobile-link mobile-live-demo" href="/projekt-dashboard-demo/" target="_blank" rel="noopener noreferrer" aria-label="Live-Demo in einem neuen Tab öffnen"><span class="live-demo-dot" aria-hidden="true"></span><span>Live-Demo</span></a>
+    <a class="mobile-link mobile-live-demo" href="/demo/" target="_blank" rel="noopener noreferrer" aria-label="Live-Demo in einem neuen Tab öffnen"><span class="live-demo-dot" aria-hidden="true"></span><span>Live-Demos</span></a>
     <div class="mobile-link" data-scroll="#about" data-i18n="nav_about"></div>
     <div class="mobile-link" data-scroll="#contact" data-i18n="nav_contact"></div>
 
@@ -7522,7 +7522,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+<style id="bda-network-css">
+#bda-demo-switcher{position:fixed;left:18px;bottom:18px;z-index:9999;font-family:Inter,Segoe UI,Arial,sans-serif}
+#bda-demo-switcher *{box-sizing:border-box}
+.bda-switch-btn{display:flex;align-items:center;gap:9px;min-height:48px;padding:11px 15px;border:1px solid rgba(0,215,255,.34);
+border-radius:16px;background:linear-gradient(135deg,rgba(5,21,35,.97),rgba(7,35,52,.97));color:#eaffff;
+font:900 12px/1 Inter,Segoe UI,Arial,sans-serif;letter-spacing:.035em;cursor:pointer;box-shadow:0 18px 55px rgba(0,0,0,.48),0 0 28px rgba(0,190,255,.10)}
+.bda-switch-btn:hover,.bda-switch-btn:focus-visible{border-color:#34dfff;outline:none;transform:translateY(-1px)}
+.bda-switch-live{width:9px;height:9px;border-radius:50%;background:#57f5e9;box-shadow:0 0 0 0 rgba(87,245,233,.48);animation:bdaNetPulse 1.8s infinite}
+@keyframes bdaNetPulse{70%{box-shadow:0 0 0 10px rgba(87,245,233,0)}}
+.bda-switch-panel{position:absolute;left:0;bottom:calc(100% + 10px);width:310px;padding:9px;border:1px solid rgba(0,215,255,.25);
+border-radius:18px;background:rgba(3,11,20,.985);box-shadow:0 25px 75px rgba(0,0,0,.55);opacity:0;visibility:hidden;
+pointer-events:none;transform:translateY(8px);transition:.2s ease}
+#bda-demo-switcher.open .bda-switch-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.bda-switch-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 10px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:5px}
+.bda-switch-top strong{font-size:12px;color:#dff9ff}.bda-switch-top a{font-size:11px;color:#7deafa;text-decoration:none}
+.bda-switch-link{display:flex;align-items:center;gap:11px;padding:11px;border-radius:12px;color:#a9bfd2;text-decoration:none;font-size:12px;font-weight:850}
+.bda-switch-link:hover,.bda-switch-link:focus-visible{color:#fff;background:rgba(0,215,255,.09);outline:none}
+.bda-switch-link.current{color:#9effee;background:linear-gradient(135deg,rgba(11,140,255,.18),rgba(0,215,255,.10));box-shadow:inset 0 0 0 1px rgba(0,215,255,.18)}
+.bda-switch-icon{width:30px;height:30px;display:grid;place-items:center;border:1px solid #1a405d;border-radius:10px;background:#071827;font-size:16px}
+.bda-switch-copy{min-width:0}.bda-switch-copy b{display:block;font-size:12px;color:inherit}.bda-switch-copy small{display:block;margin-top:3px;color:#718da5;font-size:10px;line-height:1.3}
+.bda-switch-footer{display:flex;gap:7px;padding:8px 6px 3px}.bda-switch-footer a{flex:1;text-align:center;padding:8px;border-radius:10px;border:1px solid #173750;color:#8fcce6;text-decoration:none;font-size:10px;font-weight:850}
+@media(max-width:620px){#bda-demo-switcher{left:10px;bottom:10px}.bda-switch-panel{width:min(92vw,330px)}.bda-switch-btn{min-height:44px;padding:10px 12px}}
+@media print{#bda-demo-switcher{display:none!important}}
+</style>
+<div id="bda-demo-switcher" data-page="home">
+ <button class="bda-switch-btn" type="button" aria-expanded="false"><span class="bda-switch-live"></span><span data-net="button">4 Live-Demos</span><span>⌃</span></button>
+ <div class="bda-switch-panel" role="navigation" aria-label="BDA Live-Demos">
+  <div class="bda-switch-top"><strong data-net="network">BDA Demo Network</strong><a href="https://barrydataanalytics.de/demo/" data-net="all">Alle ansehen →</a></div>
+  <a class="bda-switch-link" data-demo="reporting" href="https://barrydataanalytics.de/projekt-dashboard-demo/"><span class="bda-switch-icon">📊</span><span class="bda-switch-copy"><b data-net="reporting">Reporting-Demo</b><small data-net="reportingSub">Kennzahlen und automatisiertes Reporting</small></span></a>
+  <a class="bda-switch-link" data-demo="process" href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/"><span class="bda-switch-icon">⚡</span><span class="bda-switch-copy"><b data-net="process">Business-Process-Demo</b><small data-net="processSub">Anfrage bis Umsetzung</small></span></a>
+  <a class="bda-switch-link" data-demo="solutions" href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/"><span class="bda-switch-icon">◫</span><span class="bda-switch-copy"><b data-net="solutions">Vier-Säulen-Lösungsdemo</b><small data-net="solutionsSub">Leistungen im Gesamtüberblick</small></span></a>
+  <a class="bda-switch-link" data-demo="crm" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><span class="bda-switch-icon">◎</span><span class="bda-switch-copy"><b data-net="crm">CRM-Cockpit-Demo</b><small data-net="crmSub">Kunden, Projekte und Finanzen</small></span></a>
+  <div class="bda-switch-footer"><a href="https://barrydataanalytics.de/" data-net="home">Homepage</a><a href="https://barrydataanalytics.de/#contact" data-net="contact">Kontakt</a></div>
+ </div>
+</div>
+<script id="bda-network-js">
+(function(){
+ const root=document.getElementById("bda-demo-switcher");if(!root)return;
+ const btn=root.querySelector(".bda-switch-btn"),current=root.dataset.page;
+ root.querySelectorAll("[data-demo]").forEach(a=>{if(a.dataset.demo===current){a.classList.add("current");a.setAttribute("aria-current","page")}});
+ btn.addEventListener("click",e=>{e.stopPropagation();const open=root.classList.toggle("open");btn.setAttribute("aria-expanded",String(open))});
+ document.addEventListener("click",e=>{if(!root.contains(e.target)){root.classList.remove("open");btn.setAttribute("aria-expanded","false")}});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"){root.classList.remove("open");btn.setAttribute("aria-expanded","false")}});
+ const L={
+  de:{button:"4 Live-Demos",network:"BDA Demo Network",all:"Alle ansehen →",reporting:"Reporting-Demo",reportingSub:"Kennzahlen und automatisiertes Reporting",process:"Business-Process-Demo",processSub:"Anfrage bis Umsetzung",solutions:"Vier-Säulen-Lösungsdemo",solutionsSub:"Leistungen im Gesamtüberblick",crm:"CRM-Cockpit-Demo",crmSub:"Kunden, Projekte und Finanzen",home:"Homepage",contact:"Kontakt"},
+  en:{button:"4 live demos",network:"BDA Demo Network",all:"View all →",reporting:"Reporting demo",reportingSub:"KPIs and automated reporting",process:"Business process demo",processSub:"Enquiry through delivery",solutions:"Four-pillar solutions demo",solutionsSub:"Services in one overview",crm:"CRM cockpit demo",crmSub:"Customers, projects and finance",home:"Homepage",contact:"Contact"},
+  fr:{button:"4 démos en direct",network:"Réseau de démos BDA",all:"Tout voir →",reporting:"Démo reporting",reportingSub:"Indicateurs et reporting automatisé",process:"Démo processus métier",processSub:"De la demande à la réalisation",solutions:"Démo solutions en quatre piliers",solutionsSub:"Services en une seule vue",crm:"Démo cockpit CRM",crmSub:"Clients, projets et finances",home:"Accueil",contact:"Contact"}
+ };
+ function translate(){const lang=(document.documentElement.lang||"de").slice(0,2);const t=L[lang]||L.de;root.querySelectorAll("[data-net]").forEach(el=>{const k=el.dataset.net;if(t[k])el.textContent=t[k]})}
+ translate();new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+})();
+</script>
+
+
+<style id="bda-network-directory-css">
+.bda-network-directory{width:min(1460px,94vw);margin:26px auto;padding:30px;border:1px solid rgba(255,255,255,.08);border-radius:29px;
+background:linear-gradient(145deg,rgba(7,20,34,.94),rgba(2,8,15,.92));box-shadow:0 26px 78px rgba(0,0,0,.38);font-family:Inter,Segoe UI,Arial,sans-serif;color:#f7fbff}
+.bda-network-directory h2{margin:9px 0 9px;font-size:clamp(28px,3vw,46px);letter-spacing:-.04em}.bda-network-directory>p{margin:0 0 19px;color:#91a9c1;line-height:1.6}
+.bda-dir-kicker{color:#8cefff;font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.bda-dir-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.bda-dir-card{display:block;min-height:175px;padding:19px;border:1px solid #173750;border-radius:19px;background:linear-gradient(150deg,#081827,#050f19);color:inherit;text-decoration:none;transition:.22s ease}
+.bda-dir-card:hover{transform:translateY(-5px);border-color:#23c8ec;box-shadow:0 20px 50px rgba(0,128,255,.15)}.bda-dir-card.current{background:linear-gradient(145deg,rgba(11,140,255,.17),rgba(0,215,255,.07)),#06121e}
+.bda-dir-card i{display:block;font-style:normal;font-size:26px;margin-bottom:14px}.bda-dir-card b{display:block;font-size:16px;margin-bottom:7px}.bda-dir-card span{color:#829db4;font-size:12px;line-height:1.5}
+@media(max-width:1050px){.bda-dir-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.bda-dir-grid{grid-template-columns:1fr}.bda-network-directory{padding:21px}}
+</style>
+<section class="bda-network-directory" data-page="home">
+ <span class="bda-dir-kicker">BDA Demo Network</span><h2>Alle vier öffentlichen Demos</h2>
+ <p>Die Bereiche sind technisch und inhaltlich miteinander verbunden. Sämtliche Werte sind fiktiv; die Projektanalyse und das interne CRM bleiben getrennt.</p>
+ <div class="bda-dir-grid">
+  <a class="bda-dir-card" data-demo="reporting" href="https://barrydataanalytics.de/projekt-dashboard-demo/"><i>📊</i><b>Reporting-Demo</b><span>Vorher/Nachher, Kennzahlen, Video und Audio.</span></a>
+  <a class="bda-dir-card" data-demo="process" href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/"><i>⚡</i><b>Business-Process-Demo</b><span>Anfrage, CRM, Angebot, Umsetzung und Rückmeldung.</span></a>
+  <a class="bda-dir-card" data-demo="solutions" href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/"><i>◫</i><b>Vier-Säulen-Lösungsdemo</b><span>Data Analytics, Reporting, Automation und Business-Tools.</span></a>
+  <a class="bda-dir-card" data-demo="crm" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><i>◎</i><b>CRM-Cockpit-Demo</b><span>Kunden, Projekte, Angebote, Rechnungen und Status.</span></a>
+ </div>
+</section>
+<script>(function(){const d=document.querySelector(".bda-network-directory");if(!d)return;const p=d.dataset.page;d.querySelectorAll("[data-demo]").forEach(a=>a.classList.toggle("current",a.dataset.demo===p))})();</script>
+
 </body>
 </html>
-
 
