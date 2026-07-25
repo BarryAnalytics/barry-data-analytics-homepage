@@ -431,6 +431,104 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
   .footer-demo-head{align-items:flex-start;flex-direction:column}
   .footer-legal-links{line-height:1.8}
 }
+
+/* === BDA REPORTING-DEMO: KUNDENORIENTIERTE NUTZENKETTE === */
+.reporting-journey{position:relative;display:grid;gap:11px;margin-top:24px}
+.reporting-journey-line{
+  position:absolute;left:24px;top:25px;bottom:25px;width:3px;overflow:hidden;
+  border-radius:999px;background:#102f47
+}
+.reporting-journey-line span{
+  display:block;width:100%;height:38%;border-radius:inherit;
+  background:linear-gradient(to bottom,var(--cyan),var(--aqua));
+  box-shadow:0 0 20px rgba(0,215,255,.56);
+  animation:reportingJourneyFlow 4.4s ease-in-out infinite
+}
+@keyframes reportingJourneyFlow{
+  0%{transform:translateY(-120%)}
+  58%,100%{transform:translateY(305%)}
+}
+.reporting-journey-step{
+  position:relative;z-index:1;display:grid;grid-template-columns:50px 1fr;
+  gap:13px;align-items:center;min-height:92px;padding:14px 15px 14px 10px;
+  border:1px solid #153b57;border-radius:18px;
+  background:linear-gradient(145deg,rgba(8,27,43,.97),rgba(4,14,24,.97));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease
+}
+.reporting-journey-step:hover{
+  transform:translateX(5px);border-color:#23c8ec;
+  box-shadow:0 17px 42px rgba(0,128,255,.13)
+}
+.reporting-journey-icon{
+  width:42px;height:42px;display:grid;place-items:center;justify-self:center;
+  border:1px solid rgba(0,215,255,.30);border-radius:13px;background:#071b2a;
+  color:#75efff;font-size:18px;font-weight:900;
+  box-shadow:0 0 0 5px rgba(2,10,18,.94)
+}
+.reporting-journey-step b{display:block;margin-bottom:6px;color:#e9f9ff;font-size:14px}
+.reporting-journey-step small{display:block;color:#86a3b9;font-size:11px;line-height:1.5}
+@media(max-width:720px){
+  .reporting-journey-step{grid-template-columns:45px 1fr;min-height:86px}
+  .reporting-journey-line{left:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .reporting-journey-line span{animation:none;height:100%}
+}
+
+
+/* === BDA REPORTING NAVIGATION: DEMOS LIVE === */
+.demo-live-toggle{
+  min-height:43px;
+  padding:9px 13px!important;
+  gap:8px!important;
+  border:1px solid rgba(0,215,255,.27)!important;
+  border-radius:13px!important;
+  background:
+    linear-gradient(135deg,rgba(11,140,255,.16),rgba(0,215,255,.08)),
+    rgba(5,18,30,.94)!important;
+  color:#e4fbff!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.025),
+    0 10px 28px rgba(0,0,0,.20);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease!important;
+}
+.demo-live-toggle:hover,
+.demo-live-toggle:focus-visible{
+  transform:translateY(-1px);
+  border-color:rgba(0,215,255,.57)!important;
+  background:
+    linear-gradient(135deg,rgba(11,140,255,.24),rgba(0,215,255,.14)),
+    rgba(6,22,36,.98)!important;
+  box-shadow:
+    0 0 0 4px rgba(0,215,255,.06),
+    0 14px 36px rgba(0,132,210,.16);
+  outline:none;
+}
+.demo-live-dot{
+  width:9px;
+  height:9px;
+  flex:0 0 auto;
+  border-radius:50%;
+  background:var(--aqua);
+  box-shadow:0 0 0 0 rgba(87,245,233,.52);
+  animation:reportingLivePulse 1.8s infinite;
+}
+@keyframes reportingLivePulse{
+  0%{box-shadow:0 0 0 0 rgba(87,245,233,.50)}
+  70%{box-shadow:0 0 0 9px rgba(87,245,233,0)}
+  100%{box-shadow:0 0 0 0 rgba(87,245,233,0)}
+}
+.demo-menu.open .demo-live-toggle{
+  border-color:rgba(0,215,255,.62)!important;
+  background:
+    linear-gradient(135deg,rgba(11,140,255,.29),rgba(0,215,255,.16)),
+    rgba(6,22,36,.98)!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .demo-live-dot{animation:none}
+}
+
 </style>
 </head>
 <body>
@@ -446,8 +544,10 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
       <a href="https://barrydataanalytics.de/" data-i18n="navHomepage">Homepage</a>
       <a href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/" data-i18n="navSolutions">Lösungen</a>
       <div class="demo-menu">
-        <button class="demo-menu-toggle" id="demoMenuToggle" type="button" aria-expanded="false" aria-controls="demoMenuList">
-          <span data-i18n="navDemos">Demos</span><span class="chevron">⌄</span>
+        <button class="demo-menu-toggle demo-live-toggle" id="demoMenuToggle" type="button" aria-expanded="false" aria-controls="demoMenuList">
+          <span class="demo-live-dot" aria-hidden="true"></span>
+          <span data-i18n="navDemos">Demos live</span>
+          <span class="chevron" aria-hidden="true">⌄</span>
         </button>
         <div class="demo-menu-list" id="demoMenuList">
           <a class="current" href="https://barrydataanalytics.de/projekt-dashboard-demo/" aria-current="page">
@@ -456,7 +556,7 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
           </a>
           <a href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/" data-i18n="navProcess">Prozess-Demo</a>
           <a href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/" data-i18n="navSolutionsDemo">Lösungsübersicht</a>
-          <a href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><span data-bda-crm-title>CRM-Cockpit-Demo</span><small data-bda-crm-new>Neu</small></a>
+          <a href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/" data-i18n="navCrm">CRM-Cockpit-Demo</a>
         </div>
       </div>
       <a href="https://barrydataanalytics.de/#contact" data-i18n="navContact">Kontakt</a>
@@ -559,10 +659,32 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
           <div class="kicker" data-i18n="mediaKicker">Video · LinkedIn · Website</div>
           <h2 data-i18n-html="mediaTitle">Die Geschichte auch als <span class="shine">kurzes Video.</span></h2>
           <p data-i18n="mediaText">Die 14-Sekunden-Version zeigt das Kundenproblem, den Vorher-Nachher-Wechsel und eine moderne Reporting-Ansicht. Sie eignet sich für LinkedIn, die eigene Website und Präsentationen.</p>
-          <div class="media-bullets">
-            <span><i>✓</i><b data-i18n="mediaPoint1">LinkedIn-Format 4:5</b></span>
-            <span><i>✓</i><b data-i18n="mediaPoint2">Fiktive Werte klar gekennzeichnet</b></span>
-            <span><i>✓</i><b data-i18n="mediaPoint3">Deutsch, Englisch und Französisch verfügbar</b></span>
+          <div class="reporting-journey" aria-label="Nutzenkette">
+            <div class="reporting-journey-line" aria-hidden="true"><span></span></div>
+
+            <article class="reporting-journey-step">
+              <span class="reporting-journey-icon">▦</span>
+              <div>
+                <b data-i18n="mediaPoint1">Datenquellen bündeln</b>
+                <small data-i18n="mediaPoint1Text">Excel-Dateien, Systemdaten und Exporte werden in einer klaren Grundlage zusammengeführt.</small>
+              </div>
+            </article>
+
+            <article class="reporting-journey-step">
+              <span class="reporting-journey-icon">⚙</span>
+              <div>
+                <b data-i18n="mediaPoint2">Reporting automatisieren</b>
+                <small data-i18n="mediaPoint2Text">Wiederkehrende Auswertungen und Kennzahlen werden verlässlicher und mit weniger Handarbeit bereitgestellt.</small>
+              </div>
+            </article>
+
+            <article class="reporting-journey-step">
+              <span class="reporting-journey-icon">↗</span>
+              <div>
+                <b data-i18n="mediaPoint3">Entscheidungen beschleunigen</b>
+                <small data-i18n="mediaPoint3Text">Entwicklungen, Abweichungen und nächste Maßnahmen werden früher sichtbar.</small>
+              </div>
+            </article>
           </div>
         </div>
         <div class="video-frame">
@@ -674,10 +796,6 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
           <b data-i18n="navSolutionsDemo">Lösungsübersicht</b>
           <span data-i18n="footerSolutionsText">Vier zentrale Lösungsbereiche im Überblick.</span>
         </a>
-        <a class="footer-demo-card" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/">
-          <b data-bda-crm-title>CRM-Cockpit-Demo</b>
-          <span data-bda-crm-short>Kunden, Projekte, Angebote, Rechnungen und Automation.</span>
-        </a>
       </div>
     </section>
     <nav class="footer-legal-links" aria-label="Rechtliche Hinweise">
@@ -760,39 +878,39 @@ const LANGUAGE_MEDIA={
 
 const EXTRA={
 de:{
- navOverview:"Übersicht",navDescription:"Projektbeschreibung",navHomepage:"Homepage",navSolutions:"Lösungen",navDemos:"Demos",navReporting:"Reporting-Demo",navProcess:"Prozess-Demo",navSolutionsDemo:"Lösungsübersicht",navCurrent:"Aktuell",navContact:"Kontakt",footerDemoTitle:"Öffentliche Demos",footerAllSolutions:"Alle Lösungen ansehen",footerReportingText:"Kennzahlen, Reporting und Vorher-Nachher.",footerProcessText:"Anfrage, CRM, Angebot und Umsetzung.",footerSolutionsText:"Vier zentrale Lösungsbereiche im Überblick.",legalImprint:"Impressum",legalPrivacy:"Datenschutz",legalTerms:"AGB",
+ navOverview:"Übersicht",navDescription:"Projektbeschreibung",navHomepage:"Homepage",navSolutions:"Lösungen",navDemos:"Demos live",navReporting:"Reporting-Demo",navProcess:"Prozess-Demo",navSolutionsDemo:"Lösungsübersicht",navCrm:"CRM-Cockpit-Demo",navCurrent:"Aktuell",navContact:"Kontakt",footerDemoTitle:"Öffentliche Demos",footerAllSolutions:"Alle Lösungen ansehen",footerReportingText:"Kennzahlen, Reporting und Vorher-Nachher.",footerProcessText:"Anfrage, CRM, Angebot und Umsetzung.",footerSolutionsText:"Vier zentrale Lösungsbereiche im Überblick.",legalImprint:"Impressum",legalPrivacy:"Datenschutz",legalTerms:"AGB",
  storyTitle:'Vom Problem zur <span class="shine">brauchbaren Lösung.</span>',
  storySub:"Eine klare Geschichte hilft Interessenten schneller zu verstehen, wo die Arbeit beginnt und was sich dadurch verändert.",
  storyProblemTitle:"Problem erkennen",storyProblemText:"Daten liegen verteilt, Berichte kosten Zeit und verschiedene Dateistände führen zu Rückfragen.",
  storySolutionTitle:"Lösung aufbauen",storySolutionText:"Datenquellen, Kennzahlen und Abläufe werden geprüft und in eine passende Reporting- oder Automatisierungslösung überführt.",
  storyResultTitle:"Ergebnis nutzen",storyResultText:"Teams erhalten mehr Übersicht, wiederkehrende Arbeit wird reduziert und wichtige Entwicklungen werden früher sichtbar.",
- mediaKicker:"Video · LinkedIn · Website",mediaTitle:'Die Geschichte auch als <span class="shine">kurzes Video.</span>',
- mediaText:"Die 14-Sekunden-Version zeigt das Kundenproblem, den Vorher-Nachher-Wechsel und eine moderne Reporting-Ansicht. Sie eignet sich für LinkedIn, die eigene Website und Präsentationen.",
- mediaPoint1:"LinkedIn-Format 4:5",mediaPoint2:"Fiktive Werte klar gekennzeichnet",mediaPoint3:"Deutsch, Englisch und Französisch verfügbar",
+ mediaKicker:"Reporting in Bewegung",mediaTitle:'Vom Datenchaos zur <span class="shine">klaren Steuerung.</span>',
+ mediaText:"Das Video zeigt, wie aus verteilten Daten, manuellen Berichten und unterschiedlichen Dateiständen eine zentrale Reporting-Lösung entsteht.",
+ mediaPoint1:"Datenquellen bündeln",mediaPoint1Text:"Excel-Dateien, Systemdaten und Exporte werden in einer klaren Grundlage zusammengeführt.",mediaPoint2:"Reporting automatisieren",mediaPoint2Text:"Wiederkehrende Auswertungen und Kennzahlen werden verlässlicher und mit weniger Handarbeit bereitgestellt.",mediaPoint3:"Entscheidungen beschleunigen",mediaPoint3Text:"Entwicklungen, Abweichungen und nächste Maßnahmen werden früher sichtbar.",
  videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video-Datei nicht gefunden",videoMissingText:"Das Video konnte nicht geladen werden. Bitte laden Sie die Seite neu oder versuchen Sie es später erneut."
 },
 en:{
- navOverview:"Overview",navDescription:"Project overview",navHomepage:"Homepage",navSolutions:"Solutions",navDemos:"Demos",navReporting:"Reporting demo",navProcess:"Process demo",navSolutionsDemo:"Solutions overview",navCurrent:"Current",navContact:"Contact",footerDemoTitle:"Public demos",footerAllSolutions:"View all solutions",footerReportingText:"KPIs, reporting and before-and-after.",footerProcessText:"Enquiry, CRM, proposal and delivery.",footerSolutionsText:"Four core solution areas at a glance.",legalImprint:"Legal notice",legalPrivacy:"Privacy",legalTerms:"Terms",
+ navOverview:"Overview",navDescription:"Project overview",navHomepage:"Homepage",navSolutions:"Solutions",navDemos:"Demos live",navReporting:"Reporting demo",navProcess:"Process demo",navSolutionsDemo:"Solutions overview",navCrm:"CRM cockpit demo",navCurrent:"Current",navContact:"Contact",footerDemoTitle:"Public demos",footerAllSolutions:"View all solutions",footerReportingText:"KPIs, reporting and before-and-after.",footerProcessText:"Enquiry, CRM, proposal and delivery.",footerSolutionsText:"Four core solution areas at a glance.",legalImprint:"Legal notice",legalPrivacy:"Privacy",legalTerms:"Terms",
  storyTitle:'From the problem to a <span class="shine">solution people can use.</span>',
  storySub:"A clear story helps prospects understand where the work starts and what changes afterwards.",
  storyProblemTitle:"Identify the problem",storyProblemText:"Data is scattered, reporting takes time and different file versions create follow-up questions.",
  storySolutionTitle:"Build the solution",storySolutionText:"Data sources, KPIs and workflows are reviewed and turned into a fitting reporting or automation solution.",
  storyResultTitle:"Use the result",storyResultText:"Teams gain visibility, recurring work is reduced and important developments become visible earlier.",
- mediaKicker:"Video · LinkedIn · Website",mediaTitle:'Tell the story as a <span class="shine">short video.</span>',
- mediaText:"The 14-second version shows the business problem, the before-and-after transition and a modern reporting view. It is suitable for LinkedIn, the website and presentations.",
- mediaPoint1:"LinkedIn format 4:5",mediaPoint2:"Illustrative values clearly labelled",mediaPoint3:"German, English and French versions available",
+ mediaKicker:"Reporting in motion",mediaTitle:'From data chaos to <span class="shine">clear business control.</span>',
+ mediaText:"The video shows how scattered data, manual reports and inconsistent file versions can become one central reporting solution.",
+ mediaPoint1:"Bring data sources together",mediaPoint1Text:"Excel files, system data and exports are combined into one clear foundation.",mediaPoint2:"Automate reporting",mediaPoint2Text:"Recurring analyses and KPIs are delivered more reliably with less manual work.",mediaPoint3:"Accelerate decisions",mediaPoint3Text:"Developments, deviations and next actions become visible earlier.",
  videoLabel:"BDA STORY VIDEO · DEMO",videoMissingTitle:"Video file not found",videoMissingText:"The video could not be loaded. Please refresh the page or try again later."
 },
 fr:{
- navOverview:"Aperçu",navDescription:"Présentation du projet",navHomepage:"Accueil",navSolutions:"Solutions",navDemos:"Démos",navReporting:"Démo reporting",navProcess:"Démo processus",navSolutionsDemo:"Vue des solutions",navCurrent:"Actuelle",navContact:"Contact",footerDemoTitle:"Démos publiques",footerAllSolutions:"Voir toutes les solutions",footerReportingText:"KPI, reporting et avant-après.",footerProcessText:"Demande, CRM, offre et mise en œuvre.",footerSolutionsText:"Quatre domaines de solution en un coup d’œil.",legalImprint:"Mentions légales",legalPrivacy:"Confidentialité",legalTerms:"CGV",
+ navOverview:"Aperçu",navDescription:"Présentation du projet",navHomepage:"Accueil",navSolutions:"Solutions",navDemos:"Démos en direct",navReporting:"Démo reporting",navProcess:"Démo processus",navSolutionsDemo:"Vue des solutions",navCrm:"Démo cockpit CRM",navCurrent:"Actuelle",navContact:"Contact",footerDemoTitle:"Démos publiques",footerAllSolutions:"Voir toutes les solutions",footerReportingText:"KPI, reporting et avant-après.",footerProcessText:"Demande, CRM, offre et mise en œuvre.",footerSolutionsText:"Quatre domaines de solution en un coup d’œil.",legalImprint:"Mentions légales",legalPrivacy:"Confidentialité",legalTerms:"CGV",
  storyTitle:'Du problème à une <span class="shine">solution vraiment utilisable.</span>',
  storySub:"Une histoire claire aide les prospects à comprendre où commence le travail et ce qui change ensuite.",
  storyProblemTitle:"Identifier le problème",storyProblemText:"Les données sont dispersées, le reporting prend du temps et les différentes versions créent des questions.",
  storySolutionTitle:"Construire la solution",storySolutionText:"Les sources, KPI et processus sont analysés puis transformés en une solution de reporting ou d’automatisation adaptée.",
  storyResultTitle:"Utiliser le résultat",storyResultText:"Les équipes gagnent en visibilité, le travail récurrent diminue et les évolutions importantes apparaissent plus tôt.",
- mediaKicker:"Vidéo · LinkedIn · Site web",mediaTitle:'Raconter aussi l’histoire en <span class="shine">vidéo courte.</span>',
- mediaText:"La version de 14 secondes montre le problème, la transition avant-après et une vue moderne du reporting. Elle convient à LinkedIn, au site web et aux présentations.",
- mediaPoint1:"Format LinkedIn 4:5",mediaPoint2:"Valeurs illustratives clairement indiquées",mediaPoint3:"Versions allemande, anglaise et française disponibles",
+ mediaKicker:"Le reporting en mouvement",mediaTitle:'Du désordre des données à un <span class="shine">pilotage clair.</span>',
+ mediaText:"La vidéo montre comment des données dispersées, des rapports manuels et des versions de fichiers différentes peuvent devenir une solution de reporting centrale.",
+ mediaPoint1:"Regrouper les sources de données",mediaPoint1Text:"Les fichiers Excel, les données des systèmes et les exports sont réunis sur une base claire.",mediaPoint2:"Automatiser le reporting",mediaPoint2Text:"Les analyses récurrentes et les KPI sont fournis plus fiablement avec moins de travail manuel.",mediaPoint3:"Accélérer les décisions",mediaPoint3Text:"Les évolutions, les écarts et les prochaines actions deviennent visibles plus tôt.",
  videoLabel:"VIDÉO BDA · DÉMO",videoMissingTitle:"Fichier vidéo introuvable",videoMissingText:"La vidéo n’a pas pu être chargée. Actualisez la page ou réessayez plus tard."
 }
 };
@@ -1202,59 +1320,6 @@ render(bdaStoreGet("bdaLang","de"));
       mobileToggle.setAttribute("aria-expanded","false");
       mobileToggle.textContent = "☰";
     }
-  });
-})();
-</script>
-
-
-<style id="bda-four-demo-layout">
-.demo-directory-grid,.footer-demo-grid,.demo-grid{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-}
-@media(max-width:1100px){
-  .demo-directory-grid,.footer-demo-grid,.demo-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  }
-}
-@media(max-width:650px){
-  .demo-directory-grid,.footer-demo-grid,.demo-grid{
-    grid-template-columns:1fr!important;
-  }
-}
-</style>
-<script id="bda-added-crm-translation">
-(function(){
-  const TEXT={
-    de:{
-      title:"CRM-Cockpit-Demo",
-      short:"Kunden, Projekte, Angebote, Rechnungen und Automation.",
-      open:"Demo öffnen →",
-      newLabel:"Neu"
-    },
-    en:{
-      title:"CRM cockpit demo",
-      short:"Customers, projects, proposals, invoices and automation.",
-      open:"Open demo →",
-      newLabel:"New"
-    },
-    fr:{
-      title:"Démo cockpit CRM",
-      short:"Clients, projets, offres, factures et automatisation.",
-      open:"Ouvrir la démo →",
-      newLabel:"Nouveau"
-    }
-  };
-  function apply(){
-    const lang=(document.documentElement.lang||"de").slice(0,2);
-    const t=TEXT[lang]||TEXT.de;
-    document.querySelectorAll('[data-bda-crm-title]').forEach(e=>e.textContent=t.title);
-    document.querySelectorAll('[data-bda-crm-short]').forEach(e=>e.textContent=t.short);
-    document.querySelectorAll('[data-bda-crm-open]').forEach(e=>e.textContent=t.open);
-    document.querySelectorAll('[data-bda-crm-new]').forEach(e=>e.textContent=t.newLabel);
-  }
-  apply();
-  new MutationObserver(apply).observe(document.documentElement,{
-    attributes:true,attributeFilter:["lang"]
   });
 })();
 </script>
