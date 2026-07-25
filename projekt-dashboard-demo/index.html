@@ -456,6 +456,7 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
           </a>
           <a href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/" data-i18n="navProcess">Prozess-Demo</a>
           <a href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/" data-i18n="navSolutionsDemo">Lösungsübersicht</a>
+          <a href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><span data-bda-crm-title>CRM-Cockpit-Demo</span><small data-bda-crm-new>Neu</small></a>
         </div>
       </div>
       <a href="https://barrydataanalytics.de/#contact" data-i18n="navContact">Kontakt</a>
@@ -672,6 +673,10 @@ body.focus .wrap{width:min(1600px,98vw);padding-top:12px}
         <a class="footer-demo-card" href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/">
           <b data-i18n="navSolutionsDemo">Lösungsübersicht</b>
           <span data-i18n="footerSolutionsText">Vier zentrale Lösungsbereiche im Überblick.</span>
+        </a>
+        <a class="footer-demo-card" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/">
+          <b data-bda-crm-title>CRM-Cockpit-Demo</b>
+          <span data-bda-crm-short>Kunden, Projekte, Angebote, Rechnungen und Automation.</span>
         </a>
       </div>
     </section>
@@ -1197,6 +1202,59 @@ render(bdaStoreGet("bdaLang","de"));
       mobileToggle.setAttribute("aria-expanded","false");
       mobileToggle.textContent = "☰";
     }
+  });
+})();
+</script>
+
+
+<style id="bda-four-demo-layout">
+.demo-directory-grid,.footer-demo-grid,.demo-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+@media(max-width:1100px){
+  .demo-directory-grid,.footer-demo-grid,.demo-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:650px){
+  .demo-directory-grid,.footer-demo-grid,.demo-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+<script id="bda-added-crm-translation">
+(function(){
+  const TEXT={
+    de:{
+      title:"CRM-Cockpit-Demo",
+      short:"Kunden, Projekte, Angebote, Rechnungen und Automation.",
+      open:"Demo öffnen →",
+      newLabel:"Neu"
+    },
+    en:{
+      title:"CRM cockpit demo",
+      short:"Customers, projects, proposals, invoices and automation.",
+      open:"Open demo →",
+      newLabel:"New"
+    },
+    fr:{
+      title:"Démo cockpit CRM",
+      short:"Clients, projets, offres, factures et automatisation.",
+      open:"Ouvrir la démo →",
+      newLabel:"Nouveau"
+    }
+  };
+  function apply(){
+    const lang=(document.documentElement.lang||"de").slice(0,2);
+    const t=TEXT[lang]||TEXT.de;
+    document.querySelectorAll('[data-bda-crm-title]').forEach(e=>e.textContent=t.title);
+    document.querySelectorAll('[data-bda-crm-short]').forEach(e=>e.textContent=t.short);
+    document.querySelectorAll('[data-bda-crm-open]').forEach(e=>e.textContent=t.open);
+    document.querySelectorAll('[data-bda-crm-new]').forEach(e=>e.textContent=t.newLabel);
+  }
+  apply();
+  new MutationObserver(apply).observe(document.documentElement,{
+    attributes:true,attributeFilter:["lang"]
   });
 })();
 </script>

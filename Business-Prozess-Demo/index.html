@@ -91,6 +91,7 @@ body.demo-ready .flow-shell{opacity:1;transition:opacity .25s ease}
         <a href="https://barrydataanalytics.de/projekt-dashboard-demo/" id="reportDemoItem">Reporting-Demo</a>
         <a class="current" href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/" aria-current="page"><span id="processDemoItem">Prozess-Demo</span><small id="currentLabel">Aktuell</small></a>
         <a href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/" id="solutionsDemoItem">Lösungsübersicht</a>
+        <a href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><span data-bda-crm-title>CRM-Cockpit-Demo</span><small data-bda-crm-new>Neu</small></a>
       </div>
     </div>
   </div>
@@ -103,7 +104,7 @@ body.demo-ready .flow-shell{opacity:1;transition:opacity .25s ease}
   <div class="kicker" id="kicker">Live Geschäftsprozess</div>
   <h1 id="heroTitle">Vom ersten Kundenkontakt bis zur <span class="shine">klaren Entscheidung.</span></h1>
   <p class="lead" id="heroLead">Die Animation zeigt einen typischen Unternehmensprozess. Jeder Schritt wird automatisch durchlaufen, hervorgehoben und erklärt. Danach beginnt der Ablauf erneut.</p>
-  <div class="hero-actions"><a class="primary" href="#flow" id="watchBtn">Ablauf ansehen</a><a class="ghost" href="https://barrydataanalytics.de/demo" target="_blank" rel="noopener" id="mainDemoBtn">Hauptdemo öffnen</a></div>
+  <div class="hero-actions"><a class="primary" href="#flow" id="watchBtn">Ablauf ansehen</a><a class="ghost" href="https://barrydataanalytics.de/demo/" target="_blank" rel="noopener" id="mainDemoBtn">Hauptdemo öffnen</a></div>
 </section>
 <section class="stage-panel" id="flow">
   <div class="panel-top"><div><h2 id="panelTitle">So bewegt sich eine Anfrage durch das Unternehmen</h2><p id="panelLead">Die leuchtenden Punkte laufen automatisch von Abteilung zu Abteilung.</p></div><span class="badge" id="badge">Beispielhafter Unternehmensablauf</span></div>
@@ -133,6 +134,7 @@ body.demo-ready .flow-shell{opacity:1;transition:opacity .25s ease}
     <a class="demo-directory-card" href="https://barrydataanalytics.de/projekt-dashboard-demo/"><span class="demo-card-icon">📊</span><b id="dirReportingTitle">Reporting-Demo</b><span id="dirReportingText">Kennzahlen, Datenaufbereitung und Vorher-Nachher.</span><em id="dirOpen1">Demo öffnen →</em></a>
     <a class="demo-directory-card current" href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/" aria-current="page"><span class="demo-card-icon">⚡</span><b id="dirProcessTitle">Prozess-Demo</b><span id="dirProcessText">Anfrage, CRM, Angebot, Umsetzung und Rückmeldung.</span><em id="dirOpen2">Aktuelle Demo</em></a>
     <a class="demo-directory-card" href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/"><span class="demo-card-icon">◫</span><b id="dirSolutionsTitle">Lösungsübersicht</b><span id="dirSolutionsText">Vier zentrale Lösungsbereiche im Überblick.</span><em id="dirOpen3">Übersicht öffnen →</em></a>
+    <a class="demo-directory-card" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><span class="demo-card-icon">◎</span><b data-bda-crm-title>CRM-Cockpit-Demo</b><span data-bda-crm-short>Kunden, Projekte, Angebote, Rechnungen und Automation.</span><em data-bda-crm-open>Demo öffnen →</em></a>
   </div>
 </section>
 <footer class="footer"><span>Barry Data & Analytics · Bochum (NRW) · Remote & international</span><span>ahmed@barrydataanalytics.de · barrydataanalytics.de</span></footer>
@@ -150,9 +152,69 @@ fr:{live:"Simulation de processus en direct",kicker:"Processus métier en direct
 };
 const positionsDesktop=[[8,35],[18,22],[30,39],[42,25],[54,39],[66,24],[78,38],[89,25],[96,35]];
 const positionsMobile=[[25,14],[72,14],[25,28],[72,28],[25,42],[72,42],[25,56],[72,56],[49,70]];
-let lang="de",current=0,startTime=performance.now(),duration=18000;
-const path=document.getElementById("flowPath"),len=path.getTotalLength();
-function renderNodes(){const pos=window.innerWidth<1100?positionsMobile:positionsDesktop;nodes.innerHTML=STEPS[lang].map((s,i)=>`<div class="node" data-i="${i}" style="left:${pos[i][0]}%;top:${pos[i][1]}%"><span class="num">${i+1}</span><div class="icon">${s[2]}</div><b>${s[0]}</b><small>${s[1]}</small></div>`).join("");document.querySelectorAll(".node").forEach(n=>n.onclick=()=>{current=Number(n.dataset.i);updateStage()})}
+
+/*
+  BDA DYNAMIK-FIX
+  ----------------
+  Der laufende Punkt, die aktive Prozesskarte, die Zahl 1–9,
+  der Beschreibungstext und der Fortschrittsbalken werden aus
+  derselben Zeitposition berechnet. Dadurch bleiben alle Elemente
+  auch nach Sprachwechsel, Resize und Browser-Pausen synchron.
+*/
+let lang="de";
+let current=0;
+let cycleStart=performance.now();
+const duration=18000;
+
+const processRefs={
+  path:document.getElementById("flowPath"),
+  nodes:document.getElementById("nodes"),
+  dot1:document.getElementById("dotGroup"),
+  dot2:document.getElementById("dotGroup2"),
+  dot3:document.getElementById("dotGroup3"),
+  number:document.getElementById("statusNo"),
+  title:document.getElementById("statusTitle"),
+  text:document.getElementById("statusText"),
+  progress:document.getElementById("progressBar"),
+  demoMenu:document.getElementById("demoMenu"),
+  demoMenuToggle:document.getElementById("demoMenuToggle"),
+  mobileMenuToggle:document.getElementById("mobileMenuToggle"),
+  primaryNav:document.getElementById("primaryNav")
+};
+
+const pathLength=processRefs.path.getTotalLength();
+
+function clampStage(index){
+  const max=STEPS[lang].length-1;
+  const parsed=Number(index);
+  if(!Number.isFinite(parsed)) return 0;
+  return Math.max(0,Math.min(max,Math.floor(parsed)));
+}
+
+function renderNodes(){
+  const pos=window.innerWidth<1100?positionsMobile:positionsDesktop;
+  processRefs.nodes.innerHTML=STEPS[lang].map((step,index)=>`
+    <div class="node" data-i="${index}" style="left:${pos[index][0]}%;top:${pos[index][1]}%">
+      <span class="num">${index+1}</span>
+      <div class="icon">${step[2]}</div>
+      <b>${step[0]}</b>
+      <small>${step[1]}</small>
+    </div>
+  `).join("");
+
+  processRefs.nodes.querySelectorAll(".node").forEach(node=>{
+    node.addEventListener("click",()=>{
+      current=clampStage(node.dataset.i);
+      /*
+        Bei manuellem Klick wird der Ablauf zeitlich auf den gewählten
+        Schritt gesetzt. Danach läuft die Animation von dort sauber weiter.
+      */
+      cycleStart=performance.now()-(current/STEPS[lang].length)*duration;
+      updateStage(current);
+    });
+  });
+}
+
 function applyLang(){
   const u=UI[lang];
   document.documentElement.lang=lang;
@@ -204,20 +266,181 @@ function applyLang(){
   setHtml("dirOpen2",u.dirOpen2);
   setHtml("dirOpen3",u.dirOpen3);
 
-  document.querySelectorAll(".langs button").forEach(
-    b=>b.classList.toggle("active",b.dataset.lang===lang)
-  );
+  document.querySelectorAll(".langs button").forEach(button=>{
+    button.classList.toggle("active",button.dataset.lang===lang);
+  });
 
   renderNodes();
-  updateStage();
+  updateStage(current);
 }
-function updateStage(){document.querySelectorAll(".node").forEach((n,i)=>n.classList.toggle("active",i===current));const s=STEPS[lang][current];statusNo.textContent=current+1;statusTitle.textContent=s[0];statusText.textContent=s[1];progressBar.style.width=((current+1)/STEPS[lang].length*100)+"%"}
-function animate(t){const p=((t-startTime)%duration)/duration;const pt=path.getPointAtLength(p*len);dotGroup.setAttribute("transform",`translate(${pt.x} ${pt.y})`);const p2=(p-.08+1)%1,pt2=path.getPointAtLength(p2*len);dotGroup2.setAttribute("transform",`translate(${pt2.x} ${pt2.y})`);const p3=(p-.15+1)%1,pt3=path.getPointAtLength(p3*len);dotGroup3.setAttribute("transform",`translate(${pt3.x} ${pt3.y})`);const next=Math.min(STEPS[lang].length-1,Math.floor(p*STEPS[lang].length));if(next!==current){current=next;updateStage()}requestAnimationFrame(animate)}
-document.querySelectorAll(".langs button").forEach(b=>b.onclick=()=>{lang=b.dataset.lang;current=0;applyLang()});window.addEventListener("resize",renderNodes);function closeMenus(){demoMenu.classList.remove("open");demoMenuToggle.setAttribute("aria-expanded","false");}
-demoMenuToggle.addEventListener("click",function(event){event.stopPropagation();const open=demoMenu.classList.toggle("open");demoMenuToggle.setAttribute("aria-expanded",String(open));});
-mobileMenuToggle.addEventListener("click",function(event){event.stopPropagation();const open=primaryNav.classList.toggle("open");mobileMenuToggle.setAttribute("aria-expanded",String(open));mobileMenuToggle.textContent=open?"×":"☰";});
-document.addEventListener("click",function(event){if(!demoMenu.contains(event.target))closeMenus();if(window.innerWidth<=1180&&!primaryNav.contains(event.target)&&!mobileMenuToggle.contains(event.target)){primaryNav.classList.remove("open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.textContent="☰";}});
-window.addEventListener("resize",function(){if(window.innerWidth>1180){primaryNav.classList.remove("open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.textContent="☰";}});
-applyLang();document.body.classList.add("demo-ready");requestAnimationFrame(animate);
+
+function updateStage(index=current){
+  current=clampStage(index);
+  const step=STEPS[lang][current];
+
+  processRefs.nodes.querySelectorAll(".node").forEach((node,nodeIndex)=>{
+    node.classList.toggle("active",nodeIndex===current);
+  });
+
+  /*
+    Sichtbarer Zähler beginnt bei 1:
+    Kundenanfrage = 1, Erstkontakt = 2, ... Rückmeldung = 9.
+  */
+  processRefs.number.textContent=String(current+1);
+  processRefs.title.textContent=step[0];
+  processRefs.text.textContent=step[1];
+  processRefs.progress.style.width=(((current+1)/STEPS[lang].length)*100)+"%";
+  processRefs.number.setAttribute("aria-label",`Schritt ${current+1} von ${STEPS[lang].length}`);
+}
+
+function cycleProgress(timestamp){
+  const elapsed=Math.max(0,timestamp-cycleStart);
+  return (elapsed%duration)/duration;
+}
+
+function animate(timestamp){
+  const progress=cycleProgress(timestamp);
+
+  const point1=processRefs.path.getPointAtLength(progress*pathLength);
+  processRefs.dot1.setAttribute("transform",`translate(${point1.x} ${point1.y})`);
+
+  const trailingProgress2=(progress-.08+1)%1;
+  const point2=processRefs.path.getPointAtLength(trailingProgress2*pathLength);
+  processRefs.dot2.setAttribute("transform",`translate(${point2.x} ${point2.y})`);
+
+  const trailingProgress3=(progress-.15+1)%1;
+  const point3=processRefs.path.getPointAtLength(trailingProgress3*pathLength);
+  processRefs.dot3.setAttribute("transform",`translate(${point3.x} ${point3.y})`);
+
+  const stageIndex=clampStage(Math.floor(progress*STEPS[lang].length));
+  if(stageIndex!==current){
+    updateStage(stageIndex);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+document.querySelectorAll(".langs button").forEach(button=>{
+  button.addEventListener("click",()=>{
+    lang=button.dataset.lang;
+    current=0;
+    cycleStart=performance.now();
+    applyLang();
+  });
+});
+
+window.addEventListener("resize",()=>{
+  renderNodes();
+  updateStage(current);
+});
+
+function closeMenus(){
+  if(!processRefs.demoMenu || !processRefs.demoMenuToggle) return;
+  processRefs.demoMenu.classList.remove("open");
+  processRefs.demoMenuToggle.setAttribute("aria-expanded","false");
+}
+
+if(processRefs.demoMenuToggle && processRefs.demoMenu){
+  processRefs.demoMenuToggle.addEventListener("click",event=>{
+    event.stopPropagation();
+    const open=processRefs.demoMenu.classList.toggle("open");
+    processRefs.demoMenuToggle.setAttribute("aria-expanded",String(open));
+  });
+}
+
+if(processRefs.mobileMenuToggle && processRefs.primaryNav){
+  processRefs.mobileMenuToggle.addEventListener("click",event=>{
+    event.stopPropagation();
+    const open=processRefs.primaryNav.classList.toggle("open");
+    processRefs.mobileMenuToggle.setAttribute("aria-expanded",String(open));
+    processRefs.mobileMenuToggle.textContent=open?"×":"☰";
+  });
+}
+
+document.addEventListener("click",event=>{
+  if(processRefs.demoMenu && !processRefs.demoMenu.contains(event.target)){
+    closeMenus();
+  }
+  if(
+    window.innerWidth<=1180 &&
+    processRefs.primaryNav &&
+    processRefs.mobileMenuToggle &&
+    !processRefs.primaryNav.contains(event.target) &&
+    !processRefs.mobileMenuToggle.contains(event.target)
+  ){
+    processRefs.primaryNav.classList.remove("open");
+    processRefs.mobileMenuToggle.setAttribute("aria-expanded","false");
+    processRefs.mobileMenuToggle.textContent="☰";
+  }
+});
+
+window.addEventListener("resize",()=>{
+  if(
+    window.innerWidth>1180 &&
+    processRefs.primaryNav &&
+    processRefs.mobileMenuToggle
+  ){
+    processRefs.primaryNav.classList.remove("open");
+    processRefs.mobileMenuToggle.setAttribute("aria-expanded","false");
+    processRefs.mobileMenuToggle.textContent="☰";
+  }
+});
+
+applyLang();
+document.body.classList.add("demo-ready");
+requestAnimationFrame(animate);
 </script>
+
+<style id="bda-four-demo-layout">
+.demo-directory-grid,.footer-demo-grid,.demo-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+@media(max-width:1100px){
+  .demo-directory-grid,.footer-demo-grid,.demo-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:650px){
+  .demo-directory-grid,.footer-demo-grid,.demo-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+<script id="bda-added-crm-translation">
+(function(){
+  const TEXT={
+    de:{
+      title:"CRM-Cockpit-Demo",
+      short:"Kunden, Projekte, Angebote, Rechnungen und Automation.",
+      open:"Demo öffnen →",
+      newLabel:"Neu"
+    },
+    en:{
+      title:"CRM cockpit demo",
+      short:"Customers, projects, proposals, invoices and automation.",
+      open:"Open demo →",
+      newLabel:"New"
+    },
+    fr:{
+      title:"Démo cockpit CRM",
+      short:"Clients, projets, offres, factures et automatisation.",
+      open:"Ouvrir la démo →",
+      newLabel:"Nouveau"
+    }
+  };
+  function apply(){
+    const lang=(document.documentElement.lang||"de").slice(0,2);
+    const t=TEXT[lang]||TEXT.de;
+    document.querySelectorAll('[data-bda-crm-title]').forEach(e=>e.textContent=t.title);
+    document.querySelectorAll('[data-bda-crm-short]').forEach(e=>e.textContent=t.short);
+    document.querySelectorAll('[data-bda-crm-open]').forEach(e=>e.textContent=t.open);
+    document.querySelectorAll('[data-bda-crm-new]').forEach(e=>e.textContent=t.newLabel);
+  }
+  apply();
+  new MutationObserver(apply).observe(document.documentElement,{
+    attributes:true,attributeFilter:["lang"]
+  });
+})();
+</script>
+
 </body></html>
