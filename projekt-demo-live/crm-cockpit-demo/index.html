@@ -140,6 +140,35 @@ a{color:inherit}.wrap{width:min(1480px,94vw);margin:auto;padding:18px 0 80px}.na
 }
 @media(prefers-reduced-motion:reduce){.live-demo-dot{animation:none}}
 
+
+/* === BDA CRM: AUTOMATISCHE STILLE ENDLOSSCHLEIFE === */
+.video-auto-note{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:30px;
+  margin-top:-4px;
+  color:#7898ae;
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.02em;
+}
+.video-auto-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--aqua);
+  box-shadow:0 0 0 0 rgba(87,245,233,.42);
+  animation:bdaAutoVideoPulse 1.9s infinite;
+}
+@keyframes bdaAutoVideoPulse{
+  70%{box-shadow:0 0 0 7px rgba(87,245,233,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .video-auto-dot{animation:none}
+}
+
 </style>
 </head>
 <body>
@@ -196,13 +225,17 @@ a{color:inherit}.wrap{width:min(1480px,94vw);margin:auto;padding:18px 0 80px}.na
 
 <div class="video-column">
   <div class="video-frame">
-    <video id="demoVideo" preload="metadata" playsinline poster="crm-cover-de.png"><source src="crm-demo-de.mp4" type="video/mp4"></video>
+    <video id="demoVideo" autoplay muted loop preload="metadata" playsinline poster="crm-cover-de.png"><source src="crm-demo-de.mp4" type="video/mp4"></video>
     <span class="video-label" data-t="videoLabel">CRM-Cockpit · Öffentliche Demo</span>
   </div>
   <div class="video-actions" aria-label="Videosteuerung">
-    <button class="primary" id="playBtn" type="button" data-t="play">▶ Abspielen</button>
+    <button class="primary" id="playBtn" type="button" data-t="play">▶ Erklärung abspielen</button>
     <button id="muteBtn" type="button" data-t="sound">🔊 Ton</button>
     <button id="restartBtn" type="button" data-t="restart">↺ Neustart</button>
+  </div>
+  <div class="video-auto-note">
+    <span class="video-auto-dot" aria-hidden="true"></span>
+    <span data-auto-note>Animation läuft automatisch ohne Ton</span>
   </div>
 </div>
 </section>
@@ -212,12 +245,44 @@ a{color:inherit}.wrap{width:min(1480px,94vw);margin:auto;padding:18px 0 80px}.na
 <footer class="footer"><div class="footer-top"><span>© 2026 Barry Data & Analytics · Bochum (NRW) – Remote & international</span><span><a href="mailto:ahmed@barrydataanalytics.de">ahmed@barrydataanalytics.de</a> · <a href="tel:+4915755355849">+49 1575 5355849</a></span></div><div class="demo-grid"><a class="demo-card" href="https://barrydataanalytics.de/projekt-dashboard-demo/"><b data-t="navReporting">Reporting-Demo</b><span data-t="reportingText">Kennzahlen, Reporting und Vorher-Nachher.</span></a><a class="demo-card" href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/"><b data-t="navProcess">Prozess-Demo</b><span data-t="processText">Anfrage, CRM, Angebot und Umsetzung.</span></a><a class="demo-card" href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/"><b data-bda-solutions-title>Lösungsübersicht</b><span data-bda-solutions-short>Vier zentrale Lösungsbereiche im Überblick.</span></a><a class="demo-card current" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/"><b data-t="navCrm">CRM-Cockpit-Demo</b><span data-t="crmText">Kunden, Projekte, Rechnungen und Automationen.</span></a></div><div class="legal"><a href="https://barrydataanalytics.de/rechtliches.html#impressum" data-t="imprint">Impressum</a><a href="https://barrydataanalytics.de/rechtliches.html#datenschutz" data-t="privacy">Datenschutz</a><a href="https://barrydataanalytics.de/rechtliches.html#agb" data-t="terms">AGB</a></div></footer>
 </div>
 <script>
-const T={de:{navHome:'Homepage',navOverview:'Übersicht',navDemo:'CRM-Demo',navVideo:'Video',navSolutions:'Lösungen',navDemos:'Demos live',navReporting:'Reporting-Demo',navProcess:'Prozess-Demo',navCrm:'CRM-Cockpit-Demo',current:'Aktuell',kicker:'Öffentliche CRM-Cockpit-Demo',headline:'Vom Excel-CRM zum <span class="shine">modernen CRM-Cockpit</span>',lead:'Viele Unternehmen haben digitale Kundendaten, aber keine klare tägliche Arbeitsoberfläche. Diese Demo zeigt, wie Kunden, Projekte, Angebote, Rechnungen und Automationen übersichtlich zusammengeführt werden können.',watchVideo:'Video ansehen',talk:'Projekt kurz besprechen',chip1:'Fiktive Beispielwerte',chip2:'Keine echten Kundendaten',chip3:'Öffentliche Funktionsdemo',liveTitle:'CRM Command Center · Live-Demo',fake:'Fiktive Beispielwerte',search:'Kunde, Firma oder Projektnummer suchen …',allStages:'Alle Phasen',allPeriods:'Gesamter Zeitraum',days30:'Letzte 30 Tage',days90:'Letzte 90 Tage',customers:'Kunden',offers:'Angebote',invoices:'Rechnungen',revenue:'Umsatz',pipeline:'Pipeline',qualified:'Qualifiziert',offer:'Angebot',won:'Gewonnen',invoiceStatus:'Rechnungsstatus',projects:'Projektübersicht',compareTitle:'Excel muss nicht sofort verschwinden.',compareSub:'Entscheidend ist, dass die tägliche Arbeit nicht in einer unübersichtlichen Tabellenansicht stecken bleibt.',before:'Vorher',before1:'Viele Spalten und manuelle Statuspflege',before2:'Angebote und Rechnungen schwer nachzuverfolgen',before3:'Keine zentrale Kunden- und Projektansicht',before4:'Automationen laufen, aber die Übersicht fehlt',after:'Nachher',after1:'Kunden und Projekte sofort auffindbar',after2:'Angebote, Rechnungen und Freigaben im Blick',after3:'Klare Pipeline und nächste Aktionen',after4:'Automationsstatus transparent überwachen',videoKicker:'CRM-Transformation im Überblick',videoTitle:'Vom Datenchaos zur klaren täglichen Steuerung.',videoText:'Das Video zeigt den Wechsel vom gewachsenen Excel-CRM zu einer klaren Arbeitsoberfläche. Kunden, Projekte und nächste Schritte werden schneller sichtbar und einfacher steuerbar.',journey1:'Gewachsene Excel-Struktur',journey1Text:'Daten sind vorhanden, aber über viele Spalten und Status verteilt.',journey2:'Informationen bündeln',journey2Text:'Kunden, Projekte, Angebote und Rechnungen werden zusammengeführt.',journey3:'Klare Arbeitsoberfläche',journey3Text:'Wichtige Informationen und nächste Aktionen sind sofort sichtbar.',journey4:'Schneller handeln',journey4Text:'Weniger Suchaufwand, klarere Abläufe und bessere Entscheidungen.',videoLabel:'CRM-Cockpit · Öffentliche Demo',play:'▶ Abspielen',pause:'❚❚ Pause',sound:'🔊 Ton',mute:'🔇 Stumm',restart:'↺ Neustart',useTitle:'Was Unternehmen damit steuern können',useSub:'Die Datenquelle kann Excel, SharePoint Lists, Dataverse, SQL oder ein vorhandenes System sein. Die Oberfläche wird passend zum tatsächlichen Ablauf aufgebaut.',s1:'Kunden & Kontakte',s1t:'Zentrale Kundenakte, Ansprechpartner, Historie und Suche.',s2:'Projekte & Aufgaben',s2t:'Status, Verantwortliche, Termine und nächste Aktionen.',s3:'Angebote & Rechnungen',s3t:'Freigaben, Zahlungsstatus und Dokumente im Blick.',s4:'Automation & Reporting',s4t:'Power Automate, Erinnerungen, Fehlerstatus und Kennzahlen.',ctaTitle:'Arbeitet Ihr Unternehmen noch mit einer unübersichtlichen CRM-Excel?',ctaText:'Eine Modernisierung muss nicht mit einer riskanten Komplettumstellung beginnen. Bestehende Daten und Abläufe können schrittweise in eine klare Lösung überführt werden.',ctaBtn:'Kurz austauschen',reportingText:'Kennzahlen, Reporting und Vorher-Nachher.',processText:'Anfrage, CRM, Angebot und Umsetzung.',crmText:'Kunden, Projekte, Rechnungen und Automationen.',imprint:'Impressum',privacy:'Datenschutz',terms:'AGB'},
-en:{navHome:'Homepage',navOverview:'Overview',navDemo:'CRM demo',navVideo:'Video',navSolutions:'Solutions',navDemos:'Demos live',navReporting:'Reporting demo',navProcess:'Process demo',navCrm:'CRM cockpit demo',current:'Current',kicker:'Public CRM cockpit demo',headline:'From Excel CRM to a <span class="shine">modern CRM cockpit</span>',lead:'Many companies have digital customer data but no clear daily workspace. This demo shows how customers, projects, proposals, invoices and automations can be brought together in one clear view.',watchVideo:'Watch video',talk:'Discuss a project',chip1:'Illustrative demo values',chip2:'No real customer data',chip3:'Public functional demo',liveTitle:'CRM Command Center · Live demo',fake:'Illustrative demo values',search:'Search customer, company or project number …',allStages:'All stages',allPeriods:'All periods',days30:'Last 30 days',days90:'Last 90 days',customers:'Customers',offers:'Proposals',invoices:'Invoices',revenue:'Revenue',pipeline:'Pipeline',qualified:'Qualified',offer:'Proposal',won:'Won',invoiceStatus:'Invoice status',projects:'Project overview',compareTitle:'Excel does not have to disappear immediately.',compareSub:'What matters is that daily work no longer remains trapped in a confusing spreadsheet view.',before:'Before',before1:'Many columns and manual status maintenance',before2:'Proposals and invoices are hard to track',before3:'No central customer and project view',before4:'Automations run, but the overview is missing',after:'After',after1:'Find customers and projects immediately',after2:'Keep proposals, invoices and approvals in view',after3:'Clear pipeline and next actions',after4:'Monitor automation status transparently',videoKicker:'CRM transformation at a glance',videoTitle:'From data chaos to clear daily control.',videoText:'The video shows the transition from a growing Excel CRM to a clear workspace. Customers, projects and next steps become easier to see and manage.',journey1:'Grown Excel structure',journey1Text:'The data exists but is spread across many columns and status fields.',journey2:'Bring information together',journey2Text:'Customers, projects, proposals and invoices are consolidated.',journey3:'Clear workspace',journey3Text:'Important information and next actions are visible immediately.',journey4:'Act faster',journey4Text:'Less searching, clearer workflows and better decisions.',videoLabel:'CRM cockpit · Public demo',play:'▶ Play',pause:'❚❚ Pause',sound:'🔊 Sound',mute:'🔇 Muted',restart:'↺ Restart',useTitle:'What companies can manage with it',useSub:'The data source can be Excel, SharePoint Lists, Dataverse, SQL or an existing system. The workspace is built around the actual process.',s1:'Customers & contacts',s1t:'Central customer record, contacts, history and search.',s2:'Projects & tasks',s2t:'Status, owners, dates and next actions.',s3:'Proposals & invoices',s3t:'Approvals, payment status and documents in view.',s4:'Automation & reporting',s4t:'Power Automate, reminders, error status and KPIs.',ctaTitle:'Is your company still working with a confusing CRM spreadsheet?',ctaText:'Modernization does not have to begin with a risky complete replacement. Existing data and processes can be moved step by step into a clearer solution.',ctaBtn:'Start a conversation',reportingText:'KPIs, reporting and before-and-after.',processText:'Enquiry, CRM, proposal and delivery.',crmText:'Customers, projects, invoices and automations.',imprint:'Legal notice',privacy:'Privacy',terms:'Terms'},
-fr:{navHome:'Accueil',navOverview:'Aperçu',navDemo:'Démo CRM',navVideo:'Vidéo',navSolutions:'Solutions',navDemos:'Démos en direct',navReporting:'Démo reporting',navProcess:'Démo processus',navCrm:'Démo cockpit CRM',current:'Actuelle',kicker:'Démo publique du cockpit CRM',headline:'Du CRM Excel au <span class="shine">cockpit CRM moderne</span>',lead:'De nombreuses entreprises disposent de données clients numériques, mais pas d’un espace de travail quotidien clair. Cette démo montre comment regrouper clients, projets, offres, factures et automatisations.',watchVideo:'Voir la vidéo',talk:'Échanger sur un projet',chip1:'Valeurs d’exemple fictives',chip2:'Aucune donnée client réelle',chip3:'Démo fonctionnelle publique',liveTitle:'CRM Command Center · Démo live',fake:'Valeurs d’exemple fictives',search:'Rechercher client, entreprise ou numéro de projet …',allStages:'Toutes les phases',allPeriods:'Toute la période',days30:'30 derniers jours',days90:'90 derniers jours',customers:'Clients',offers:'Offres',invoices:'Factures',revenue:'Chiffre d’affaires',pipeline:'Pipeline',qualified:'Qualifié',offer:'Offre',won:'Gagné',invoiceStatus:'Statut factures',projects:'Aperçu projets',compareTitle:'Excel ne doit pas disparaître immédiatement.',compareSub:'L’essentiel est que le travail quotidien ne reste pas bloqué dans une vue tableur difficile à gérer.',before:'Avant',before1:'Beaucoup de colonnes et statuts manuels',before2:'Offres et factures difficiles à suivre',before3:'Aucune vue centrale client et projet',before4:'Les automatisations existent, mais la vue globale manque',after:'Après',after1:'Retrouver immédiatement clients et projets',after2:'Suivre offres, factures et validations',after3:'Pipeline et prochaines actions clairs',after4:'Surveiller les automatisations avec transparence',videoKicker:'La transformation CRM en un coup d’œil',videoTitle:'Du désordre des données à un pilotage quotidien clair.',videoText:'La vidéo montre le passage d’un CRM Excel devenu complexe à un espace de travail clair. Les clients, les projets et les prochaines étapes deviennent plus faciles à voir et à piloter.',journey1:'Structure Excel développée au fil du temps',journey1Text:'Les données existent, mais elles sont réparties entre de nombreuses colonnes et statuts.',journey2:'Regrouper les informations',journey2Text:'Les clients, les projets, les offres et les factures sont réunis.',journey3:'Espace de travail clair',journey3Text:'Les informations importantes et les prochaines actions sont immédiatement visibles.',journey4:'Agir plus rapidement',journey4Text:'Moins de recherche, des processus plus clairs et de meilleures décisions.',videoLabel:'Cockpit CRM · Démo publique',play:'▶ Lecture',pause:'❚❚ Pause',sound:'🔊 Son',mute:'🔇 Muet',restart:'↺ Recommencer',useTitle:'Ce que les entreprises peuvent piloter',useSub:'La source peut être Excel, SharePoint Lists, Dataverse, SQL ou un système existant. L’espace de travail est construit selon le processus réel.',s1:'Clients & contacts',s1t:'Fiche client centrale, contacts, historique et recherche.',s2:'Projets & tâches',s2t:'Statut, responsables, échéances et prochaines actions.',s3:'Offres & factures',s3t:'Validations, paiements et documents visibles.',s4:'Automatisation & reporting',s4t:'Power Automate, rappels, erreurs et indicateurs.',ctaTitle:'Votre entreprise utilise encore un CRM Excel difficile à gérer ?',ctaText:'La modernisation ne doit pas commencer par un remplacement complet et risqué. Les données et processus existants peuvent être transférés progressivement vers une solution claire.',ctaBtn:'Échanger brièvement',reportingText:'KPI, reporting et avant-après.',processText:'Demande, CRM, offre et réalisation.',crmText:'Clients, projets, factures et automatisations.',imprint:'Mentions légales',privacy:'Confidentialité',terms:'CGV'}};
+const T={de:{navHome:'Homepage',navOverview:'Übersicht',navDemo:'CRM-Demo',navVideo:'Video',navSolutions:'Lösungen',navDemos:'Demos live',navReporting:'Reporting-Demo',navProcess:'Prozess-Demo',navCrm:'CRM-Cockpit-Demo',current:'Aktuell',kicker:'Öffentliche CRM-Cockpit-Demo',headline:'Vom Excel-CRM zum <span class="shine">modernen CRM-Cockpit</span>',lead:'Viele Unternehmen haben digitale Kundendaten, aber keine klare tägliche Arbeitsoberfläche. Diese Demo zeigt, wie Kunden, Projekte, Angebote, Rechnungen und Automationen übersichtlich zusammengeführt werden können.',watchVideo:'Video ansehen',talk:'Projekt kurz besprechen',chip1:'Fiktive Beispielwerte',chip2:'Keine echten Kundendaten',chip3:'Öffentliche Funktionsdemo',liveTitle:'CRM Command Center · Live-Demo',fake:'Fiktive Beispielwerte',search:'Kunde, Firma oder Projektnummer suchen …',allStages:'Alle Phasen',allPeriods:'Gesamter Zeitraum',days30:'Letzte 30 Tage',days90:'Letzte 90 Tage',customers:'Kunden',offers:'Angebote',invoices:'Rechnungen',revenue:'Umsatz',pipeline:'Pipeline',qualified:'Qualifiziert',offer:'Angebot',won:'Gewonnen',invoiceStatus:'Rechnungsstatus',projects:'Projektübersicht',compareTitle:'Excel muss nicht sofort verschwinden.',compareSub:'Entscheidend ist, dass die tägliche Arbeit nicht in einer unübersichtlichen Tabellenansicht stecken bleibt.',before:'Vorher',before1:'Viele Spalten und manuelle Statuspflege',before2:'Angebote und Rechnungen schwer nachzuverfolgen',before3:'Keine zentrale Kunden- und Projektansicht',before4:'Automationen laufen, aber die Übersicht fehlt',after:'Nachher',after1:'Kunden und Projekte sofort auffindbar',after2:'Angebote, Rechnungen und Freigaben im Blick',after3:'Klare Pipeline und nächste Aktionen',after4:'Automationsstatus transparent überwachen',videoKicker:'CRM-Transformation im Überblick',videoTitle:'Vom Datenchaos zur klaren täglichen Steuerung.',videoText:'Das Video zeigt den Wechsel vom gewachsenen Excel-CRM zu einer klaren Arbeitsoberfläche. Kunden, Projekte und nächste Schritte werden schneller sichtbar und einfacher steuerbar.',journey1:'Gewachsene Excel-Struktur',journey1Text:'Daten sind vorhanden, aber über viele Spalten und Status verteilt.',journey2:'Informationen bündeln',journey2Text:'Kunden, Projekte, Angebote und Rechnungen werden zusammengeführt.',journey3:'Klare Arbeitsoberfläche',journey3Text:'Wichtige Informationen und nächste Aktionen sind sofort sichtbar.',journey4:'Schneller handeln',journey4Text:'Weniger Suchaufwand, klarere Abläufe und bessere Entscheidungen.',videoLabel:'CRM-Cockpit · Öffentliche Demo',play:'▶ Erklärung abspielen',pause:'❚❚ Pause',resume:'▶ Fortsetzen',sound:'🔊 Ton',mute:'🔇 Stumm',restart:'↺ Neustart',useTitle:'Was Unternehmen damit steuern können',useSub:'Die Datenquelle kann Excel, SharePoint Lists, Dataverse, SQL oder ein vorhandenes System sein. Die Oberfläche wird passend zum tatsächlichen Ablauf aufgebaut.',s1:'Kunden & Kontakte',s1t:'Zentrale Kundenakte, Ansprechpartner, Historie und Suche.',s2:'Projekte & Aufgaben',s2t:'Status, Verantwortliche, Termine und nächste Aktionen.',s3:'Angebote & Rechnungen',s3t:'Freigaben, Zahlungsstatus und Dokumente im Blick.',s4:'Automation & Reporting',s4t:'Power Automate, Erinnerungen, Fehlerstatus und Kennzahlen.',ctaTitle:'Arbeitet Ihr Unternehmen noch mit einer unübersichtlichen CRM-Excel?',ctaText:'Eine Modernisierung muss nicht mit einer riskanten Komplettumstellung beginnen. Bestehende Daten und Abläufe können schrittweise in eine klare Lösung überführt werden.',ctaBtn:'Kurz austauschen',reportingText:'Kennzahlen, Reporting und Vorher-Nachher.',processText:'Anfrage, CRM, Angebot und Umsetzung.',crmText:'Kunden, Projekte, Rechnungen und Automationen.',imprint:'Impressum',privacy:'Datenschutz',terms:'AGB'},
+en:{navHome:'Homepage',navOverview:'Overview',navDemo:'CRM demo',navVideo:'Video',navSolutions:'Solutions',navDemos:'Demos live',navReporting:'Reporting demo',navProcess:'Process demo',navCrm:'CRM cockpit demo',current:'Current',kicker:'Public CRM cockpit demo',headline:'From Excel CRM to a <span class="shine">modern CRM cockpit</span>',lead:'Many companies have digital customer data but no clear daily workspace. This demo shows how customers, projects, proposals, invoices and automations can be brought together in one clear view.',watchVideo:'Watch video',talk:'Discuss a project',chip1:'Illustrative demo values',chip2:'No real customer data',chip3:'Public functional demo',liveTitle:'CRM Command Center · Live demo',fake:'Illustrative demo values',search:'Search customer, company or project number …',allStages:'All stages',allPeriods:'All periods',days30:'Last 30 days',days90:'Last 90 days',customers:'Customers',offers:'Proposals',invoices:'Invoices',revenue:'Revenue',pipeline:'Pipeline',qualified:'Qualified',offer:'Proposal',won:'Won',invoiceStatus:'Invoice status',projects:'Project overview',compareTitle:'Excel does not have to disappear immediately.',compareSub:'What matters is that daily work no longer remains trapped in a confusing spreadsheet view.',before:'Before',before1:'Many columns and manual status maintenance',before2:'Proposals and invoices are hard to track',before3:'No central customer and project view',before4:'Automations run, but the overview is missing',after:'After',after1:'Find customers and projects immediately',after2:'Keep proposals, invoices and approvals in view',after3:'Clear pipeline and next actions',after4:'Monitor automation status transparently',videoKicker:'CRM transformation at a glance',videoTitle:'From data chaos to clear daily control.',videoText:'The video shows the transition from a growing Excel CRM to a clear workspace. Customers, projects and next steps become easier to see and manage.',journey1:'Grown Excel structure',journey1Text:'The data exists but is spread across many columns and status fields.',journey2:'Bring information together',journey2Text:'Customers, projects, proposals and invoices are consolidated.',journey3:'Clear workspace',journey3Text:'Important information and next actions are visible immediately.',journey4:'Act faster',journey4Text:'Less searching, clearer workflows and better decisions.',videoLabel:'CRM cockpit · Public demo',play:'▶ Play explanation',pause:'❚❚ Pause',resume:'▶ Resume',sound:'🔊 Sound',mute:'🔇 Muted',restart:'↺ Restart',useTitle:'What companies can manage with it',useSub:'The data source can be Excel, SharePoint Lists, Dataverse, SQL or an existing system. The workspace is built around the actual process.',s1:'Customers & contacts',s1t:'Central customer record, contacts, history and search.',s2:'Projects & tasks',s2t:'Status, owners, dates and next actions.',s3:'Proposals & invoices',s3t:'Approvals, payment status and documents in view.',s4:'Automation & reporting',s4t:'Power Automate, reminders, error status and KPIs.',ctaTitle:'Is your company still working with a confusing CRM spreadsheet?',ctaText:'Modernization does not have to begin with a risky complete replacement. Existing data and processes can be moved step by step into a clearer solution.',ctaBtn:'Start a conversation',reportingText:'KPIs, reporting and before-and-after.',processText:'Enquiry, CRM, proposal and delivery.',crmText:'Customers, projects, invoices and automations.',imprint:'Legal notice',privacy:'Privacy',terms:'Terms'},
+fr:{navHome:'Accueil',navOverview:'Aperçu',navDemo:'Démo CRM',navVideo:'Vidéo',navSolutions:'Solutions',navDemos:'Démos en direct',navReporting:'Démo reporting',navProcess:'Démo processus',navCrm:'Démo cockpit CRM',current:'Actuelle',kicker:'Démo publique du cockpit CRM',headline:'Du CRM Excel au <span class="shine">cockpit CRM moderne</span>',lead:'De nombreuses entreprises disposent de données clients numériques, mais pas d’un espace de travail quotidien clair. Cette démo montre comment regrouper clients, projets, offres, factures et automatisations.',watchVideo:'Voir la vidéo',talk:'Échanger sur un projet',chip1:'Valeurs d’exemple fictives',chip2:'Aucune donnée client réelle',chip3:'Démo fonctionnelle publique',liveTitle:'CRM Command Center · Démo live',fake:'Valeurs d’exemple fictives',search:'Rechercher client, entreprise ou numéro de projet …',allStages:'Toutes les phases',allPeriods:'Toute la période',days30:'30 derniers jours',days90:'90 derniers jours',customers:'Clients',offers:'Offres',invoices:'Factures',revenue:'Chiffre d’affaires',pipeline:'Pipeline',qualified:'Qualifié',offer:'Offre',won:'Gagné',invoiceStatus:'Statut factures',projects:'Aperçu projets',compareTitle:'Excel ne doit pas disparaître immédiatement.',compareSub:'L’essentiel est que le travail quotidien ne reste pas bloqué dans une vue tableur difficile à gérer.',before:'Avant',before1:'Beaucoup de colonnes et statuts manuels',before2:'Offres et factures difficiles à suivre',before3:'Aucune vue centrale client et projet',before4:'Les automatisations existent, mais la vue globale manque',after:'Après',after1:'Retrouver immédiatement clients et projets',after2:'Suivre offres, factures et validations',after3:'Pipeline et prochaines actions clairs',after4:'Surveiller les automatisations avec transparence',videoKicker:'La transformation CRM en un coup d’œil',videoTitle:'Du désordre des données à un pilotage quotidien clair.',videoText:'La vidéo montre le passage d’un CRM Excel devenu complexe à un espace de travail clair. Les clients, les projets et les prochaines étapes deviennent plus faciles à voir et à piloter.',journey1:'Structure Excel développée au fil du temps',journey1Text:'Les données existent, mais elles sont réparties entre de nombreuses colonnes et statuts.',journey2:'Regrouper les informations',journey2Text:'Les clients, les projets, les offres et les factures sont réunis.',journey3:'Espace de travail clair',journey3Text:'Les informations importantes et les prochaines actions sont immédiatement visibles.',journey4:'Agir plus rapidement',journey4Text:'Moins de recherche, des processus plus clairs et de meilleures décisions.',videoLabel:'Cockpit CRM · Démo publique',play:'▶ Lire l’explication',pause:'❚❚ Pause',resume:'▶ Reprendre',sound:'🔊 Son',mute:'🔇 Muet',restart:'↺ Recommencer',useTitle:'Ce que les entreprises peuvent piloter',useSub:'La source peut être Excel, SharePoint Lists, Dataverse, SQL ou un système existant. L’espace de travail est construit selon le processus réel.',s1:'Clients & contacts',s1t:'Fiche client centrale, contacts, historique et recherche.',s2:'Projets & tâches',s2t:'Statut, responsables, échéances et prochaines actions.',s3:'Offres & factures',s3t:'Validations, paiements et documents visibles.',s4:'Automatisation & reporting',s4t:'Power Automate, rappels, erreurs et indicateurs.',ctaTitle:'Votre entreprise utilise encore un CRM Excel difficile à gérer ?',ctaText:'La modernisation ne doit pas commencer par un remplacement complet et risqué. Les données et processus existants peuvent être transférés progressivement vers une solution claire.',ctaBtn:'Échanger brièvement',reportingText:'KPI, reporting et avant-après.',processText:'Demande, CRM, offre et réalisation.',crmText:'Clients, projets, factures et automatisations.',imprint:'Mentions légales',privacy:'Confidentialité',terms:'CGV'}};
 const demoRows=[{company:'Alpha GmbH',project:'BDA-P-DEMO-0025',type:'CRM Cockpit',stage:'Angebot',status:'In Prüfung',owner:'Ahmed Barry',amount:'€ 12.500',date:18},{company:'Beta Solutions',project:'BDA-P-DEMO-0026',type:'Reporting',stage:'Qualifiziert',status:'Analyse',owner:'Ahmed Barry',amount:'€ 8.900',date:42},{company:'Gamma Consulting',project:'BDA-P-DEMO-0027',type:'Automation',stage:'Gewonnen',status:'Umsetzung',owner:'Projektteam',amount:'€ 18.400',date:12},{company:'Delta Services',project:'BDA-P-DEMO-0028',type:'Power BI',stage:'Lead',status:'Neu',owner:'Vertrieb',amount:'€ 6.700',date:76},{company:'Epsilon AG',project:'BDA-P-DEMO-0029',type:'Process Cockpit',stage:'Angebot',status:'Freigabe',owner:'Ahmed Barry',amount:'€ 15.200',date:24}];
 let lang='de';const videoMap={de:['crm-demo-de.mp4','crm-cover-de.png'],en:['crm-demo-en.mp4','crm-cover-en.png'],fr:['crm-demo-fr.mp4','crm-cover-fr.png']};
-function tr(k){return T[lang][k]||k}function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));document.querySelectorAll('[data-t]').forEach(e=>e.textContent=tr(e.dataset.t));document.querySelectorAll('[data-t-html]').forEach(e=>e.innerHTML=tr(e.dataset.tHtml));document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=tr(e.dataset.ph));const v=document.getElementById('demoVideo'),was=!v.paused;v.pause();v.src=videoMap[l][0];v.poster=videoMap[l][1];v.load();if(was)v.play().catch(()=>{});renderRows();buildTicker();document.title=tr('navCrm')+' | Barry Data & Analytics'}
+function tr(k){return T[lang][k]||k}
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  document.querySelectorAll('[data-t]').forEach(e=>e.textContent=tr(e.dataset.t));
+  document.querySelectorAll('[data-t-html]').forEach(e=>e.innerHTML=tr(e.dataset.tHtml));
+  document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=tr(e.dataset.ph));
+
+  explanationMode=false;
+  v.pause();
+  v.src=videoMap[l][0];
+  v.poster=videoMap[l][1];
+  v.autoplay=true;
+  v.loop=true;
+  v.muted=true;
+  v.load();
+
+  const startLoop=()=>{
+    v.play().catch(()=>{});
+    updateVideoButtons();
+  };
+
+  if(v.readyState>=2){
+    startLoop();
+  }else{
+    v.addEventListener('canplay',startLoop,{once:true});
+  }
+
+  renderRows();
+  buildTicker();
+  document.title=tr('navCrm')+' | Barry Data & Analytics';
+}
 document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));document.getElementById('mobileMenu').onclick=()=>document.getElementById('navLinks').classList.toggle('open');document.getElementById('demoToggle').onclick=()=>{const m=document.getElementById('demoMenu');const b=document.getElementById('demoToggle');const open=m.classList.toggle('open');b.setAttribute('aria-expanded',String(open))};document.addEventListener('click',e=>{if(!e.target.closest('#demoMenu'))document.getElementById('demoMenu').classList.remove('open')});
 function stageLabel(s){const m={de:{Lead:'Lead',Qualifiziert:'Qualifiziert',Angebot:'Angebot',Gewonnen:'Gewonnen'},en:{Lead:'Lead',Qualifiziert:'Qualified',Angebot:'Proposal',Gewonnen:'Won'},fr:{Lead:'Lead',Qualifiziert:'Qualifié',Angebot:'Offre',Gewonnen:'Gagné'}};return m[lang][s]||s}function statusClass(s){return /Umsetzung|Gewonnen/.test(s)?'green':/Freigabe|Prüfung/.test(s)?'orange':'blue'}
 function renderRows(){const q=document.getElementById('crmSearch').value.toLowerCase(),st=document.getElementById('stageFilter').value,period=document.getElementById('periodFilter').value;const rows=demoRows.filter(r=>(!q||(r.company+' '+r.project+' '+r.type).toLowerCase().includes(q))&&(!st||r.stage===st)&&(period==='all'||r.date<=+period));document.getElementById('kpiCustomers').textContent=128-(demoRows.length-rows.length);document.getElementById('rows').innerHTML=rows.length?rows.map((r,i)=>`<div class="row" data-project="${r.project}"><b>${r.company}</b><span>${r.project}</span><span>${r.type}</span><span class="status ${statusClass(r.status)}">${stageLabel(r.stage)}</span></div>`).join(''):`<div class="empty">${lang==='de'?'Keine Treffer':lang==='en'?'No results':'Aucun résultat'}</div>`;document.querySelectorAll('.row').forEach(e=>e.onclick=()=>openDrawer(e.dataset.project))}
@@ -225,7 +290,110 @@ function renderRows(){const q=document.getElementById('crmSearch').value.toLower
 function openDrawer(project){const r=demoRows.find(x=>x.project===project);if(!r)return;document.getElementById('drawerTitle').textContent=r.company;document.getElementById('drawerProject').textContent=r.project;const labels=lang==='de'?['Projektart','Phase','Status','Verantwortlich','Projektwert','Nächste Aktion']:lang==='en'?['Project type','Stage','Status','Owner','Project value','Next action']:['Type de projet','Phase','Statut','Responsable','Valeur','Prochaine action'];const vals=[r.type,stageLabel(r.stage),r.status,r.owner,r.amount,lang==='de'?'Angebot prüfen':lang==='en'?'Review proposal':'Vérifier l’offre'];document.getElementById('detailGrid').innerHTML=labels.map((l,i)=>`<div class="detail"><small>${l}</small><b>${vals[i]}</b></div>`).join('');const acts=lang==='de'?['Projektanalyse eingegangen','Angebot vorbereitet','Freigabe ausstehend']:lang==='en'?['Project analysis received','Proposal prepared','Approval pending']:['Analyse reçue','Offre préparée','Validation en attente'];document.getElementById('timeline').innerHTML=acts.map(a=>`<div><i></i><span>${a}</span></div>`).join('');document.getElementById('drawer').classList.add('open')}
 document.getElementById('drawerClose').onclick=()=>document.getElementById('drawer').classList.remove('open');
 function buildTicker(){const terms=lang==='de'?['Kunden','Projekte','Angebote','Rechnungen','Pipeline','Aufgaben','Power Automate','SharePoint','Dataverse','Reporting','Dokumente','Freigaben']:lang==='en'?['Customers','Projects','Proposals','Invoices','Pipeline','Tasks','Power Automate','SharePoint','Dataverse','Reporting','Documents','Approvals']:['Clients','Projets','Offres','Factures','Pipeline','Tâches','Power Automate','SharePoint','Dataverse','Reporting','Documents','Validations'];const doubled=[...terms,...terms];document.getElementById('ticker').innerHTML=doubled.map(x=>`<span>${x}</span>`).join('')}
-const v=document.getElementById('demoVideo'),play=document.getElementById('playBtn'),mute=document.getElementById('muteBtn');play.onclick=()=>{if(v.paused){v.play().catch(()=>{})}else{v.pause()}};v.onplay=()=>play.textContent=tr('pause');v.onpause=()=>play.textContent=tr('play');mute.onclick=()=>{v.muted=!v.muted;mute.textContent=v.muted?tr('mute'):tr('sound')};document.getElementById('restartBtn').onclick=()=>{v.currentTime=0;v.play()};setLang('de');
+const v=document.getElementById('demoVideo');
+const play=document.getElementById('playBtn');
+const mute=document.getElementById('muteBtn');
+const restart=document.getElementById('restartBtn');
+let explanationMode=false;
+
+function updateVideoButtons(){
+  if(explanationMode){
+    play.textContent=v.paused?tr('resume'):tr('pause');
+  }else{
+    play.textContent=tr('play');
+  }
+  mute.textContent=v.muted?tr('sound'):tr('mute');
+}
+
+function startSilentLoop(restartFromBeginning=false){
+  explanationMode=false;
+  v.loop=true;
+  v.muted=true;
+
+  if(restartFromBeginning){
+    try{v.currentTime=0}catch(e){}
+  }
+
+  v.play().catch(()=>{});
+  updateVideoButtons();
+}
+
+function startExplanation(){
+  explanationMode=true;
+  v.loop=false;
+  v.muted=false;
+
+  try{v.currentTime=0}catch(e){}
+
+  v.play().catch(()=>{
+    startSilentLoop(false);
+  });
+
+  updateVideoButtons();
+}
+
+play.onclick=()=>{
+  if(!explanationMode){
+    startExplanation();
+    return;
+  }
+
+  if(v.paused){
+    v.play().catch(()=>{});
+  }else{
+    v.pause();
+  }
+
+  updateVideoButtons();
+};
+
+mute.onclick=()=>{
+  if(!explanationMode && v.muted){
+    startExplanation();
+    return;
+  }
+
+  v.muted=!v.muted;
+  updateVideoButtons();
+};
+
+restart.onclick=()=>{
+  try{v.currentTime=0}catch(e){}
+
+  if(explanationMode){
+    v.loop=false;
+    v.muted=false;
+  }else{
+    v.loop=true;
+    v.muted=true;
+  }
+
+  v.play().catch(()=>{});
+  updateVideoButtons();
+};
+
+v.addEventListener('play',updateVideoButtons);
+v.addEventListener('pause',updateVideoButtons);
+
+v.addEventListener('ended',()=>{
+  if(explanationMode){
+    startSilentLoop(true);
+  }
+});
+
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden && !explanationMode && v.paused){
+    startSilentLoop(false);
+  }
+});
+
+window.addEventListener('pageshow',()=>{
+  if(!explanationMode){
+    startSilentLoop(false);
+  }
+});
+
+setLang('de');
 </script>
 
 <style id="bda-four-demo-layout">
@@ -291,6 +459,205 @@ const v=document.getElementById('demoVideo'),play=document.getElementById('playB
  document.querySelectorAll("[data-bda-solutions-title]").forEach(e=>e.textContent=x.t);
  document.querySelectorAll("[data-bda-solutions-short]").forEach(e=>e.textContent=x.s)}
  a();new MutationObserver(a).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+})();
+</script>
+
+
+<style id="bda-demo-network-fixed-css">
+#bda-demo-network-fixed{
+  position:fixed;left:12px;bottom:14px;z-index:9998;
+  font-family:Inter,Segoe UI,Arial,sans-serif
+}
+#bda-demo-network-fixed *{box-sizing:border-box}
+.bda-net-button{
+  display:flex;align-items:center;gap:9px;min-height:49px;padding:11px 15px;
+  border:1px solid rgba(0,215,255,.30);border-radius:17px;
+  background:linear-gradient(135deg,rgba(5,22,36,.98),rgba(7,36,53,.98));
+  color:#eaffff;font:900 12px/1 Inter,Segoe UI,Arial,sans-serif;
+  cursor:pointer;box-shadow:0 18px 55px rgba(0,0,0,.48);
+}
+.bda-net-dot{
+  width:9px;height:9px;border-radius:50%;background:#57f5e9;
+  box-shadow:0 0 0 0 rgba(87,245,233,.5);animation:bdaNetPulse 1.8s infinite
+}
+@keyframes bdaNetPulse{70%{box-shadow:0 0 0 9px rgba(87,245,233,0)}}
+.bda-net-panel{
+  position:absolute;left:0;bottom:calc(100% + 10px);width:310px;padding:9px;
+  border:1px solid rgba(0,215,255,.25);border-radius:18px;
+  background:rgba(3,11,20,.99);box-shadow:0 25px 75px rgba(0,0,0,.56);
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);
+  transition:.2s ease
+}
+#bda-demo-network-fixed.open .bda-net-panel{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)
+}
+.bda-net-top{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:8px 8px 11px;border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:5px
+}
+.bda-net-top strong{font-size:12px;color:#dff9ff}
+.bda-net-top a{font-size:11px;color:#70ecff;text-decoration:none;font-weight:850}
+.bda-net-link{
+  display:flex;align-items:center;gap:11px;padding:11px;border-radius:12px;
+  color:#a9bfd2;text-decoration:none;font-size:12px;font-weight:850
+}
+.bda-net-link:hover,.bda-net-link:focus-visible{
+  color:#fff;background:rgba(0,215,255,.09);outline:none
+}
+.bda-net-link.current{
+  color:#9effee;background:linear-gradient(135deg,rgba(11,140,255,.18),rgba(0,215,255,.10));
+  box-shadow:inset 0 0 0 1px rgba(0,215,255,.18)
+}
+.bda-net-icon{
+  width:31px;height:31px;display:grid;place-items:center;
+  border:1px solid #1a405d;border-radius:10px;background:#071827;font-size:16px
+}
+.bda-net-copy b{display:block;font-size:12px}
+.bda-net-copy small{display:block;margin-top:3px;color:#718da5;font-size:10px;line-height:1.3}
+.bda-net-footer{display:flex;gap:7px;padding:8px 6px 3px}
+.bda-net-footer a{
+  flex:1;text-align:center;padding:8px;border-radius:10px;border:1px solid #173750;
+  color:#8fcce6;text-decoration:none;font-size:10px;font-weight:850
+}
+@media(max-width:620px){
+  #bda-demo-network-fixed{left:9px;bottom:9px}
+  .bda-net-panel{width:min(92vw,330px)}
+}
+@media print{#bda-demo-network-fixed{display:none!important}}
+</style>
+
+<div id="bda-demo-network-fixed">
+  <button class="bda-net-button" type="button" aria-expanded="false">
+    <span class="bda-net-dot"></span>
+    <span data-bda-net="button">4 Live-Demos</span>
+    <span aria-hidden="true">⌃</span>
+  </button>
+
+  <div class="bda-net-panel" role="navigation" aria-label="BDA Demo Network">
+    <div class="bda-net-top">
+      <strong>BDA Demo Network</strong>
+      <a href="https://barrydataanalytics.de/projekt-demo-live/demo/" data-bda-net="all">Alle ansehen →</a>
+    </div>
+
+    <a class="bda-net-link" href="https://barrydataanalytics.de/projekt-dashboard-demo/">
+      <span class="bda-net-icon">📊</span>
+      <span class="bda-net-copy"><b data-bda-net="reporting">Reporting-Demo</b><small data-bda-net="reportingSub">Kennzahlen und automatisiertes Reporting</small></span>
+    </a>
+
+    <a class="bda-net-link" href="https://barrydataanalytics.de/projekt-demo-live/business-prozess-demo/">
+      <span class="bda-net-icon">⚡</span>
+      <span class="bda-net-copy"><b data-bda-net="process">Business-Process-Demo</b><small data-bda-net="processSub">Anfrage bis Umsetzung</small></span>
+    </a>
+
+    <a class="bda-net-link" href="https://barrydataanalytics.de/projekt-demo-live/vier-saeulen-loesungsdemo/">
+      <span class="bda-net-icon">◫</span>
+      <span class="bda-net-copy"><b data-bda-net="solutions">Vier-Säulen-Lösungsdemo</b><small data-bda-net="solutionsSub">Leistungen im Gesamtüberblick</small></span>
+    </a>
+
+    <a class="bda-net-link current" href="https://barrydataanalytics.de/projekt-demo-live/crm-cockpit-demo/" aria-current="page">
+      <span class="bda-net-icon">◎</span>
+      <span class="bda-net-copy"><b data-bda-net="crm">CRM-Cockpit-Demo</b><small data-bda-net="crmSub">Kunden, Projekte und Finanzen</small></span>
+    </a>
+
+    <div class="bda-net-footer">
+      <a href="https://barrydataanalytics.de/" data-bda-net="home">Homepage</a>
+      <a href="https://barrydataanalytics.de/#contact" data-bda-net="contact">Kontakt</a>
+    </div>
+  </div>
+</div>
+
+<script id="bda-demo-network-fixed-js">
+(function(){
+  const root=document.getElementById("bda-demo-network-fixed");
+  if(!root)return;
+  const button=root.querySelector(".bda-net-button");
+
+  button.addEventListener("click",function(event){
+    event.stopPropagation();
+    const open=root.classList.toggle("open");
+    button.setAttribute("aria-expanded",String(open));
+  });
+
+  document.addEventListener("click",function(event){
+    if(!root.contains(event.target)){
+      root.classList.remove("open");
+      button.setAttribute("aria-expanded","false");
+    }
+  });
+
+  document.addEventListener("keydown",function(event){
+    if(event.key==="Escape"){
+      root.classList.remove("open");
+      button.setAttribute("aria-expanded","false");
+    }
+  });
+
+  const texts={
+    de:{
+      button:"4 Live-Demos",all:"Alle ansehen →",
+      reporting:"Reporting-Demo",reportingSub:"Kennzahlen und automatisiertes Reporting",
+      process:"Business-Process-Demo",processSub:"Anfrage bis Umsetzung",
+      solutions:"Vier-Säulen-Lösungsdemo",solutionsSub:"Leistungen im Gesamtüberblick",
+      crm:"CRM-Cockpit-Demo",crmSub:"Kunden, Projekte und Finanzen",
+      home:"Homepage",contact:"Kontakt"
+    },
+    en:{
+      button:"4 live demos",all:"View all →",
+      reporting:"Reporting demo",reportingSub:"KPIs and automated reporting",
+      process:"Business process demo",processSub:"Enquiry through delivery",
+      solutions:"Four-pillar solutions demo",solutionsSub:"Services in one overview",
+      crm:"CRM cockpit demo",crmSub:"Customers, projects and finance",
+      home:"Homepage",contact:"Contact"
+    },
+    fr:{
+      button:"4 démos en direct",all:"Tout voir →",
+      reporting:"Démo reporting",reportingSub:"Indicateurs et reporting automatisé",
+      process:"Démo processus métier",processSub:"De la demande à la réalisation",
+      solutions:"Démo solutions en quatre piliers",solutionsSub:"Services en une seule vue",
+      crm:"Démo cockpit CRM",crmSub:"Clients, projets et finances",
+      home:"Accueil",contact:"Contact"
+    }
+  };
+
+  function translate(){
+    const language=(document.documentElement.lang||"de").slice(0,2);
+    const t=texts[language]||texts.de;
+    root.querySelectorAll("[data-bda-net]").forEach(function(element){
+      const key=element.dataset.bdaNet;
+      if(t[key])element.textContent=t[key];
+    });
+  }
+
+  translate();
+  new MutationObserver(translate).observe(document.documentElement,{
+    attributes:true,attributeFilter:["lang"]
+  });
+})();
+</script>
+
+
+<script id="bda-auto-video-note">
+(function(){
+  const notes={
+    de:"Animation läuft automatisch ohne Ton",
+    en:"Animation runs automatically without sound",
+    fr:"L’animation tourne automatiquement sans son"
+  };
+
+  function update(){
+    const language=(document.documentElement.lang||"de").slice(0,2);
+    document.querySelectorAll("[data-auto-note]").forEach(function(element){
+      element.textContent=notes[language]||notes.de;
+    });
+  }
+
+  update();
+
+  new MutationObserver(update).observe(document.documentElement,{
+    attributes:true,
+    attributeFilter:["lang"]
+  });
 })();
 </script>
 
