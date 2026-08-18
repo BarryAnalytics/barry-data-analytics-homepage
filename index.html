@@ -8365,9 +8365,30 @@ function render(){
   close.setAttribute('aria-label',uiLang()==='fr'?'Fermer le chat':uiLang()==='en'?'Close chat':'Chat schließen');
   root.querySelector('.bda-chat-send').setAttribute('aria-label',uiLang()==='fr'?'Envoyer':uiLang()==='en'?'Send':'Senden');
 }
+function syncGreetingToSelectedLanguage(){
+  const l=uiLang();
+
+  /* Die oben gewählte Seitensprache ist auch Christins Standardsprache. */
+  conversationLang=l;
+
+  /* Solange der Besucher noch nichts geschrieben hat, darf die Begrüßung
+     beim Sprachwechsel vollständig in die neu gewählte Sprache wechseln. */
+  const hasUserMessage=!!messages.querySelector('.bda-msg.user');
+  if(!hasUserMessage){
+    messages.innerHTML='';
+    typingRow=null;
+    greeted=false;
+
+    if(opened){
+      addMessage('bot',cfg(l).greet,cfg(l).source,l);
+      greeted=true;
+    }
+  }
+}
+
 function openChat(){
   root.classList.add('open');root.classList.remove('teaser');launch.setAttribute('aria-expanded','true');opened=true;
-  if(!greeted){const l=uiLang();addMessage('bot',cfg(l).greet,cfg(l).source,l);greeted=true;}
+  if(!greeted){const l=uiLang();conversationLang=l;addMessage('bot',cfg(l).greet,cfg(l).source,l);greeted=true;}
   setTimeout(()=>input.focus(),80);
 }
 function closeChat(){root.classList.remove('open');launch.setAttribute('aria-expanded','false');opened=false;}
@@ -8385,7 +8406,10 @@ if(bdaCanHover){
 document.querySelectorAll('[data-open-bda-chat]').forEach(el=>el.addEventListener('click',openChat));
 form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;input.value='';sendQuestion(q);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&opened)closeChat();});
-new MutationObserver(()=>render()).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+new MutationObserver(()=>{
+  render();
+  syncGreetingToSelectedLanguage();
+}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 render();loadDemoKnowledge();setTimeout(()=>{if(!opened)root.classList.add('teaser');},1500);setTimeout(()=>root.classList.remove('teaser'),9000);
 })();
 </script>
