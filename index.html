@@ -8353,7 +8353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <section class="bda-chat-panel" role="dialog" aria-modal="false" aria-labelledby="bda-chat-title">
     <header class="bda-chat-head">
       <div class="bda-chat-avatar" data-bda-avatar><span>C</span></div>
-      <div class="bda-chat-head-copy"><b id="bda-chat-title">Christin</b><small id="bda-chat-subtitle"></small></div>
+      <div class="bda-chat-head-copy"><b id="bda-chat-title">Christine</b><small id="bda-chat-subtitle"></small></div>
       <button class="bda-chat-close" type="button" aria-label="Chat schließen">×</button>
     </header>
     <div class="bda-chat-knowledge"><span class="bda-chat-knowledge-dot" aria-hidden="true"></span><span id="bda-chat-knowledge-text"></span></div>
@@ -8367,7 +8367,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </section>
   <button class="bda-chat-launch" type="button" aria-expanded="false" aria-controls="bda-chat-title">
     <div class="bda-chat-avatar" data-bda-avatar><span>C</span></div>
-    <span class="bda-chat-launch-copy"><b id="bda-chat-launch-title">Christin</b><small id="bda-chat-launch-sub"></small></span>
+    <span class="bda-chat-launch-copy"><b id="bda-chat-launch-title">Christine</b><small id="bda-chat-launch-sub"></small></span>
     <span class="bda-chat-status-dot" aria-hidden="true"></span>
   </button>
 </div>
@@ -8388,6 +8388,40 @@ I18N.fr.knowledge='Base de connaissances : site BDA · déroulement projet · se
 Object.assign(I18N.de.answers,{demo:{text:'Barry Data & Analytics bietet verschiedene interaktive Demos für unterschiedliche Unternehmensfragen. Dazu gehören Power BI Intelligence, das Enterprise Command Center, das Excel Management Cockpit, Connected Data, das CRM Cockpit, Business Process und die Lösungsübersicht. Die Auswahl bleibt offen und kann künftig erweitert werden. Alle Demos arbeiten mit fiktiven Beispielwerten und ohne vertrauliche Kundendaten.',actions:[['Alle Demos','demo:all'],['Power BI','demo:powerbi'],['Enterprise','demo:enterprise'],['Connected Data','demo:connected'],['CRM','demo:crm']]},powerbidemo:{text:'Power BI Intelligence zeigt Umsatz, Profit, Forecast und priorisierte Managementinformationen in einer modernen Berichtssicht.',actions:[['Power BI Intelligence öffnen','demo:powerbi'],['Projektanfrage','#contact']]},enterprisedemo:{text:'Das Enterprise Command Center verbindet Standorte, Geschäftsbereiche, Projekte und Prioritäten. Filter und Detailansichten zeigen, wie eine gemeinsame Unternehmenssicht Entscheidungen unterstützt.',actions:[['Enterprise Command Center öffnen','demo:enterprise'],['Projektanfrage','#contact']]},exceldemo:{text:'Das Excel Management Cockpit zeigt, wie bestehende Excel- und Produktdaten strukturiert ausgewertet und zu einer klaren Managementsicht weiterentwickelt werden können.',actions:[['Excel Management Cockpit öffnen','demo:excel'],['Projektanfrage','#contact']]},connecteddemo:{text:'Connected Data zeigt den Weg von getrennten ERP-, CRM-, Excel-, CSV- und Microsoft-365-Daten zu einem automatisierten Informationsfluss und einer gemeinsamen Managementsicht.',actions:[['Connected Data öffnen','demo:connected'],['Projektanfrage','#contact']]}});
 Object.assign(I18N.en.answers,{demo:{text:'Barry Data & Analytics provides a growing collection of interactive demos for different business questions. They currently include Power BI Intelligence, the Enterprise Command Center, Excel Management Cockpit, Connected Data, CRM Cockpit, Business Process and the solutions overview. The collection remains open for future additions. All demos use fictional sample values and no confidential client data.',actions:[['All demos','demo:all'],['Power BI','demo:powerbi'],['Enterprise','demo:enterprise'],['Connected Data','demo:connected'],['CRM','demo:crm']]},powerbidemo:{text:'Power BI Intelligence presents revenue, profit, forecast and prioritised management information in a modern reporting view.',actions:[['Open Power BI Intelligence','demo:powerbi'],['Project enquiry','#contact']]},enterprisedemo:{text:'The Enterprise Command Center connects locations, departments, projects and priorities. Filters and detail views show how a shared company view supports decisions.',actions:[['Open Enterprise Command Center','demo:enterprise'],['Project enquiry','#contact']]},exceldemo:{text:'The Excel Management Cockpit shows how existing Excel and product data can be structured, analysed and developed into a clear management view.',actions:[['Open Excel Management Cockpit','demo:excel'],['Project enquiry','#contact']]},connecteddemo:{text:'Connected Data shows the journey from separate ERP, CRM, Excel, CSV and Microsoft 365 data to an automated information flow and one shared management view.',actions:[['Open Connected Data','demo:connected'],['Project enquiry','#contact']]}});
 Object.assign(I18N.fr.answers,{demo:{text:'Barry Data & Analytics propose une collection évolutive de démos interactives pour différentes questions d’entreprise. Elle comprend actuellement Power BI Intelligence, Enterprise Command Center, Excel Management Cockpit, Connected Data, CRM Cockpit, Business Process et la vue des solutions. Cette sélection reste ouverte aux futures démos. Toutes utilisent des valeurs fictives et aucune donnée client confidentielle.',actions:[['Toutes les démos','demo:all'],['Power BI','demo:powerbi'],['Enterprise','demo:enterprise'],['Connected Data','demo:connected'],['CRM','demo:crm']]},powerbidemo:{text:'Power BI Intelligence présente chiffre d’affaires, résultat, prévisions et informations prioritaires de direction dans une vue moderne.',actions:[['Ouvrir Power BI Intelligence','demo:powerbi'],['Demande de projet','#contact']]},enterprisedemo:{text:'Enterprise Command Center relie sites, services, projets et priorités. Les filtres et vues détaillées montrent comment une vision commune facilite les décisions.',actions:[['Ouvrir Enterprise Command Center','demo:enterprise'],['Demande de projet','#contact']]},exceldemo:{text:'Excel Management Cockpit montre comment structurer et analyser les données Excel et produits existantes pour créer une vision claire de management.',actions:[['Ouvrir Excel Management Cockpit','demo:excel'],['Demande de projet','#contact']]},connecteddemo:{text:'Connected Data montre le passage de données ERP, CRM, Excel, CSV et Microsoft 365 séparées à un flux automatisé et une vision commune de management.',actions:[['Ouvrir Connected Data','demo:connected'],['Demande de projet','#contact']]}});
+
+/* Complete, future-ready demo catalogue. The number is deliberately not used in copy. */
+Object.assign(I18N.de.answers,{
+  demo:{text:'Unsere aktuellen interaktiven Demos zeigen unterschiedliche Perspektiven auf Daten, Reporting und digitale Geschäftsabläufe:\n\n• Power BI Intelligence – Umsatz, Ergebnis und Forecast\n• Enterprise Command Center – Standorte, Bereiche, Projekte und Entscheidungen\n• Excel Management Cockpit – Produktdaten und kommerzielle Steuerung\n• Connected Data – ERP, CRM, Excel, CSV und Microsoft 365 verbinden\n• Business Process – vom Erstkontakt bis zur Umsetzung\n• Lösungsübersicht – Leistungen im Gesamtbild\n• CRM Cockpit – Kunden, Projekte, Angebote und Rechnungen\n• Interaktive Reporting-Demo – geführte Managementsicht mit Audio\n\nAlle Beispiele verwenden fiktive Daten. Wenn Ihr konkreter Anwendungsfall noch nicht gezeigt wird, kann Barry Data & Analytics die passende Lösung individuell einordnen.',actions:[['Alle aktuellen Demos','demo:all'],['Demo empfehlen','@demorecommend'],['Direkt Kontakt aufnehmen','@contact']]},
+  reportingdemo:{text:'Die interaktive Reporting-Demo führt mit Audio durch eine Vorher-Nachher-Geschichte: von verteilten Dateien und manuellen Berichten zu einer verständlichen Managementsicht.',actions:[['Reporting-Demo öffnen','demo:reporting'],['Alle Demos','demo:all']]},
+  processdemo:{text:'Die Business-Process-Demo zeigt einen vollständigen Geschäftsablauf vom Erstkontakt über Analyse und Angebot bis zur Umsetzung und Rückmeldung.',actions:[['Business-Process-Demo öffnen','demo:process'],['Alle Demos','demo:all']]},
+  solutionsdemo:{text:'Die Lösungsübersicht ordnet Data Analytics, Reporting, Automatisierung und digitale Business-Tools in einem gemeinsamen Gesamtbild ein.',actions:[['Lösungsübersicht öffnen','demo:solutions'],['Alle Demos','demo:all']]},
+  crmdemo:{text:'Das CRM Cockpit zeigt Kunden, Projekte, Angebote, Rechnungen, Status und nächste Schritte in einer zentralen Arbeitsoberfläche.',actions:[['CRM Cockpit öffnen','demo:crm'],['Alle Demos','demo:all']]}
+});
+Object.assign(I18N.en.answers,{
+  demo:{text:'Our current interactive demos present different perspectives on data, reporting and digital business processes:\n\n• Power BI Intelligence – revenue, profit and forecast\n• Enterprise Command Center – locations, departments, projects and decisions\n• Excel Management Cockpit – product data and commercial steering\n• Connected Data – connecting ERP, CRM, Excel, CSV and Microsoft 365\n• Business Process – from first enquiry through delivery\n• Solutions Overview – services in one connected picture\n• CRM Cockpit – customers, projects, quotations and invoices\n• Interactive Reporting Demo – a guided management view with audio\n\nAll examples use fictional data. If your specific use case is not represented yet, Barry Data & Analytics can assess it individually.',actions:[['View all current demos','demo:all'],['Recommend a demo','@demorecommend'],['Contact us','@contact']]},
+  reportingdemo:{text:'The Interactive Reporting Demo uses audio to guide visitors through a before-and-after story, from scattered files and manual reports to a clear management view.',actions:[['Open Reporting Demo','demo:reporting'],['All demos','demo:all']]},
+  processdemo:{text:'The Business Process Demo shows an end-to-end workflow from the first enquiry through analysis and quotation to delivery and feedback.',actions:[['Open Business Process Demo','demo:process'],['All demos','demo:all']]},
+  solutionsdemo:{text:'The Solutions Overview brings Data Analytics, reporting, automation and digital business tools together in one coherent picture.',actions:[['Open Solutions Overview','demo:solutions'],['All demos','demo:all']]},
+  crmdemo:{text:'The CRM Cockpit brings customers, projects, quotations, invoices, status and next actions into one central workspace.',actions:[['Open CRM Cockpit','demo:crm'],['All demos','demo:all']]}
+});
+Object.assign(I18N.fr.answers,{
+  demo:{text:'Nos démos interactives actuelles présentent différentes perspectives sur les données, le reporting et les processus digitaux :\n\n• Power BI Intelligence – chiffre d’affaires, résultat et prévisions\n• Enterprise Command Center – sites, services, projets et décisions\n• Excel Management Cockpit – données produits et pilotage commercial\n• Connected Data – connexion d’ERP, CRM, Excel, CSV et Microsoft 365\n• Business Process – de la première demande à la réalisation\n• Vue des solutions – les services dans une vision commune\n• CRM Cockpit – clients, projets, offres et factures\n• Démo Reporting interactive – vue de management guidée avec audio\n\nTous les exemples utilisent des données fictives. Si votre cas d’usage n’est pas encore représenté, Barry Data & Analytics peut l’étudier individuellement.',actions:[['Voir toutes les démos','demo:all'],['Recommander une démo','@demorecommend'],['Nous contacter','@contact']]},
+  reportingdemo:{text:'La démo Reporting interactive utilise l’audio pour présenter un parcours avant-après, de fichiers dispersés et rapports manuels à une vue claire de management.',actions:[['Ouvrir la démo Reporting','demo:reporting'],['Toutes les démos','demo:all']]},
+  processdemo:{text:'La démo Business Process présente un processus complet, de la première demande à l’analyse, l’offre, la réalisation et le retour.',actions:[['Ouvrir Business Process','demo:process'],['Toutes les démos','demo:all']]},
+  solutionsdemo:{text:'La vue des solutions réunit Data Analytics, reporting, automatisation et outils métier digitaux dans un ensemble cohérent.',actions:[['Ouvrir la vue des solutions','demo:solutions'],['Toutes les démos','demo:all']]},
+  crmdemo:{text:'Le CRM Cockpit réunit clients, projets, offres, factures, statuts et prochaines actions dans un espace central.',actions:[['Ouvrir le CRM Cockpit','demo:crm'],['Toutes les démos','demo:all']]}
+});
+
+/* The assistant's public name is Christine in every language and every generated message. */
+Object.values(I18N).forEach(language=>{
+  const rename=value=>{
+    if(typeof value==='string')return value.replace(/Christin(?!e)/g,'Christine');
+    if(Array.isArray(value))return value.map(rename);
+    if(value&&typeof value==='object')Object.keys(value).forEach(key=>value[key]=rename(value[key]));
+    return value;
+  };
+  rename(language);
+});
 
 I18N.de.answers.powerbi.actions=[['Power BI Intelligence','demo:powerbi'],['Projektanfrage','#contact']];I18N.de.answers.excel.actions=[['Excel Management Cockpit','demo:excel'],['Connected Data','demo:connected'],['Projektanfrage','#contact']];I18N.de.answers.existing.actions=[['Connected Data ansehen','demo:connected'],['Projektanfrage','#contact']];
 I18N.en.answers.powerbi.actions=[['Power BI Intelligence','demo:powerbi'],['Project enquiry','#contact']];I18N.en.answers.excel.actions=[['Excel Management Cockpit','demo:excel'],['Connected Data','demo:connected'],['Project enquiry','#contact']];I18N.en.answers.existing.actions=[['View Connected Data','demo:connected'],['Project enquiry','#contact']];
@@ -8415,10 +8449,10 @@ async function loadDemoKnowledge(){
 const avatarSrc=(root.dataset.avatarSrc||'').trim();
 function avatarImg(className){
   const d=document.createElement('div');d.className=className;
-  if(avatarSrc){const img=document.createElement('img');img.src=avatarSrc;img.alt='Christin – Barry Data & Analytics';d.appendChild(img);}
+  if(avatarSrc){const img=document.createElement('img');img.src=avatarSrc;img.alt='Christine – Barry Data & Analytics';d.appendChild(img);}
   return d;
 }
-if(avatarSrc){root.querySelectorAll('[data-bda-avatar]').forEach(a=>{const img=document.createElement('img');img.src=avatarSrc;img.alt='Christin – Barry Data & Analytics';img.addEventListener('error',()=>{a.textContent='C';},{once:true});a.innerHTML='';a.appendChild(img);});}
+if(avatarSrc){root.querySelectorAll('[data-bda-avatar]').forEach(a=>{const img=document.createElement('img');img.src=avatarSrc;img.alt='Christine – Barry Data & Analytics';img.addEventListener('error',()=>{a.textContent='C';},{once:true});a.innerHTML='';a.appendChild(img);});}
 
 function uiLang(){const l=(document.documentElement.lang||'de').slice(0,2).toLowerCase();return I18N[l]?l:'de';}
 function cfg(l){return I18N[l||uiLang()]||I18N.de;}
@@ -8461,7 +8495,7 @@ function addMessage(who,payload,sourceLabel,answerLang){
   const row=document.createElement('div');row.className='bda-msg '+who;
   if(who==='bot'&&avatarSrc)row.appendChild(avatarImg('bda-msg-mini-avatar'));
   const wrap=document.createElement('div');wrap.className='bda-msg-wrap';
-  if(who==='bot'){const label=document.createElement('div');label.className='bda-msg-label';label.textContent='Christin';wrap.appendChild(label);}
+  if(who==='bot'){const label=document.createElement('div');label.className='bda-msg-label';label.textContent='Christine';wrap.appendChild(label);}
   const bubble=document.createElement('div');bubble.className='bda-msg-bubble';bubble.textContent=data.text||'';wrap.appendChild(bubble);
   if(Array.isArray(data.actions)){const actions=document.createElement('div');actions.className='bda-msg-actions';data.actions.forEach(x=>actions.appendChild(createAction(x[0],x[1],answerLang)));wrap.appendChild(actions);}
   if(who==='bot'){const source=document.createElement('div');source.className='bda-msg-source';source.textContent=sourceLabel||cfg(answerLang).source;wrap.appendChild(source);}
@@ -8473,7 +8507,7 @@ function showTyping(){
   typingRow=document.createElement('div');typingRow.className='bda-msg bot';
   if(avatarSrc)typingRow.appendChild(avatarImg('bda-msg-mini-avatar'));
   const wrap=document.createElement('div');wrap.className='bda-msg-wrap';
-  const label=document.createElement('div');label.className='bda-msg-label';label.textContent='Christin';wrap.appendChild(label);
+  const label=document.createElement('div');label.className='bda-msg-label';label.textContent='Christine';wrap.appendChild(label);
   const dots=document.createElement('div');dots.className='bda-chat-typing';dots.innerHTML='<i></i><i></i><i></i>';wrap.appendChild(dots);
   typingRow.appendChild(wrap);messages.appendChild(typingRow);messages.scrollTop=messages.scrollHeight;
 }
@@ -8571,8 +8605,63 @@ function advisoryFallbackPayload(lang,q){
 }
 function diversifyPayload(topic,lang,payload){if(!payload||!payload.text)return payload;const sig=lang+'|'+topic+'|'+payload.text;if(sig!==lastReplySignature){lastReplySignature=sig;return payload;}replyCounter++;const lead={de:['Anders eingeordnet: ','Aus einer zweiten Perspektive: ','Praktisch betrachtet: '],en:['Another way to look at it: ','From a second perspective: ','Practically speaking: '],fr:['Autrement dit : ','Sous un autre angle : ','En pratique : ']}[lang]||[''];return Object.assign({},payload,{text:lead[replyCounter%lead.length]+payload.text});}
 
+function demoRecommendationPayload(lang,question){
+  const q=normalize(question||'');
+  const asksRecommendation=/\b(empfehl|passende demo|welche demo|recommend|best demo|which demo|suitable demo|conseill|quelle demo|démo adaptée)\b/.test(q);
+  if(!asksRecommendation)return null;
+  const candidates=[
+    {key:'connected',score:/\b(erp|csv|schnittstelle|integration|datenquelle|data source|systeme verbinden|connected data|sharepoint|microsoft 365|mehrere systeme|multiple systems|systemes|sources de donnees)\b/g},
+    {key:'crm',score:/\b(crm|kunde|kunden|customer|client|pipeline|angebot|quotation|invoice|rechnung|lead|vertriebskontakt)\b/g},
+    {key:'process',score:/\b(prozess|workflow|freigabe|approval|automatis|process|ablauf|handoff|übergabe|processus|automatisation)\b/g},
+    {key:'excel',score:/\b(excel|power query|produktdaten|product data|tabellen|spreadsheet|commercial steering)\b/g},
+    {key:'enterprise',score:/\b(standort|location|site|abteilung|department|bereich|projektportfolio|organisation|region|filiale|branch)\b/g},
+    {key:'powerbi',score:/\b(power bi|umsatz|revenue|profit|marge|margin|forecast|sales performance|vertriebsleistung)\b/g},
+    {key:'reporting',score:/\b(reporting|bericht|report|kennzahl|kpi|managementsicht|dashboard|audio|vorher nachher|before after)\b/g},
+    {key:'solutions',score:/\b(leistungen|services|gesamtüberblick|overview|was bietet|what do you offer|solution|solutions)\b/g}
+  ];
+  let best='reporting',bestScore=0;
+  candidates.forEach(item=>{const matches=q.match(item.score);const score=matches?matches.length:0;if(score>bestScore){best=item.key;bestScore=score;}});
+  const copy={
+    de:{
+      connected:['Für Ihre beschriebene Situation empfehle ich zuerst Connected Data. Die Demo zeigt, wie ERP, CRM, Excel, CSV und Microsoft 365 verbunden, automatisiert aufbereitet und in eine gemeinsame Managementsicht überführt werden können. Die bestehenden Systeme müssen dafür nicht automatisch ersetzt werden.','Connected Data öffnen'],
+      crm:['Für Ihr Thema empfehle ich zuerst das CRM Cockpit. Die Demo zeigt, wie Kunden, Projekte, Angebote, Rechnungen, Status und nächste Schritte zentral zusammengeführt werden.','CRM Cockpit öffnen'],
+      process:['Für Ihren beschriebenen Ablauf empfehle ich zuerst die Business-Process-Demo. Sie zeigt den Weg vom Erstkontakt über Analyse und Angebot bis zur Umsetzung und Rückmeldung.','Business-Process-Demo öffnen'],
+      excel:['Für Ihre Arbeit mit Tabellen und Produktdaten empfehle ich zuerst das Excel Management Cockpit. Es zeigt, wie bestehende Excel-Strukturen zu einer verständlichen und besser steuerbaren Managementsicht werden.','Excel Management Cockpit öffnen'],
+      enterprise:['Für eine Sicht über Standorte, Bereiche oder Projekte empfehle ich zuerst das Enterprise Command Center. Filter und Detailansichten machen untergeordnete Einheiten und Prioritäten sichtbar.','Enterprise Command Center öffnen'],
+      powerbi:['Für Umsatz, Ergebnis, Forecast und Vertriebssteuerung empfehle ich zuerst Power BI Intelligence. Die Demo bündelt zentrale Kennzahlen und Entwicklungen in einer modernen Berichtssicht.','Power BI Intelligence öffnen'],
+      reporting:['Als breiten Einstieg empfehle ich die interaktive Reporting-Demo. Sie zeigt verständlich, wie aus verteilten Daten und manuellen Berichten eine klare Managementsicht entsteht. Die Beispiele sind branchenübergreifend und können auf unterschiedliche Unternehmensbereiche übertragen werden.','Reporting-Demo öffnen'],
+      solutions:['Für einen ersten Gesamtüberblick empfehle ich die Lösungsübersicht. Sie ordnet Data Analytics, Reporting, Automatisierung und digitale Business-Tools gemeinsam ein.','Lösungsübersicht öffnen']
+    },
+    en:{
+      connected:['For the situation you described, I recommend starting with Connected Data. It shows how ERP, CRM, Excel, CSV and Microsoft 365 can be connected, prepared automatically and brought into one management view without automatically replacing existing systems.','Open Connected Data'],
+      crm:['For your topic, I recommend starting with the CRM Cockpit. It brings customers, projects, quotations, invoices, status and next actions into one central workspace.','Open CRM Cockpit'],
+      process:['For the workflow you described, I recommend starting with the Business Process Demo. It shows the journey from first enquiry through analysis and quotation to delivery and feedback.','Open Business Process Demo'],
+      excel:['For work involving spreadsheets and product data, I recommend starting with the Excel Management Cockpit. It shows how existing Excel structures can become a clearer management view.','Open Excel Management Cockpit'],
+      enterprise:['For visibility across locations, departments or projects, I recommend starting with the Enterprise Command Center. Its filters and detail views make business units and priorities visible.','Open Enterprise Command Center'],
+      powerbi:['For revenue, profit, forecast and sales performance, I recommend starting with Power BI Intelligence. It brings key figures and developments into a modern reporting view.','Open Power BI Intelligence'],
+      reporting:['As a broad starting point, I recommend the Interactive Reporting Demo. It clearly shows how scattered data and manual reports can become a structured management view. The example is cross-industry and can be adapted to different business areas.','Open Reporting Demo'],
+      solutions:['For an initial overview, I recommend the Solutions Overview. It brings Data Analytics, reporting, automation and digital business tools together in one picture.','Open Solutions Overview']
+    },
+    fr:{
+      connected:["Pour la situation décrite, je recommande d’abord Connected Data. Cette démo montre comment relier ERP, CRM, Excel, CSV et Microsoft 365, automatiser la préparation et créer une vue commune sans remplacer automatiquement les systèmes existants.",'Ouvrir Connected Data'],
+      crm:["Pour votre sujet, je recommande d’abord le CRM Cockpit. Il réunit clients, projets, offres, factures, statuts et prochaines actions dans un espace central.",'Ouvrir le CRM Cockpit'],
+      process:["Pour le processus décrit, je recommande d’abord la démo Business Process. Elle présente le parcours de la première demande jusqu’à l’analyse, l’offre, la réalisation et le retour.",'Ouvrir Business Process'],
+      excel:["Pour le travail avec tableaux et données produits, je recommande d’abord Excel Management Cockpit. Il montre comment transformer des structures Excel existantes en une vue de management plus claire.",'Ouvrir Excel Management Cockpit'],
+      enterprise:["Pour une visibilité sur plusieurs sites, services ou projets, je recommande d’abord Enterprise Command Center. Ses filtres et vues détaillées rendent les unités et priorités visibles.",'Ouvrir Enterprise Command Center'],
+      powerbi:["Pour le chiffre d’affaires, le résultat, les prévisions et la performance commerciale, je recommande d’abord Power BI Intelligence.",'Ouvrir Power BI Intelligence'],
+      reporting:["Comme point de départ général, je recommande la démo Reporting interactive. Elle montre clairement comment passer de données dispersées et rapports manuels à une vue structurée de management. L’exemple est transversal et adaptable à différents secteurs.",'Ouvrir la démo Reporting'],
+      solutions:["Pour une première vue d’ensemble, je recommande la vue des solutions. Elle réunit Data Analytics, reporting, automatisation et outils métier digitaux.",'Ouvrir la vue des solutions']
+    }
+  };
+  const item=(copy[lang]||copy.de)[best];
+  const contact=lang==='fr'?'Votre secteur ou cas précis peut également être étudié directement.':lang==='en'?'Your specific industry or use case can also be assessed directly.':'Auch Ihre konkrete Branche oder ein noch nicht gezeigter Anwendungsfall kann direkt eingeordnet werden.';
+  const contactLabel=lang==='fr'?'Contacter Barry Data & Analytics':lang==='en'?'Contact Barry Data & Analytics':'Barry Data & Analytics kontaktieren';
+  return{topic:'demo-recommendation',payload:{text:item[0]+'\n\n'+contact,actions:[[item[1],'demo:'+best],[(lang==='fr'?'Toutes les démos':lang==='en'?'All demos':'Alle Demos'),'demo:all'],[contactLabel,'mailto:info@barrydataanalytics.de?subject=Demo%20und%20Projektanfrage']]}};
+}
+
 function getAnswer(key,q,answerLang){
   const c=cfg(answerLang);
+  const recommendation=demoRecommendationPayload(answerLang,q);if(recommendation)return{payload:recommendation.payload,source:c.source,topic:recommendation.topic,label:'Demo'};
   const follow=followUpPayload(answerLang,q);if(follow)return{payload:follow.payload,source:c.source,topic:follow.topic,label:lastTopicLabel};
   const contextual=contextualFollowUpPayload(answerLang,q);if(contextual)return{payload:contextual.payload,source:c.source,topic:contextual.topic,label:lastTopicLabel};
   const expert=expertPayload(answerLang,q);if(expert)return{payload:expert.payload,source:c.source,topic:'expert:'+expert.topic,label:expert.topic};
