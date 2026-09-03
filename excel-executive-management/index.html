@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interaktives Product & Commercial Intelligence Command Center von Barry Data & Analytics.">
+<title>Product & Commercial Intelligence Command Center | Barry Data & Analytics</title>
+<style>
+:root{
+  --bg:#02060b;--bg2:#07101a;--panel:#091522;--panel2:#0d1b2a;--panel3:#102234;
+  --line:#17364b;--line2:#23526d;--cyan:#00d8e8;--blue:#2d78ff;--violet:#9b5cff;
+  --pink:#e14be6;--green:#31d17c;--amber:#ffb54a;--red:#ff6177;--text:#f6fbff;
+  --muted:#8fa6b7;--soft:#60798c;--shadow:0 24px 70px rgba(0,0,0,.42);--radius:17px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;padding-bottom:92px;background:
+ radial-gradient(circle at 84% -15%,rgba(0,216,232,.14),transparent 28%),
+ radial-gradient(circle at 8% 25%,rgba(155,92,255,.10),transparent 24%),
+ linear-gradient(180deg,#010409,#030910 58%,#02060b);
+ color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.055;background-image:
+ linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:34px 34px}
+button,select,input{font:inherit}button{cursor:pointer}
+.shell{display:grid;grid-template-columns:82px minmax(0,1fr);min-height:100vh}
+.rail{position:fixed;left:0;top:0;bottom:0;width:82px;z-index:50;background:rgba(2,7,13,.95);
+ border-right:1px solid var(--line);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;padding:15px 10px}
+.logo{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:#071d2b;border:1px solid #1f5572;
+ box-shadow:0 0 28px rgba(0,216,232,.20);margin-bottom:22px;overflow:hidden}.logo img{width:46px;height:46px;object-fit:cover;object-position:left center}
+.rbtn{width:48px;height:48px;border:1px solid transparent;background:transparent;color:#7690a3;border-radius:13px;margin:4px 0;font-size:19px}
+.rbtn:hover,.rbtn.active{background:#0d1b29;color:white;border-color:#20475f;box-shadow:inset 3px 0 0 var(--cyan)}
+.spacer{flex:1}.main{grid-column:2;padding:14px 16px 42px;min-width:0}
+.topbar{position:sticky;top:8px;z-index:40;display:flex;align-items:center;gap:16px;min-height:72px;padding:10px 13px;
+ background:rgba(4,10,17,.90);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 42px rgba(0,0,0,.34)}
+.brand{min-width:280px}.brand b{display:block;font-size:16px}.brand span{display:block;margin-top:4px;color:var(--cyan);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.tabs{display:flex;gap:4px;overflow:auto;flex:1}.tab{border:1px solid transparent;background:transparent;color:#94a9b8;border-radius:11px;padding:10px 13px;font-size:11px;white-space:nowrap}
+.tab.active,.tab:hover{color:white;background:#0e2030;border-color:#1f4b64}
+.topActions{display:flex;gap:7px}.auto,.lang{border:1px solid var(--line2);border-radius:11px;padding:9px 11px;background:#081522;color:#b9cad5;font-size:10px}
+.auto{border:0;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00151a;font-weight:900}
+.auto.running{box-shadow:0 0 0 2px rgba(0,216,232,.35),0 0 28px rgba(0,216,232,.24)}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(360px,.65fr);gap:12px;margin:14px 0}
+.card,.panel,.filterRail{border:1px solid var(--line);background:linear-gradient(145deg,rgba(11,25,39,.96),rgba(5,12,20,.97));box-shadow:var(--shadow)}
+.heroMain{border-radius:18px;padding:22px 24px;position:relative;overflow:hidden}
+.heroMain:after{content:"";position:absolute;width:430px;height:430px;border:1px solid rgba(0,216,232,.13);border-radius:50%;right:-235px;top:-260px;box-shadow:0 0 90px rgba(0,216,232,.08)}
+.eye{color:var(--cyan);font-size:9px;text-transform:uppercase;letter-spacing:.18em;font-weight:800}
+h1{font-size:clamp(28px,3vw,48px);line-height:1.03;letter-spacing:-.045em;margin:10px 0 8px}
+.heroMain p{margin:0;color:var(--muted);font-size:12px;line-height:1.55;max-width:980px}
+.heroPills{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.heroPills span{border:1px solid var(--line);border-radius:999px;background:#07131f;padding:6px 9px;color:#8199aa;font-size:9px}
+.heroSide{border-radius:18px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.health{grid-row:span 2;border-right:1px solid var(--line);padding-right:14px}.health small,.mini{display:block;color:#6d879a;font-size:9px;text-transform:uppercase;letter-spacing:.13em}
+.health strong{font-size:54px;display:block;margin:4px 0}.health em{font-style:normal;color:var(--green);font-size:10px}
+.sideBox{border:1px solid var(--line);border-radius:11px;background:#081521;padding:10px}.sideBox b{display:block;font-size:11px;margin-top:4px}.sideBox span{font-size:9px;color:var(--muted);display:block;margin-top:4px}
+
+.activeStrip{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);background:#06111b;border-radius:13px}
+.activeStrip>span{color:#6d8799;font-size:9px;text-transform:uppercase;letter-spacing:.12em}.chip{border:1px solid #1f4a62;background:#0a1b29;color:#bcd0dc;border-radius:999px;padding:6px 9px;font-size:9px}
+.chip strong{color:var(--cyan);font-weight:800}.clearAll{margin-left:auto;border:1px solid #24556e;background:#0b1c29;color:var(--cyan);border-radius:9px;padding:7px 10px;font-size:9px;font-weight:800}
+
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:12px;align-items:start}
+.filterRail{position:sticky;top:94px;border-radius:17px;padding:14px;max-height:calc(100vh - 112px);overflow:auto}
+.filterRail::-webkit-scrollbar{width:7px}.filterRail::-webkit-scrollbar-thumb{background:#1d4358;border-radius:10px}
+.filterHead{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.filterHead b{font-size:12px}.filterHead span{color:var(--cyan);font-size:9px}
+.filterGroup{padding:11px 0;border-bottom:1px solid rgba(23,54,75,.72)}.filterGroup:last-child{border-bottom:0}
+.filterGroup label{display:block;color:#698397;font-size:8px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+.sel,.searchBox{width:100%;border:1px solid var(--line);background:#0a1825;color:white;border-radius:8px;padding:9px 10px;font-size:9px;outline:none}
+.sel:focus,.searchBox:focus{border-color:var(--cyan)}
+.rangeWrap{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.rangeWrap input{width:100%;accent-color:var(--cyan)}.rangeValue{color:var(--cyan);font-size:9px;font-weight:800}
+.toggleRow{display:grid;grid-template-columns:1fr 1fr;gap:6px}.toggle{border:1px solid var(--line);background:#081521;color:#8fa4b4;border-radius:8px;padding:8px;font-size:9px;text-align:center}.toggle.active{border-color:var(--cyan);background:rgba(0,216,232,.09);color:white}
+.content{min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;margin-bottom:10px}
+.kpi{min-height:118px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#0b1724,#07111b);padding:14px;position:relative;overflow:hidden;transition:.25s}
+.kpi:before{content:"";position:absolute;left:0;top:0;width:56%;height:2px;background:linear-gradient(90deg,var(--cyan),transparent)}.kpi:nth-child(2):before,.kpi:nth-child(5):before{background:linear-gradient(90deg,var(--violet),transparent)}
+.kpi:nth-child(3):before{background:linear-gradient(90deg,var(--green),transparent)}
+.kpi:hover{transform:translateY(-2px);border-color:#2a5c76}.khead{display:flex;justify-content:space-between;color:#8ca3b4;font-size:9px}.kvalue{font-size:23px;font-weight:900;margin:15px 0 6px;letter-spacing:-.035em}.delta{font-size:9px;color:var(--green)}.delta.warn{color:var(--amber)}.delta.down{color:var(--red)}
+.spark{height:20px;margin-top:7px}.spark svg{width:100%;height:100%}.spark polyline{fill:none;stroke:var(--cyan);stroke-width:2}.spark.v polyline{stroke:var(--violet)}.spark.g polyline{stroke:var(--green)}
+.gridTop{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(340px,.75fr);gap:10px}
+.stack{display:grid;gap:10px}.panel{border-radius:15px;padding:15px;min-width:0}
+.phead{display:flex;justify-content:space-between;gap:10px;margin-bottom:11px}.ptitle small{display:block;color:var(--cyan);font-size:8px;text-transform:uppercase;letter-spacing:.13em}.ptitle h2{font-size:14px;margin:4px 0 0}.ptitle p{font-size:9px;color:var(--muted);margin:4px 0 0}
+.segmented{display:flex;gap:4px;border:1px solid var(--line);padding:3px;border-radius:8px;background:#06111b}.segBtn{border:0;background:transparent;color:#728b9d;border-radius:6px;padding:6px 8px;font-size:8px}.segBtn.active{background:#112537;color:white}
+.chart{height:285px}.chart svg{width:100%;height:100%}.gridline{stroke:#173146;stroke-width:1}.axis{fill:#627e90;font-size:9px}.area{fill:url(#areaG)}.line{fill:none;stroke:var(--cyan);stroke-width:3;filter:drop-shadow(0 0 7px rgba(0,216,232,.48))}.forecast{fill:none;stroke:var(--violet);stroke-width:2.3;stroke-dasharray:8 7}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bars{display:flex;align-items:flex-end;gap:9px;height:176px;padding:10px 5px 22px}.barCol{flex:1;text-align:center;font-size:8px;color:#7590a3;position:relative}.barCol i{display:block;height:var(--h);border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--violet),var(--pink));box-shadow:0 0 15px rgba(155,92,255,.14)}.barCol strong{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% - var(--h) - 16px);font-size:8px;color:#d8e4ec;white-space:nowrap}.barCol span{display:block;margin-top:6px}
+.donutWrap{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:center;min-height:170px}.donut{width:122px;height:122px;border-radius:50%;position:relative;background:conic-gradient(var(--violet) 0 46%,var(--blue) 46% 78%,var(--cyan) 78% 100%)}.donut:after{content:"";position:absolute;inset:27px;background:#08131f;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line)}.dcenter{position:absolute;inset:27px;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:900;line-height:1;text-align:center;white-space:nowrap}.dcenter strong{font-size:13px;color:#fff}.dcenter span{font-size:7px;color:#8ba2b2;font-weight:650}
+.legend{display:grid;gap:8px}.lrow{display:grid;grid-template-columns:9px 1fr auto;gap:7px;align-items:center;font-size:9px;color:#9bb0bf}.lrow i{width:7px;height:7px;border-radius:50%}
+.matrix{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;min-height:170px;align-content:center}.cell{height:32px;border:1px solid #173147;border-radius:5px;background:#0a1724}.h1{background:#112637}.h2{background:#14334a}.h3{background:#12485d}.h4{background:#0b6577}.h5{background:#0296a3;box-shadow:0 0 14px rgba(0,216,232,.16)}
+.productTable{width:100%;border-collapse:collapse;font-size:8px}.productTable th{text-align:left;color:#698497;font-weight:700;text-transform:uppercase;letter-spacing:.09em;padding:8px;border-bottom:1px solid var(--line)}.productTable td{padding:8px;border-bottom:1px solid rgba(23,54,75,.5);color:#c1d0da}.productTable tr:hover td{background:#0c1d2b}.badge{display:inline-block;border:1px solid #24536b;border-radius:999px;padding:3px 6px;font-size:7px}.good{color:var(--green)}.risk{color:var(--red)}.warn{color:var(--amber)}
+.insights{display:grid;gap:8px}.insight{display:grid;grid-template-columns:34px 1fr auto;gap:8px;align-items:center;border:1px solid #17394f;background:#0a1825;border-radius:11px;padding:9px}.ibadge{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:rgba(0,216,232,.10);color:var(--cyan);font-weight:900}.insight b{font-size:10px}.insight p{font-size:8px;color:var(--muted);margin:3px 0 0;line-height:1.35}.impact{font-size:8px;color:var(--green);border:1px solid rgba(49,209,124,.25);border-radius:999px;padding:4px 6px}
+.action{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(0,216,232,.28);background:rgba(0,216,232,.055);border-radius:11px;padding:11px}.action b{font-size:10px}.action p{font-size:8px;color:var(--muted);margin:3px 0 0}.action button{border:0;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00151a;padding:9px 11px;font-size:8px;font-weight:900}
+.footer{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:#5f7a8c;font-size:8px}
+.cursor{position:fixed;left:0;top:0;width:30px;height:42px;z-index:130;pointer-events:none;opacity:1;transform:translate(46vw,34vh);transition:transform 1.02s cubic-bezier(.22,.8,.25,1);filter:drop-shadow(0 6px 10px rgba(0,0,0,.9))}
+.cursor svg{width:100%;height:100%}.ring{position:fixed;width:18px;height:18px;border:2px solid var(--cyan);border-radius:50%;z-index:129;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.4)}.ring.fire{animation:ring .65s ease-out}
+.caption{position:fixed;left:50%;bottom:26px;z-index:125;transform:translate(-50%,24px);opacity:0;max-width:min(820px,88vw);padding:12px 18px;border:1px solid rgba(0,216,232,.45);border-radius:14px;background:rgba(3,11,19,.94);box-shadow:0 20px 60px rgba(0,0,0,.55);font-size:12px;font-weight:800;text-align:center;transition:.35s}.caption.show{opacity:1;transform:translate(-50%,0)}.caption span{color:#61f7ff}.focus{position:relative;z-index:4;box-shadow:0 0 0 2px var(--cyan),0 0 34px rgba(0,216,232,.36)!important}.flash{animation:flash .75s ease}
+@keyframes ring{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(-50%,-50%) scale(3.7)}}@keyframes flash{35%{filter:brightness(1.4)}}
+@media(max-width:1450px){.kpis{grid-template-columns:repeat(3,1fr)}.gridTop{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.grid3>.panel:last-child{grid-column:span 2}}
+@media(max-width:1000px){.shell{grid-template-columns:1fr}.rail{display:none}.main{grid-column:1}.layout{grid-template-columns:1fr}.filterRail{position:relative;top:auto;max-height:none}.hero{grid-template-columns:1fr}.tabs{display:none}.grid3,.grid2{grid-template-columns:1fr}.grid3>.panel:last-child{grid-column:auto}}
+@media(max-width:700px){.kpis{grid-template-columns:1fr 1fr}.brand{min-width:210px}.topActions .lang{display:none}}
+
+/* FilterWall v2 – slicer-style side wall inspired by dense operational dashboards */
+.layout{grid-template-columns:minmax(0,1fr) 250px}
+.filterRail{grid-column:2;grid-row:1;position:sticky;top:94px;background:#05080d;border-radius:8px;padding:10px;border-color:#245579;box-shadow:0 18px 60px rgba(0,0,0,.48)}
+.content{grid-column:1;grid-row:1}
+.filterHead{background:linear-gradient(90deg,#0f3a73,#113f7f);margin:-10px -10px 8px;padding:11px 12px;border-radius:7px 7px 0 0;border-bottom:1px solid #3c79b3}
+.filterHead b{font-size:12px}.filterHead span{color:#7ee9ff}
+.filterGroup{padding:6px 0;border-bottom:0}
+.filterGroup label{margin:0 0 4px;padding:5px 7px;background:#0d2d59;color:#dcecff;border:1px solid #1f5e9c;border-radius:3px;font-size:8px;letter-spacing:.08em}
+.sel,.searchBox{background:#010306;border:1px solid #2a6fad;border-radius:3px;color:#fff;padding:8px 9px;font-size:9px}
+.sel option{background:#010306;color:white}
+.toggleRow{grid-template-columns:1fr 1fr}.toggle{background:#010306;border-color:#2a6fad;border-radius:3px}.toggle.active{background:#ec6b2d;border-color:#ff8d4d;color:white}
+.rangeWrap{background:#010306;border:1px solid #2a6fad;border-radius:3px;padding:7px}
+.activeStrip{background:#07111c;border-radius:5px}
+.kpi,.panel{border-radius:7px}
+.kpi{border-color:#214863;background:#05090f}
+.panel{background:#05090f;border-color:#214863}
+.heroMain,.heroSide{border-radius:8px}
+.topbar{border-radius:8px}
+.bars .barCol i{background:linear-gradient(180deg,#1ba8ff,#0d68d9)}
+.donut{background:conic-gradient(#00c85a 0 46%,#f5d13a 46% 75%,#1597ff 75% 100%)}
+.matrix .h1{background:#082240}.matrix .h2{background:#0c3766}.matrix .h3{background:#10508f}.matrix .h4{background:#126cbd}.matrix .h5{background:#1497ff}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.filterRail,.content{grid-column:1;grid-row:auto}}
+
+
+.matrixWrap{display:grid;grid-template-columns:62px 1fr;gap:6px 8px;align-items:center}
+.monthHeader{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;color:#6f8799;font-size:7px;text-align:center;text-transform:uppercase}.monthHeader span{padding:5px 2px;border-radius:4px;border:1px solid transparent}.monthHeader span.currentMonth{color:#061019;background:var(--amber);border-color:#ffd58a;font-weight:950;box-shadow:0 0 16px rgba(255,181,74,.36)}
+.matrixRowLabel{color:#8fa5b4;font-size:8px;text-transform:uppercase;letter-spacing:.08em}
+.matrix{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;min-height:0}
+.cell{height:36px;display:grid;place-items:center;color:white;font-size:8px;font-weight:800;border:1px solid #173147;border-radius:5px;transition:.2s}.cell.currentMonth{border-color:var(--amber);box-shadow:inset 0 0 0 1px rgba(255,181,74,.55),0 0 14px rgba(255,181,74,.20);transform:translateY(-2px)}
+.cell small{display:block;font-size:6px;opacity:.7;font-weight:600}
+.cell:hover{transform:translateY(-2px);border-color:#4bbcff;box-shadow:0 0 18px rgba(20,151,255,.2)}
+.demoNav{position:fixed;left:98px;right:16px;bottom:10px;z-index:120;margin:0;border:1px solid #285c78;border-radius:10px;background:rgba(3,10,17,.96);backdrop-filter:blur(18px);padding:8px 10px;box-shadow:0 14px 48px rgba(0,0,0,.55)}
+.caption{bottom:88px}
+.demoNav h3{margin:0 0 9px;font-size:10px;color:#88a1b2;text-transform:uppercase;letter-spacing:.12em}
+.demoLinks{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+.demoLinks a{display:block;text-decoration:none;color:#d8e6ee;background:#071521;border:1px solid #1e4961;border-radius:6px;padding:9px 8px;text-align:center;font-size:9px;font-weight:750;cursor:pointer;pointer-events:auto}
+.demoLinks a:hover{border-color:var(--cyan);color:white;background:#0c2131}
+.brandHome,.logoHome{color:inherit;text-decoration:none}.brandHome{display:flex;flex-direction:column}.logoHome{display:block}
+.contactCta{margin:18px 0 14px;border:1px solid #28627e;border-radius:12px;background:linear-gradient(135deg,rgba(9,35,51,.98),rgba(9,19,35,.98));padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:0 18px 46px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04);position:relative;overflow:hidden}
+.contactCta:after{content:"";position:absolute;width:240px;height:240px;right:-100px;top:-150px;border-radius:50%;background:radial-gradient(circle,rgba(20,151,255,.22),transparent 68%);pointer-events:none}
+.contactCopy{position:relative;z-index:1;max-width:720px}.contactCopy small{display:block;color:var(--cyan);font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}.contactCopy h2{margin:0;color:#f4fbff;font-size:clamp(20px,2.2vw,32px);line-height:1.08}.contactCopy p{margin:9px 0 0;color:#9eb3c2;font-size:12px;line-height:1.55}
+.contactActions{position:relative;z-index:1;display:flex;align-items:center;gap:10px;flex-shrink:0}.contactActions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:8px;padding:0 17px;text-decoration:none;font-size:11px;font-weight:900;transition:.2s}.contactPrimary{color:#00151d;background:linear-gradient(135deg,var(--cyan),var(--blue));border:1px solid transparent;box-shadow:0 8px 24px rgba(20,151,255,.22)}.contactPrimary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(20,151,255,.34)}.contactSecondary{color:#dcebf3;background:#071521;border:1px solid #285c78}.contactSecondary:hover{border-color:var(--cyan);color:#fff}
+.langBtn.active{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00151a;border-color:transparent;font-weight:900}
+@media(max-width:1000px){body{padding-bottom:148px}.demoNav{left:10px;right:10px}.demoLinks{grid-template-columns:repeat(3,1fr)}.matrixWrap{grid-template-columns:48px 1fr}.caption{bottom:150px}.contactCta{align-items:flex-start;flex-direction:column}.contactActions{width:100%}.contactActions a{flex:1}}
+
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <a class="logo logoHome" href="../../index.html" aria-label="Zur Barry Data & Analytics Homepage"><img src="../../assets/img/logo-dark.png" alt="Barry Data & Analytics"></a>
+  <button class="rbtn active" title="Executive" data-target="#executiveSection">⌂</button><button class="rbtn" title="Products" data-target="#tablePanel">⬡</button>
+  <button class="rbtn" title="Sales" data-target="#trendPanel">↗</button><button class="rbtn" title="Customers" data-target="#catPanel">◉</button>
+  <button class="rbtn" title="Margin" data-target="#marginPanel">◫</button><button class="rbtn" title="Forecast" data-target="#trendPanel">◎</button>
+  <button class="rbtn" title="Inventory" data-target="#stockPanel">▦</button><div class="spacer"></div><button class="rbtn" title="Settings">⚙</button>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <a class="brand brandHome" href="../../index.html" aria-label="Zur Barry Data & Analytics Homepage"><b>Barry Data & Analytics</b><span>Product Intelligence Studio</span></a>
+  <nav class="tabs">
+    <button class="tab active" data-target="#executiveSection">Executive</button><button class="tab" data-target="#tablePanel">Products</button><button class="tab" data-target="#trendPanel">Sales</button>
+    <button class="tab" data-target="#catPanel">Customers</button><button class="tab" data-target="#marginPanel">Margin</button><button class="tab" data-target="#stockPanel">Inventory</button>
+    <button class="tab" data-target="#trendPanel">Forecast</button><button class="tab" data-target="#actionPanel">Actions</button>
+  </nav>
+  <div class="topActions"><button class="lang langBtn active" data-lang="de">DE</button><button class="lang langBtn" data-lang="en">EN</button><button class="lang langBtn" data-lang="fr">FR</button><button class="lang" id="clearTop">RESET</button><button class="auto" id="autoDemo">▶ Auto-Demo</button></div>
+</header>
+
+<section class="hero" id="executiveSection">
+  <article class="card heroMain">
+    <div class="eye" data-i18n="eyebrow">Live-Demo · Product & Commercial Intelligence</div>
+    <h1 data-i18n="title">Product Performance FilterWall</h1>
+    <p data-i18n="subtitle">Ein lebendiges Produkt- und Vertriebsdashboard mit direkter Mehrfachfilterung, klaren Kennzahlen und sofort sichtbaren Veränderungen in allen Visuals.</p>
+    <div class="heroPills"><span>Produkt → Kategorie → SKU</span><span>Region → Land → Stadt</span><span>Kanal → Kunde → Segment</span><span>Forecast → Risiko → Maßnahme</span></div>
+  </article>
+  <aside class="card heroSide">
+    <div class="health"><small>Portfolio Health</small><strong id="health">92</strong><em>▲ 5 Punkte</em></div>
+    <div class="sideBox"><span class="mini">Top Opportunity</span><b>Premium Series</b><span>+€184k Potenzial</span></div>
+    <div class="sideBox"><span class="mini">At Risk</span><b>Legacy SKUs</b><span style="color:var(--red)">−14,8% Marge</span></div>
+  </aside>
+</section>
+
+<div class="activeStrip" id="activeStrip" style="display:none"><span>Aktive Filter</span><div id="chips"></div><button class="clearAll" id="clearAll">Alle zurücksetzen</button></div><section class="layout">
+
+<aside class="filterRail" id="filterRail">
+  <div class="filterHead"><b>FILTER</b><span>LIVE</span></div>
+
+  <div class="filterGroup"><label>PRODUKT</label><select class="sel f" id="product"><option value="all">Alle</option><option>Premium Series</option><option>Core Series</option><option>Eco Series</option><option>Legacy Series</option></select></div>
+  <div class="filterGroup"><label>KATEGORIE</label><select class="sel f" id="category"><option value="all">Alle</option><option>Technology</option><option>Office Supplies</option><option>Furniture</option><option>Service</option></select></div>
+  <div class="filterGroup"><label>REGION</label><select class="sel f" id="region"><option value="all">Alle</option><option>West</option><option>North</option><option>Central</option><option>South</option><option>East</option></select></div>
+  <div class="filterGroup"><label>LAND</label><select class="sel f" id="country"><option value="all">Alle</option><option>Deutschland</option><option>Frankreich</option><option>Niederlande</option><option>Belgien</option><option>Österreich</option></select></div>
+  <div class="filterGroup"><label>STADT</label><select class="sel f" id="city"><option value="all">Alle</option><option>Bochum</option><option>Essen</option><option>Düsseldorf</option><option>Dortmund</option><option>Köln</option></select></div>
+  <div class="filterGroup"><label>KANAL</label><select class="sel f" id="channel"><option value="all">Alle</option><option>Direct</option><option>Partner</option><option>E-Commerce</option><option>Retail</option></select></div>
+  <div class="filterGroup"><label>SEGMENT</label><select class="sel f" id="segment"><option value="all">Alle</option><option>Enterprise</option><option>Mid-Market</option><option>SMB</option><option>Public</option></select></div>
+  <div class="filterGroup"><label>BRAND</label><select class="sel f" id="brand"><option value="all">Alle</option><option>Nova</option><option>Vertex</option><option>Axis</option><option>CoreLine</option></select></div>
+  <div class="filterGroup"><label>STATUS</label><select class="sel f" id="lifecycle"><option value="all">Alle</option><option>Launch</option><option>Growth</option><option>Mature</option><option>Phase-Out</option></select></div>
+  <div class="filterGroup"><label>MARGE</label><select class="sel f" id="marginClass"><option value="all">Alle</option><option>High</option><option>Medium</option><option>Low</option><option>Negative</option></select></div>
+  <div class="filterGroup"><label>BESTAND</label><select class="sel f" id="stock"><option value="all">Alle</option><option>Healthy</option><option>Low Stock</option><option>Overstock</option><option>Out of Stock</option></select></div>
+  <div class="filterGroup"><label>JAHR</label><select class="sel f" id="period"><option value="all">2026 YTD</option><option>Q1 2026</option><option>Q2 2026</option><option>Q3 2026</option><option>Letzte 12 Monate</option></select></div>
+  <div class="filterGroup"><label>PROMO</label><div class="toggleRow"><button class="toggle active" data-toggle="promo" data-value="all">Alle</button><button class="toggle" data-toggle="promo" data-value="yes">Ja</button></div></div>
+  <div class="filterGroup"><label>MIN. UMSATZ</label><div class="rangeWrap"><input id="revenueRange" type="range" min="0" max="500" value="0"><span class="rangeValue" id="revenueLabel">€0k</span></div></div>
+
+  <!-- Hidden compatibility inputs keep the interaction engine intact -->
+  <select id="subcategory" class="f" hidden><option value="all">Alle</option></select>
+  <select id="supplier" class="f" hidden><option value="all">Alle</option></select>
+  <select id="warehouse" class="f" hidden><option value="all">Alle</option></select>
+  <input id="search" value="" hidden>
+</aside>
+
+
+<div class="content">
+<section class="kpis">
+  <article class="kpi"><div class="khead"><span>Umsatz</span><span>↗</span></div><div class="kvalue" id="salesKpi">€ 3,84 Mio.</div><span class="delta" id="salesDelta">+18,4%</span><div class="spark"><svg viewBox="0 0 120 20"><polyline points="0,18 12,15 24,17 36,11 48,13 60,8 72,10 84,5 96,8 108,3 120,4"/></svg></div></article>
+  <article class="kpi"><div class="khead"><span>Gewinn</span><span>◈</span></div><div class="kvalue" id="profitKpi">€ 914 Tsd.</div><span class="delta">+21,1%</span><div class="spark v"><svg viewBox="0 0 120 20"><polyline points="0,17 12,16 24,12 36,14 48,9 60,10 72,6 84,8 96,3 108,5 120,2"/></svg></div></article>
+  <article class="kpi"><div class="khead"><span>Marge</span><span>%</span></div><div class="kvalue" id="marginKpi">23,8%</div><span class="delta">+2,6 pp</span><div class="spark g"><svg viewBox="0 0 120 20"><polyline points="0,16 12,14 24,15 36,12 48,10 60,11 72,7 84,8 96,5 108,6 120,3"/></svg></div></article>
+  <article class="kpi"><div class="khead"><span>Stück</span><span>▦</span></div><div class="kvalue" id="unitsKpi">18.642</div><span class="delta">+12,8%</span><div class="spark"><svg viewBox="0 0 120 20"><polyline points="0,18 12,17 24,14 36,15 48,10 60,12 72,8 84,9 96,5 108,7 120,4"/></svg></div></article>
+  <article class="kpi"><div class="khead"><span>Produkte</span><span>⬡</span></div><div class="kvalue" id="skuKpi">428</div><span class="delta">+6,2%</span><div class="spark v"><svg viewBox="0 0 120 20"><polyline points="0,16 12,15 24,13 36,14 48,11 60,9 72,10 84,7 96,8 108,4 120,5"/></svg></div></article>
+  <article class="kpi"><div class="khead"><span>Bestandsrisiko</span><span>⚠</span></div><div class="kvalue" id="riskKpi">34</div><span class="delta warn">8 kritisch</span><div class="spark"><svg viewBox="0 0 120 20"><polyline points="0,8 12,9 24,8 36,11 48,10 60,13 72,12 84,15 96,14 108,17 120,16"/></svg></div></article>
+</section>
+
+<section class="gridTop">
+<div class="stack">
+  <article class="panel" id="trendPanel">
+    <div class="phead"><div class="ptitle"><small>Revenue & Margin Intelligence</small><h2>Sales, Profit & Forecast</h2><p>Produktportfolio mit aktuellem Verlauf und 90-Tage-Projektion</p></div><div class="segmented"><button class="segBtn active">Monat</button><button class="segBtn">Quartal</button><button class="segBtn">Jahr</button></div></div>
+    <div class="chart"><svg viewBox="0 0 960 300" preserveAspectRatio="none">
+      <defs><linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00d8e8" stop-opacity=".28"/><stop offset="1" stop-color="#00d8e8" stop-opacity="0"/></linearGradient></defs>
+      <g><line class="gridline" x1="55" y1="38" x2="930" y2="38"/><line class="gridline" x1="55" y1="98" x2="930" y2="98"/><line class="gridline" x1="55" y1="158" x2="930" y2="158"/><line class="gridline" x1="55" y1="218" x2="930" y2="218"/><text class="axis" x="8" y="42">€900k</text><text class="axis" x="8" y="102">€650k</text><text class="axis" x="8" y="162">€400k</text><text class="axis" x="8" y="222">€150k</text></g>
+      <path class="area" id="areaPath" d="M55 225 C115 212 150 196 210 202 S300 164 360 170 S455 130 515 139 S600 106 650 113 L650 252 L55 252 Z"/>
+      <path class="line" id="linePath" d="M55 225 C115 212 150 196 210 202 S300 164 360 170 S455 130 515 139 S600 106 650 113"/>
+      <path class="forecast" id="forecastPath" d="M650 113 C720 100 755 75 800 83 S875 50 930 58"/>
+      <line x1="650" y1="25" x2="650" y2="255" stroke="#3c5668" stroke-dasharray="4 5"/><text class="axis" x="660" y="27">FORECAST</text>
+      <g class="axis"><text x="52" y="282">JAN</text><text x="185" y="282">MÄR</text><text x="340" y="282">MAI</text><text x="490" y="282">JUL</text><text x="635" y="282">SEP</text><text x="790" y="282">NOV</text><text x="905" y="282">DEZ</text></g>
+    </svg></div>
+  </article>
+
+  <div class="grid3">
+    <article class="panel" id="catPanel"><div class="phead"><div class="ptitle"><small>Portfolio Mix</small><h2>Sales by Category</h2></div></div>
+      <div class="donutWrap"><div class="donut"><div class="dcenter"><strong id="donutTotal">€3,84M</strong><span>Umsatz</span></div></div>
+      <div class="legend"><div class="lrow"><i style="background:var(--violet)"></i><span>Technology</span><b>46%</b></div><div class="lrow"><i style="background:var(--blue)"></i><span>Office</span><b>32%</b></div><div class="lrow"><i style="background:var(--cyan)"></i><span>Furniture / Service</span><b>22%</b></div></div></div>
+    </article>
+    <article class="panel" id="brandPanel"><div class="phead"><div class="ptitle"><small>Brand Performance</small><h2>Top Brands by Profit</h2></div></div><div class="bars">
+      <div class="barCol" style="--h:82%"><strong>€286K</strong><i></i><span>Nova</span></div><div class="barCol" style="--h:66%"><strong>€221K</strong><i></i><span>Vertex</span></div><div class="barCol" style="--h:51%"><strong>€164K</strong><i></i><span>Axis</span></div><div class="barCol" style="--h:39%"><strong>€118K</strong><i></i><span>CoreLine</span></div>
+    </div></article>
+    
+<article class="panel" id="matrixPanel">
+  <div class="phead"><div class="ptitle"><small data-i18n="dmSmall">DEMAND MATRIX</small><h2 data-i18n="dmTitle">Produktnachfrage pro Monat</h2></div></div>
+  <div class="matrixWrap">
+    <div></div><div class="monthHeader"><span>Jan</span><span>Feb</span><span>Mär</span><span>Apr</span><span>Mai</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Dez</span></div>
+    <div class="matrixRowLabel">Premium</div><div class="matrix" id="matrixPremium"></div>
+    <div class="matrixRowLabel">Core</div><div class="matrix" id="matrixCore"></div>
+    <div class="matrixRowLabel">Eco</div><div class="matrix" id="matrixEco"></div>
+    <div class="matrixRowLabel">Legacy</div><div class="matrix" id="matrixLegacy"></div>
+  </div>
+</article>
+  </div>
+
+  <div class="grid2">
+    <article class="panel" id="tablePanel"><div class="phead"><div class="ptitle"><small>SKU Intelligence</small><h2>Product Portfolio Detail</h2><p>Top Produkte im aktuellen Filterkontext</p></div></div>
+      <table class="productTable"><thead><tr><th>SKU</th><th>Produkt</th><th>Kategorie</th><th>Umsatz</th><th>Marge</th><th>Bestand</th><th>Lebenszyklus</th></tr></thead><tbody id="productRows"></tbody></table>
+    </article>
+    <article class="panel" id="marginPanel"><div class="phead"><div class="ptitle"><small>Margin Ladder</small><h2>Profitability by Product Line</h2></div></div><div class="bars">
+      <div class="barCol" style="--h:88%"><strong>31%</strong><i></i><span>Premium</span></div><div class="barCol" style="--h:70%"><strong>25%</strong><i></i><span>Core</span></div><div class="barCol" style="--h:54%"><strong>19%</strong><i></i><span>Eco</span></div><div class="barCol" style="--h:25%"><strong>8%</strong><i></i><span>Legacy</span></div>
+    </div></article>
+  </div>
+</div>
+
+<aside class="stack">
+  <article class="panel" id="insightPanel"><div class="phead"><div class="ptitle"><small>AI Product Insights</small><h2>Priorisierte Erkenntnisse</h2><p>Automatisch nach finanzieller Wirkung sortiert</p></div><span style="color:var(--cyan);font-size:9px;font-weight:900">● LIVE</span></div>
+    <div class="insights">
+      <div class="insight"><span class="ibadge">↗</span><div><b>Premium Series ausbauen</b><p>Hohe Marge + überdurchschnittliches Wachstum in West.</p></div><span class="impact">+€184k</span></div>
+      <div class="insight"><span class="ibadge">◎</span><div><b>Legacy SKUs reduzieren</b><p>12 Produkte binden Bestand bei schwacher Marge.</p></div><span class="impact">+2,4 pp</span></div>
+      <div class="insight"><span class="ibadge">⚡</span><div><b>Low-Stock Risiko</b><p>8 SKUs können in 14 Tagen ausverkauft sein.</p></div><span class="impact">€96k</span></div>
+      <div class="insight"><span class="ibadge">◇</span><div><b>Promo-Effekt prüfen</b><p>Rabatt erhöht Volumen, aber drückt Marge in SMB.</p></div><span class="impact warn">−1,7 pp</span></div>
+    </div>
+  </article>
+
+  <article class="panel" id="actionPanel"><div class="phead"><div class="ptitle"><small>Next Best Action</small><h2>Management Recommendation</h2></div></div>
+    <div class="action"><div><b>Premium West priorisieren</b><p>Bestand erhöhen und Kampagne auf Enterprise fokussieren.</p></div><button id="actionBtn">Öffnen →</button></div>
+  </article>
+
+  <article class="panel" id="stockPanel"><div class="phead"><div class="ptitle"><small>Inventory Signal</small><h2>Stock Health</h2></div></div>
+    <div class="bars"><div class="barCol" style="--h:75%"><strong>212</strong><i></i><span>Healthy</span></div><div class="barCol" style="--h:43%"><strong>84</strong><i></i><span>Low</span></div><div class="barCol" style="--h:31%"><strong>62</strong><i></i><span>Over</span></div><div class="barCol" style="--h:14%"><strong>18</strong><i></i><span>OOS</span></div></div>
+  </article>
+</aside>
+</section>
+
+
+<section class="contactCta" aria-labelledby="contactCtaTitle">
+  <div class="contactCopy">
+    <small>Ihr nächstes Datenprojekt</small>
+    <h2 id="contactCtaTitle">Aus Ihren Produktdaten wird eine klare Management-Sicht.</h2>
+    <p>Sie möchten ein modernes Dashboard, verlässliches Reporting oder einen automatisierten Datenprozess? Beschreiben Sie kurz Ihren Bedarf – Barry Data &amp; Analytics meldet sich persönlich bei Ihnen.</p>
+  </div>
+  <div class="contactActions">
+    <a class="contactPrimary" href="../../index.html#contact">Unverbindlich anfragen →</a>
+    <a class="contactSecondary" href="../../index.html">Zur Homepage</a>
+  </div>
+</section>
+
+<section class="demoNav">
+  <h3 data-i18n="otherDemos">Weitere Barry Data & Analytics Demos</h3>
+  <div class="demoLinks">
+    <a href="../vier-saeulen-loesungsdemo/index.html">Alle Demos</a>
+    <a href="../power-bi-sales-operations/index.html">Power BI</a>
+    <a href="../sales-growth-command-center/index.html">Enterprise</a>
+    <a href="../crm-cockpit-demo/index.html">CRM Cockpit</a>
+    <a href="../business-prozess-demo/index.html">Automation</a>
+    <a href="index.html">Excel Cockpit</a>
+  </div>
+</section>
+
+<div class="footer"><span>Interaktive Demo mit fiktiven Beispieldaten · Barry Data & Analytics</span><span>Product Intelligence · Reporting · BI · Automation</span></div>
+</div>
+</section>
+</main>
+</div>
+
+<div class="cursor" id="cursor"><svg viewBox="0 0 28 38" xmlns="http://www.w3.org/2000/svg"><path d="M2 2v29l7.5-7.2 5.1 11.6 5.2-2.4-5-11.1H25L2 2Z" fill="#fff" stroke="#07121f" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
+<div class="ring" id="ring"></div><div class="caption" id="caption"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], wait=ms=>new Promise(r=>setTimeout(r,ms));
+let currentLang='de';
+const localeMap={
+ 'Executive':['Übersicht','Executive','Vue générale'],'Products':['Produkte','Products','Produits'],'Sales':['Vertrieb','Sales','Ventes'],'Customers':['Kunden','Customers','Clients'],'Margin':['Marge','Margin','Marge'],'Inventory':['Bestand','Inventory','Stock'],'Forecast':['Prognose','Forecast','Prévisions'],'Actions':['Maßnahmen','Actions','Actions'],'RESET':['ZURÜCKSETZEN','RESET','RÉINITIALISER'],'▶ Auto-Demo':['▶ Auto-Demo','▶ Auto Demo','▶ Démo auto'],
+ 'Produkt → Kategorie → SKU':['Produkt → Kategorie → SKU','Product → Category → SKU','Produit → Catégorie → UGS'],'Region → Land → Stadt':['Region → Land → Stadt','Region → Country → City','Région → Pays → Ville'],'Kanal → Kunde → Segment':['Kanal → Kunde → Segment','Channel → Customer → Segment','Canal → Client → Segment'],'Forecast → Risiko → Maßnahme':['Prognose → Risiko → Maßnahme','Forecast → Risk → Action','Prévision → Risque → Action'],
+ 'Portfolio Health':['Portfolio-Gesundheit','Portfolio Health','Santé du portefeuille'],'▲ 5 Punkte':['▲ 5 Punkte','▲ 5 points','▲ 5 points'],'Top Opportunity':['Top-Chance','Top Opportunity','Meilleure opportunité'],'At Risk':['Gefährdet','At Risk','À risque'],'+€184k Potenzial':['+184 Tsd. € Potenzial','+€184k potential','+184 k€ de potentiel'],'−14,8% Marge':['−14,8 % Marge','−14.8% margin','−14,8 % de marge'],
+ 'Aktive Filter':['Aktive Filter','Active filters','Filtres actifs'],'Alle zurücksetzen':['Alle zurücksetzen','Reset all','Tout réinitialiser'],'FILTER':['FILTER','FILTERS','FILTRES'],'PRODUKT':['PRODUKT','PRODUCT','PRODUIT'],'KATEGORIE':['KATEGORIE','CATEGORY','CATÉGORIE'],'REGION':['REGION','REGION','RÉGION'],'LAND':['LAND','COUNTRY','PAYS'],'STADT':['STADT','CITY','VILLE'],'KANAL':['KANAL','CHANNEL','CANAL'],'SEGMENT':['SEGMENT','SEGMENT','SEGMENT'],'BRAND':['MARKE','BRAND','MARQUE'],'STATUS':['STATUS','STATUS','STATUT'],'MARGE':['MARGE','MARGIN','MARGE'],'BESTAND':['BESTAND','STOCK','STOCK'],'JAHR':['JAHR','YEAR','ANNÉE'],'PROMO':['AKTION','PROMO','PROMO'],'MIN. UMSATZ':['MIN. UMSATZ','MIN. REVENUE','CA MIN.'],
+ 'Alle':['Alle','All','Tous'],'Ja':['Ja','Yes','Oui'],'Deutschland':['Deutschland','Germany','Allemagne'],'Frankreich':['Frankreich','France','France'],'Niederlande':['Niederlande','Netherlands','Pays-Bas'],'Belgien':['Belgien','Belgium','Belgique'],'Österreich':['Österreich','Austria','Autriche'],'Letzte 12 Monate':['Letzte 12 Monate','Last 12 months','12 derniers mois'],'High':['Hoch','High','Élevée'],'Medium':['Mittel','Medium','Moyenne'],'Low':['Niedrig','Low','Faible'],'Negative':['Negativ','Negative','Négative'],'Healthy':['Gesund','Healthy','Sain'],'Low Stock':['Niedriger Bestand','Low stock','Stock faible'],'Overstock':['Überbestand','Overstock','Surstock'],'Out of Stock':['Nicht auf Lager','Out of stock','Rupture de stock'],'Launch':['Einführung','Launch','Lancement'],'Growth':['Wachstum','Growth','Croissance'],'Mature':['Etabliert','Mature','Mature'],'Phase-Out':['Auslauf','Phase-out','Fin de vie'],'Technology':['Technologie','Technology','Technologie'],'Office Supplies':['Bürobedarf','Office supplies','Fournitures de bureau'],'Furniture':['Möbel','Furniture','Mobilier'],'Service':['Service','Service','Services'],'Direct':['Direkt','Direct','Direct'],'Partner':['Partner','Partner','Partenaire'],'Retail':['Einzelhandel','Retail','Commerce de détail'],'Public':['Öffentlich','Public','Public'],
+ 'Umsatz':['Umsatz','Revenue','Chiffre d’affaires'],'Gewinn':['Gewinn','Profit','Bénéfice'],'Marge':['Marge','Margin','Marge'],'Stück':['Stück','Units','Unités'],'Produkte':['Produkte','Products','Produits'],'Bestandsrisiko':['Bestandsrisiko','Stock risk','Risque de stock'],'8 kritisch':['8 kritisch','8 critical','8 critiques'],
+ 'Revenue & Margin Intelligence':['Umsatz- & Margenintelligenz','Revenue & Margin Intelligence','Intelligence chiffre d’affaires & marge'],'Sales, Profit & Forecast':['Umsatz, Gewinn & Prognose','Sales, Profit & Forecast','Ventes, bénéfice & prévisions'],'Produktportfolio mit aktuellem Verlauf und 90-Tage-Projektion':['Produktportfolio mit aktuellem Verlauf und 90-Tage-Projektion','Product portfolio with current trend and 90-day projection','Portefeuille produits avec tendance actuelle et projection à 90 jours'],'Monat':['Monat','Month','Mois'],'Quartal':['Quartal','Quarter','Trimestre'],'Jahr':['Jahr','Year','Année'],'FORECAST':['PROGNOSE','FORECAST','PRÉVISIONS'],
+ 'Sales by Category':['Umsatz nach Kategorie','Sales by Category','Ventes par catégorie'],'Furniture / Service':['Möbel / Service','Furniture / Service','Mobilier / Services'],'Brand Performance':['Markenleistung','Brand Performance','Performance des marques'],'Top Brands by Profit':['Top-Marken nach Gewinn','Top Brands by Profit','Meilleures marques par bénéfice'],'DEMAND MATRIX':['NACHFRAGEMATRIX','DEMAND MATRIX','MATRICE DE DEMANDE'],'Produktnachfrage pro Monat':['Produktnachfrage pro Monat','Product Demand by Month','Demande produit par mois'],
+ 'SKU Intelligence':['SKU-Intelligenz','SKU Intelligence','Intelligence UGS'],'Product Portfolio Detail':['Produktportfolio im Detail','Product Portfolio Detail','Détail du portefeuille produits'],'Top Produkte im aktuellen Filterkontext':['Top-Produkte im aktuellen Filterkontext','Top products in the current filter context','Meilleurs produits dans le contexte de filtre actuel'],'Product':['Produkt','Product','Produit'],'Category':['Kategorie','Category','Catégorie'],'Stock':['Bestand','Stock','Stock'],'Lifecycle':['Lebenszyklus','Lifecycle','Cycle de vie'],'Margin Ladder':['Margenstaffel','Margin Ladder','Échelle de marge'],'Profitability by Product Line':['Rentabilität nach Produktlinie','Profitability by Product Line','Rentabilité par gamme de produits'],
+ 'AI Product Insights':['KI-Produktanalysen','AI Product Insights','Analyses produit IA'],'Priorisierte Erkenntnisse':['Priorisierte Erkenntnisse','Prioritized insights','Analyses prioritaires'],'Automatisch nach finanzieller Wirkung sortiert':['Automatisch nach finanzieller Wirkung sortiert','Automatically ranked by financial impact','Classées automatiquement par impact financier'],'Premium Series ausbauen':['Premium Series ausbauen','Expand Premium Series','Développer Premium Series'],'Hohe Marge + überdurchschnittliches Wachstum in West.':['Hohe Marge und überdurchschnittliches Wachstum im Westen.','High margin and above-average growth in the West.','Marge élevée et croissance supérieure à la moyenne dans l’Ouest.'],'Legacy SKUs reduzieren':['Legacy-SKUs reduzieren','Reduce legacy SKUs','Réduire les UGS obsolètes'],'12 Produkte binden Bestand bei schwacher Marge.':['12 Produkte binden Bestand bei schwacher Marge.','12 products tie up inventory at a weak margin.','12 produits immobilisent du stock avec une faible marge.'],'Low-Stock Risiko':['Risiko durch niedrigen Bestand','Low-stock risk','Risque de stock faible'],'8 SKUs können in 14 Tagen ausverkauft sein.':['8 SKUs könnten in 14 Tagen ausverkauft sein.','8 SKUs could sell out within 14 days.','8 UGS pourraient être épuisées sous 14 jours.'],'Promo-Effekt prüfen':['Aktionseffekt prüfen','Review promotion impact','Vérifier l’effet promotionnel'],'Rabatt erhöht Volumen, aber drückt Marge in SMB.':['Rabatt erhöht das Volumen, senkt aber die Marge im KMU-Segment.','Discount increases volume but reduces margin in SMB.','La remise augmente le volume mais réduit la marge des PME.'],
+ 'Next Best Action':['Nächste beste Maßnahme','Next Best Action','Meilleure action suivante'],'Management Recommendation':['Management-Empfehlung','Management Recommendation','Recommandation de gestion'],'Premium West priorisieren':['Premium West priorisieren','Prioritize Premium West','Prioriser Premium Ouest'],'Bestand erhöhen und Kampagne auf Enterprise fokussieren.':['Bestand erhöhen und Kampagne auf Enterprise fokussieren.','Increase stock and focus the campaign on enterprise customers.','Augmenter le stock et cibler la campagne sur les grandes entreprises.'],'Öffnen →':['Öffnen →','Open →','Ouvrir →'],'Inventory Signal':['Bestandssignal','Inventory Signal','Signal de stock'],'Stock Health':['Bestandsgesundheit','Stock Health','Santé du stock'],'Over':['Überbestand','Over','Surstock'],'OOS':['Nicht verfügbar','OOS','Rupture'],
+ 'Ihr nächstes Datenprojekt':['Ihr nächstes Datenprojekt','Your next data project','Votre prochain projet data'],'Aus Ihren Produktdaten wird eine klare Management-Sicht.':['Aus Ihren Produktdaten wird eine klare Management-Sicht.','Turn your product data into a clear management view.','Transformez vos données produit en une vision claire pour la direction.'],'Sie möchten ein modernes Dashboard, verlässliches Reporting oder einen automatisierten Datenprozess? Beschreiben Sie kurz Ihren Bedarf – Barry Data & Analytics meldet sich persönlich bei Ihnen.':['Sie möchten ein modernes Dashboard, verlässliches Reporting oder einen automatisierten Datenprozess? Beschreiben Sie kurz Ihren Bedarf – Barry Data & Analytics meldet sich persönlich bei Ihnen.','Would you like a modern dashboard, reliable reporting or an automated data process? Briefly describe your needs – Barry Data & Analytics will contact you personally.','Vous souhaitez un tableau de bord moderne, un reporting fiable ou un processus de données automatisé ? Décrivez brièvement votre besoin – Barry Data & Analytics vous contactera personnellement.'],'Unverbindlich anfragen →':['Unverbindlich anfragen →','Request a consultation →','Demander un échange →'],'Zur Homepage':['Zur Homepage','Go to homepage','Accéder au site'],
+ 'Weitere Barry Data & Analytics Demos':['Weitere Barry Data & Analytics Demos','More Barry Data & Analytics Demos','Autres démos Barry Data & Analytics'],'Alle Demos':['Alle Demos','All demos','Toutes les démos'],'Interaktive Demo mit fiktiven Beispieldaten · Barry Data & Analytics':['Interaktive Demo mit fiktiven Beispieldaten · Barry Data & Analytics','Interactive demo with fictional sample data · Barry Data & Analytics','Démo interactive avec données fictives · Barry Data & Analytics'],'Product Intelligence · Reporting · BI · Automation':['Produktintelligenz · Reporting · BI · Automatisierung','Product Intelligence · Reporting · BI · Automation','Intelligence produit · Reporting · BI · Automatisation'],
+ 'West':['West','West','Ouest'],'North':['Nord','North','Nord'],'Central':['Zentral','Central','Centre'],'South':['Süd','South','Sud'],'East':['Ost','East','Est'],'Office':['Bürobedarf','Office','Bureau'],'Jan':['Jan','Jan','Janv'],'Feb':['Feb','Feb','Févr'],'Mär':['Mär','Mar','Mars'],'Apr':['Apr','Apr','Avr'],'Mai':['Mai','May','Mai'],'Jun':['Jun','Jun','Juin'],'Jul':['Jul','Jul','Juil'],'Aug':['Aug','Aug','Août'],'Sep':['Sep','Sep','Sept'],'Okt':['Okt','Oct','Oct'],'Nov':['Nov','Nov','Nov'],'Dez':['Dez','Dec','Déc'],
+ 'region':['Region','Region','Région'],'country':['Land','Country','Pays'],'city':['Stadt','City','Ville'],'channel':['Kanal','Channel','Canal'],'segment':['Segment','Segment','Segment'],'category':['Kategorie','Category','Catégorie'],'subcategory':['Unterkategorie','Subcategory','Sous-catégorie'],'brand':['Marke','Brand','Marque'],'product':['Produkt','Product','Produit'],'lifecycle':['Status','Status','Statut'],'marginClass':['Marge','Margin','Marge'],'stock':['Bestand','Stock','Stock'],'supplier':['Lieferant','Supplier','Fournisseur'],'warehouse':['Lager','Warehouse','Entrepôt'],'period':['Zeitraum','Period','Période'],'Promo':['Aktion','Promotion','Promotion'],'Suche':['Suche','Search','Recherche'],'Min Umsatz':['Min. Umsatz','Min. revenue','CA min.']
+ ,'Lebenszyklus':['Lebenszyklus','Lifecycle','Cycle de vie'],'Portfolio Mix':['Portfolio-Mix','Portfolio Mix','Composition du portefeuille'],'Product Intelligence Studio':['Studio für Produktintelligenz','Product Intelligence Studio','Studio d’intelligence produit']
+};
+const langIndex={de:0,en:1,fr:2};
+function localizeLeaves(lang){
+ document.querySelectorAll('body *').forEach(el=>{
+  if(el.children.length||['SCRIPT','STYLE','SVG','PATH','POLYLINE','LINE','G','DEFS','STOP'].includes(el.tagName))return;
+  const raw=(el.dataset.i18nSource||el.textContent).trim();
+  if(!el.dataset.i18nSource)el.dataset.i18nSource=raw;
+  const row=localeMap[raw];if(row)el.textContent=row[langIndex[lang]];
+ });
+ const homepageLabel=lang==='de'?'Zur Barry Data & Analytics Homepage':lang==='en'?'Go to the Barry Data & Analytics homepage':'Accéder au site Barry Data & Analytics';
+ $$('.brandHome,.logoHome').forEach(el=>el.setAttribute('aria-label',homepageLabel));
+ const railTitles={de:['Übersicht','Produkte','Vertrieb','Kunden','Marge','Prognose','Bestand','Einstellungen'],en:['Executive','Products','Sales','Customers','Margin','Forecast','Inventory','Settings'],fr:['Vue générale','Produits','Ventes','Clients','Marge','Prévisions','Stock','Paramètres']};
+ $$('.rbtn').forEach((el,i)=>el.title=railTitles[lang][i]||el.title);
+ const optionLabels={de:{Enterprise:'Enterprise','Mid-Market':'Mittelstand',SMB:'KMU',Public:'Öffentlich'},en:{Enterprise:'Enterprise','Mid-Market':'Mid-Market',SMB:'SMB',Public:'Public'},fr:{Enterprise:'Grandes entreprises','Mid-Market':'Marché intermédiaire',SMB:'PME',Public:'Secteur public'}};
+ Object.entries(optionLabels[lang]).forEach(([value,label])=>{const option=document.querySelector(`option[value="${value}"]`)||[...document.querySelectorAll('option')].find(o=>o.value===value);if(option)option.textContent=label});
+}
+function localizeValue(value,lang=currentLang){const row=localeMap[value];return row?row[langIndex[lang]]:value}
+const matrixSets={
+ premium:[5,4,3,5,5,4,3,4,5,4,3,2],
+ core:[2,3,4,3,4,5,4,3,5,4,2,3],
+ eco:[3,3,4,4,3,4,5,4,3,5,4,3],
+ legacy:[1,2,2,3,5,4,3,5,4,3,2,1]
+};
+function buildMatrix(id,vals){
+ const m=$(id); m.innerHTML='';
+ vals.forEach((v,i)=>{let d=document.createElement('div');d.className='cell h'+v;d.dataset.month=i;d.innerHTML=(v*12+i)+'<small>'+(['L','M','H','VH'][Math.min(3,v-1)])+'</small>';m.appendChild(d);});
+}
+buildMatrix('#matrixPremium',matrixSets.premium);
+buildMatrix('#matrixCore',matrixSets.core);
+buildMatrix('#matrixEco',matrixSets.eco);
+buildMatrix('#matrixLegacy',matrixSets.legacy);
+function syncCurrentMonth(){
+ const current=new Date().getMonth();
+ $$('.monthHeader span').forEach((el,i)=>{el.classList.toggle('currentMonth',i===current);if(i===current)el.setAttribute('aria-current','date');else el.removeAttribute('aria-current')});
+ $$('.matrix .cell').forEach(el=>el.classList.toggle('currentMonth',+el.dataset.month===current));
+}
+syncCurrentMonth();setInterval(syncCurrentMonth,60*60*1000);
+
+const rows=[
+ ['PX-104','Premium X1','Technology','€418K','31.4%','Healthy','Growth'],
+ ['NV-220','Nova Desk Pro','Furniture','€356K','27.8%','Low Stock','Growth'],
+ ['AX-118','Axis Connect','Technology','€298K','24.9%','Healthy','Mature'],
+ ['CL-402','CoreLine Office','Office Supplies','€244K','18.3%','Overstock','Mature'],
+ ['SV-710','Service Plus','Service','€214K','35.6%','Healthy','Growth'],
+ ['LG-099','Legacy Base','Technology','€128K','7.8%','Overstock','Phase-Out'],
+ ['EC-331','Eco Workspace','Furniture','€116K','16.2%','Healthy','Launch']
+];
+function renderRows(mult=1){
+ $('#productRows').innerHTML=rows.map((r,i)=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+localizeValue(r[2])+'</td><td>'+(i<5?('€'+Math.round(parseInt(r[3].replace(/\\D/g,''))*mult)+'K'):r[3])+'</td><td class="'+(parseFloat(r[4])<10?'risk':parseFloat(r[4])<20?'warn':'good')+'">'+r[4]+'</td><td><span class="badge">'+localizeValue(r[5])+'</span></td><td>'+localizeValue(r[6])+'</td></tr>').join('');
+}
+renderRows();
+
+const state={promo:'all'};
+const factors={
+ region:{all:1,West:1.16,North:.96,Central:.91,South:.77,East:.84},
+ country:{all:1,Deutschland:1.12,Frankreich:.91,Niederlande:.82,Belgien:.76,Österreich:.79},
+ city:{all:1,Bochum:.86,Essen:.93,Düsseldorf:1.08,Dortmund:.92,Köln:1.02},
+ channel:{all:1,Direct:1.12,Partner:.94,'E-Commerce':1.06,Retail:.83},
+ segment:{all:1,Enterprise:1.18,'Mid-Market':1.02,SMB:.82,Public:.88},
+ category:{all:1,Technology:1.19,'Office Supplies':.88,Furniture:.81,Service:1.07},
+ subcategory:{all:1,Systems:1.14,Accessories:.91,Workspace:.87,Packages:1.04},
+ brand:{all:1,Nova:1.16,Vertex:1.08,Axis:.94,CoreLine:.82},
+ product:{all:1,'Premium Series':1.24,'Core Series':1.02,'Eco Series':.88,'Legacy Series':.69},
+ lifecycle:{all:1,Launch:.86,Growth:1.17,Mature:.96,'Phase-Out':.66},
+ marginClass:{all:1,High:1.18,Medium:.99,Low:.81,Negative:.57},
+ stock:{all:1,Healthy:1.08,'Low Stock':.83,Overstock:.79,'Out of Stock':.51},
+ supplier:{all:1,'Supplier A':1.06,'Supplier B':.93,'Supplier C':.87},
+ warehouse:{all:1,'WH-West':1.12,'WH-North':.94,'WH-Central':.88},
+ period:{all:1,'Q1 2026':.78,'Q2 2026':.88,'Q3 2026':.96,'Letzte 12 Monate':1.21}
+};
+
+function selected(id){return $('#'+id).value}
+function compute(){
+ let f=1;
+ for(const id of ['region','country','city','channel','segment','category','subcategory','brand','product','lifecycle','marginClass','stock','supplier','warehouse','period']){
+   const v=selected(id); f*=factors[id][v]||1;
+ }
+ if(state.promo==='yes') f*=.93;
+ const minRev=+$('#revenueRange').value; f*=Math.max(.62,1-minRev/2200);
+ const q=$('#search').value.trim().toLowerCase(); if(q) f*=.84;
+ f=Math.max(.28,Math.min(1.95,f));
+  $('#salesKpi').textContent='€ '+(3.84*f).toFixed(2).replace('.',',')+' Mio.';
+  $('#donutTotal').textContent='€'+(3.84*f).toFixed(2).replace('.',',')+'M';
+ $('#profitKpi').textContent='€ '+Math.round(914*f*(selected('marginClass')==='High'?1.12:1))+' Tsd.';
+ $('#marginKpi').textContent=(23.8*(selected('marginClass')==='High'?1.22:selected('marginClass')==='Low'?.72:selected('marginClass')==='Negative'?.25:1)).toFixed(1).replace('.',',')+'%';
+ const numberLocale=currentLang==='de'?'de-DE':currentLang==='fr'?'fr-FR':'en-US';
+ $('#unitsKpi').textContent=Math.round(18642*f).toLocaleString(numberLocale);
+ $('#skuKpi').textContent=Math.max(24,Math.round(428*Math.sqrt(f))).toLocaleString(numberLocale);
+ $('#riskKpi').textContent=Math.max(4,Math.round(34*(selected('stock')==='Low Stock'?1.45:selected('stock')==='Healthy'?.55:1)));
+ $('#health').textContent=Math.max(63,Math.min(98,Math.round(92+(f-1)*16)));
+ renderRows(f);
+ updateChips();
+ flash();
+}
+function updateChips(){
+ const holder=$('#chips'); const entries=[];
+ for(const id of ['region','country','city','channel','segment','category','subcategory','brand','product','lifecycle','marginClass','stock','supplier','warehouse','period']){
+   const v=selected(id); if(v!=='all') entries.push([id,v]);
+ }
+ if(state.promo==='yes') entries.push(['Promo',localizeValue('Ja')]);
+ const q=$('#search').value.trim(); if(q) entries.push(['Suche',q]);
+ const rr=+$('#revenueRange').value; if(rr>0) entries.push(['Min Umsatz','€'+rr+'k']);
+ const emptyText=currentLang==='de'?'Keine zusätzlichen Filter':currentLang==='en'?'No additional filters':'Aucun filtre supplémentaire';
+ holder.innerHTML=entries.length?entries.map(([k,v])=>`<span class="chip"><strong>${localizeValue(k)}</strong>: ${localizeValue(v)}</span>`).join(''):`<span class="chip">${emptyText}</span>`;
+}
+function flash(){$$('.kpi,.panel').forEach(e=>{e.classList.remove('flash');void e.offsetWidth;e.classList.add('flash')})}
+$$('.f').forEach(e=>e.addEventListener('change',compute));$('#search').addEventListener('input',compute);
+$('#revenueRange').addEventListener('input',e=>{$('#revenueLabel').textContent='€'+e.target.value+'k';compute()});
+$$('.toggle').forEach(b=>b.addEventListener('click',()=>{$$(`[data-toggle="${b.dataset.toggle}"]`).forEach(x=>x.classList.remove('active'));b.classList.add('active');state[b.dataset.toggle]=b.dataset.value;compute()}));
+$('#clearTop').addEventListener('click',()=>$('#clearAll').click());
+$('#clearAll').addEventListener('click',()=>{$$('.f').forEach(e=>e.selectedIndex=0);$('#search').value='';$('#revenueRange').value=0;$('#revenueLabel').textContent='€0k';state.promo='all';$$('[data-toggle="promo"]').forEach(x=>x.classList.toggle('active',x.dataset.value==='all'));compute()});
+$$('.segBtn').forEach(b=>b.addEventListener('click',()=>{$$('.segBtn').forEach(x=>x.classList.toggle('active',x===b));$('#trendPanel').classList.add('flash');setTimeout(()=>$('#trendPanel').classList.remove('flash'),800)}));
+$$('.tab').forEach(b=>b.addEventListener('click',()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b))}));
+$$('.rbtn').forEach(b=>b.addEventListener('click',()=>{$$('.rbtn').forEach(x=>x.classList.toggle('active',x===b))}));
+updateChips();
+
+const cursor=$('#cursor'),ring=$('#ring'),caption=$('#caption'),auto=$('#autoDemo'); let running=false,userTouched=false;
+const captionTranslations={
+ en:{
+  '<span>FilterWall</span> – direkte Mehrfachfilterung auf Produkt-, Markt- und Kundenebene.':'<span>FilterWall</span> – direct multi-filtering across product, market and customer levels.',
+  'Wir wählen zuerst die Region <span>West</span>. Alle Kennzahlen reagieren sofort.':'First, we select the <span>West</span> region. All KPIs respond instantly.',
+  'Dann fokussieren wir <span>Enterprise</span>-Kunden.':'Next, we focus on <span>enterprise</span> customers.',
+  'Jetzt nur <span>Technology</span>.':'Now we select <span>Technology</span> only.',
+  'Und innerhalb des Portfolios die <span>Premium Series</span>.':'Within the portfolio, we choose the <span>Premium Series</span>.',
+  'Mit der Margenklasse <span>High</span> isolieren wir die profitabelsten Produkte.':'The <span>High</span> margin class isolates the most profitable products.',
+  'Die KPI-Leiste zeigt sofort Umsatz, Profit, Marge, Units, aktive SKUs und Bestandsrisiko.':'The KPI bar instantly shows revenue, profit, margin, units, active SKUs and stock risk.',
+  'Der Forecast zeigt, ob die aktuelle Produktdynamik <span>tragfähig</span> ist.':'The forecast shows whether the current product momentum is <span>sustainable</span>.',
+  'Auf Produkt- und Brand-Ebene sehen wir direkt, <span>wo Gewinn entsteht</span>.':'At product and brand level, we immediately see <span>where profit is generated</span>.',
+  'AI Insights übersetzen das gefilterte Portfolio in <span>priorisierte Maßnahmen</span>.':'AI insights turn the filtered portfolio into <span>prioritized actions</span>.',
+  'Ergebnis: <span>Produkt → Filter → Insight → Entscheidung</span>.':'Result: <span>Product → Filter → Insight → Decision</span>.'
+ },
+ fr:{
+  '<span>FilterWall</span> – direkte Mehrfachfilterung auf Produkt-, Markt- und Kundenebene.':'<span>FilterWall</span> – filtrage multiple direct aux niveaux produit, marché et client.',
+  'Wir wählen zuerst die Region <span>West</span>. Alle Kennzahlen reagieren sofort.':'Nous sélectionnons d’abord la région <span>Ouest</span>. Tous les indicateurs réagissent immédiatement.',
+  'Dann fokussieren wir <span>Enterprise</span>-Kunden.':'Nous ciblons ensuite les clients <span>grandes entreprises</span>.',
+  'Jetzt nur <span>Technology</span>.':'Nous sélectionnons maintenant uniquement <span>Technologie</span>.',
+  'Und innerhalb des Portfolios die <span>Premium Series</span>.':'Dans le portefeuille, nous choisissons la <span>Premium Series</span>.',
+  'Mit der Margenklasse <span>High</span> isolieren wir die profitabelsten Produkte.':'La classe de marge <span>Élevée</span> isole les produits les plus rentables.',
+  'Die KPI-Leiste zeigt sofort Umsatz, Profit, Marge, Units, aktive SKUs und Bestandsrisiko.':'La barre d’indicateurs affiche immédiatement le chiffre d’affaires, le bénéfice, la marge, les unités, les UGS actives et le risque de stock.',
+  'Der Forecast zeigt, ob die aktuelle Produktdynamik <span>tragfähig</span> ist.':'Les prévisions montrent si la dynamique produit actuelle est <span>durable</span>.',
+  'Auf Produkt- und Brand-Ebene sehen wir direkt, <span>wo Gewinn entsteht</span>.':'Aux niveaux produit et marque, nous voyons immédiatement <span>où le bénéfice est généré</span>.',
+  'AI Insights übersetzen das gefilterte Portfolio in <span>priorisierte Maßnahmen</span>.':'Les analyses IA transforment le portefeuille filtré en <span>actions prioritaires</span>.',
+  'Ergebnis: <span>Produkt → Filter → Insight → Entscheidung</span>.':'Résultat : <span>Produit → Filtre → Analyse → Décision</span>.'
+ }
+};
+function cap(t){caption.innerHTML=(captionTranslations[currentLang]&&captionTranslations[currentLang][t])||t;caption.classList.add('show')} function uncap(){caption.classList.remove('show')}
+async function moveTo(target,{click=false,after=450,block='center'}={}){
+ const el=typeof target==='string'?$(target):target;if(!el)return;
+ $$('.focus').forEach(x=>x.classList.remove('focus'));el.classList.add('focus');el.scrollIntoView({behavior:'smooth',block,inline:'center'});await wait(600);
+ const r=el.getBoundingClientRect(),x=r.left+Math.min(r.width*.66,r.width-10),y=r.top+Math.min(r.height*.52,r.height-8);cursor.style.transform=`translate(${x}px,${y}px)`;await wait(900);
+ if(click){ring.style.left=x+'px';ring.style.top=y+'px';ring.classList.remove('fire');void ring.offsetWidth;ring.classList.add('fire');await wait(130);el.click();await wait(after)}
+}
+async function setSelect(id,value){const el=$(id);await moveTo(el,{click:true,after:180});el.value=value;el.dispatchEvent(new Event('change'));await wait(550)}
+async function demo(){
+ if(running)return;running=true;userTouched=false;auto.classList.add('running');window.scrollTo({top:0,behavior:'smooth'});await wait(450);
+ cap('<span>FilterWall</span> – direkte Mehrfachfilterung auf Produkt-, Markt- und Kundenebene.');
+ await moveTo('#filterRail');await wait(450);
+ cap('Wir wählen zuerst die Region <span>West</span>. Alle Kennzahlen reagieren sofort.');
+ await setSelect('#region','West');
+ cap('Dann fokussieren wir <span>Enterprise</span>-Kunden.');
+ await setSelect('#segment','Enterprise');
+ cap('Jetzt nur <span>Technology</span>.');
+ await setSelect('#category','Technology');
+ cap('Und innerhalb des Portfolios die <span>Premium Series</span>.');
+ await setSelect('#product','Premium Series');
+ cap('Mit der Margenklasse <span>High</span> isolieren wir die profitabelsten Produkte.');
+ await setSelect('#marginClass','High');
+ cap('Die KPI-Leiste zeigt sofort Umsatz, Profit, Marge, Units, aktive SKUs und Bestandsrisiko.');
+ await moveTo('.kpis');await wait(550);
+ cap('Der Forecast zeigt, ob die aktuelle Produktdynamik <span>tragfähig</span> ist.');
+ await moveTo('#trendPanel');await wait(550);
+ cap('Auf Produkt- und Brand-Ebene sehen wir direkt, <span>wo Gewinn entsteht</span>.');
+ await moveTo('#brandPanel');await moveTo('#tablePanel');await wait(450);
+ cap('AI Insights übersetzen das gefilterte Portfolio in <span>priorisierte Maßnahmen</span>.');
+ await moveTo('#insightPanel');await wait(600);
+ cap('Ergebnis: <span>Produkt → Filter → Insight → Entscheidung</span>.');
+ await moveTo('#actionPanel');await wait(900);uncap();$$('.focus').forEach(x=>x.classList.remove('focus'));auto.classList.remove('running');running=false;
+}
+auto.addEventListener('click',demo);['mousedown','wheel','keydown','touchstart'].forEach(ev=>window.addEventListener(ev,()=>userTouched=true,{passive:true}));
+setTimeout(demo,900);setInterval(()=>{if(!running&&!userTouched)demo()},42000);
+
+const translations={
+ de:{title:'Produktleistungs-FilterWall',eyebrow:'Live-Demo · Produkt- & Vertriebsintelligenz',subtitle:'Ein lebendiges Produkt- und Vertriebsdashboard mit direkter Mehrfachfilterung, klaren Kennzahlen und sofort sichtbaren Veränderungen in allen Visuals.',dmSmall:'NACHFRAGEMATRIX',dmTitle:'Produktnachfrage pro Monat',otherDemos:'Weitere Barry Data & Analytics Demos'},
+ en:{title:'Product Performance FilterWall',eyebrow:'Live Demo · Product & Commercial Intelligence',subtitle:'A dynamic product and sales dashboard with direct multi-filtering, clear KPIs and instantly visible changes across all visuals.',dmSmall:'DEMAND MATRIX',dmTitle:'Product Demand by Month',otherDemos:'More Barry Data & Analytics Demos'},
+ fr:{title:'Mur de filtres de performance produit',eyebrow:'Démo live · Intelligence produit & commerciale',subtitle:'Un tableau de bord produit et ventes dynamique avec filtres multiples, KPI clairs et mise à jour immédiate de toutes les visualisations.',dmSmall:'MATRICE DE DEMANDE',dmTitle:'Demande produit par mois',otherDemos:'Autres démos Barry Data & Analytics'}
+};
+function applyLang(lang){
+ currentLang=lang;
+ $$('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(translations[lang]&&translations[lang][key])el.textContent=translations[lang][key]});
+ localizeLeaves(lang);
+ document.documentElement.lang=lang;
+ updateChips();
+ $$('.langBtn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+$$('.langBtn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+applyLang('de');
+
+function go(btn){
+ const target=btn.dataset.target;if(!target)return;
+ const el=$(target);if(!el)return;
+ el.scrollIntoView({behavior:'smooth',block:'start'});
+ el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
+}
+$$('.tab[data-target]').forEach(b=>b.addEventListener('click',()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));go(b)}));
+$$('.rbtn[data-target]').forEach(b=>b.addEventListener('click',()=>{$$('.rbtn').forEach(x=>x.classList.toggle('active',x===b));go(b)}));
+
+</script>
+<style id="bda-universal-demo-network-style">
+#bda-universal-demo-network{position:fixed;left:18px;bottom:18px;z-index:10000;font-family:Inter,"Segoe UI",Arial,sans-serif}#bda-universal-demo-network *{box-sizing:border-box}.bda-net-button{display:flex;align-items:center;gap:9px;min-height:44px;padding:10px 14px;border:1px solid rgba(31,211,224,.42);border-radius:14px;background:rgba(3,15,26,.96);color:#eafaff;box-shadow:0 16px 45px rgba(0,0,0,.36);font-weight:800;cursor:pointer}.bda-net-dot{width:8px;height:8px;border-radius:50%;background:#24e6d2;box-shadow:0 0 0 5px rgba(36,230,210,.1),0 0 16px #24e6d2}.bda-net-panel{position:absolute;left:0;bottom:calc(100% + 10px);width:min(370px,calc(100vw - 24px));max-height:min(590px,78vh);overflow:auto;padding:10px;border:1px solid rgba(31,211,224,.28);border-radius:18px;background:rgba(3,12,22,.985);box-shadow:0 25px 80px rgba(0,0,0,.55);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:.2s}.bda-net-open .bda-net-panel{opacity:1;visibility:visible;pointer-events:auto;transform:none}.bda-net-head{display:flex;justify-content:space-between;align-items:center;padding:8px 8px 12px;border-bottom:1px solid rgba(255,255,255,.09);margin-bottom:6px}.bda-net-head strong{font-size:12px;color:#e8fbff}.bda-net-head a{font-size:10px;color:#75eef0;text-decoration:none}.bda-net-link{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:center;padding:10px;border-radius:12px;color:#a9bfd0;text-decoration:none}.bda-net-link:hover,.bda-net-link:focus-visible{background:rgba(32,213,225,.09);color:#fff;outline:none}.bda-net-link.current{background:linear-gradient(135deg,rgba(31,171,255,.16),rgba(35,235,213,.1));box-shadow:inset 0 0 0 1px rgba(35,235,213,.24);color:#7affed}.bda-net-icon{width:32px;height:32px;display:grid;place-items:center;border:1px solid #23475f;border-radius:10px;background:#071a2a;color:#6ef7e9}.bda-net-copy b{display:block;font-size:11px}.bda-net-copy small{display:block;color:#7892a6;font-size:9px;margin-top:3px}.bda-net-foot{display:flex;gap:7px;padding:9px 5px 3px}.bda-net-foot a{flex:1;text-align:center;padding:9px;border:1px solid #1b425a;border-radius:10px;color:#9bd7ec;text-decoration:none;font-size:10px;font-weight:800}@media(max-width:620px){#bda-universal-demo-network{left:10px;bottom:10px}.bda-net-button{min-height:42px}.bda-net-panel{width:min(92vw,370px)}}@media print{#bda-universal-demo-network{display:none!important}}
+</style><div id="bda-universal-demo-network" data-current="excel-executive-management">
+ <button class="bda-net-button" type="button" aria-expanded="false"><span class="bda-net-dot"></span><span data-bda-net="button">Interaktive Demos</span><span>⌃</span></button>
+ <div class="bda-net-panel" role="navigation" aria-label="Barry Data & Analytics Demos">
+  <div class="bda-net-head"><strong>BDA DEMO NETWORK</strong><a href="../demo/index.html" data-bda-net="all">Alle ansehen →</a></div>
+  <a class="bda-net-link" data-page="power-bi-sales-operations" href="../power-bi-sales-operations/index.html"><span class="bda-net-icon">◒</span><span class="bda-net-copy"><b>Power BI Intelligence</b><small data-bda-net="powerbi">Umsatz, Profit und Forecast</small></span></a>
+  <a class="bda-net-link" data-page="sales-growth-command-center" href="../sales-growth-command-center/index.html"><span class="bda-net-icon">◇</span><span class="bda-net-copy"><b>Enterprise Command Center</b><small data-bda-net="enterprise">Standorte, Bereiche und Entscheidungen</small></span></a>
+  <a class="bda-net-link" data-page="excel-executive-management" href="../excel-executive-management/index.html"><span class="bda-net-icon">▦</span><span class="bda-net-copy"><b>Excel Management Cockpit</b><small data-bda-net="excel">Produkte und kommerzielle Steuerung</small></span></a>
+  <a class="bda-net-link" data-page="connected_data_management" href="../connected_data_management/index.html"><span class="bda-net-icon">⌁</span><span class="bda-net-copy"><b>Connected Data</b><small data-bda-net="connected">ERP, CRM, Excel und Datenflüsse</small></span></a>
+  <a class="bda-net-link" data-page="crm-cockpit-demo" href="../crm-cockpit-demo/index.html"><span class="bda-net-icon">◎</span><span class="bda-net-copy"><b>CRM Cockpit</b><small data-bda-net="crm">Kunden, Projekte und Pipeline</small></span></a>
+  <a class="bda-net-link" data-page="business-prozess-demo" href="../business-prozess-demo/index.html"><span class="bda-net-icon">⚡</span><span class="bda-net-copy"><b>Business Process</b><small data-bda-net="process">Anfrage bis Umsetzung</small></span></a>
+  <a class="bda-net-link" data-page="vier-saeulen-loesungsdemo" href="../vier-saeulen-loesungsdemo/index.html"><span class="bda-net-icon">◫</span><span class="bda-net-copy"><b data-bda-net="solutionsTitle">Lösungsübersicht</b><small data-bda-net="solutions">Leistungen im Gesamtüberblick</small></span></a>
+  <div class="bda-net-foot"><a href="../../index.html" data-bda-net="home">Homepage</a><a href="../../index.html#contact" data-bda-net="contact">Kontakt</a></div>
+ </div>
+</div>
+<script id="bda-universal-demo-network-script">
+(function(){const root=document.getElementById('bda-universal-demo-network');if(!root)return;const btn=root.querySelector('.bda-net-button');root.querySelectorAll('[data-page]').forEach(a=>{if(a.dataset.page===root.dataset.current){a.classList.add('current');a.setAttribute('aria-current','page')}});btn.addEventListener('click',e=>{e.stopPropagation();const open=root.classList.toggle('bda-net-open');btn.setAttribute('aria-expanded',String(open))});document.addEventListener('click',e=>{if(!root.contains(e.target)){root.classList.remove('bda-net-open');btn.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){root.classList.remove('bda-net-open');btn.setAttribute('aria-expanded','false')}});const text={de:{button:'Interaktive Demos',all:'Alle ansehen →',powerbi:'Umsatz, Profit und Forecast',enterprise:'Standorte, Bereiche und Entscheidungen',excel:'Produkte und kommerzielle Steuerung',connected:'ERP, CRM, Excel und Datenflüsse',crm:'Kunden, Projekte und Pipeline',process:'Anfrage bis Umsetzung',solutionsTitle:'Lösungsübersicht',solutions:'Leistungen im Gesamtüberblick',home:'Homepage',contact:'Kontakt'},en:{button:'Interactive demos',all:'View all →',powerbi:'Revenue, profit and forecast',enterprise:'Locations, departments and decisions',excel:'Product and commercial steering',connected:'ERP, CRM, Excel and data flows',crm:'Customers, projects and pipeline',process:'Enquiry through delivery',solutionsTitle:'Solutions overview',solutions:'Services in one overview',home:'Homepage',contact:'Contact'},fr:{button:'Démos interactives',all:'Tout voir →',powerbi:'CA, résultat et prévisions',enterprise:'Sites, services et décisions',excel:'Pilotage produits et commercial',connected:'ERP, CRM, Excel et flux de données',crm:'Clients, projets et pipeline',process:'De la demande à la réalisation',solutionsTitle:'Vue des solutions',solutions:'Services en une seule vue',home:'Accueil',contact:'Contact'}};function translate(){const lang=(document.documentElement.lang||'de').slice(0,2),t=text[lang]||text.de;root.querySelectorAll('[data-bda-net]').forEach(el=>{const value=t[el.dataset.bdaNet];if(value)el.textContent=value})}translate();new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})})();
+</script>
+</body>
+</html>
