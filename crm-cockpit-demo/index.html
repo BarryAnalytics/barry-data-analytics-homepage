@@ -190,7 +190,7 @@ a{color:inherit}.wrap{width:min(1480px,94vw);margin:auto;padding:18px 0 80px}.na
 .video-frame video{max-width:100%;max-height:100%;object-fit:contain}
 </style>
 <!-- BDA CRM Cockpit Final Build: CTA DE/EN/FR innerhalb sicherer Ränder -->
-<style id="bda-hide-legacy-demo-network">#bda-demo-network-fixed{display:none!important}</style>
+<style id="bda-hide-legacy-demo-network">#bda-demo-network-fixed{display:none!important}</style>
 </head>
 <body>
 <div class="wrap">
@@ -700,5 +700,9 @@ setLang('de');
 </div>
 <script id="bda-universal-demo-network-script">
 (function(){const root=document.getElementById('bda-universal-demo-network');if(!root)return;const btn=root.querySelector('.bda-net-button');root.querySelectorAll('[data-page]').forEach(a=>{if(a.dataset.page===root.dataset.current){a.classList.add('current');a.setAttribute('aria-current','page')}});btn.addEventListener('click',e=>{e.stopPropagation();const open=root.classList.toggle('bda-net-open');btn.setAttribute('aria-expanded',String(open))});document.addEventListener('click',e=>{if(!root.contains(e.target)){root.classList.remove('bda-net-open');btn.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){root.classList.remove('bda-net-open');btn.setAttribute('aria-expanded','false')}});const text={de:{button:'Interaktive Demos',all:'Alle ansehen →',powerbi:'Umsatz, Profit und Forecast',enterprise:'Standorte, Bereiche und Entscheidungen',excel:'Produkte und kommerzielle Steuerung',connected:'ERP, CRM, Excel und Datenflüsse',crm:'Kunden, Projekte und Pipeline',process:'Anfrage bis Umsetzung',solutionsTitle:'Lösungsübersicht',solutions:'Leistungen im Gesamtüberblick',reportingTitle:'Interaktive Reporting-Demo',reporting:'Geführte Managementsicht mit Audio',home:'Homepage',contact:'Kontakt'},en:{button:'Interactive demos',all:'View all →',powerbi:'Revenue, profit and forecast',enterprise:'Locations, departments and decisions',excel:'Product and commercial steering',connected:'ERP, CRM, Excel and data flows',crm:'Customers, projects and pipeline',process:'Enquiry through delivery',solutionsTitle:'Solutions overview',solutions:'Services in one overview',reportingTitle:'Interactive reporting demo',reporting:'Guided management view with audio',home:'Homepage',contact:'Contact'},fr:{button:'Démos interactives',all:'Tout voir →',powerbi:'CA, résultat et prévisions',enterprise:'Sites, services et décisions',excel:'Pilotage produits et commercial',connected:'ERP, CRM, Excel et flux de données',crm:'Clients, projets et pipeline',process:'De la demande à la réalisation',solutionsTitle:'Vue des solutions',solutions:'Services en une seule vue',reportingTitle:'Démo de reporting interactive',reporting:'Vue de gestion guidée avec audio',home:'Accueil',contact:'Contact'}};function translate(){const lang=(document.documentElement.lang||'de').slice(0,2),t=text[lang]||text.de;root.querySelectorAll('[data-bda-net]').forEach(el=>{const value=t[el.dataset.bdaNet];if(value)el.textContent=value})}translate();new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})})();
-</script>
+</script>
+
+<!-- BDA: analytics only after consent -->
+<script defer src="/assets/js/bda-analytics-consent.js"></script>
+<script defer src="/assets/js/bda-interest-tracking.js"></script>
 </body></html>

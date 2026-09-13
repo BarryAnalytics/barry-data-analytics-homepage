@@ -1,1721 +1,1725 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Digitale Projektanalyse | Barry Data & Analytics</title>
-
-  <style>
-    :root {
-      --bg:#030712;
-      --panel:rgba(15,23,42,.94);
-      --field:#1e293b;
-      --border:#334155;
-      --soft:rgba(148,163,184,.22);
-      --muted:#94a3b8;
-      --text:#f8fafc;
-      --cyan:#00f2fe;
-      --cyan2:#00d8e4;
-      --max:900px;
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(circle at top left,rgba(0,242,254,.10),transparent 34%),
-        radial-gradient(circle at bottom right,rgba(37,99,235,.14),transparent 36%),
-        var(--bg);
-      color:var(--text);
-      font-family:Arial,Helvetica,sans-serif;
-      padding-top:125px;
-    }
-
-    .topbar{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      z-index:100;
-      background:rgba(3,7,18,.9);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(148,163,184,.18);
-    }
-
-    .topbar-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:16px 22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-
-    .brand-logo{
-      width:160px;
-      height:50px;
-      display:flex;
-      align-items:center;
-      flex-shrink:0;
-    }
-
-    .brand-logo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      object-position:left center;
-    }
-
-    .nav-badge{
-      color:var(--cyan);
-      background:rgba(0,242,254,.10);
-      border:1px solid rgba(0,242,254,.22);
-      padding:8px 11px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.07em;
-      text-transform:uppercase;
-      white-space:nowrap;
-    }
-
-    .actions{
-      display:flex;
-      align-items:center;
-      gap:7px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .home-link,.lang-btn{
-      border:1px solid rgba(148,163,184,.28);
-      background:rgba(30,41,59,.82);
-      color:#dbeafe;
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:12px;
-      font-weight:800;
-      cursor:pointer;
-      text-decoration:none;
-    }
-
-    .home-link{
-      border-color:rgba(0,242,254,.28);
-      background:rgba(0,242,254,.08);
-      color:var(--cyan);
-    }
-
-    .lang-btn.active{
-      background:var(--cyan);
-      color:#020617;
-      border-color:var(--cyan);
-    }
-
-    .page{
-      display:flex;
-      justify-content:center;
-      padding:24px;
-    }
-
-    .container{
-      width:100%;
-      max-width:var(--max);
-      background:var(--panel);
-      border:1px solid var(--soft);
-      border-radius:26px;
-      box-shadow:0 24px 80px rgba(0,0,0,.46);
-      padding:34px;
-    }
-
-    .badge{
-      display:inline-block;
-      color:var(--cyan);
-      background:rgba(0,242,254,.08);
-      border:1px solid rgba(0,242,254,.18);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    h1{
-      margin:20px 0 16px;
-      font-size:clamp(30px,4vw,46px);
-      line-height:1.1;
-      letter-spacing:-.03em;
-      color:#ffffff;
-    }
-
-    .intro{
-      color:var(--muted);
-      line-height:1.75;
-      max-width:760px;
-      font-size:15px;
-      margin-bottom:30px;
-    }
-
-    .intro strong{color:#e2e8f0}
-
-    .request-context{
-      display:none;
-      margin:0 0 28px;
-      padding:18px;
-      border-radius:20px;
-      border:1px solid rgba(0,242,254,.22);
-      background:
-        linear-gradient(135deg,rgba(0,242,254,.10),rgba(37,99,235,.07)),
-        rgba(15,23,42,.72);
-      box-shadow:0 16px 42px rgba(0,0,0,.22);
-    }
-
-    .request-context-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .request-context-title{
-      color:#ffffff;
-      font-size:17px;
-      font-weight:900;
-      margin:0 0 6px;
-    }
-
-    .request-context-lead{
-      color:#cbd5e1;
-      font-size:13px;
-      line-height:1.55;
-      margin:0;
-    }
-
-    .project-pill{
-      color:#020617;
-      background:var(--cyan);
-      border-radius:999px;
-      padding:8px 11px;
-      font-size:12px;
-      font-weight:900;
-      white-space:nowrap;
-      box-shadow:0 0 18px rgba(0,242,254,.22);
-    }
-
-    .context-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-    }
-
-    .context-item{
-      border:1px solid rgba(148,163,184,.18);
-      background:rgba(15,23,42,.42);
-      border-radius:14px;
-      padding:12px;
-      min-width:0;
-    }
-
-    .context-label{
-      display:block;
-      color:#94a3b8;
-      font-size:11px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.07em;
-      margin-bottom:5px;
-    }
-
-    .context-value{
-      color:#e2e8f0;
-      font-size:14px;
-      line-height:1.45;
-      overflow-wrap:anywhere;
-    }
-
-    .other-project-box{
-      margin-top:14px;
-      padding:14px;
-      border-radius:16px;
-      border:1px solid rgba(0,242,254,.16);
-      background:rgba(30,41,59,.44);
-    }
-
-    .other-project-box textarea{
-      min-height:84px;
-    }
-
-
-    .business-tools-box{
-      margin-top:16px;
-      padding:16px;
-      border-radius:18px;
-      border:1px solid rgba(0,242,254,.20);
-      background:
-        radial-gradient(circle at top left,rgba(0,242,254,.10),transparent 42%),
-        rgba(15,23,42,.60);
-      box-shadow:0 18px 46px rgba(0,0,0,.22),0 0 26px rgba(0,242,254,.08);
-    }
-
-    .business-tools-kicker{
-      display:inline-flex;
-      color:var(--cyan);
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      margin-bottom:8px;
-    }
-
-    .business-tools-box strong.business-tools-title{
-      display:block;
-      color:#f8fafc;
-      font-size:17px;
-      letter-spacing:-.02em;
-      margin-bottom:6px;
-    }
-
-    .business-tools-box p{
-      margin:0;
-      color:#cbd5e1;
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .business-tools-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .business-tool-card{
-      padding:12px;
-      border-radius:15px;
-      background:rgba(30,41,59,.62);
-      border:1px solid rgba(148,163,184,.18);
-      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
-    }
-
-    .business-tool-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(0,242,254,.42);
-      background:rgba(30,41,59,.82);
-      box-shadow:0 16px 34px rgba(0,242,254,.10);
-    }
-
-    .business-tool-card span.business-tool-icon{
-      display:inline-flex;
-      width:28px;
-      height:28px;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      border:1px solid rgba(0,242,254,.28);
-      background:rgba(0,242,254,.08);
-      color:var(--cyan);
-      font-size:14px;
-      margin-bottom:8px;
-    }
-
-    .business-tool-card strong{
-      display:block;
-      color:#e0f2fe;
-      font-size:13px;
-      margin-bottom:5px;
-    }
-
-    .business-tool-card p{
-      color:#94a3b8;
-      font-size:12px;
-      line-height:1.45;
-    }
-
-    @media(max-width:760px){
-      .business-tools-grid{grid-template-columns:1fr}
-    }
-
-    form{
-      display:grid;
-      gap:24px;
-    }
-
-    .section{
-      border-top:1px solid rgba(148,163,184,.18);
-      padding-top:24px;
-    }
-
-    .section-title{
-      font-size:15px;
-      color:var(--cyan);
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-weight:900;
-      margin-bottom:16px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:16px;
-    }
-
-    label.field-label{
-      display:block;
-      font-size:13px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      color:#cbd5e1;
-      margin-bottom:9px;
-    }
-
-    input,select,textarea{
-      width:100%;
-      color:var(--text);
-      background:var(--field);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-      outline:none;
-      font-size:15px;
-    }
-
-    textarea{
-      min-height:110px;
-      resize:vertical;
-      line-height:1.55;
-    }
-
-    input:focus,select:focus,textarea:focus{
-      border-color:var(--cyan);
-      box-shadow:0 0 0 3px rgba(0,242,254,.14);
-    }
-
-    .options{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-    }
-
-    .choice{
-      display:flex;
-      gap:10px;
-      padding:12px;
-      border:1px solid var(--border);
-      background:rgba(30,41,59,.72);
-      border-radius:14px;
-      color:#e2e8f0;
-      font-size:14px;
-      line-height:1.45;
-      cursor:pointer;
-    }
-
-    .choice input{
-      width:auto;
-      margin-top:2px;
-      accent-color:var(--cyan);
-    }
-
-    .small-note{
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.55;
-      margin-top:8px;
-    }
-
-    .privacy-box{
-      display:grid;
-      gap:12px;
-      padding:16px;
-      border-radius:16px;
-      background:rgba(30,41,59,.55);
-      border:1px solid rgba(148,163,184,.20);
-      color:#cbd5e1;
-      font-size:14px;
-      line-height:1.6;
-    }
-
-    .checkbox-line{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-
-    .checkbox-line input{
-      width:auto;
-      margin-top:4px;
-      accent-color:var(--cyan);
-    }
-
-    .privacy-box a{
-      color:var(--cyan);
-      text-decoration:none;
-      font-weight:800;
-      border-bottom:1px solid rgba(0,242,254,.35);
-    }
-
-    .privacy-box a:hover{
-      border-bottom-color:var(--cyan);
-    }
-
-    .legal-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:2px;
-    }
-
-    .legal-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,242,254,.22);
-      background:rgba(0,242,254,.07);
-      font-size:12px;
-      line-height:1;
-      white-space:nowrap;
-    }
-
-    details{
-      border-top:1px solid rgba(148,163,184,.18);
-      padding-top:10px;
-    }
-
-    summary{
-      color:var(--cyan);
-      cursor:pointer;
-      font-weight:800;
-    }
-
-    .submit-btn{
-      width:100%;
-      border:0;
-      border-radius:16px;
-      padding:17px 20px;
-      background:var(--cyan);
-      color:#020617;
-      font-size:15px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      cursor:pointer;
-      box-shadow:0 18px 40px rgba(0,242,254,.18);
-    }
-
-    .submit-btn:hover{background:var(--cyan2)}
-    .submit-btn:disabled{opacity:.6;cursor:not-allowed}
-
-    .error{
-      display:none;
-      padding:14px;
-      border-radius:14px;
-      background:rgba(239,68,68,.11);
-      border:1px solid rgba(239,68,68,.28);
-      color:#fecaca;
-      font-size:14px;
-      line-height:1.5;
-    }
-
-    .success{
-      display:none;
-      text-align:center;
-      padding:42px 10px;
-    }
-
-    .success-icon{
-      width:76px;
-      height:76px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:0 auto 24px;
-      border-radius:999px;
-      background:rgba(34,197,94,.12);
-      border:1px solid rgba(34,197,94,.35);
-      color:#4ade80;
-      font-size:38px;
-      font-weight:900;
-    }
-
-    .success h2{
-      font-size:clamp(24px,4vw,34px);
-      margin:0 0 12px;
-    }
-
-    .success p{
-      color:var(--muted);
-      line-height:1.7;
-      max-width:640px;
-      margin:0 auto 18px;
-    }
-
-    @media(max-width:760px){
-      body{padding-top:115px}
-      .topbar-inner{padding:12px 14px}
-      .brand-logo{width:125px;height:42px}
-      .nav-badge{display:none}
-      .home-link,.lang-btn{padding:8px 8px;font-size:11px}
-      .page{padding:14px}
-      .container{padding:22px;border-radius:22px}
-      .grid,.options{grid-template-columns:1fr}
-    }
-  </style>
-</head>
-
-<body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a href="https://barrydataanalytics.de" class="brand-logo">
-      <img id="logo" src="/assets/img/logo-barry.png" alt="Barry Data & Analytics Logo">
-    </a>
-
-    <span class="nav-badge" id="navBadge">Digital. Strukturiert. Unverbindlich.</span>
-
-    <div class="actions">
-      <button type="button" class="lang-btn active" data-lang="de">DE</button>
-      <button type="button" class="lang-btn" data-lang="en">EN</button>
-      <button type="button" class="lang-btn" data-lang="fr">FR</button>
-      <a href="https://barrydataanalytics.de" class="home-link" id="homeLink">Homepage</a>
-    </div>
-  </div>
-</header>
-
-<!--
-============================================================
-BARRY DATA & ANALYTICS – INTERNE PROJEKTANALYSE-INFOS
-============================================================
-
-
-KUNDENLINK:
-https://barrydataanalytics.de/projektangebot/?email=kunde@firma.de
-https://www.barrydataanalytics.de/projektangebot/?email=DEINE-EXCEL-EMAIL
-KUNDENLINK:
-https://barrydataanalytics.de/projektanalyse/?projectNumber=BDA-P-2026-0025&email=kunde@firma.de
-
-HOMEPAGE:
-https://barrydataanalytics.de
-
-POWER AUTOMATE:
-Die echte Flow-URL hier im JavaScript eintragen:
-
-const FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/...";
-
-WICHTIGE JSON-FELDER FÜR POWER AUTOMATE:
-language
-name
-company
-email
-phone
-project_type
-timeline
-priority
-frequency
-data_source
-company_size
-user_count
-reports_exist
-automation
-collaboration_model
-process_focus
-work_environment
-preferred_meeting_mode
-preferred_contact_date
-preferred_contact_time
-preferred_contact_note
-goal
-challenge
-expected
-description
-privacy_accepted
-submitted_at
-source
-
-BEISPIEL-BODY, DER AN POWER AUTOMATE GESENDET WIRD:
-{
-  "language": "de",
-  "name": "Max Mustermann",
-  "company": "Muster GmbH",
-  "email": "max@example.com",
-  "phone": "+49 ...",
-  "project_type": ["Sales Performance Dashboard"],
-  "timeline": "In den nächsten Wochen",
-  "priority": "Mittel",
-  "frequency": "Wöchentlich",
-  "data_source": "Excel / CSV",
-  "company_size": "11–25 Mitarbeitende",
-  "user_count": "2–5 Personen",
-  "reports_exist": "Ja, aber manuell",
-  "automation": "Automatisierung gewünscht",
-  "collaboration_model": "Einmaliges Projekt",
-  "goal": "...",
-  "challenge": "...",
-  "expected": "...",
-  "description": "...",
-  "privacy_accepted": true,
-  "submitted_at": "2026-01-01T10:00:00.000Z",
-  "source": "Digitale Projektanalyse"
-}
-
-KUNDEN-E-MAIL TEXT:
-Vielen Dank für Ihre Anfrage.
-
-Hier können Sie Ihre Projektinformationen strukturiert übermitteln:
-https://barrydataanalytics.de/projektanalyse/
-
-Die Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele, Ihre Anforderungen und den voraussichtlichen Aufwand besser zu verstehen.
-
-Mit freundlichen Grüßen
-Ahmed Barry
-Founder & Owner | Barry Data & Analytics
-
-📞 +49 1575 5355849
-📧 ahmed@barrydataanalytics.de
-🌐 www.barrydataanalytics.de
-📍 Standort: Bochum (NRW) – Remote & international
-
-Data Analytics | Business Intelligence | Power BI | Power Query | Automation
-
-
-
-
-============================================================
--->
-
-
-<main class="page">
-  <section class="container">
-
-    <div id="formArea">
-      <span class="badge" id="badgeText"></span>
-      <h1 id="mainTitle"></h1>
-      <div class="intro" id="introText"></div>
-
-      <div class="request-context" id="requestContext">
-        <div class="request-context-head">
-          <div>
-            <p class="request-context-title" id="requestContextTitle"></p>
-            <p class="request-context-lead" id="requestContextLead"></p>
-          </div>
-          <span class="project-pill" id="ctxProjectNumber"></span>
-        </div>
-
-        <div class="context-grid">
-          <div class="context-item" id="ctxProjectTypeWrap">
-            <span class="context-label" id="ctxProjectTypeLabel"></span>
-            <span class="context-value" id="ctxProjectType"></span>
-          </div>
-
-          <div class="context-item" id="ctxTimelineWrap">
-            <span class="context-label" id="ctxTimelineLabel"></span>
-            <span class="context-value" id="ctxTimeline"></span>
-          </div>
-
-          <div class="context-item" id="ctxDescriptionWrap" style="grid-column:1/-1;">
-            <span class="context-label" id="ctxDescriptionLabel"></span>
-            <span class="context-value" id="ctxDescription"></span>
-          </div>
-        </div>
-      </div>
-
-      <form id="projectForm" novalidate>
-        <input type="hidden" id="language" value="de">
-        <input type="hidden" id="projectNumber" value="">
-
-        <div class="section">
-          <div class="section-title" id="sectionContact"></div>
-
-          <div class="grid">
-            <div>
-              <label class="field-label" id="labelName" for="name"></label>
-              <input id="name" type="text">
-            </div>
-
-            <div>
-              <label class="field-label" id="labelCompany" for="company"></label>
-              <input id="company" type="text">
-            </div>
-
-            <div>
-              <label class="field-label" id="labelEmail" for="email"></label>
-              <input id="email" type="email">
-            </div>
-
-            <div>
-              <label class="field-label" id="labelPhone" for="phone"></label>
-              <input id="phone" type="tel">
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title" id="sectionProject"></div>
-
-          <label class="field-label" id="labelProjectType"></label>
-          <div class="options" id="projectOptions"></div>
-          <p class="small-note" id="projectNote"></p>
-
-          <div class="other-project-box">
-            <label class="field-label" id="labelProjectOther" for="project_type_other"></label>
-            <textarea id="project_type_other"></textarea>
-            <p class="small-note" id="projectOtherNote"></p>
-          </div>
-
-          <div class="business-tools-box">
-            <span class="business-tools-kicker" id="businessToolsKicker"></span>
-            <strong class="business-tools-title" id="businessToolsTitle"></strong>
-            <p id="businessToolsLead"></p>
-
-            <div class="business-tools-grid">
-              <div class="business-tool-card">
-                <span class="business-tool-icon">▣</span>
-                <strong id="businessTool1Title"></strong>
-                <p id="businessTool1Text"></p>
-              </div>
-              <div class="business-tool-card">
-                <span class="business-tool-icon">↻</span>
-                <strong id="businessTool2Title"></strong>
-                <p id="businessTool2Text"></p>
-              </div>
-              <div class="business-tool-card">
-                <span class="business-tool-icon">✓</span>
-                <strong id="businessTool3Title"></strong>
-                <p id="businessTool3Text"></p>
-              </div>
-              <div class="business-tool-card">
-                <span class="business-tool-icon">↗</span>
-                <strong id="businessTool4Title"></strong>
-                <p id="businessTool4Text"></p>
-              </div>
-            </div>
-
-            <p class="small-note" id="businessToolsNote"></p>
-          </div>
-
-
-          <div class="grid" style="margin-top:18px;">
-            <div>
-              <label class="field-label" id="labelTimeline" for="timeline"></label>
-              <select id="timeline"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelPriority" for="priority"></label>
-              <select id="priority"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelFrequency" for="frequency"></label>
-              <select id="frequency"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelDataSource" for="data_source"></label>
-              <select id="data_source"></select>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title" id="sectionScope"></div>
-
-          <div class="grid">
-            <div>
-              <label class="field-label" id="labelCompanySize" for="company_size"></label>
-              <select id="company_size"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelUserCount" for="user_count"></label>
-              <select id="user_count"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelReportsExist" for="reports_exist"></label>
-              <select id="reports_exist"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelAutomation" for="automation"></label>
-              <select id="automation"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelCollaborationModel" for="collaboration_model"></label>
-              <select id="collaboration_model"></select>
-            </div>
-          </div>
-
-          <p class="small-note" id="scopeNote"></p>
-        </div>
-
-        <div class="section">
-          <div class="section-title" id="sectionProcess"></div>
-
-          <label class="field-label" id="labelProcessFocus"></label>
-          <div class="options" id="processOptions"></div>
-          <p class="small-note" id="processNote"></p>
-
-          <div class="grid" style="margin-top:18px;">
-            <div>
-              <label class="field-label" id="labelWorkEnvironment" for="work_environment"></label>
-              <select id="work_environment"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelMeetingMode" for="preferred_meeting_mode"></label>
-              <select id="preferred_meeting_mode"></select>
-            </div>
-
-            <div>
-              <label class="field-label" id="labelPreferredDate" for="preferred_contact_date"></label>
-              <input id="preferred_contact_date" type="date">
-            </div>
-
-            <div>
-              <label class="field-label" id="labelPreferredTime" for="preferred_contact_time"></label>
-              <select id="preferred_contact_time"></select>
-            </div>
-
-            <div style="grid-column:1/-1;">
-              <label class="field-label" id="labelPreferredNote" for="preferred_contact_note"></label>
-              <textarea id="preferred_contact_note"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title" id="sectionGoals"></div>
-
-          <div>
-            <label class="field-label" id="labelGoal" for="goal"></label>
-            <textarea id="goal"></textarea>
-          </div>
-
-          <div>
-            <label class="field-label" id="labelChallenge" for="challenge"></label>
-            <textarea id="challenge"></textarea>
-          </div>
-
-          <div>
-            <label class="field-label" id="labelExpected" for="expected"></label>
-            <textarea id="expected"></textarea>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title" id="sectionMore"></div>
-
-          <div>
-            <label class="field-label" id="labelDesc" for="desc"></label>
-            <textarea id="desc"></textarea>
-          </div>
-
-          <div class="privacy-box">
-            <label class="checkbox-line">
-              <input type="checkbox" id="privacyAccepted" required>
-              <span id="privacyAcceptedText"></span>
-            </label>
-
-            <div class="legal-links" aria-label="Rechtliche Hinweise">
-              <a class="legal-link" id="legalImprint" href="/rechtliches.html#impressum" target="_blank" rel="noopener"></a>
-              <a class="legal-link" id="legalPrivacy" href="/rechtliches.html#datenschutz" target="_blank" rel="noopener"></a>
-              <a class="legal-link" id="legalTerms" href="/rechtliches.html#agb" target="_blank" rel="noopener"></a>
-            </div>
-
-            <details>
-              <summary id="privacySummary"></summary>
-              <p id="privacyDetails"></p>
-            </details>
-
-            <p id="contactInfoText"></p>
-          </div>
-        </div>
-
-        <div class="error" id="errorBox"></div>
-
-        <button type="submit" class="submit-btn" id="submitBtn"></button>
-      </form>
-    </div>
-
-    <div class="success" id="successScreen">
-      <div class="success-icon">✓</div>
-      <h2 id="successTitle"></h2>
-      <p id="successText"></p>
-      <p id="successText2"></p>
-    </div>
-
-  </section>
-</main>
-
-<script>
-const FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/cf826be8026c4cc38624686209ea3928/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Z_HMIM-VvkUx30HCsl2GoRKT9CR_GvEy-DhrtKcj-4";
-
-const urlParams = new URLSearchParams(window.location.search);
-// Unterstützt mehrere Link-Varianten, damit alte und neue E-Mail-Links funktionieren.
-// Hauptstandard bleibt: ?projectNumber=BDA-P-YYYY-NNNN&email=kunde@firma.de
-const initialProjectNumber = (
-  urlParams.get("projectNumber") ||
-  urlParams.get("project") ||
-  urlParams.get("ProjectNumber") ||
-  urlParams.get("projectnumber") ||
-  urlParams.get("projectId") ||
-  urlParams.get("ProjectNumber4") ||
-  ""
-).trim();
-
-const initialEmail = (
-  urlParams.get("email") ||
-  urlParams.get("customerEmail") ||
-  urlParams.get("Email") ||
-  urlParams.get("mail") ||
-  ""
-).trim();
-
-function cleanParamValue(value){
-  try{
-    return decodeURIComponent(value || "").replace(/\+/g," ").trim();
-  }catch(e){
-    return String(value || "").replace(/\+/g," ").trim();
-  }
-}
-
-function getParamAny(names){
-  for(const n of names){
-    const v = urlParams.get(n);
-    if(v !== null && String(v).trim() !== ""){
-      return cleanParamValue(v);
-    }
-  }
-  return "";
-}
-
-const initialLang = (getParamAny(["lang","language","sprache"]) || "de").toLowerCase();
-const initialName = getParamAny(["name","Name","customerName"]);
-const initialCompany = getParamAny(["company","Company","firma","unternehmen"]);
-const initialPhone = getParamAny(["phone","Phone","telefon","telephone"]);
-const initialProjectType = getParamAny(["type","projectType","project_type","ProjType","SolType","projectName","projectTitle"]);
-const initialTimeline = getParamAny(["start","startOpt","StartOpt","timeline","projectStart"]);
-const initialDescription = getParamAny(["desc","description","projectDescription","projektbeschreibung","Project"]);
-const logo = document.getElementById("logo");
-logo.onerror = function () {
-  if (this.src.includes("/assets/")) {
-    this.src = "assets/img/logo-barry.png";
-  } else if (this.src.includes("assets/img")) {
-    this.src = "../assets/img/logo-barry.png";
-  }
-};
-
-const T = {
-  de: {
-    homeLink:"Homepage",
-    navBadge:"Digital. Strukturiert. Unverbindlich.",
-    badgeText:"Projektinformationen strukturiert übermitteln",
-    mainTitle:"Digitale Projektanalyse",
-    introText:`
-      <p>Vielen Dank für Ihr Interesse an <strong>Barry Data & Analytics</strong>.</p>
-      <p>Die folgenden Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele, Ihre Anforderungen, vorhandene Datenquellen und mögliche Automatisierungspotenziale besser zu verstehen. Auf dieser Grundlage können passende Lösungsansätze, Aufwand und nächste Schritte strukturiert vorbereitet werden.</p>
-      <p>Die Übermittlung ist <strong>unverbindlich</strong> und stellt noch keine Beauftragung dar. Die Informationen dienen ausschließlich der Projektanalyse und der Bearbeitung Ihres Anliegens.</p>
-      <p>Auch wenn einzelne Punkte noch nicht vollständig feststehen, können Sie Ihr Vorhaben einfach so beschreiben, wie es aktuell geplant ist.</p>
-      <p>Nach Prüfung Ihrer Angaben werde ich mich mit Ihnen in Verbindung setzen, um die weiteren Schritte abzustimmen.</p>
-    `,
-    labels:{
-      sectionContact:"Kontaktdaten",
-      labelName:"Name *",
-      labelCompany:"Unternehmen",
-      labelEmail:"E-Mail *",
-      labelPhone:"Telefonnummer",
-      sectionProject:"Projektübersicht",
-      labelProjectType:"Projektart auswählen",
-      projectNote:"Sie können mehrere Bereiche auswählen. Falls es um interne Business-Tools, Prozess-Cockpits oder CRM-nahe Abläufe geht, wählen Sie den nächstpassenden Bereich und ergänzen Sie die Details im Textfeld.",
-      labelTimeline:"Projektstart",
-      labelPriority:"Dringlichkeit",
-      labelFrequency:"Häufigkeit / Reporting-Frequenz",
-      labelDataSource:"Datenquellen",
-      sectionScope:"Rahmenbedingungen",
-      labelCompanySize:"Unternehmensgröße",
-      labelUserCount:"Geplante Nutzer / Empfänger",
-      labelReportsExist:"Bestehende Auswertungen / Reports",
-      labelAutomation:"Aktuelle Automatisierung",
-      labelCollaborationModel:"Gewünschte Zusammenarbeit",
-      sectionProcess:"Digitale Abläufe, Business-Tools & Terminwunsch",
-      labelProcessFocus:"Welche Abläufe oder internen Tools sollen verbessert werden?",
-      processNote:"Diese Auswahl hilft dabei, neben klassischen Datenprojekten auch interne Business-Tools, Prozess-Cockpits, CRM-nahe Abläufe, Dokumentenprozesse und wiederkehrende Aufgaben richtig einzuordnen.",
-      labelWorkEnvironment:"Vorhandene Arbeitsumgebung",
-      labelMeetingMode:"Gewünschte Abstimmung",
-      labelPreferredDate:"Wunschtermin / bevorzugtes Datum",
-      labelPreferredTime:"Bevorzugtes Zeitfenster",
-      labelPreferredNote:"Hinweis zum Termin oder zur Abstimmung",
-      scopeNote:"Diese Angaben helfen dabei, den passenden Lösungsrahmen und die nächsten Schritte realistisch einzuordnen. Wählen Sie einfach die Option, die Ihrem aktuellen Stand am nächsten kommt.",
-      sectionGoals:"Anforderungen & Ziele",
-      labelGoal:"Ziel des Projekts",
-      labelChallenge:"Aktuelle Herausforderung",
-      labelExpected:"Erwartetes Ergebnis",
-      sectionMore:"Zusätzliche Informationen",
-      labelDesc:"Kurze Projektbeschreibung",
-      privacyAcceptedText:"Ich habe die <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> gelesen und verstanden und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.",
-      privacySummary:"Kurze Datenschutzhinweise anzeigen",
-      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Im ersten Kontakt werden keine Passwörter, keine sensiblen Zugangsdaten und keine vertraulichen Unternehmensdateien abgefragt. Die Übermittlung ist unverbindlich. Eine Weitergabe an Dritte erfolgt nicht, sofern keine gesetzliche Pflicht besteht.",
-      contactInfoText:"Weitere Informationen: <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Impressum</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">AGB / Allgemeine Hinweise</a>.",
-      legalImprint:"Impressum",
-      legalPrivacy:"Datenschutz",
-      legalTerms:"AGB",
-      submitBtn:"Projektanalyse übermitteln",
-      successTitle:"Vielen Dank.",
-      successText:"Ihre digitale Projektanalyse wurde erfolgreich übermittelt.",
-      successText2:"Ihre Angaben werden nun geprüft und für die weitere Vorbereitung Ihres Anliegens berücksichtigt.",
-      errorBox:"Bitte prüfen Sie Ihre Angaben. Name, E-Mail und Datenschutz-Zustimmung sind erforderlich.",
-      invalidEmail:"Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-      requestContextTitle:"Ihre Anfrage wurde erkannt",
-      requestContextLead:"Einige Angaben aus Ihrer ursprünglichen Anfrage wurden bereits übernommen. Bitte prüfen und ergänzen Sie die Informationen.",
-      ctxProjectTypeLabel:"Ausgewählter Projektbereich",
-      ctxTimelineLabel:"Geplanter Start",
-      ctxDescriptionLabel:"Erste Projektbeschreibung",
-      labelProjectOther:"Nicht gefunden? Eigenes Thema kurz beschreiben",
-      projectOtherNote:"Falls Ihr Vorhaben nicht genau zu den Auswahlfeldern passt, beschreiben Sie es kurz. Ich ordne es intern dem passenden Lösungsbereich zu.",
-      businessToolsKicker:"Auch möglich – wenn es zum Projekt passt",
-      businessToolsTitle:"Interne Business-Tools & Prozess-Cockpits",
-      businessToolsLead:"Nicht jedes Projekt ist nur ein Dashboard. Je nach Bedarf können auch einfache, strukturierte Arbeitsoberflächen für interne Abläufe entstehen – passend zu Ihrer vorhandenen Arbeitsweise.",
-      businessTool1Title:"Anfrage, Angebot & Rechnung",
-      businessTool1Text:"Strukturierte Abläufe von der Kundenanfrage bis zur Rechnung – mit klaren Status, Dokumenten und nächsten Schritten.",
-      businessTool2Title:"Prozess-Cockpit",
-      businessTool2Text:"Eine zentrale Übersicht für Aufgaben, Projektstatus, Rückfragen, Uploads oder interne Entscheidungen.",
-      businessTool3Title:"CRM-nahe Abläufe",
-      businessTool3Text:"Kunden-, Projekt- und Kommunikationsdaten sauber zusammenführen, ohne direkt ein komplexes neues System einzuführen.",
-      businessTool4Title:"Microsoft 365 Automatisierung",
-      businessTool4Text:"Excel, SharePoint, Power Query, Power Automate und E-Mail-Prozesse sinnvoll miteinander verbinden.",
-      businessToolsNote:"Diese Beispiele dienen nur zur Orientierung. Ihre Auswahl wird weiterhin über die bestehenden Projekt- und Prozessfelder übermittelt."
-    },
-    placeholders:{
-      name:"Ihr Name",
-      company:"Unternehmen optional",
-      email:"Ihre E-Mail-Adresse",
-      phone:"Optional für Rückfragen",
-      goal:"Was möchten Sie mit dem Projekt erreichen?",
-      challenge:"Was funktioniert aktuell nicht gut oder kostet zu viel Zeit?",
-      expected:"Wie sieht ein gutes Ergebnis für Sie aus?",
-      desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten.",
-      preferred_contact_note:"Optional: gewünschtes Zeitfenster, Ansprechpartner, Besonderheiten oder Rückrufhinweis.",
-      project_type_other:"Beispiel: Prozess-Cockpit, Anfrage-/Angebots-/Rechnungsablauf, interne Arbeitsoberfläche, Excel-Vorlage, Speziallösung ..."
-    },
-    projects:[
-      "Vertrieb / Sales Performance",
-      "Marketing Performance",
-      "Operations / Prozessanalyse",
-      "Logistik / Lager & Supply Chain",
-      "Finance & Controlling",
-      "Management Dashboard / KPI",
-      "Industrie / Produktion / OEE",
-      "Service & Support",
-      "E-Commerce Analyse",
-      "Forecasting / Prognose",
-      "Reporting-Automatisierung",
-      "Power Query / Excel-Automatisierung",
-      "Datenbereinigung / Datenmigration",
-      "Individuelle Datenlösung / Sonstiges Projekt",
-      "Sonstiges / eigenes Projekt kurz beschreiben",
-      "Geschäftsprozesse digitalisieren und automatisieren",
-      "Interne Auswertungen / Management-Cockpit",
-      "Interne Business-Tools / Prozess-Cockpit",
-      "CRM-nahe Prozessautomatisierung",
-      "Dokumenten- und Ablageprozesse",
-      "Angebot-, Rechnungs- und Reporting-Abläufe",
-      "Microsoft 365 / SharePoint / Power Automate Lösung"
-    ],
-    timeline:["Sofort","Innerhalb 1 Woche","Innerhalb 2 Wochen","Innerhalb 1 Monat","In 1–3 Monaten","Später geplant","Noch unklar","Nach Absprache"],
-    priority:["Niedrig","Mittel","Hoch","Sehr hoch","Kritisch","Noch unklar"],
-    frequency:["Täglich","Wöchentlich","Monatlich","Quartalsweise","Jährlich","Kein regelmäßiges Reporting","Noch unklar"],
-    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","CRM-System","ERP-System","Website / Webshop","Datenbank / SQL","Power BI / bestehendes Dashboard","Power Query","Power Automate","Mehrere Datenquellen","Noch unklar","Sonstige Datenquellen"],
-    companySizes:["Solo / Selbstständig","2–10 Mitarbeitende","11–25 Mitarbeitende","26–50 Mitarbeitende","51–100 Mitarbeitende","101–250 Mitarbeitende","Mehr als 250 Mitarbeitende","Noch unklar"],
-    userCounts:["1 Person","2–5 Personen","6–10 Personen","11–25 Personen","26–50 Personen","Mehr als 50 Personen","Noch unklar"],
-    reportsExist:["Nein","Ja, aber manuell","Ja, aber unvollständig","Ja, regelmäßig","Excel-Berichte vorhanden","Power BI-Berichte vorhanden","Nur Rohdaten vorhanden","Noch unklar"],
-    automation:["Keine Automatisierung","Teilweise automatisiert","Power Query vorhanden","Power Automate vorhanden","Manuelle Prozesse","Automatisierung gewünscht","Automatisierung prüfen","Noch unklar"],
-    collaborationModels:["Einmaliges Projekt","Laufende Betreuung","Monatliche Unterstützung","Retainer / Stundenkontingent","Regelmäßige Reporting-Unterstützung","Support & Optimierung","Workshop / Beratung","Noch offen"],
-    processFocus:["Geschäftsprozesse digitalisieren und automatisieren","Interne Auswertungen / Management-Cockpit","Interne Business-Tools oder Prozess-Cockpits aufbauen","CRM-nahe Kunden-, Angebots- und Projektabläufe strukturieren","Projektstatus, Uploads, Rückfragen und Abschlussprozesse verbessern","Dokumenten- und Ablageprozesse strukturieren","Angebot-, Rechnungs- und Reporting-Abläufe verbessern","Wiederkehrende Aufgaben automatisieren","Daten aus Excel, SharePoint oder Systemen zusammenführen","Management- oder KPI-Übersicht aufbauen","Bestehende Reports modernisieren","Microsoft 365 / SharePoint / Power Automate sinnvoll nutzen","Noch unklar / bitte beraten"],
-    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / lokale Dateien","Power BI vorhanden","Power Query vorhanden","Power Automate vorhanden","CRM / ERP / Fachsystem","Google Workspace","Gemischte Umgebung","Noch unklar"],
-    meetingModes:["Microsoft Teams","Telefon","E-Mail-Abstimmung","Vor-Ort-Termin nach Absprache","Noch offen"],
-    preferredTimes:["Morgens","Vormittags","Mittags","Nachmittags","Abends","Flexibel","Nach Absprache"],
-    sending:"Wird übermittelt..."
-  },
-
-  en: {
-    homeLink:"Homepage",
-    navBadge:"Digital. Structured. Non-binding.",
-    badgeText:"Submit project information in a structured way",
-    mainTitle:"Digital Project Analysis",
-    introText:`
-      <p>Thank you for your interest in <strong>Barry Data & Analytics</strong>.</p>
-      <p>The following information helps to better understand your project, goals, requirements, existing data sources and possible automation potential. Based on your input, suitable solution approaches, effort and next steps can be prepared in a structured way.</p>
-      <p>The submission is <strong>non-binding</strong> and does not constitute an order. The information is used exclusively for project analysis and the preparation of your request.</p>
-      <p>Even if some details are not yet fully defined, you can simply describe your project as it is currently planned.</p>
-      <p>After reviewing your information, I will get in touch with you to coordinate the next steps.</p>
-    `,
-    labels:{
-      sectionContact:"Contact details",
-      labelName:"Name *",
-      labelCompany:"Company",
-      labelEmail:"Email *",
-      labelPhone:"Phone",
-      sectionProject:"Project overview",
-      labelProjectType:"Select project type",
-      projectNote:"You can select multiple areas. If your request involves internal business tools, process cockpits or CRM-related workflows, choose the closest area and add details in the text field.",
-      labelTimeline:"Project start",
-      labelPriority:"Urgency",
-      labelFrequency:"Frequency / reporting cadence",
-      labelDataSource:"Data sources",
-      sectionScope:"Project context",
-      labelCompanySize:"Company size",
-      labelUserCount:"Planned users / recipients",
-      labelReportsExist:"Existing reports / dashboards",
-      labelAutomation:"Current automation",
-      labelCollaborationModel:"Preferred collaboration",
-      sectionProcess:"Digital workflows, business tools & preferred appointment",
-      labelProcessFocus:"Which workflows or internal tools should be improved?",
-      processNote:"This selection helps classify not only classic data projects, but also internal business tools, process cockpits, CRM-related workflows, document processes and recurring tasks.",
-      labelWorkEnvironment:"Existing work environment",
-      labelMeetingMode:"Preferred coordination",
-      labelPreferredDate:"Preferred date",
-      labelPreferredTime:"Preferred time window",
-      labelPreferredNote:"Note regarding appointment or coordination",
-      scopeNote:"These details help define a suitable solution scope and realistic next steps. Please choose the option that best matches your current situation.",
-      sectionGoals:"Requirements & goals",
-      labelGoal:"Project goal",
-      labelChallenge:"Current challenge",
-      labelExpected:"Expected result",
-      sectionMore:"Additional information",
-      labelDesc:"Short project description",
-      privacyAcceptedText:"I have read and understood the <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">privacy policy</a> and agree that my information may be processed to handle my request.",
-      privacySummary:"Show short privacy information",
-      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. In the first contact step, no passwords, sensitive access data or confidential company files are requested. The submission is non-binding. Your information will not be passed on to third parties unless legally required.",
-      contactInfoText:"Further information: <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Legal notice</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">Terms / General information</a>.",
-      legalImprint:"Legal notice",
-      legalPrivacy:"Privacy",
-      legalTerms:"Terms",
-      submitBtn:"Submit project analysis",
-      successTitle:"Thank you.",
-      successText:"Your digital project analysis has been submitted successfully.",
-      successText2:"Your information will now be reviewed and used to prepare your request.",
-      errorBox:"Please check your information. Name, email and privacy consent are required.",
-      invalidEmail:"Please enter a valid email address.",
-      requestContextTitle:"Your request has been recognized",
-      requestContextLead:"Some details from your initial request have already been transferred. Please review and complete the information.",
-      ctxProjectTypeLabel:"Selected project area",
-      ctxTimelineLabel:"Planned start",
-      ctxDescriptionLabel:"Initial project description",
-      labelProjectOther:"Not listed? Briefly describe your own topic",
-      projectOtherNote:"If your project does not exactly match the options, briefly describe it here. I will assign it internally to the appropriate solution area.",
-      businessToolsKicker:"Also possible – if it fits the project",
-      businessToolsTitle:"Internal business tools & process cockpits",
-      businessToolsLead:"Not every project is just a dashboard. Depending on the need, simple and structured workspaces for internal workflows can also be created – aligned with your existing way of working.",
-      businessTool1Title:"Request, offer & invoice",
-      businessTool1Text:"Structured workflows from customer request to invoice – with clear status, documents and next steps.",
-      businessTool2Title:"Process cockpit",
-      businessTool2Text:"A central overview for tasks, project status, follow-up questions, uploads or internal decisions.",
-      businessTool3Title:"CRM-related workflows",
-      businessTool3Text:"Bring customer, project and communication data together without immediately introducing a complex new system.",
-      businessTool4Title:"Microsoft 365 automation",
-      businessTool4Text:"Connect Excel, SharePoint, Power Query, Power Automate and email workflows in a practical way.",
-      businessToolsNote:"These examples are for orientation only. Your selection is still submitted through the existing project and process fields."
-    },
-    placeholders:{
-      name:"Your name",
-      company:"Company optional",
-      email:"Your email address",
-      phone:"Optional for follow-up questions",
-      goal:"What do you want to achieve with the project?",
-      challenge:"What is not working well today or takes too much time?",
-      expected:"What would a successful result look like for you?",
-      desc:"Briefly describe your project in your own words.",
-      preferred_contact_note:"Optional: preferred time window, contact person, special notes or callback request.",
-      project_type_other:"Example: process cockpit, request/offer/invoice workflow, internal workspace, Excel template, special solution ..."
-    },
-    projects:[
-      "Sales / Sales performance",
-      "Marketing performance",
-      "Operations / process analysis",
-      "Logistics / inventory & supply chain",
-      "Finance & controlling",
-      "Management dashboard / KPI",
-      "Industrial / production / OEE",
-      "Service & support",
-      "E-commerce analysis",
-      "Forecasting / prediction",
-      "Reporting automation",
-      "Power Query / Excel automation",
-      "Data cleaning / data migration",
-      "Custom data solution / other project",
-      "Other / briefly describe your own project",
-      "Digital business process automation",
-      "Internal reporting / management cockpit",
-      "Internal business tools / process cockpit",
-      "CRM-related workflow automation",
-      "Document and filing workflows",
-      "Offer, invoice and reporting workflows",
-      "Microsoft 365 / SharePoint / Power Automate solution"
-    ],
-    timeline:["Immediately","Within 1 week","Within 2 weeks","Within 1 month","In 1–3 months","Planned later","Not sure yet","By agreement"],
-    priority:["Low","Medium","High","Very high","Critical","Not sure yet"],
-    frequency:["Daily","Weekly","Monthly","Quarterly","Yearly","No regular reporting","Not sure yet"],
-    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","CRM system","ERP system","Website / webshop","Database / SQL","Power BI / existing dashboard","Power Query","Power Automate","Multiple data sources","Not sure yet","Other data sources"],
-    companySizes:["Solo / self-employed","2–10 employees","11–25 employees","26–50 employees","51–100 employees","101–250 employees","More than 250 employees","Not sure yet"],
-    userCounts:["1 person","2–5 people","6–10 people","11–25 people","26–50 people","More than 50 people","Not sure yet"],
-    reportsExist:["No","Yes, but manual","Yes, but incomplete","Yes, regularly","Excel reports available","Power BI reports available","Only raw data available","Not sure yet"],
-    automation:["No automation","Partly automated","Power Query available","Power Automate available","Manual processes","Automation desired","Automation to be reviewed","Not sure yet"],
-    collaborationModels:["One-time project","Ongoing support","Monthly support","Retainer / time package","Regular reporting support","Support & optimization","Workshop / consulting","Open / to be discussed"],
-    processFocus:["Digitize and automate business processes","Internal reporting / management cockpit","Build internal business tools or process cockpits","Structure CRM-related customer, offer and project workflows","Improve project status, uploads, questions and closing processes","Structure document and filing workflows","Improve offer, invoice and reporting workflows","Automate recurring tasks","Combine data from Excel, SharePoint or systems","Build management or KPI overview","Modernize existing reports","Use Microsoft 365 / SharePoint / Power Automate effectively","Not sure yet / please advise"],
-    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / local files","Power BI available","Power Query available","Power Automate available","CRM / ERP / business system","Google Workspace","Mixed environment","Not sure yet"],
-    meetingModes:["Microsoft Teams","Phone","Email coordination","On-site appointment by agreement","Open / to be discussed"],
-    preferredTimes:["Morning","Late morning","Midday","Afternoon","Evening","Flexible","By agreement"],
-    sending:"Submitting..."
-  },
-
-  fr: {
-    homeLink:"Accueil",
-    navBadge:"Digital. Structuré. Sans engagement.",
-    badgeText:"Transmettre les informations du projet de manière structurée",
-    mainTitle:"Analyse digitale du projet",
-    introText:`
-      <p>Merci pour votre intérêt pour <strong>Barry Data & Analytics</strong>.</p>
-      <p>Les informations suivantes permettent de mieux comprendre votre projet, vos objectifs, vos besoins, vos sources de données existantes et les possibilités d’automatisation. Sur cette base, des pistes de solution, l’effort estimé et les prochaines étapes peuvent être préparés de manière structurée.</p>
-      <p>La transmission est <strong>sans engagement</strong> et ne constitue pas une commande. Les informations sont utilisées exclusivement pour l’analyse du projet et la préparation de votre demande.</p>
-      <p>Même si certains points ne sont pas encore totalement définis, vous pouvez simplement décrire votre projet tel qu’il est actuellement prévu.</p>
-      <p>Après examen de vos informations, je prendrai contact avec vous afin de coordonner les prochaines étapes.</p>
-    `,
-    labels:{
-      sectionContact:"Coordonnées",
-      labelName:"Nom *",
-      labelCompany:"Entreprise",
-      labelEmail:"E-mail *",
-      labelPhone:"Téléphone",
-      sectionProject:"Aperçu du projet",
-      labelProjectType:"Choisir le type de projet",
-      projectNote:"Vous pouvez sélectionner plusieurs domaines. Si votre demande concerne des outils métier internes, des cockpits de processus ou des processus proches du CRM, choisissez le domaine le plus proche et ajoutez les détails dans le champ texte.",
-      labelTimeline:"Démarrage du projet",
-      labelPriority:"Urgence",
-      labelFrequency:"Fréquence / cadence de reporting",
-      labelDataSource:"Sources de données",
-      sectionScope:"Cadre du projet",
-      labelCompanySize:"Taille de l’entreprise",
-      labelUserCount:"Utilisateurs / destinataires prévus",
-      labelReportsExist:"Rapports / tableaux de bord existants",
-      labelAutomation:"Automatisation actuelle",
-      labelCollaborationModel:"Collaboration souhaitée",
-      sectionProcess:"Processus digitaux, outils métier & rendez-vous souhaité",
-      labelProcessFocus:"Quels processus ou outils internes doivent être améliorés ?",
-      processNote:"Cette sélection permet de classer non seulement les projets de données classiques, mais aussi les outils métier internes, les cockpits de processus, les processus proches du CRM, les documents et les tâches récurrentes.",
-      labelWorkEnvironment:"Environnement de travail existant",
-      labelMeetingMode:"Mode d’échange souhaité",
-      labelPreferredDate:"Date souhaitée",
-      labelPreferredTime:"Créneau préféré",
-      labelPreferredNote:"Remarque concernant le rendez-vous ou la coordination",
-      scopeNote:"Ces informations permettent de définir un cadre de solution adapté et les prochaines étapes de manière réaliste. Veuillez choisir l’option qui correspond le mieux à votre situation actuelle.",
-      sectionGoals:"Besoins & objectifs",
-      labelGoal:"Objectif du projet",
-      labelChallenge:"Défi actuel",
-      labelExpected:"Résultat attendu",
-      sectionMore:"Informations complémentaires",
-      labelDesc:"Brève description du projet",
-      privacyAcceptedText:"J’ai lu et compris la <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">politique de confidentialité</a> et j’accepte que mes informations soient traitées pour répondre à ma demande.",
-      privacySummary:"Afficher les informations de confidentialité résumées",
-      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. Lors du premier contact, aucun mot de passe, aucune donnée d’accès sensible ni aucun fichier confidentiel de l’entreprise ne sont demandés. La transmission est sans engagement. Vos informations ne sont pas transmises à des tiers, sauf obligation légale.",
-      contactInfoText:"Informations complémentaires : <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Mentions légales</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">Conditions / informations générales</a>.",
-      legalImprint:"Mentions légales",
-      legalPrivacy:"Confidentialité",
-      legalTerms:"Conditions",
-      submitBtn:"Transmettre l’analyse",
-      successTitle:"Merci.",
-      successText:"Votre analyse digitale de projet a été transmise avec succès.",
-      successText2:"Vos informations seront maintenant examinées et utilisées pour préparer votre demande.",
-      errorBox:"Veuillez vérifier vos informations. Le nom, l’e-mail et le consentement sont obligatoires.",
-      invalidEmail:"Veuillez saisir une adresse e-mail valide.",
-      requestContextTitle:"Votre demande a été reconnue",
-      requestContextLead:"Certaines informations de votre demande initiale ont déjà été reprises. Veuillez les vérifier et les compléter.",
-      ctxProjectTypeLabel:"Domaine de projet sélectionné",
-      ctxTimelineLabel:"Démarrage prévu",
-      ctxDescriptionLabel:"Première description du projet",
-      labelProjectOther:"Non trouvé ? Décrivez brièvement votre propre sujet",
-      projectOtherNote:"Si votre projet ne correspond pas exactement aux options, décrivez-le brièvement ici. Je l’attribuerai en interne au domaine de solution approprié.",
-      businessToolsKicker:"Également possible – si cela correspond au projet",
-      businessToolsTitle:"Outils métier internes & cockpits de processus",
-      businessToolsLead:"Tous les projets ne sont pas uniquement des tableaux de bord. Selon le besoin, des espaces de travail simples et structurés pour les processus internes peuvent également être créés – adaptés à votre façon de travailler.",
-      businessTool1Title:"Demande, offre & facture",
-      businessTool1Text:"Des processus structurés de la demande client jusqu’à la facture – avec statuts clairs, documents et prochaines étapes.",
-      businessTool2Title:"Cockpit de processus",
-      businessTool2Text:"Une vue centrale pour les tâches, le statut du projet, les questions, les uploads ou les décisions internes.",
-      businessTool3Title:"Processus proches du CRM",
-      businessTool3Text:"Regrouper les données clients, projets et communications sans introduire immédiatement un nouveau système complexe.",
-      businessTool4Title:"Automatisation Microsoft 365",
-      businessTool4Text:"Relier Excel, SharePoint, Power Query, Power Automate et les processus e-mail de manière pratique.",
-      businessToolsNote:"Ces exemples servent uniquement d’orientation. Votre sélection est toujours transmise via les champs projet et processus existants."
-    },
-    placeholders:{
-      name:"Votre nom",
-      company:"Entreprise optionnelle",
-      email:"Votre adresse e-mail",
-      phone:"Optionnel pour les questions",
-      goal:"Quel objectif souhaitez-vous atteindre avec le projet ?",
-      challenge:"Qu’est-ce qui ne fonctionne pas bien aujourd’hui ou prend trop de temps ?",
-      expected:"À quoi ressemblerait un bon résultat pour vous ?",
-      desc:"Décrivez brièvement votre projet avec vos propres mots.",
-      preferred_contact_note:"Optionnel : créneau souhaité, personne de contact, particularités ou demande de rappel.",
-      project_type_other:"Exemple : cockpit de processus, demande/offre/facture, espace de travail interne, modèle Excel, solution spécifique ..."
-    },
-    projects:[
-      "Vente / performance commerciale",
-      "Performance marketing",
-      "Opérations / analyse des processus",
-      "Logistique / stock & supply chain",
-      "Finance & controlling",
-      "Tableau de bord management / KPI",
-      "Industrie / production / OEE",
-      "Service & support",
-      "Analyse e-commerce",
-      "Prévisions / forecasting",
-      "Automatisation du reporting",
-      "Power Query / automatisation Excel",
-      "Nettoyage / migration de données",
-      "Solution de données personnalisée / autre projet",
-      "Autre / décrire brièvement votre propre projet",
-      "Digitalisation et automatisation des processus métier",
-      "Analyses internes / cockpit de management",
-      "Outils métier internes / cockpit de processus",
-      "Automatisation de processus proches du CRM",
-      "Processus documentaires et classement",
-      "Processus d’offre, facture et reporting",
-      "Solution Microsoft 365 / SharePoint / Power Automate"
-    ],
-    timeline:["Immédiatement","Sous 1 semaine","Sous 2 semaines","Sous 1 mois","Dans 1–3 mois","Prévu plus tard","Pas encore sûr","Selon accord"],
-    priority:["Faible","Moyenne","Élevée","Très élevée","Critique","Pas encore sûr"],
-    frequency:["Quotidien","Hebdomadaire","Mensuel","Trimestriel","Annuel","Pas de reporting régulier","Pas encore sûr"],
-    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","Système CRM","Système ERP","Site web / boutique en ligne","Base de données / SQL","Power BI / tableau de bord existant","Power Query","Power Automate","Plusieurs sources de données","Pas encore sûr","Autres sources de données"],
-    companySizes:["Solo / indépendant","2–10 employés","11–25 employés","26–50 employés","51–100 employés","101–250 employés","Plus de 250 employés","Pas encore sûr"],
-    userCounts:["1 personne","2–5 personnes","6–10 personnes","11–25 personnes","26–50 personnes","Plus de 50 personnes","Pas encore sûr"],
-    reportsExist:["Non","Oui, mais manuel","Oui, mais incomplet","Oui, régulièrement","Rapports Excel disponibles","Rapports Power BI disponibles","Uniquement des données brutes","Pas encore sûr"],
-    automation:["Aucune automatisation","Partiellement automatisé","Power Query disponible","Power Automate disponible","Processus manuels","Automatisation souhaitée","Automatisation à vérifier","Pas encore sûr"],
-    collaborationModels:["Projet ponctuel","Accompagnement régulier","Support mensuel","Retainer / forfait d’heures","Support reporting régulier","Support & optimisation","Workshop / conseil","Ouvert / à discuter"],
-    processFocus:["Digitaliser et automatiser les processus métier","Analyses internes / cockpit de management","Créer des outils métier internes ou cockpits de processus","Structurer les processus clients, offres et projets proches du CRM","Améliorer le statut de projet, les uploads, les questions et la clôture","Structurer les processus documentaires et de classement","Améliorer les processus d’offre, facture et reporting","Automatiser les tâches récurrentes","Regrouper les données depuis Excel, SharePoint ou des systèmes","Créer une vue management ou KPI","Moderniser les rapports existants","Utiliser Microsoft 365 / SharePoint / Power Automate efficacement","Pas encore sûr / conseil souhaité"],
-    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / fichiers locaux","Power BI disponible","Power Query disponible","Power Automate disponible","CRM / ERP / système métier","Google Workspace","Environnement mixte","Pas encore sûr"],
-    meetingModes:["Microsoft Teams","Téléphone","Coordination par e-mail","Rendez-vous sur place selon accord","Ouvert / à discuter"],
-    preferredTimes:["Matin","Fin de matinée","Midi","Après-midi","Soir","Flexible","Selon accord"],
-    sending:"Transmission..."
-  }
-};
-
-function setSelect(id, arr){
-  const el=document.getElementById(id);
-  el.innerHTML="";
-  arr.forEach(v=>{
-    const o=document.createElement("option");
-    o.value=v;
-    o.textContent=v;
-    el.appendChild(o);
-  });
-}
-
-function setProjects(arr){
-  const box=document.getElementById("projectOptions");
-  box.innerHTML="";
-  arr.forEach(v=>{
-    const label=document.createElement("label");
-    label.className="choice";
-    label.innerHTML=`<input type="checkbox" name="project_type" value="${v}"><span>${v}</span>`;
-    box.appendChild(label);
-  });
-}
-
-function setProcessOptions(arr){
-  const box=document.getElementById("processOptions");
-  if(!box) return;
-  box.innerHTML="";
-  arr.forEach(v=>{
-    const label=document.createElement("label");
-    label.className="choice";
-    label.innerHTML=`<input type="checkbox" name="process_focus" value="${v}"><span>${v}</span>`;
-    box.appendChild(label);
-  });
-}
-
-function setLang(lang){
-  const t=T[lang];
-
-  document.documentElement.lang=lang;
-  document.getElementById("language").value=lang;
-
-  document.querySelectorAll(".lang-btn").forEach(btn=>{
-    btn.classList.toggle("active",btn.dataset.lang===lang);
-  });
-
-  document.getElementById("homeLink").textContent=t.homeLink;
-  document.getElementById("navBadge").textContent=t.navBadge;
-  document.getElementById("badgeText").textContent=t.badgeText;
-  document.getElementById("mainTitle").textContent=t.mainTitle;
-  document.getElementById("introText").innerHTML=t.introText;
-
-  Object.keys(t.labels).forEach(id=>{
-    const el=document.getElementById(id);
-    if(el){
-      if(["privacyAcceptedText","privacyDetails","contactInfoText"].includes(id)){
-        el.innerHTML=t.labels[id];
-      }else{
-        el.textContent=t.labels[id];
-      }
-    }
-  });
-
-  Object.keys(t.placeholders).forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.placeholder=t.placeholders[id];
-  });
-
-  setProjects(t.projects);
-  setSelect("timeline",t.timeline);
-  setSelect("priority",t.priority);
-  setSelect("frequency",t.frequency);
-  setSelect("data_source",t.dataSources);
-  setSelect("company_size",t.companySizes);
-  setSelect("user_count",t.userCounts);
-  setSelect("reports_exist",t.reportsExist);
-  setSelect("automation",t.automation);
-  setSelect("collaboration_model",t.collaborationModels);
-  setProcessOptions(t.processFocus || []);
-  setSelect("work_environment",t.workEnvironments || []);
-  setSelect("preferred_meeting_mode",t.meetingModes || []);
-  setSelect("preferred_contact_time",t.preferredTimes || []);
-}
-
-function isValidEmail(email){
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-document.querySelectorAll(".lang-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>setLang(btn.dataset.lang));
-});
-
-document.getElementById("projectForm").addEventListener("submit",async function(e){
-  e.preventDefault();
-
-  const lang=document.getElementById("language").value;
-  const t=T[lang];
-
-  const errorBox=document.getElementById("errorBox");
-  const submitBtn=document.getElementById("submitBtn");
-
-  errorBox.style.display="none";
-
-  const selectedProjectTypes = [...document.querySelectorAll('input[name="project_type"]:checked')].map(x=>x.value);
-  const otherProjectType = document.getElementById("project_type_other").value.trim();
-
-  if(otherProjectType){
-    selectedProjectTypes.push("Sonstiges: " + otherProjectType);
-  }
-
-  const data={
-    language:lang,
-    name:document.getElementById("name").value.trim(),
-    company:document.getElementById("company").value.trim(),
-    email:document.getElementById("email").value.trim() || initialEmail,
-    projectNumber:document.getElementById("projectNumber").value.trim(),
-    phone:document.getElementById("phone").value.trim(),
-    project_type:selectedProjectTypes,
-    project_type_other:otherProjectType,
-    initial_project_type:initialProjectType,
-    initial_project_start:initialTimeline,
-    initial_project_description:initialDescription,
-    timeline:document.getElementById("timeline").value,
-    priority:document.getElementById("priority").value,
-    frequency:document.getElementById("frequency").value,
-    data_source:document.getElementById("data_source").value,
-    company_size:document.getElementById("company_size").value,
-    user_count:document.getElementById("user_count").value,
-    reports_exist:document.getElementById("reports_exist").value,
-    automation:document.getElementById("automation").value,
-    collaboration_model:document.getElementById("collaboration_model").value,
-    process_focus:[...document.querySelectorAll('input[name="process_focus"]:checked')].map(x=>x.value),
-    work_environment:document.getElementById("work_environment").value,
-    preferred_meeting_mode:document.getElementById("preferred_meeting_mode").value,
-    preferred_contact_date:document.getElementById("preferred_contact_date").value,
-    preferred_contact_time:document.getElementById("preferred_contact_time").value,
-    preferred_contact_note:document.getElementById("preferred_contact_note").value.trim(),
-    goal:document.getElementById("goal").value.trim(),
-    challenge:document.getElementById("challenge").value.trim(),
-    expected:document.getElementById("expected").value.trim(),
-    description:document.getElementById("desc").value.trim(),
-    privacy_accepted:document.getElementById("privacyAccepted").checked,
-    submitted_at:new Date().toISOString(),
-    source:"Digitale Projektanalyse"
-  };
-
-  if(!data.name || !data.email || !data.privacy_accepted){
-    errorBox.textContent=t.labels.errorBox;
-    errorBox.style.display="block";
-    return;
-  }
-
-  if(!data.projectNumber){
-    errorBox.textContent =
-      lang==="de" ? "Der persönliche Projektanalyse-Link ist unvollständig. Bitte öffnen Sie den Link erneut aus Ihrer E-Mail." :
-      lang==="en" ? "The personal project analysis link is incomplete. Please open the link again from your email." :
-      "Le lien personnel d’analyse de projet est incomplet. Veuillez rouvrir le lien depuis votre e-mail.";
-    errorBox.style.display="block";
-    return;
-  }
-
-  if(!isValidEmail(data.email)){
-    errorBox.textContent=t.labels.invalidEmail;
-    errorBox.style.display="block";
-    return;
-  }
-
-  submitBtn.disabled=true;
-  submitBtn.textContent=t.sending;
-
-  try{
-    if(FLOW_URL==="DEINE_POWER_AUTOMATE_FLOW_URL_HIER_EINTRAGEN"){
-      console.log("Power Automate Payload:",data);
-    }else{
-      const response = await fetch(FLOW_URL,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(data)
-      });
-
-      if(!response.ok){
-        throw new Error("HTTP " + response.status);
-      }
-    }
-
-    document.getElementById("successTitle").textContent=t.labels.successTitle;
-    document.getElementById("successText").textContent=t.labels.successText;
-    document.getElementById("successText2").textContent=t.labels.successText2;
-
-    document.getElementById("projectForm").reset();
-    document.getElementById("formArea").style.display="none";
-    document.getElementById("successScreen").style.display="block";
-
-    window.scrollTo({top:0,behavior:"smooth"});
-
-  }catch(err){
-    console.error(err);
-    errorBox.textContent =
-      lang==="de" ? "Beim Übermitteln ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut." :
-      lang==="en" ? "An error occurred while submitting. Please try again." :
-      "Une erreur s’est produite lors de la transmission. Veuillez réessayer.";
-
-    errorBox.style.display="block";
-    submitBtn.disabled=false;
-    submitBtn.textContent=t.labels.submitBtn;
-  }
-});
-
-function normalizeValue(v){
-  return String(v || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]+/g," ")
-    .trim();
-}
-
-function setInputValue(id,value,onlyIfEmpty=false){
-  const el=document.getElementById(id);
-  if(el && value && (!onlyIfEmpty || !el.value)){
-    el.value=value;
-  }
-}
-
-function setSelectSmart(id,value){
-  const el=document.getElementById(id);
-  if(!el || !value) return;
-
-  const n = normalizeValue(value);
-  const timelineMap = {
-    "sofort starten":"Sofort",
-    "sofort":"Sofort",
-    "naechste woche":"Innerhalb 1 Woche",
-    "nachste woche":"Innerhalb 1 Woche",
-    "nächste woche":"Innerhalb 1 Woche",
-    "naechster monat":"Innerhalb 1 Monat",
-    "nachster monat":"Innerhalb 1 Monat",
-    "nächster monat":"Innerhalb 1 Monat",
-    "unklar":"Noch unklar"
-  };
-
-  const mapped = timelineMap[n] || value;
-  const mappedN = normalizeValue(mapped);
-
-  for(const opt of el.options){
-    if(normalizeValue(opt.value) === mappedN || normalizeValue(opt.textContent) === mappedN){
-      el.value = opt.value;
-      return;
-    }
-  }
-}
-
-function checkProjectType(value){
-  if(!value) return;
-
-  const wanted = normalizeValue(value);
-  const boxes = [...document.querySelectorAll('input[name="project_type"]')];
-  let found=false;
-
-  boxes.forEach(cb=>{
-    const current = normalizeValue(cb.value);
-    if(current === wanted || current.includes(wanted) || wanted.includes(current)){
-      cb.checked=true;
-      found=true;
-    }
-  });
-
-  if(!found){
-    const other = document.getElementById("project_type_other");
-    if(other && !other.value) other.value=value;
-
-    const fallback = boxes.find(cb=>normalizeValue(cb.value).includes("sonstiges") || normalizeValue(cb.value).includes("other") || normalizeValue(cb.value).includes("autre"));
-    if(fallback) fallback.checked=true;
-  }
-}
-
-function updateRequestContext(){
-  const hasContext = initialProjectNumber || initialProjectType || initialTimeline || initialDescription;
-  const box = document.getElementById("requestContext");
-  if(!box || !hasContext) return;
-
-  box.style.display="block";
-  document.getElementById("ctxProjectNumber").textContent = initialProjectNumber || "Projektanalyse";
-  document.getElementById("ctxProjectType").textContent = initialProjectType || "—";
-  document.getElementById("ctxTimeline").textContent = initialTimeline || "—";
-  document.getElementById("ctxDescription").textContent = initialDescription || "—";
-
-  document.getElementById("ctxProjectTypeWrap").style.display = initialProjectType ? "block" : "none";
-  document.getElementById("ctxTimelineWrap").style.display = initialTimeline ? "block" : "none";
-  document.getElementById("ctxDescriptionWrap").style.display = initialDescription ? "block" : "none";
-}
-
-function applyUrlParams(){
-  setInputValue("projectNumber", initialProjectNumber);
-  setInputValue("email", initialEmail, true);
-  setInputValue("name", initialName, true);
-  setInputValue("company", initialCompany, true);
-  setInputValue("phone", initialPhone, true);
-  setInputValue("desc", initialDescription, true);
-
-  setSelectSmart("timeline", initialTimeline);
-  checkProjectType(initialProjectType);
-  updateRequestContext();
-}
-
-const startLang = ["de","en","fr"].includes(initialLang) ? initialLang : "de";
-setLang(startLang);
-applyUrlParams();
-</script>
-
-</body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Digitale Projektanalyse | Barry Data & Analytics</title>
+
+  <style>
+    :root {
+      --bg:#030712;
+      --panel:rgba(15,23,42,.94);
+      --field:#1e293b;
+      --border:#334155;
+      --soft:rgba(148,163,184,.22);
+      --muted:#94a3b8;
+      --text:#f8fafc;
+      --cyan:#00f2fe;
+      --cyan2:#00d8e4;
+      --max:900px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      background:
+        radial-gradient(circle at top left,rgba(0,242,254,.10),transparent 34%),
+        radial-gradient(circle at bottom right,rgba(37,99,235,.14),transparent 36%),
+        var(--bg);
+      color:var(--text);
+      font-family:Arial,Helvetica,sans-serif;
+      padding-top:125px;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:100;
+      background:rgba(3,7,18,.9);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(148,163,184,.18);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand-logo{
+      width:160px;
+      height:50px;
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .brand-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:left center;
+    }
+
+    .nav-badge{
+      color:var(--cyan);
+      background:rgba(0,242,254,.10);
+      border:1px solid rgba(0,242,254,.22);
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .home-link,.lang-btn{
+      border:1px solid rgba(148,163,184,.28);
+      background:rgba(30,41,59,.82);
+      color:#dbeafe;
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .home-link{
+      border-color:rgba(0,242,254,.28);
+      background:rgba(0,242,254,.08);
+      color:var(--cyan);
+    }
+
+    .lang-btn.active{
+      background:var(--cyan);
+      color:#020617;
+      border-color:var(--cyan);
+    }
+
+    .page{
+      display:flex;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max);
+      background:var(--panel);
+      border:1px solid var(--soft);
+      border-radius:26px;
+      box-shadow:0 24px 80px rgba(0,0,0,.46);
+      padding:34px;
+    }
+
+    .badge{
+      display:inline-block;
+      color:var(--cyan);
+      background:rgba(0,242,254,.08);
+      border:1px solid rgba(0,242,254,.18);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:20px 0 16px;
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.1;
+      letter-spacing:-.03em;
+      color:#ffffff;
+    }
+
+    .intro{
+      color:var(--muted);
+      line-height:1.75;
+      max-width:760px;
+      font-size:15px;
+      margin-bottom:30px;
+    }
+
+    .intro strong{color:#e2e8f0}
+
+    .request-context{
+      display:none;
+      margin:0 0 28px;
+      padding:18px;
+      border-radius:20px;
+      border:1px solid rgba(0,242,254,.22);
+      background:
+        linear-gradient(135deg,rgba(0,242,254,.10),rgba(37,99,235,.07)),
+        rgba(15,23,42,.72);
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+    }
+
+    .request-context-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .request-context-title{
+      color:#ffffff;
+      font-size:17px;
+      font-weight:900;
+      margin:0 0 6px;
+    }
+
+    .request-context-lead{
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    .project-pill{
+      color:#020617;
+      background:var(--cyan);
+      border-radius:999px;
+      padding:8px 11px;
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+      box-shadow:0 0 18px rgba(0,242,254,.22);
+    }
+
+    .context-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .context-item{
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(15,23,42,.42);
+      border-radius:14px;
+      padding:12px;
+      min-width:0;
+    }
+
+    .context-label{
+      display:block;
+      color:#94a3b8;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      margin-bottom:5px;
+    }
+
+    .context-value{
+      color:#e2e8f0;
+      font-size:14px;
+      line-height:1.45;
+      overflow-wrap:anywhere;
+    }
+
+    .other-project-box{
+      margin-top:14px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(0,242,254,.16);
+      background:rgba(30,41,59,.44);
+    }
+
+    .other-project-box textarea{
+      min-height:84px;
+    }
+
+
+    .business-tools-box{
+      margin-top:16px;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(0,242,254,.20);
+      background:
+        radial-gradient(circle at top left,rgba(0,242,254,.10),transparent 42%),
+        rgba(15,23,42,.60);
+      box-shadow:0 18px 46px rgba(0,0,0,.22),0 0 26px rgba(0,242,254,.08);
+    }
+
+    .business-tools-kicker{
+      display:inline-flex;
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .business-tools-box strong.business-tools-title{
+      display:block;
+      color:#f8fafc;
+      font-size:17px;
+      letter-spacing:-.02em;
+      margin-bottom:6px;
+    }
+
+    .business-tools-box p{
+      margin:0;
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .business-tools-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .business-tool-card{
+      padding:12px;
+      border-radius:15px;
+      background:rgba(30,41,59,.62);
+      border:1px solid rgba(148,163,184,.18);
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+    }
+
+    .business-tool-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(0,242,254,.42);
+      background:rgba(30,41,59,.82);
+      box-shadow:0 16px 34px rgba(0,242,254,.10);
+    }
+
+    .business-tool-card span.business-tool-icon{
+      display:inline-flex;
+      width:28px;
+      height:28px;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      border:1px solid rgba(0,242,254,.28);
+      background:rgba(0,242,254,.08);
+      color:var(--cyan);
+      font-size:14px;
+      margin-bottom:8px;
+    }
+
+    .business-tool-card strong{
+      display:block;
+      color:#e0f2fe;
+      font-size:13px;
+      margin-bottom:5px;
+    }
+
+    .business-tool-card p{
+      color:#94a3b8;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    @media(max-width:760px){
+      .business-tools-grid{grid-template-columns:1fr}
+    }
+
+    form{
+      display:grid;
+      gap:24px;
+    }
+
+    .section{
+      border-top:1px solid rgba(148,163,184,.18);
+      padding-top:24px;
+    }
+
+    .section-title{
+      font-size:15px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:900;
+      margin-bottom:16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    label.field-label{
+      display:block;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:#cbd5e1;
+      margin-bottom:9px;
+    }
+
+    input,select,textarea{
+      width:100%;
+      color:var(--text);
+      background:var(--field);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      outline:none;
+      font-size:15px;
+    }
+
+    textarea{
+      min-height:110px;
+      resize:vertical;
+      line-height:1.55;
+    }
+
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--cyan);
+      box-shadow:0 0 0 3px rgba(0,242,254,.14);
+    }
+
+    .options{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .choice{
+      display:flex;
+      gap:10px;
+      padding:12px;
+      border:1px solid var(--border);
+      background:rgba(30,41,59,.72);
+      border-radius:14px;
+      color:#e2e8f0;
+      font-size:14px;
+      line-height:1.45;
+      cursor:pointer;
+    }
+
+    .choice input{
+      width:auto;
+      margin-top:2px;
+      accent-color:var(--cyan);
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.55;
+      margin-top:8px;
+    }
+
+    .privacy-box{
+      display:grid;
+      gap:12px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(30,41,59,.55);
+      border:1px solid rgba(148,163,184,.20);
+      color:#cbd5e1;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .checkbox-line{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .checkbox-line input{
+      width:auto;
+      margin-top:4px;
+      accent-color:var(--cyan);
+    }
+
+    .privacy-box a{
+      color:var(--cyan);
+      text-decoration:none;
+      font-weight:800;
+      border-bottom:1px solid rgba(0,242,254,.35);
+    }
+
+    .privacy-box a:hover{
+      border-bottom-color:var(--cyan);
+    }
+
+    .legal-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
+    }
+
+    .legal-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,242,254,.22);
+      background:rgba(0,242,254,.07);
+      font-size:12px;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    details{
+      border-top:1px solid rgba(148,163,184,.18);
+      padding-top:10px;
+    }
+
+    summary{
+      color:var(--cyan);
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    .submit-btn{
+      width:100%;
+      border:0;
+      border-radius:16px;
+      padding:17px 20px;
+      background:var(--cyan);
+      color:#020617;
+      font-size:15px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      cursor:pointer;
+      box-shadow:0 18px 40px rgba(0,242,254,.18);
+    }
+
+    .submit-btn:hover{background:var(--cyan2)}
+    .submit-btn:disabled{opacity:.6;cursor:not-allowed}
+
+    .error{
+      display:none;
+      padding:14px;
+      border-radius:14px;
+      background:rgba(239,68,68,.11);
+      border:1px solid rgba(239,68,68,.28);
+      color:#fecaca;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .success{
+      display:none;
+      text-align:center;
+      padding:42px 10px;
+    }
+
+    .success-icon{
+      width:76px;
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 24px;
+      border-radius:999px;
+      background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.35);
+      color:#4ade80;
+      font-size:38px;
+      font-weight:900;
+    }
+
+    .success h2{
+      font-size:clamp(24px,4vw,34px);
+      margin:0 0 12px;
+    }
+
+    .success p{
+      color:var(--muted);
+      line-height:1.7;
+      max-width:640px;
+      margin:0 auto 18px;
+    }
+
+    @media(max-width:760px){
+      body{padding-top:115px}
+      .topbar-inner{padding:12px 14px}
+      .brand-logo{width:125px;height:42px}
+      .nav-badge{display:none}
+      .home-link,.lang-btn{padding:8px 8px;font-size:11px}
+      .page{padding:14px}
+      .container{padding:22px;border-radius:22px}
+      .grid,.options{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="https://barrydataanalytics.de" class="brand-logo">
+      <img id="logo" src="/assets/img/logo-barry.png" alt="Barry Data & Analytics Logo">
+    </a>
+
+    <span class="nav-badge" id="navBadge">Digital. Strukturiert. Unverbindlich.</span>
+
+    <div class="actions">
+      <button type="button" class="lang-btn active" data-lang="de">DE</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="fr">FR</button>
+      <a href="https://barrydataanalytics.de" class="home-link" id="homeLink">Homepage</a>
+    </div>
+  </div>
+</header>
+
+<!--
+============================================================
+BARRY DATA & ANALYTICS – INTERNE PROJEKTANALYSE-INFOS
+============================================================
+
+
+KUNDENLINK:
+https://barrydataanalytics.de/projektangebot/?email=kunde@firma.de
+https://www.barrydataanalytics.de/projektangebot/?email=DEINE-EXCEL-EMAIL
+KUNDENLINK:
+https://barrydataanalytics.de/projektanalyse/?projectNumber=BDA-P-2026-0025&email=kunde@firma.de
+
+HOMEPAGE:
+https://barrydataanalytics.de
+
+POWER AUTOMATE:
+Die echte Flow-URL hier im JavaScript eintragen:
+
+const FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/...";
+
+WICHTIGE JSON-FELDER FÜR POWER AUTOMATE:
+language
+name
+company
+email
+phone
+project_type
+timeline
+priority
+frequency
+data_source
+company_size
+user_count
+reports_exist
+automation
+collaboration_model
+process_focus
+work_environment
+preferred_meeting_mode
+preferred_contact_date
+preferred_contact_time
+preferred_contact_note
+goal
+challenge
+expected
+description
+privacy_accepted
+submitted_at
+source
+
+BEISPIEL-BODY, DER AN POWER AUTOMATE GESENDET WIRD:
+{
+  "language": "de",
+  "name": "Max Mustermann",
+  "company": "Muster GmbH",
+  "email": "max@example.com",
+  "phone": "+49 ...",
+  "project_type": ["Sales Performance Dashboard"],
+  "timeline": "In den nächsten Wochen",
+  "priority": "Mittel",
+  "frequency": "Wöchentlich",
+  "data_source": "Excel / CSV",
+  "company_size": "11–25 Mitarbeitende",
+  "user_count": "2–5 Personen",
+  "reports_exist": "Ja, aber manuell",
+  "automation": "Automatisierung gewünscht",
+  "collaboration_model": "Einmaliges Projekt",
+  "goal": "...",
+  "challenge": "...",
+  "expected": "...",
+  "description": "...",
+  "privacy_accepted": true,
+  "submitted_at": "2026-01-01T10:00:00.000Z",
+  "source": "Digitale Projektanalyse"
+}
+
+KUNDEN-E-MAIL TEXT:
+Vielen Dank für Ihre Anfrage.
+
+Hier können Sie Ihre Projektinformationen strukturiert übermitteln:
+https://barrydataanalytics.de/projektanalyse/
+
+Die Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele, Ihre Anforderungen und den voraussichtlichen Aufwand besser zu verstehen.
+
+Mit freundlichen Grüßen
+Ahmed Barry
+Founder & Owner | Barry Data & Analytics
+
+📞 +49 1575 5355849
+📧 ahmed@barrydataanalytics.de
+🌐 www.barrydataanalytics.de
+📍 Standort: Bochum (NRW) – Remote & international
+
+Data Analytics | Business Intelligence | Power BI | Power Query | Automation
+
+
+
+
+============================================================
+-->
+
+
+<main class="page">
+  <section class="container">
+
+    <div id="formArea">
+      <span class="badge" id="badgeText"></span>
+      <h1 id="mainTitle"></h1>
+      <div class="intro" id="introText"></div>
+
+      <div class="request-context" id="requestContext">
+        <div class="request-context-head">
+          <div>
+            <p class="request-context-title" id="requestContextTitle"></p>
+            <p class="request-context-lead" id="requestContextLead"></p>
+          </div>
+          <span class="project-pill" id="ctxProjectNumber"></span>
+        </div>
+
+        <div class="context-grid">
+          <div class="context-item" id="ctxProjectTypeWrap">
+            <span class="context-label" id="ctxProjectTypeLabel"></span>
+            <span class="context-value" id="ctxProjectType"></span>
+          </div>
+
+          <div class="context-item" id="ctxTimelineWrap">
+            <span class="context-label" id="ctxTimelineLabel"></span>
+            <span class="context-value" id="ctxTimeline"></span>
+          </div>
+
+          <div class="context-item" id="ctxDescriptionWrap" style="grid-column:1/-1;">
+            <span class="context-label" id="ctxDescriptionLabel"></span>
+            <span class="context-value" id="ctxDescription"></span>
+          </div>
+        </div>
+      </div>
+
+      <form id="projectForm" novalidate>
+        <input type="hidden" id="language" value="de">
+        <input type="hidden" id="projectNumber" value="">
+
+        <div class="section">
+          <div class="section-title" id="sectionContact"></div>
+
+          <div class="grid">
+            <div>
+              <label class="field-label" id="labelName" for="name"></label>
+              <input id="name" type="text">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelCompany" for="company"></label>
+              <input id="company" type="text">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelEmail" for="email"></label>
+              <input id="email" type="email">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPhone" for="phone"></label>
+              <input id="phone" type="tel">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionProject"></div>
+
+          <label class="field-label" id="labelProjectType"></label>
+          <div class="options" id="projectOptions"></div>
+          <p class="small-note" id="projectNote"></p>
+
+          <div class="other-project-box">
+            <label class="field-label" id="labelProjectOther" for="project_type_other"></label>
+            <textarea id="project_type_other"></textarea>
+            <p class="small-note" id="projectOtherNote"></p>
+          </div>
+
+          <div class="business-tools-box">
+            <span class="business-tools-kicker" id="businessToolsKicker"></span>
+            <strong class="business-tools-title" id="businessToolsTitle"></strong>
+            <p id="businessToolsLead"></p>
+
+            <div class="business-tools-grid">
+              <div class="business-tool-card">
+                <span class="business-tool-icon">▣</span>
+                <strong id="businessTool1Title"></strong>
+                <p id="businessTool1Text"></p>
+              </div>
+              <div class="business-tool-card">
+                <span class="business-tool-icon">↻</span>
+                <strong id="businessTool2Title"></strong>
+                <p id="businessTool2Text"></p>
+              </div>
+              <div class="business-tool-card">
+                <span class="business-tool-icon">✓</span>
+                <strong id="businessTool3Title"></strong>
+                <p id="businessTool3Text"></p>
+              </div>
+              <div class="business-tool-card">
+                <span class="business-tool-icon">↗</span>
+                <strong id="businessTool4Title"></strong>
+                <p id="businessTool4Text"></p>
+              </div>
+            </div>
+
+            <p class="small-note" id="businessToolsNote"></p>
+          </div>
+
+
+          <div class="grid" style="margin-top:18px;">
+            <div>
+              <label class="field-label" id="labelTimeline" for="timeline"></label>
+              <select id="timeline"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPriority" for="priority"></label>
+              <select id="priority"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelFrequency" for="frequency"></label>
+              <select id="frequency"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelDataSource" for="data_source"></label>
+              <select id="data_source"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionScope"></div>
+
+          <div class="grid">
+            <div>
+              <label class="field-label" id="labelCompanySize" for="company_size"></label>
+              <select id="company_size"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelUserCount" for="user_count"></label>
+              <select id="user_count"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelReportsExist" for="reports_exist"></label>
+              <select id="reports_exist"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelAutomation" for="automation"></label>
+              <select id="automation"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelCollaborationModel" for="collaboration_model"></label>
+              <select id="collaboration_model"></select>
+            </div>
+          </div>
+
+          <p class="small-note" id="scopeNote"></p>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionProcess"></div>
+
+          <label class="field-label" id="labelProcessFocus"></label>
+          <div class="options" id="processOptions"></div>
+          <p class="small-note" id="processNote"></p>
+
+          <div class="grid" style="margin-top:18px;">
+            <div>
+              <label class="field-label" id="labelWorkEnvironment" for="work_environment"></label>
+              <select id="work_environment"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelMeetingMode" for="preferred_meeting_mode"></label>
+              <select id="preferred_meeting_mode"></select>
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPreferredDate" for="preferred_contact_date"></label>
+              <input id="preferred_contact_date" type="date">
+            </div>
+
+            <div>
+              <label class="field-label" id="labelPreferredTime" for="preferred_contact_time"></label>
+              <select id="preferred_contact_time"></select>
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="field-label" id="labelPreferredNote" for="preferred_contact_note"></label>
+              <textarea id="preferred_contact_note"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionGoals"></div>
+
+          <div>
+            <label class="field-label" id="labelGoal" for="goal"></label>
+            <textarea id="goal"></textarea>
+          </div>
+
+          <div>
+            <label class="field-label" id="labelChallenge" for="challenge"></label>
+            <textarea id="challenge"></textarea>
+          </div>
+
+          <div>
+            <label class="field-label" id="labelExpected" for="expected"></label>
+            <textarea id="expected"></textarea>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="sectionMore"></div>
+
+          <div>
+            <label class="field-label" id="labelDesc" for="desc"></label>
+            <textarea id="desc"></textarea>
+          </div>
+
+          <div class="privacy-box">
+            <label class="checkbox-line">
+              <input type="checkbox" id="privacyAccepted" required>
+              <span id="privacyAcceptedText"></span>
+            </label>
+
+            <div class="legal-links" aria-label="Rechtliche Hinweise">
+              <a class="legal-link" id="legalImprint" href="/rechtliches.html#impressum" target="_blank" rel="noopener"></a>
+              <a class="legal-link" id="legalPrivacy" href="/rechtliches.html#datenschutz" target="_blank" rel="noopener"></a>
+              <a class="legal-link" id="legalTerms" href="/rechtliches.html#agb" target="_blank" rel="noopener"></a>
+            </div>
+
+            <details>
+              <summary id="privacySummary"></summary>
+              <p id="privacyDetails"></p>
+            </details>
+
+            <p id="contactInfoText"></p>
+          </div>
+        </div>
+
+        <div class="error" id="errorBox"></div>
+
+        <button type="submit" class="submit-btn" id="submitBtn"></button>
+      </form>
+    </div>
+
+    <div class="success" id="successScreen">
+      <div class="success-icon">✓</div>
+      <h2 id="successTitle"></h2>
+      <p id="successText"></p>
+      <p id="successText2"></p>
+    </div>
+
+  </section>
+</main>
+
+<script>
+const FLOW_URL = "https://default93c045e859004da6bd5360839823d0.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/cf826be8026c4cc38624686209ea3928/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Z_HMIM-VvkUx30HCsl2GoRKT9CR_GvEy-DhrtKcj-4";
+
+const urlParams = new URLSearchParams(window.location.search);
+// Unterstützt mehrere Link-Varianten, damit alte und neue E-Mail-Links funktionieren.
+// Hauptstandard bleibt: ?projectNumber=BDA-P-YYYY-NNNN&email=kunde@firma.de
+const initialProjectNumber = (
+  urlParams.get("projectNumber") ||
+  urlParams.get("project") ||
+  urlParams.get("ProjectNumber") ||
+  urlParams.get("projectnumber") ||
+  urlParams.get("projectId") ||
+  urlParams.get("ProjectNumber4") ||
+  ""
+).trim();
+
+const initialEmail = (
+  urlParams.get("email") ||
+  urlParams.get("customerEmail") ||
+  urlParams.get("Email") ||
+  urlParams.get("mail") ||
+  ""
+).trim();
+
+function cleanParamValue(value){
+  try{
+    return decodeURIComponent(value || "").replace(/\+/g," ").trim();
+  }catch(e){
+    return String(value || "").replace(/\+/g," ").trim();
+  }
+}
+
+function getParamAny(names){
+  for(const n of names){
+    const v = urlParams.get(n);
+    if(v !== null && String(v).trim() !== ""){
+      return cleanParamValue(v);
+    }
+  }
+  return "";
+}
+
+const initialLang = (getParamAny(["lang","language","sprache"]) || "de").toLowerCase();
+const initialName = getParamAny(["name","Name","customerName"]);
+const initialCompany = getParamAny(["company","Company","firma","unternehmen"]);
+const initialPhone = getParamAny(["phone","Phone","telefon","telephone"]);
+const initialProjectType = getParamAny(["type","projectType","project_type","ProjType","SolType","projectName","projectTitle"]);
+const initialTimeline = getParamAny(["start","startOpt","StartOpt","timeline","projectStart"]);
+const initialDescription = getParamAny(["desc","description","projectDescription","projektbeschreibung","Project"]);
+const logo = document.getElementById("logo");
+logo.onerror = function () {
+  if (this.src.includes("/assets/")) {
+    this.src = "assets/img/logo-barry.png";
+  } else if (this.src.includes("assets/img")) {
+    this.src = "../assets/img/logo-barry.png";
+  }
+};
+
+const T = {
+  de: {
+    homeLink:"Homepage",
+    navBadge:"Digital. Strukturiert. Unverbindlich.",
+    badgeText:"Projektinformationen strukturiert übermitteln",
+    mainTitle:"Digitale Projektanalyse",
+    introText:`
+      <p>Vielen Dank für Ihr Interesse an <strong>Barry Data & Analytics</strong>.</p>
+      <p>Die folgenden Angaben helfen dabei, Ihr Vorhaben, Ihre Ziele, Ihre Anforderungen, vorhandene Datenquellen und mögliche Automatisierungspotenziale besser zu verstehen. Auf dieser Grundlage können passende Lösungsansätze, Aufwand und nächste Schritte strukturiert vorbereitet werden.</p>
+      <p>Die Übermittlung ist <strong>unverbindlich</strong> und stellt noch keine Beauftragung dar. Die Informationen dienen ausschließlich der Projektanalyse und der Bearbeitung Ihres Anliegens.</p>
+      <p>Auch wenn einzelne Punkte noch nicht vollständig feststehen, können Sie Ihr Vorhaben einfach so beschreiben, wie es aktuell geplant ist.</p>
+      <p>Nach Prüfung Ihrer Angaben werde ich mich mit Ihnen in Verbindung setzen, um die weiteren Schritte abzustimmen.</p>
+    `,
+    labels:{
+      sectionContact:"Kontaktdaten",
+      labelName:"Name *",
+      labelCompany:"Unternehmen",
+      labelEmail:"E-Mail *",
+      labelPhone:"Telefonnummer",
+      sectionProject:"Projektübersicht",
+      labelProjectType:"Projektart auswählen",
+      projectNote:"Sie können mehrere Bereiche auswählen. Falls es um interne Business-Tools, Prozess-Cockpits oder CRM-nahe Abläufe geht, wählen Sie den nächstpassenden Bereich und ergänzen Sie die Details im Textfeld.",
+      labelTimeline:"Projektstart",
+      labelPriority:"Dringlichkeit",
+      labelFrequency:"Häufigkeit / Reporting-Frequenz",
+      labelDataSource:"Datenquellen",
+      sectionScope:"Rahmenbedingungen",
+      labelCompanySize:"Unternehmensgröße",
+      labelUserCount:"Geplante Nutzer / Empfänger",
+      labelReportsExist:"Bestehende Auswertungen / Reports",
+      labelAutomation:"Aktuelle Automatisierung",
+      labelCollaborationModel:"Gewünschte Zusammenarbeit",
+      sectionProcess:"Digitale Abläufe, Business-Tools & Terminwunsch",
+      labelProcessFocus:"Welche Abläufe oder internen Tools sollen verbessert werden?",
+      processNote:"Diese Auswahl hilft dabei, neben klassischen Datenprojekten auch interne Business-Tools, Prozess-Cockpits, CRM-nahe Abläufe, Dokumentenprozesse und wiederkehrende Aufgaben richtig einzuordnen.",
+      labelWorkEnvironment:"Vorhandene Arbeitsumgebung",
+      labelMeetingMode:"Gewünschte Abstimmung",
+      labelPreferredDate:"Wunschtermin / bevorzugtes Datum",
+      labelPreferredTime:"Bevorzugtes Zeitfenster",
+      labelPreferredNote:"Hinweis zum Termin oder zur Abstimmung",
+      scopeNote:"Diese Angaben helfen dabei, den passenden Lösungsrahmen und die nächsten Schritte realistisch einzuordnen. Wählen Sie einfach die Option, die Ihrem aktuellen Stand am nächsten kommt.",
+      sectionGoals:"Anforderungen & Ziele",
+      labelGoal:"Ziel des Projekts",
+      labelChallenge:"Aktuelle Herausforderung",
+      labelExpected:"Erwartetes Ergebnis",
+      sectionMore:"Zusätzliche Informationen",
+      labelDesc:"Kurze Projektbeschreibung",
+      privacyAcceptedText:"Ich habe die <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> gelesen und verstanden und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.",
+      privacySummary:"Kurze Datenschutzhinweise anzeigen",
+      privacyDetails:"Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage, zur Projektanalyse und zur Vorbereitung der weiteren Abstimmung verwendet. Im ersten Kontakt werden keine Passwörter, keine sensiblen Zugangsdaten und keine vertraulichen Unternehmensdateien abgefragt. Die Übermittlung ist unverbindlich. Eine Weitergabe an Dritte erfolgt nicht, sofern keine gesetzliche Pflicht besteht.",
+      contactInfoText:"Weitere Informationen: <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Impressum</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">AGB / Allgemeine Hinweise</a>.",
+      legalImprint:"Impressum",
+      legalPrivacy:"Datenschutz",
+      legalTerms:"AGB",
+      submitBtn:"Projektanalyse übermitteln",
+      successTitle:"Vielen Dank.",
+      successText:"Ihre digitale Projektanalyse wurde erfolgreich übermittelt.",
+      successText2:"Ihre Angaben werden nun geprüft und für die weitere Vorbereitung Ihres Anliegens berücksichtigt.",
+      errorBox:"Bitte prüfen Sie Ihre Angaben. Name, E-Mail und Datenschutz-Zustimmung sind erforderlich.",
+      invalidEmail:"Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      requestContextTitle:"Ihre Anfrage wurde erkannt",
+      requestContextLead:"Einige Angaben aus Ihrer ursprünglichen Anfrage wurden bereits übernommen. Bitte prüfen und ergänzen Sie die Informationen.",
+      ctxProjectTypeLabel:"Ausgewählter Projektbereich",
+      ctxTimelineLabel:"Geplanter Start",
+      ctxDescriptionLabel:"Erste Projektbeschreibung",
+      labelProjectOther:"Nicht gefunden? Eigenes Thema kurz beschreiben",
+      projectOtherNote:"Falls Ihr Vorhaben nicht genau zu den Auswahlfeldern passt, beschreiben Sie es kurz. Ich ordne es intern dem passenden Lösungsbereich zu.",
+      businessToolsKicker:"Auch möglich – wenn es zum Projekt passt",
+      businessToolsTitle:"Interne Business-Tools & Prozess-Cockpits",
+      businessToolsLead:"Nicht jedes Projekt ist nur ein Dashboard. Je nach Bedarf können auch einfache, strukturierte Arbeitsoberflächen für interne Abläufe entstehen – passend zu Ihrer vorhandenen Arbeitsweise.",
+      businessTool1Title:"Anfrage, Angebot & Rechnung",
+      businessTool1Text:"Strukturierte Abläufe von der Kundenanfrage bis zur Rechnung – mit klaren Status, Dokumenten und nächsten Schritten.",
+      businessTool2Title:"Prozess-Cockpit",
+      businessTool2Text:"Eine zentrale Übersicht für Aufgaben, Projektstatus, Rückfragen, Uploads oder interne Entscheidungen.",
+      businessTool3Title:"CRM-nahe Abläufe",
+      businessTool3Text:"Kunden-, Projekt- und Kommunikationsdaten sauber zusammenführen, ohne direkt ein komplexes neues System einzuführen.",
+      businessTool4Title:"Microsoft 365 Automatisierung",
+      businessTool4Text:"Excel, SharePoint, Power Query, Power Automate und E-Mail-Prozesse sinnvoll miteinander verbinden.",
+      businessToolsNote:"Diese Beispiele dienen nur zur Orientierung. Ihre Auswahl wird weiterhin über die bestehenden Projekt- und Prozessfelder übermittelt."
+    },
+    placeholders:{
+      name:"Ihr Name",
+      company:"Unternehmen optional",
+      email:"Ihre E-Mail-Adresse",
+      phone:"Optional für Rückfragen",
+      goal:"Was möchten Sie mit dem Projekt erreichen?",
+      challenge:"Was funktioniert aktuell nicht gut oder kostet zu viel Zeit?",
+      expected:"Wie sieht ein gutes Ergebnis für Sie aus?",
+      desc:"Beschreiben Sie Ihr Vorhaben kurz in eigenen Worten.",
+      preferred_contact_note:"Optional: gewünschtes Zeitfenster, Ansprechpartner, Besonderheiten oder Rückrufhinweis.",
+      project_type_other:"Beispiel: Prozess-Cockpit, Anfrage-/Angebots-/Rechnungsablauf, interne Arbeitsoberfläche, Excel-Vorlage, Speziallösung ..."
+    },
+    projects:[
+      "Vertrieb / Sales Performance",
+      "Marketing Performance",
+      "Operations / Prozessanalyse",
+      "Logistik / Lager & Supply Chain",
+      "Finance & Controlling",
+      "Management Dashboard / KPI",
+      "Industrie / Produktion / OEE",
+      "Service & Support",
+      "E-Commerce Analyse",
+      "Forecasting / Prognose",
+      "Reporting-Automatisierung",
+      "Power Query / Excel-Automatisierung",
+      "Datenbereinigung / Datenmigration",
+      "Individuelle Datenlösung / Sonstiges Projekt",
+      "Sonstiges / eigenes Projekt kurz beschreiben",
+      "Geschäftsprozesse digitalisieren und automatisieren",
+      "Interne Auswertungen / Management-Cockpit",
+      "Interne Business-Tools / Prozess-Cockpit",
+      "CRM-nahe Prozessautomatisierung",
+      "Dokumenten- und Ablageprozesse",
+      "Angebot-, Rechnungs- und Reporting-Abläufe",
+      "Microsoft 365 / SharePoint / Power Automate Lösung"
+    ],
+    timeline:["Sofort","Innerhalb 1 Woche","Innerhalb 2 Wochen","Innerhalb 1 Monat","In 1–3 Monaten","Später geplant","Noch unklar","Nach Absprache"],
+    priority:["Niedrig","Mittel","Hoch","Sehr hoch","Kritisch","Noch unklar"],
+    frequency:["Täglich","Wöchentlich","Monatlich","Quartalsweise","Jährlich","Kein regelmäßiges Reporting","Noch unklar"],
+    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","CRM-System","ERP-System","Website / Webshop","Datenbank / SQL","Power BI / bestehendes Dashboard","Power Query","Power Automate","Mehrere Datenquellen","Noch unklar","Sonstige Datenquellen"],
+    companySizes:["Solo / Selbstständig","2–10 Mitarbeitende","11–25 Mitarbeitende","26–50 Mitarbeitende","51–100 Mitarbeitende","101–250 Mitarbeitende","Mehr als 250 Mitarbeitende","Noch unklar"],
+    userCounts:["1 Person","2–5 Personen","6–10 Personen","11–25 Personen","26–50 Personen","Mehr als 50 Personen","Noch unklar"],
+    reportsExist:["Nein","Ja, aber manuell","Ja, aber unvollständig","Ja, regelmäßig","Excel-Berichte vorhanden","Power BI-Berichte vorhanden","Nur Rohdaten vorhanden","Noch unklar"],
+    automation:["Keine Automatisierung","Teilweise automatisiert","Power Query vorhanden","Power Automate vorhanden","Manuelle Prozesse","Automatisierung gewünscht","Automatisierung prüfen","Noch unklar"],
+    collaborationModels:["Einmaliges Projekt","Laufende Betreuung","Monatliche Unterstützung","Retainer / Stundenkontingent","Regelmäßige Reporting-Unterstützung","Support & Optimierung","Workshop / Beratung","Noch offen"],
+    processFocus:["Geschäftsprozesse digitalisieren und automatisieren","Interne Auswertungen / Management-Cockpit","Interne Business-Tools oder Prozess-Cockpits aufbauen","CRM-nahe Kunden-, Angebots- und Projektabläufe strukturieren","Projektstatus, Uploads, Rückfragen und Abschlussprozesse verbessern","Dokumenten- und Ablageprozesse strukturieren","Angebot-, Rechnungs- und Reporting-Abläufe verbessern","Wiederkehrende Aufgaben automatisieren","Daten aus Excel, SharePoint oder Systemen zusammenführen","Management- oder KPI-Übersicht aufbauen","Bestehende Reports modernisieren","Microsoft 365 / SharePoint / Power Automate sinnvoll nutzen","Noch unklar / bitte beraten"],
+    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / lokale Dateien","Power BI vorhanden","Power Query vorhanden","Power Automate vorhanden","CRM / ERP / Fachsystem","Google Workspace","Gemischte Umgebung","Noch unklar"],
+    meetingModes:["Microsoft Teams","Telefon","E-Mail-Abstimmung","Vor-Ort-Termin nach Absprache","Noch offen"],
+    preferredTimes:["Morgens","Vormittags","Mittags","Nachmittags","Abends","Flexibel","Nach Absprache"],
+    sending:"Wird übermittelt..."
+  },
+
+  en: {
+    homeLink:"Homepage",
+    navBadge:"Digital. Structured. Non-binding.",
+    badgeText:"Submit project information in a structured way",
+    mainTitle:"Digital Project Analysis",
+    introText:`
+      <p>Thank you for your interest in <strong>Barry Data & Analytics</strong>.</p>
+      <p>The following information helps to better understand your project, goals, requirements, existing data sources and possible automation potential. Based on your input, suitable solution approaches, effort and next steps can be prepared in a structured way.</p>
+      <p>The submission is <strong>non-binding</strong> and does not constitute an order. The information is used exclusively for project analysis and the preparation of your request.</p>
+      <p>Even if some details are not yet fully defined, you can simply describe your project as it is currently planned.</p>
+      <p>After reviewing your information, I will get in touch with you to coordinate the next steps.</p>
+    `,
+    labels:{
+      sectionContact:"Contact details",
+      labelName:"Name *",
+      labelCompany:"Company",
+      labelEmail:"Email *",
+      labelPhone:"Phone",
+      sectionProject:"Project overview",
+      labelProjectType:"Select project type",
+      projectNote:"You can select multiple areas. If your request involves internal business tools, process cockpits or CRM-related workflows, choose the closest area and add details in the text field.",
+      labelTimeline:"Project start",
+      labelPriority:"Urgency",
+      labelFrequency:"Frequency / reporting cadence",
+      labelDataSource:"Data sources",
+      sectionScope:"Project context",
+      labelCompanySize:"Company size",
+      labelUserCount:"Planned users / recipients",
+      labelReportsExist:"Existing reports / dashboards",
+      labelAutomation:"Current automation",
+      labelCollaborationModel:"Preferred collaboration",
+      sectionProcess:"Digital workflows, business tools & preferred appointment",
+      labelProcessFocus:"Which workflows or internal tools should be improved?",
+      processNote:"This selection helps classify not only classic data projects, but also internal business tools, process cockpits, CRM-related workflows, document processes and recurring tasks.",
+      labelWorkEnvironment:"Existing work environment",
+      labelMeetingMode:"Preferred coordination",
+      labelPreferredDate:"Preferred date",
+      labelPreferredTime:"Preferred time window",
+      labelPreferredNote:"Note regarding appointment or coordination",
+      scopeNote:"These details help define a suitable solution scope and realistic next steps. Please choose the option that best matches your current situation.",
+      sectionGoals:"Requirements & goals",
+      labelGoal:"Project goal",
+      labelChallenge:"Current challenge",
+      labelExpected:"Expected result",
+      sectionMore:"Additional information",
+      labelDesc:"Short project description",
+      privacyAcceptedText:"I have read and understood the <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">privacy policy</a> and agree that my information may be processed to handle my request.",
+      privacySummary:"Show short privacy information",
+      privacyDetails:"Your information will only be used to process your request, analyze the project and prepare the next coordination steps. In the first contact step, no passwords, sensitive access data or confidential company files are requested. The submission is non-binding. Your information will not be passed on to third parties unless legally required.",
+      contactInfoText:"Further information: <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Legal notice</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">Terms / General information</a>.",
+      legalImprint:"Legal notice",
+      legalPrivacy:"Privacy",
+      legalTerms:"Terms",
+      submitBtn:"Submit project analysis",
+      successTitle:"Thank you.",
+      successText:"Your digital project analysis has been submitted successfully.",
+      successText2:"Your information will now be reviewed and used to prepare your request.",
+      errorBox:"Please check your information. Name, email and privacy consent are required.",
+      invalidEmail:"Please enter a valid email address.",
+      requestContextTitle:"Your request has been recognized",
+      requestContextLead:"Some details from your initial request have already been transferred. Please review and complete the information.",
+      ctxProjectTypeLabel:"Selected project area",
+      ctxTimelineLabel:"Planned start",
+      ctxDescriptionLabel:"Initial project description",
+      labelProjectOther:"Not listed? Briefly describe your own topic",
+      projectOtherNote:"If your project does not exactly match the options, briefly describe it here. I will assign it internally to the appropriate solution area.",
+      businessToolsKicker:"Also possible – if it fits the project",
+      businessToolsTitle:"Internal business tools & process cockpits",
+      businessToolsLead:"Not every project is just a dashboard. Depending on the need, simple and structured workspaces for internal workflows can also be created – aligned with your existing way of working.",
+      businessTool1Title:"Request, offer & invoice",
+      businessTool1Text:"Structured workflows from customer request to invoice – with clear status, documents and next steps.",
+      businessTool2Title:"Process cockpit",
+      businessTool2Text:"A central overview for tasks, project status, follow-up questions, uploads or internal decisions.",
+      businessTool3Title:"CRM-related workflows",
+      businessTool3Text:"Bring customer, project and communication data together without immediately introducing a complex new system.",
+      businessTool4Title:"Microsoft 365 automation",
+      businessTool4Text:"Connect Excel, SharePoint, Power Query, Power Automate and email workflows in a practical way.",
+      businessToolsNote:"These examples are for orientation only. Your selection is still submitted through the existing project and process fields."
+    },
+    placeholders:{
+      name:"Your name",
+      company:"Company optional",
+      email:"Your email address",
+      phone:"Optional for follow-up questions",
+      goal:"What do you want to achieve with the project?",
+      challenge:"What is not working well today or takes too much time?",
+      expected:"What would a successful result look like for you?",
+      desc:"Briefly describe your project in your own words.",
+      preferred_contact_note:"Optional: preferred time window, contact person, special notes or callback request.",
+      project_type_other:"Example: process cockpit, request/offer/invoice workflow, internal workspace, Excel template, special solution ..."
+    },
+    projects:[
+      "Sales / Sales performance",
+      "Marketing performance",
+      "Operations / process analysis",
+      "Logistics / inventory & supply chain",
+      "Finance & controlling",
+      "Management dashboard / KPI",
+      "Industrial / production / OEE",
+      "Service & support",
+      "E-commerce analysis",
+      "Forecasting / prediction",
+      "Reporting automation",
+      "Power Query / Excel automation",
+      "Data cleaning / data migration",
+      "Custom data solution / other project",
+      "Other / briefly describe your own project",
+      "Digital business process automation",
+      "Internal reporting / management cockpit",
+      "Internal business tools / process cockpit",
+      "CRM-related workflow automation",
+      "Document and filing workflows",
+      "Offer, invoice and reporting workflows",
+      "Microsoft 365 / SharePoint / Power Automate solution"
+    ],
+    timeline:["Immediately","Within 1 week","Within 2 weeks","Within 1 month","In 1–3 months","Planned later","Not sure yet","By agreement"],
+    priority:["Low","Medium","High","Very high","Critical","Not sure yet"],
+    frequency:["Daily","Weekly","Monthly","Quarterly","Yearly","No regular reporting","Not sure yet"],
+    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","CRM system","ERP system","Website / webshop","Database / SQL","Power BI / existing dashboard","Power Query","Power Automate","Multiple data sources","Not sure yet","Other data sources"],
+    companySizes:["Solo / self-employed","2–10 employees","11–25 employees","26–50 employees","51–100 employees","101–250 employees","More than 250 employees","Not sure yet"],
+    userCounts:["1 person","2–5 people","6–10 people","11–25 people","26–50 people","More than 50 people","Not sure yet"],
+    reportsExist:["No","Yes, but manual","Yes, but incomplete","Yes, regularly","Excel reports available","Power BI reports available","Only raw data available","Not sure yet"],
+    automation:["No automation","Partly automated","Power Query available","Power Automate available","Manual processes","Automation desired","Automation to be reviewed","Not sure yet"],
+    collaborationModels:["One-time project","Ongoing support","Monthly support","Retainer / time package","Regular reporting support","Support & optimization","Workshop / consulting","Open / to be discussed"],
+    processFocus:["Digitize and automate business processes","Internal reporting / management cockpit","Build internal business tools or process cockpits","Structure CRM-related customer, offer and project workflows","Improve project status, uploads, questions and closing processes","Structure document and filing workflows","Improve offer, invoice and reporting workflows","Automate recurring tasks","Combine data from Excel, SharePoint or systems","Build management or KPI overview","Modernize existing reports","Use Microsoft 365 / SharePoint / Power Automate effectively","Not sure yet / please advise"],
+    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / local files","Power BI available","Power Query available","Power Automate available","CRM / ERP / business system","Google Workspace","Mixed environment","Not sure yet"],
+    meetingModes:["Microsoft Teams","Phone","Email coordination","On-site appointment by agreement","Open / to be discussed"],
+    preferredTimes:["Morning","Late morning","Midday","Afternoon","Evening","Flexible","By agreement"],
+    sending:"Submitting..."
+  },
+
+  fr: {
+    homeLink:"Accueil",
+    navBadge:"Digital. Structuré. Sans engagement.",
+    badgeText:"Transmettre les informations du projet de manière structurée",
+    mainTitle:"Analyse digitale du projet",
+    introText:`
+      <p>Merci pour votre intérêt pour <strong>Barry Data & Analytics</strong>.</p>
+      <p>Les informations suivantes permettent de mieux comprendre votre projet, vos objectifs, vos besoins, vos sources de données existantes et les possibilités d’automatisation. Sur cette base, des pistes de solution, l’effort estimé et les prochaines étapes peuvent être préparés de manière structurée.</p>
+      <p>La transmission est <strong>sans engagement</strong> et ne constitue pas une commande. Les informations sont utilisées exclusivement pour l’analyse du projet et la préparation de votre demande.</p>
+      <p>Même si certains points ne sont pas encore totalement définis, vous pouvez simplement décrire votre projet tel qu’il est actuellement prévu.</p>
+      <p>Après examen de vos informations, je prendrai contact avec vous afin de coordonner les prochaines étapes.</p>
+    `,
+    labels:{
+      sectionContact:"Coordonnées",
+      labelName:"Nom *",
+      labelCompany:"Entreprise",
+      labelEmail:"E-mail *",
+      labelPhone:"Téléphone",
+      sectionProject:"Aperçu du projet",
+      labelProjectType:"Choisir le type de projet",
+      projectNote:"Vous pouvez sélectionner plusieurs domaines. Si votre demande concerne des outils métier internes, des cockpits de processus ou des processus proches du CRM, choisissez le domaine le plus proche et ajoutez les détails dans le champ texte.",
+      labelTimeline:"Démarrage du projet",
+      labelPriority:"Urgence",
+      labelFrequency:"Fréquence / cadence de reporting",
+      labelDataSource:"Sources de données",
+      sectionScope:"Cadre du projet",
+      labelCompanySize:"Taille de l’entreprise",
+      labelUserCount:"Utilisateurs / destinataires prévus",
+      labelReportsExist:"Rapports / tableaux de bord existants",
+      labelAutomation:"Automatisation actuelle",
+      labelCollaborationModel:"Collaboration souhaitée",
+      sectionProcess:"Processus digitaux, outils métier & rendez-vous souhaité",
+      labelProcessFocus:"Quels processus ou outils internes doivent être améliorés ?",
+      processNote:"Cette sélection permet de classer non seulement les projets de données classiques, mais aussi les outils métier internes, les cockpits de processus, les processus proches du CRM, les documents et les tâches récurrentes.",
+      labelWorkEnvironment:"Environnement de travail existant",
+      labelMeetingMode:"Mode d’échange souhaité",
+      labelPreferredDate:"Date souhaitée",
+      labelPreferredTime:"Créneau préféré",
+      labelPreferredNote:"Remarque concernant le rendez-vous ou la coordination",
+      scopeNote:"Ces informations permettent de définir un cadre de solution adapté et les prochaines étapes de manière réaliste. Veuillez choisir l’option qui correspond le mieux à votre situation actuelle.",
+      sectionGoals:"Besoins & objectifs",
+      labelGoal:"Objectif du projet",
+      labelChallenge:"Défi actuel",
+      labelExpected:"Résultat attendu",
+      sectionMore:"Informations complémentaires",
+      labelDesc:"Brève description du projet",
+      privacyAcceptedText:"J’ai lu et compris la <a href=\"/rechtliches.html#datenschutz\" target=\"_blank\" rel=\"noopener\">politique de confidentialité</a> et j’accepte que mes informations soient traitées pour répondre à ma demande.",
+      privacySummary:"Afficher les informations de confidentialité résumées",
+      privacyDetails:"Vos informations sont utilisées uniquement pour traiter votre demande, analyser le projet et préparer les prochaines étapes. Lors du premier contact, aucun mot de passe, aucune donnée d’accès sensible ni aucun fichier confidentiel de l’entreprise ne sont demandés. La transmission est sans engagement. Vos informations ne sont pas transmises à des tiers, sauf obligation légale.",
+      contactInfoText:"Informations complémentaires : <a href=\"/rechtliches.html#impressum\" target=\"_blank\" rel=\"noopener\">Mentions légales</a> · <a href=\"/rechtliches.html#agb\" target=\"_blank\" rel=\"noopener\">Conditions / informations générales</a>.",
+      legalImprint:"Mentions légales",
+      legalPrivacy:"Confidentialité",
+      legalTerms:"Conditions",
+      submitBtn:"Transmettre l’analyse",
+      successTitle:"Merci.",
+      successText:"Votre analyse digitale de projet a été transmise avec succès.",
+      successText2:"Vos informations seront maintenant examinées et utilisées pour préparer votre demande.",
+      errorBox:"Veuillez vérifier vos informations. Le nom, l’e-mail et le consentement sont obligatoires.",
+      invalidEmail:"Veuillez saisir une adresse e-mail valide.",
+      requestContextTitle:"Votre demande a été reconnue",
+      requestContextLead:"Certaines informations de votre demande initiale ont déjà été reprises. Veuillez les vérifier et les compléter.",
+      ctxProjectTypeLabel:"Domaine de projet sélectionné",
+      ctxTimelineLabel:"Démarrage prévu",
+      ctxDescriptionLabel:"Première description du projet",
+      labelProjectOther:"Non trouvé ? Décrivez brièvement votre propre sujet",
+      projectOtherNote:"Si votre projet ne correspond pas exactement aux options, décrivez-le brièvement ici. Je l’attribuerai en interne au domaine de solution approprié.",
+      businessToolsKicker:"Également possible – si cela correspond au projet",
+      businessToolsTitle:"Outils métier internes & cockpits de processus",
+      businessToolsLead:"Tous les projets ne sont pas uniquement des tableaux de bord. Selon le besoin, des espaces de travail simples et structurés pour les processus internes peuvent également être créés – adaptés à votre façon de travailler.",
+      businessTool1Title:"Demande, offre & facture",
+      businessTool1Text:"Des processus structurés de la demande client jusqu’à la facture – avec statuts clairs, documents et prochaines étapes.",
+      businessTool2Title:"Cockpit de processus",
+      businessTool2Text:"Une vue centrale pour les tâches, le statut du projet, les questions, les uploads ou les décisions internes.",
+      businessTool3Title:"Processus proches du CRM",
+      businessTool3Text:"Regrouper les données clients, projets et communications sans introduire immédiatement un nouveau système complexe.",
+      businessTool4Title:"Automatisation Microsoft 365",
+      businessTool4Text:"Relier Excel, SharePoint, Power Query, Power Automate et les processus e-mail de manière pratique.",
+      businessToolsNote:"Ces exemples servent uniquement d’orientation. Votre sélection est toujours transmise via les champs projet et processus existants."
+    },
+    placeholders:{
+      name:"Votre nom",
+      company:"Entreprise optionnelle",
+      email:"Votre adresse e-mail",
+      phone:"Optionnel pour les questions",
+      goal:"Quel objectif souhaitez-vous atteindre avec le projet ?",
+      challenge:"Qu’est-ce qui ne fonctionne pas bien aujourd’hui ou prend trop de temps ?",
+      expected:"À quoi ressemblerait un bon résultat pour vous ?",
+      desc:"Décrivez brièvement votre projet avec vos propres mots.",
+      preferred_contact_note:"Optionnel : créneau souhaité, personne de contact, particularités ou demande de rappel.",
+      project_type_other:"Exemple : cockpit de processus, demande/offre/facture, espace de travail interne, modèle Excel, solution spécifique ..."
+    },
+    projects:[
+      "Vente / performance commerciale",
+      "Performance marketing",
+      "Opérations / analyse des processus",
+      "Logistique / stock & supply chain",
+      "Finance & controlling",
+      "Tableau de bord management / KPI",
+      "Industrie / production / OEE",
+      "Service & support",
+      "Analyse e-commerce",
+      "Prévisions / forecasting",
+      "Automatisation du reporting",
+      "Power Query / automatisation Excel",
+      "Nettoyage / migration de données",
+      "Solution de données personnalisée / autre projet",
+      "Autre / décrire brièvement votre propre projet",
+      "Digitalisation et automatisation des processus métier",
+      "Analyses internes / cockpit de management",
+      "Outils métier internes / cockpit de processus",
+      "Automatisation de processus proches du CRM",
+      "Processus documentaires et classement",
+      "Processus d’offre, facture et reporting",
+      "Solution Microsoft 365 / SharePoint / Power Automate"
+    ],
+    timeline:["Immédiatement","Sous 1 semaine","Sous 2 semaines","Sous 1 mois","Dans 1–3 mois","Prévu plus tard","Pas encore sûr","Selon accord"],
+    priority:["Faible","Moyenne","Élevée","Très élevée","Critique","Pas encore sûr"],
+    frequency:["Quotidien","Hebdomadaire","Mensuel","Trimestriel","Annuel","Pas de reporting régulier","Pas encore sûr"],
+    dataSources:["Excel / CSV","Google Sheets","SharePoint / OneDrive","Système CRM","Système ERP","Site web / boutique en ligne","Base de données / SQL","Power BI / tableau de bord existant","Power Query","Power Automate","Plusieurs sources de données","Pas encore sûr","Autres sources de données"],
+    companySizes:["Solo / indépendant","2–10 employés","11–25 employés","26–50 employés","51–100 employés","101–250 employés","Plus de 250 employés","Pas encore sûr"],
+    userCounts:["1 personne","2–5 personnes","6–10 personnes","11–25 personnes","26–50 personnes","Plus de 50 personnes","Pas encore sûr"],
+    reportsExist:["Non","Oui, mais manuel","Oui, mais incomplet","Oui, régulièrement","Rapports Excel disponibles","Rapports Power BI disponibles","Uniquement des données brutes","Pas encore sûr"],
+    automation:["Aucune automatisation","Partiellement automatisé","Power Query disponible","Power Automate disponible","Processus manuels","Automatisation souhaitée","Automatisation à vérifier","Pas encore sûr"],
+    collaborationModels:["Projet ponctuel","Accompagnement régulier","Support mensuel","Retainer / forfait d’heures","Support reporting régulier","Support & optimisation","Workshop / conseil","Ouvert / à discuter"],
+    processFocus:["Digitaliser et automatiser les processus métier","Analyses internes / cockpit de management","Créer des outils métier internes ou cockpits de processus","Structurer les processus clients, offres et projets proches du CRM","Améliorer le statut de projet, les uploads, les questions et la clôture","Structurer les processus documentaires et de classement","Améliorer les processus d’offre, facture et reporting","Automatiser les tâches récurrentes","Regrouper les données depuis Excel, SharePoint ou des systèmes","Créer une vue management ou KPI","Moderniser les rapports existants","Utiliser Microsoft 365 / SharePoint / Power Automate efficacement","Pas encore sûr / conseil souhaité"],
+    workEnvironments:["Microsoft 365 / SharePoint / OneDrive","Excel / fichiers locaux","Power BI disponible","Power Query disponible","Power Automate disponible","CRM / ERP / système métier","Google Workspace","Environnement mixte","Pas encore sûr"],
+    meetingModes:["Microsoft Teams","Téléphone","Coordination par e-mail","Rendez-vous sur place selon accord","Ouvert / à discuter"],
+    preferredTimes:["Matin","Fin de matinée","Midi","Après-midi","Soir","Flexible","Selon accord"],
+    sending:"Transmission..."
+  }
+};
+
+function setSelect(id, arr){
+  const el=document.getElementById(id);
+  el.innerHTML="";
+  arr.forEach(v=>{
+    const o=document.createElement("option");
+    o.value=v;
+    o.textContent=v;
+    el.appendChild(o);
+  });
+}
+
+function setProjects(arr){
+  const box=document.getElementById("projectOptions");
+  box.innerHTML="";
+  arr.forEach(v=>{
+    const label=document.createElement("label");
+    label.className="choice";
+    label.innerHTML=`<input type="checkbox" name="project_type" value="${v}"><span>${v}</span>`;
+    box.appendChild(label);
+  });
+}
+
+function setProcessOptions(arr){
+  const box=document.getElementById("processOptions");
+  if(!box) return;
+  box.innerHTML="";
+  arr.forEach(v=>{
+    const label=document.createElement("label");
+    label.className="choice";
+    label.innerHTML=`<input type="checkbox" name="process_focus" value="${v}"><span>${v}</span>`;
+    box.appendChild(label);
+  });
+}
+
+function setLang(lang){
+  const t=T[lang];
+
+  document.documentElement.lang=lang;
+  document.getElementById("language").value=lang;
+
+  document.querySelectorAll(".lang-btn").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.lang===lang);
+  });
+
+  document.getElementById("homeLink").textContent=t.homeLink;
+  document.getElementById("navBadge").textContent=t.navBadge;
+  document.getElementById("badgeText").textContent=t.badgeText;
+  document.getElementById("mainTitle").textContent=t.mainTitle;
+  document.getElementById("introText").innerHTML=t.introText;
+
+  Object.keys(t.labels).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      if(["privacyAcceptedText","privacyDetails","contactInfoText"].includes(id)){
+        el.innerHTML=t.labels[id];
+      }else{
+        el.textContent=t.labels[id];
+      }
+    }
+  });
+
+  Object.keys(t.placeholders).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.placeholder=t.placeholders[id];
+  });
+
+  setProjects(t.projects);
+  setSelect("timeline",t.timeline);
+  setSelect("priority",t.priority);
+  setSelect("frequency",t.frequency);
+  setSelect("data_source",t.dataSources);
+  setSelect("company_size",t.companySizes);
+  setSelect("user_count",t.userCounts);
+  setSelect("reports_exist",t.reportsExist);
+  setSelect("automation",t.automation);
+  setSelect("collaboration_model",t.collaborationModels);
+  setProcessOptions(t.processFocus || []);
+  setSelect("work_environment",t.workEnvironments || []);
+  setSelect("preferred_meeting_mode",t.meetingModes || []);
+  setSelect("preferred_contact_time",t.preferredTimes || []);
+}
+
+function isValidEmail(email){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+document.querySelectorAll(".lang-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>setLang(btn.dataset.lang));
+});
+
+document.getElementById("projectForm").addEventListener("submit",async function(e){
+  e.preventDefault();
+
+  const lang=document.getElementById("language").value;
+  const t=T[lang];
+
+  const errorBox=document.getElementById("errorBox");
+  const submitBtn=document.getElementById("submitBtn");
+
+  errorBox.style.display="none";
+
+  const selectedProjectTypes = [...document.querySelectorAll('input[name="project_type"]:checked')].map(x=>x.value);
+  const otherProjectType = document.getElementById("project_type_other").value.trim();
+
+  if(otherProjectType){
+    selectedProjectTypes.push("Sonstiges: " + otherProjectType);
+  }
+
+  const data={
+    language:lang,
+    name:document.getElementById("name").value.trim(),
+    company:document.getElementById("company").value.trim(),
+    email:document.getElementById("email").value.trim() || initialEmail,
+    projectNumber:document.getElementById("projectNumber").value.trim(),
+    phone:document.getElementById("phone").value.trim(),
+    project_type:selectedProjectTypes,
+    project_type_other:otherProjectType,
+    initial_project_type:initialProjectType,
+    initial_project_start:initialTimeline,
+    initial_project_description:initialDescription,
+    timeline:document.getElementById("timeline").value,
+    priority:document.getElementById("priority").value,
+    frequency:document.getElementById("frequency").value,
+    data_source:document.getElementById("data_source").value,
+    company_size:document.getElementById("company_size").value,
+    user_count:document.getElementById("user_count").value,
+    reports_exist:document.getElementById("reports_exist").value,
+    automation:document.getElementById("automation").value,
+    collaboration_model:document.getElementById("collaboration_model").value,
+    process_focus:[...document.querySelectorAll('input[name="process_focus"]:checked')].map(x=>x.value),
+    work_environment:document.getElementById("work_environment").value,
+    preferred_meeting_mode:document.getElementById("preferred_meeting_mode").value,
+    preferred_contact_date:document.getElementById("preferred_contact_date").value,
+    preferred_contact_time:document.getElementById("preferred_contact_time").value,
+    preferred_contact_note:document.getElementById("preferred_contact_note").value.trim(),
+    goal:document.getElementById("goal").value.trim(),
+    challenge:document.getElementById("challenge").value.trim(),
+    expected:document.getElementById("expected").value.trim(),
+    description:document.getElementById("desc").value.trim(),
+    privacy_accepted:document.getElementById("privacyAccepted").checked,
+    submitted_at:new Date().toISOString(),
+    source:"Digitale Projektanalyse"
+  };
+
+  if(!data.name || !data.email || !data.privacy_accepted){
+    errorBox.textContent=t.labels.errorBox;
+    errorBox.style.display="block";
+    return;
+  }
+
+  if(!data.projectNumber){
+    errorBox.textContent =
+      lang==="de" ? "Der persönliche Projektanalyse-Link ist unvollständig. Bitte öffnen Sie den Link erneut aus Ihrer E-Mail." :
+      lang==="en" ? "The personal project analysis link is incomplete. Please open the link again from your email." :
+      "Le lien personnel d’analyse de projet est incomplet. Veuillez rouvrir le lien depuis votre e-mail.";
+    errorBox.style.display="block";
+    return;
+  }
+
+  if(!isValidEmail(data.email)){
+    errorBox.textContent=t.labels.invalidEmail;
+    errorBox.style.display="block";
+    return;
+  }
+
+  submitBtn.disabled=true;
+  submitBtn.textContent=t.sending;
+
+  try{
+    if(FLOW_URL==="DEINE_POWER_AUTOMATE_FLOW_URL_HIER_EINTRAGEN"){
+      console.log("Power Automate Payload:",data);
+    }else{
+      const response = await fetch(FLOW_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+      });
+
+      if(!response.ok){
+        throw new Error("HTTP " + response.status);
+      }
+    }
+
+    document.getElementById("successTitle").textContent=t.labels.successTitle;
+    document.getElementById("successText").textContent=t.labels.successText;
+    document.getElementById("successText2").textContent=t.labels.successText2;
+
+    document.getElementById("projectForm").reset();
+    document.getElementById("formArea").style.display="none";
+    document.getElementById("successScreen").style.display="block";
+
+    window.scrollTo({top:0,behavior:"smooth"});
+
+  }catch(err){
+    console.error(err);
+    errorBox.textContent =
+      lang==="de" ? "Beim Übermitteln ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut." :
+      lang==="en" ? "An error occurred while submitting. Please try again." :
+      "Une erreur s’est produite lors de la transmission. Veuillez réessayer.";
+
+    errorBox.style.display="block";
+    submitBtn.disabled=false;
+    submitBtn.textContent=t.labels.submitBtn;
+  }
+});
+
+function normalizeValue(v){
+  return String(v || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g," ")
+    .trim();
+}
+
+function setInputValue(id,value,onlyIfEmpty=false){
+  const el=document.getElementById(id);
+  if(el && value && (!onlyIfEmpty || !el.value)){
+    el.value=value;
+  }
+}
+
+function setSelectSmart(id,value){
+  const el=document.getElementById(id);
+  if(!el || !value) return;
+
+  const n = normalizeValue(value);
+  const timelineMap = {
+    "sofort starten":"Sofort",
+    "sofort":"Sofort",
+    "naechste woche":"Innerhalb 1 Woche",
+    "nachste woche":"Innerhalb 1 Woche",
+    "nächste woche":"Innerhalb 1 Woche",
+    "naechster monat":"Innerhalb 1 Monat",
+    "nachster monat":"Innerhalb 1 Monat",
+    "nächster monat":"Innerhalb 1 Monat",
+    "unklar":"Noch unklar"
+  };
+
+  const mapped = timelineMap[n] || value;
+  const mappedN = normalizeValue(mapped);
+
+  for(const opt of el.options){
+    if(normalizeValue(opt.value) === mappedN || normalizeValue(opt.textContent) === mappedN){
+      el.value = opt.value;
+      return;
+    }
+  }
+}
+
+function checkProjectType(value){
+  if(!value) return;
+
+  const wanted = normalizeValue(value);
+  const boxes = [...document.querySelectorAll('input[name="project_type"]')];
+  let found=false;
+
+  boxes.forEach(cb=>{
+    const current = normalizeValue(cb.value);
+    if(current === wanted || current.includes(wanted) || wanted.includes(current)){
+      cb.checked=true;
+      found=true;
+    }
+  });
+
+  if(!found){
+    const other = document.getElementById("project_type_other");
+    if(other && !other.value) other.value=value;
+
+    const fallback = boxes.find(cb=>normalizeValue(cb.value).includes("sonstiges") || normalizeValue(cb.value).includes("other") || normalizeValue(cb.value).includes("autre"));
+    if(fallback) fallback.checked=true;
+  }
+}
+
+function updateRequestContext(){
+  const hasContext = initialProjectNumber || initialProjectType || initialTimeline || initialDescription;
+  const box = document.getElementById("requestContext");
+  if(!box || !hasContext) return;
+
+  box.style.display="block";
+  document.getElementById("ctxProjectNumber").textContent = initialProjectNumber || "Projektanalyse";
+  document.getElementById("ctxProjectType").textContent = initialProjectType || "—";
+  document.getElementById("ctxTimeline").textContent = initialTimeline || "—";
+  document.getElementById("ctxDescription").textContent = initialDescription || "—";
+
+  document.getElementById("ctxProjectTypeWrap").style.display = initialProjectType ? "block" : "none";
+  document.getElementById("ctxTimelineWrap").style.display = initialTimeline ? "block" : "none";
+  document.getElementById("ctxDescriptionWrap").style.display = initialDescription ? "block" : "none";
+}
+
+function applyUrlParams(){
+  setInputValue("projectNumber", initialProjectNumber);
+  setInputValue("email", initialEmail, true);
+  setInputValue("name", initialName, true);
+  setInputValue("company", initialCompany, true);
+  setInputValue("phone", initialPhone, true);
+  setInputValue("desc", initialDescription, true);
+
+  setSelectSmart("timeline", initialTimeline);
+  checkProjectType(initialProjectType);
+  updateRequestContext();
+}
+
+const startLang = ["de","en","fr"].includes(initialLang) ? initialLang : "de";
+setLang(startLang);
+applyUrlParams();
+</script>
+
+
+<!-- BDA: analytics only after consent -->
+<script defer src="/assets/js/bda-analytics-consent.js"></script>
+<script defer src="/assets/js/bda-interest-tracking.js"></script>
+</body>
 </html>
