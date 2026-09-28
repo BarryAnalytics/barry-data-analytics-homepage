@@ -17777,96 +17777,62 @@ pointer-events:none;transform:translateY(8px);transition:.2s ease}
 
 
 
-<!-- Sichtbarer WhatsApp-Direktkontakt; automatische Antworten folgen erst nach Meta-Freigabe. -->
+<!-- Sichtbarer WhatsApp-Direktkontakt; Christin bleibt unverändert. -->
 
 <style id="bda-whatsapp-preparation-css">
+.bda-whatsapp-cta{
+  position:fixed;left:18px;bottom:82px;z-index:9998;
+  display:inline-flex;align-items:center;gap:9px;
+  width:auto;max-width:min(315px,calc(100vw - 36px));padding:8px 12px 8px 8px;
+  border:1px solid rgba(102,255,159,.54);border-radius:18px;
+  background:linear-gradient(135deg,rgba(4,31,23,.98),rgba(5,69,43,.98));
+  color:#effff6;text-decoration:none;
+  font:750 12px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-shadow:0 16px 44px rgba(0,0,0,.44),0 0 0 1px rgba(37,211,102,.06) inset,0 0 26px rgba(37,211,102,.14);
+  overflow:hidden;isolation:isolate;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease
+}
+.bda-whatsapp-cta[hidden],[data-whatsapp-link][hidden]{display:none!important}
+.bda-whatsapp-cta::before{content:"";position:absolute;inset:-70% -30%;z-index:-1;background:linear-gradient(110deg,transparent 38%,rgba(143,255,187,.14) 49%,transparent 60%);transform:translateX(-55%);transition:transform .65s ease}
+.bda-whatsapp-cta:hover,.bda-whatsapp-cta:focus-visible{transform:translateY(-2px);border-color:#7effad;box-shadow:0 20px 54px rgba(0,0,0,.5),0 0 32px rgba(37,211,102,.23);outline:none}
+.bda-whatsapp-cta:hover::before,.bda-whatsapp-cta:focus-visible::before{transform:translateX(55%)}
+.bda-whatsapp-cta-icon{position:relative;width:44px;height:44px;display:grid;place-items:center;flex:0 0 44px;border-radius:15px;background:linear-gradient(145deg,#52f38d,#18b957);color:#032b15;box-shadow:0 8px 24px rgba(37,211,102,.34),inset 0 1px 0 rgba(255,255,255,.48)}
+.bda-whatsapp-cta-icon::after{content:"";position:absolute;inset:-5px;border:1px solid rgba(92,255,151,.32);border-radius:19px;animation:bdaWhatsAppGlow 2.8s ease-out infinite}
+.bda-whatsapp-cta-icon svg{width:26px;height:26px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.bda-whatsapp-cta-copy{display:flex;min-width:0;flex-direction:column;align-items:flex-start}
+.bda-whatsapp-cta-copy strong{font-size:12.5px;letter-spacing:.01em}
+.bda-whatsapp-cta-copy small{margin-top:2px;color:#b8e8c9;font-size:9.5px;font-weight:600;white-space:nowrap}
+@keyframes bdaWhatsAppGlow{0%,48%{opacity:.38;transform:scale(.94)}75%,100%{opacity:0;transform:scale(1.16)}}
 
-.bda-whatsapp-cta{position:fixed;right:18px;bottom:92px;z-index:999990;display:inline-flex;align-items:center;gap:11px;min-width:232px;padding:10px 15px 10px 10px;border:1px solid rgba(102,255,159,.54);border-radius:19px;background:linear-gradient(135deg,rgba(4,31,23,.98),rgba(5,69,43,.98));color:#effff6;text-decoration:none;font:750 12px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 18px 55px rgba(0,0,0,.48),0 0 0 1px rgba(37,211,102,.06) inset,0 0 30px rgba(37,211,102,.17);overflow:hidden;isolation:isolate;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-
-.bda-whatsapp-cta[hidden]{display:none!important}
-
-[data-whatsapp-link][hidden]{display:none!important}
-
-.bda-whatsapp-cta::before{content:"";position:absolute;inset:-70% -30%;z-index:-1;background:linear-gradient(110deg,transparent 38%,rgba(143,255,187,.17) 49%,transparent 60%);transform:translateX(-55%);transition:transform .65s ease}
-
-.bda-whatsapp-cta:hover,.bda-whatsapp-cta:focus-visible{transform:translateY(-3px) scale(1.015);border-color:#7effad;box-shadow:0 22px 65px rgba(0,0,0,.53),0 0 38px rgba(37,211,102,.28);outline:none}.bda-whatsapp-cta:hover::before,.bda-whatsapp-cta:focus-visible::before{transform:translateX(55%)}
-
-.bda-whatsapp-cta-icon{position:relative;width:46px;height:46px;display:grid;place-items:center;flex:0 0 46px;border-radius:15px;background:linear-gradient(145deg,#52f38d,#18b957);color:#032b15;box-shadow:0 8px 24px rgba(37,211,102,.34),inset 0 1px 0 rgba(255,255,255,.48)}
-
-.bda-whatsapp-cta-icon::after{content:"";position:absolute;inset:-5px;border:1px solid rgba(92,255,151,.36);border-radius:19px;animation:bdaWhatsAppGlow 2.8s ease-out infinite}.bda-whatsapp-cta-icon svg{width:25px;height:25px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-
-.bda-whatsapp-cta-copy{display:flex;min-width:0;flex-direction:column;align-items:flex-start}.bda-whatsapp-cta-copy strong{font-size:12.5px;letter-spacing:.01em}.bda-whatsapp-cta-copy small{margin-top:4px;color:#9cdeb5;font-size:9.5px;font-weight:650;white-space:nowrap}
-
-@keyframes bdaWhatsAppGlow{0%,48%{opacity:.38;transform:scale(.94)}75%{opacity:0;transform:scale(1.16)}100%{opacity:0;transform:scale(1.16)}}
-
+/* Bestehende WhatsApp-Links an anderen Stellen bleiben kompatibel. */
 .bda-whatsapp-inline{display:flex;align-items:center;gap:11px;margin-top:16px;padding:13px 15px;border:1px solid rgba(73,255,145,.4);border-radius:15px;background:linear-gradient(145deg,rgba(5,38,27,.72),rgba(7,63,42,.72));color:#effff6;text-decoration:none;box-shadow:0 14px 36px rgba(0,0,0,.22)}
-
-.bda-whatsapp-inline:hover,.bda-whatsapp-inline:focus-visible{border-color:#69ff9e;transform:translateY(-1px);outline:none}.bda-whatsapp-inline strong,.bda-whatsapp-inline small{display:block}.bda-whatsapp-inline strong{font-size:13px}.bda-whatsapp-inline small{margin-top:3px;color:#9edbb5;font-size:10px}.bda-whatsapp-mark{width:36px;height:36px;display:grid;place-items:center;flex:0 0 36px;border-radius:50%;background:#25d366;color:#032612;font-size:18px;font-weight:900}
-
+.bda-whatsapp-inline:hover,.bda-whatsapp-inline:focus-visible{border-color:#69ff9e;transform:translateY(-1px);outline:none}.bda-whatsapp-inline strong,.bda-whatsapp-inline small{display:block}.bda-whatsapp-inline strong{font-size:13px}.bda-whatsapp-inline small{margin-top:3px;color:#9edbb5;font-size:10px}.bda-whatsapp-mark{width:36px;height:36px;display:grid;place-items:center;flex:0 0 36px;border-radius:50%;background:#25d366;color:#032612;font-size:18px;font-weight:900}.bda-whatsapp-mark svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .bda-whatsapp-footer{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:#70f5a2;text-decoration:none;font-weight:750}.bda-whatsapp-footer:hover,.bda-whatsapp-footer:focus-visible{color:#a6ffc7;outline:none;text-decoration:underline}
 
-@media(max-width:620px){.bda-whatsapp-cta{right:8px;bottom:72px;min-width:0;padding:7px;border-radius:17px}.bda-whatsapp-cta-icon{width:42px;height:42px;flex-basis:42px;border-radius:13px}.bda-whatsapp-cta-copy{display:none}}
-
+@media(max-width:620px){.bda-whatsapp-cta{left:10px;bottom:calc(70px + env(safe-area-inset-bottom));width:auto;max-width:none;gap:0;padding:7px;border-radius:16px}.bda-whatsapp-cta-icon{width:43px;height:43px;flex-basis:43px;border-radius:13px}.bda-whatsapp-cta-copy{display:none}}
 @media(prefers-reduced-motion:reduce){.bda-whatsapp-cta,.bda-whatsapp-cta::before{transition:none}.bda-whatsapp-cta-icon::after{animation:none}}
-
 @media print{.bda-whatsapp-cta,.bda-whatsapp-inline,.bda-whatsapp-footer{display:none!important}}
-
-.bda-whatsapp-mark svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-
-/* WhatsApp left above demo navigation; Christine remains on the right. */
-#bda-whatsapp-cta{left:18px;right:auto;bottom:82px;z-index:9998;min-width:0;max-width:calc(100vw - 36px)}
-#bda-whatsapp-cta .bda-whatsapp-cta-copy small{display:none}
-@media(max-width:620px){#bda-whatsapp-cta{left:10px;right:auto;bottom:calc(70px + env(safe-area-inset-bottom));padding:7px 10px;gap:8px}#bda-whatsapp-cta .bda-whatsapp-cta-copy{display:flex}#bda-whatsapp-cta .bda-whatsapp-cta-copy strong{font-size:11px}}
-
-#bda-contact-shortcuts{position:fixed;left:18px;bottom:82px;z-index:9998;display:grid;grid-template-columns:1fr auto;gap:7px;max-width:calc(100vw - 36px);padding:8px;border:1px solid #328755;border-radius:20px;background:#07251b;box-shadow:0 8px 24px #0005;font:600 12px/1.4 system-ui}
-#bda-contact-shortcuts #bda-whatsapp-cta{position:static;min-width:0;max-width:none;margin:0;padding:7px 10px;box-shadow:none;gap:8px}
-#bda-contact-shortcuts .bda-whatsapp-cta-icon{width:30px;height:30px;flex-basis:30px;border-radius:10px}
-#bda-contact-shortcuts .bda-whatsapp-cta-icon::after{animation:none}
-#bda-contact-shortcuts .bda-whatsapp-cta-copy{display:flex}
-.bda-contact-call{display:flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:12px;background:#e6fff0;color:#073c25;text-decoration:none}
-.bda-contact-form-link{grid-column:1/-1;color:#c9efda;text-align:center;padding:3px 8px;text-underline-offset:3px}
-#bda-contact-shortcuts a:focus-visible{outline:3px solid #fff;outline-offset:2px}
-@media(max-width:620px){#bda-contact-shortcuts{left:10px;bottom:calc(70px + env(safe-area-inset-bottom));max-width:calc(100vw - 20px);gap:5px;padding:6px}#bda-contact-shortcuts .bda-whatsapp-cta-copy strong{font-size:11px}}
-@media print{#bda-contact-shortcuts{display:none!important}}
 </style>
 
-<nav id="bda-contact-shortcuts" aria-label="Direkter Kontakt"><a id="bda-whatsapp-cta" class="bda-whatsapp-cta" href="#" target="_blank" rel="noopener noreferrer" hidden>
-
+<a id="bda-whatsapp-cta" class="bda-whatsapp-cta" href="#" target="_blank" rel="noopener noreferrer" hidden aria-label="WhatsApp">
   <span class="bda-whatsapp-cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.6a8 8 0 0 1-11.8 7l-4.2 1.1 1.2-4A8 8 0 1 1 20 11.6Z"/><path d="M8.4 7.7c.2-.5.5-.5.8-.5h.4c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.8c-.2.2-.1.4 0 .6.6 1.1 1.5 2 2.7 2.6.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.8.9c.3.1.4.4.4.6 0 .5-.2 1.4-.8 1.9-.6.6-1.5.9-2.5.6-1.5-.4-3.3-1.2-5-2.8-1.4-1.4-2.4-3.1-2.7-4.4-.3-.9 0-1.5.2-1.9Z"/></svg></span>
-
-  <span class="bda-whatsapp-cta-copy"><strong data-whatsapp-label>Direkt per WhatsApp</strong><small data-whatsapp-note>Unkompliziert · vertraulich</small></span>
-
+  <span class="bda-whatsapp-cta-copy"><strong data-whatsapp-label>WhatsApp</strong><small data-whatsapp-note>Sie erreichen uns auch über WhatsApp.</small></span>
 </a>
-<a class="bda-contact-call" href="tel:+491726500500" data-contact-call>Anrufen</a>
-<a class="bda-contact-form-link" href="#contact" data-contact-form>Schreiben ohne WhatsApp</a>
-</nav>
 
 <script id="bda-whatsapp-preparation-js">
-
 (function(){
-
   const CONFIG={enabled:true,number:'491726500500'};
-
-  const button=document.getElementById('bda-whatsapp-cta'),links=[...document.querySelectorAll('[data-whatsapp-link]')];if(!button)return;
-
-  const labels={de:'WhatsApp schreiben',en:'Message on WhatsApp',fr:'Écrire sur WhatsApp'};
-
-  const notes={de:'Schreiben Sie uns direkt. Anrufe sind im WhatsApp-Chat möglich.',en:'Message us directly. You can also call from the WhatsApp chat.',fr:'Écrivez-nous directement. Vous pouvez aussi appeler depuis le chat WhatsApp.'};
-
+  const button=document.getElementById('bda-whatsapp-cta'),links=[...document.querySelectorAll('[data-whatsapp-link]')];
+  if(!button)return;
+  const labels={de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'};
+  const notes={de:'Sie erreichen uns auch über WhatsApp.',en:'You can also reach us on WhatsApp.',fr:'Vous pouvez aussi nous joindre sur WhatsApp.'};
   const starters={de:'Hallo Barry Data & Analytics, ich habe eine Frage zu Ihrem Angebot.',en:'Hello Barry Data & Analytics, I have a question about your services.',fr:'Bonjour Barry Data & Analytics, j’ai une question concernant vos services.'};
-
   function lang(){const value=(document.documentElement.lang||'de').slice(0,2);return labels[value]?value:'de'}
-
-  function render(){const l=lang();document.querySelector('[data-contact-call]').textContent={de:'Anrufen',en:'Call',fr:'Appeler'}[l];document.querySelector('[data-contact-form]').textContent={de:'Schreiben ohne WhatsApp',en:'Write without WhatsApp',fr:'Écrire sans WhatsApp'}[l];const href='https://wa.me/'+CONFIG.number+'?text='+encodeURIComponent(starters[l]);document.querySelectorAll('[data-whatsapp-label]').forEach(el=>el.textContent=labels[l]);document.querySelectorAll('[data-whatsapp-note]').forEach(el=>el.textContent=notes[l]);[button,...links].forEach(el=>{el.href=href;el.setAttribute('aria-label',labels[l]);});}
-
+  function render(){const l=lang();const href='https://wa.me/'+CONFIG.number+'?text='+encodeURIComponent(starters[l]);document.querySelectorAll('[data-whatsapp-label]').forEach(el=>el.textContent=labels[l]);document.querySelectorAll('[data-whatsapp-note]').forEach(el=>el.textContent=notes[l]);[button,...links].forEach(el=>{el.href=href;el.setAttribute('aria-label',notes[l]);});}
   render();new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-
   const ready=CONFIG.enabled&&/^\d{8,15}$/.test(CONFIG.number);
-
   [button,...links].forEach(el=>{el.hidden=!ready;});
-
 })();
-
 </script>
 
 
