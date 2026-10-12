@@ -156,16 +156,18 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
   text-align:center;
 }
 .start-mark{
-  width:54px;
-  height:54px;
-  margin:0 auto 16px;
-  border-radius:16px;
+  width:64px;
+  height:42px;
+  margin:0 auto 18px;
+  border-radius:12px;
   display:grid;
   place-items:center;
-  font-size:22px;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.08em;
   color:#f4efe4;
-  background:linear-gradient(145deg,rgba(203,180,134,.22),rgba(255,255,255,.04));
-  border:1px solid rgba(203,180,134,.20);
+  background:linear-gradient(145deg,rgba(203,180,134,.16),rgba(255,255,255,.025));
+  border:1px solid rgba(203,180,134,.18);
 }
 .start-card h2{
   margin:0 0 8px;
@@ -173,31 +175,29 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
   letter-spacing:-.02em;
 }
 .start-card p{
-  margin:0 auto 20px;
-  color:#aeb9c5;
+  margin:0 auto 22px;
+  color:#9faab6;
   max-width:390px;
-  font-size:13px;
-  line-height:1.5;
+  font-size:12.5px;
+  line-height:1.45;
+  letter-spacing:.01em;
 }
 .start-btn{
-  border:1px solid rgba(203,180,134,.28);
-  background:linear-gradient(180deg,#d7c49b,#bda373);
-  color:#111821;
-  padding:12px 21px;
-  border-radius:12px;
+  border:1px solid rgba(203,180,134,.24);
+  background:linear-gradient(180deg,#d3bf95,#b99f70);
+  color:#101720;
+  padding:11px 26px;
+  min-width:138px;
+  border-radius:10px;
   font-size:13px;
   font-weight:850;
   cursor:pointer;
-  box-shadow:0 9px 24px rgba(0,0,0,.24);
+  box-shadow:0 8px 20px rgba(0,0,0,.20);
 }
 .start-btn:hover{
   filter:brightness(1.035);
 }
-.start-sub{
-  margin-top:12px;
-  font-size:10px;
-  color:#83909d;
-}
+
 
 </style>
 </head>
@@ -205,11 +205,10 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
 
 <div class="start-overlay" id="startOverlay">
   <div class="start-card">
-    <div class="start-mark">▶</div>
-    <h2>Start Showcase</h2>
-    <p>Launch the interactive BDA Performance &amp; Insights Cockpit with the consulting soundtrack and automatic presentation.</p>
-    <button class="start-btn" id="startShowcase">Start Showcase with Sound</button>
-    <div class="start-sub">One click starts sound and the automatic dashboard sequence.</div>
+    <div class="start-mark">BDA</div>
+    <h2>BDA Performance &amp; Insights Cockpit</h2>
+    <p>Interactive Business Analytics Showcase</p>
+    <button class="start-btn" id="startShowcase">Start now</button>
   </div>
 </div>
 
