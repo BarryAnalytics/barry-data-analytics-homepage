@@ -9746,6 +9746,200 @@ footer {
 @media(max-width:900px){#about.section-ueber-uns{grid-template-columns:minmax(0,1fr);gap:28px}#about .team-strip{max-width:520px;justify-self:center}}
 @media(max-width:420px){#about.section-ueber-uns{padding:16px;gap:24px}#about .team-role{font-size:.9375rem}#about .ueber-uns-text h2{font-size:1.6rem}}
 </style>
+<style>
+/* BDA references: compact linked logos, separate from the existing text ticker */
+.bda-references{margin:22px 0 26px;padding:22px 24px;background:#101923;border:1px solid rgba(126,164,187,.13);border-radius:14px;overflow:hidden}
+.bda-references h2{font-size:.88rem;font-weight:500;letter-spacing:.035em;line-height:1.5;color:#b4c5d4;margin:0 0 16px}
+.bda-references-rail{overflow:hidden;padding:4px 0;mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.bda-references-track{display:flex;width:max-content;animation:bdaReferenceFlow 26s linear infinite;will-change:transform}
+.bda-references-group{display:flex;gap:72px;padding-right:72px;flex:none;align-items:center}
+.bda-reference-logo-link{display:flex;align-items:center;justify-content:center;flex:none;width:220px;height:80px;padding:12px 17px;border:1px solid transparent;border-radius:9px;background:#fff;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.bda-reference-logo-link img{display:block;width:100%;height:100%;object-fit:contain}
+.bda-reference-logo-link:hover{border-color:var(--accent-soft);box-shadow:0 0 15px rgba(39,243,217,.13)}
+.bda-reference-logo-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.bda-references-rail:hover .bda-references-track,.bda-references-rail:focus-within .bda-references-track{animation-play-state:paused}
+@keyframes bdaReferenceFlow{to{transform:translateX(-50%)}}
+.bda-footer-references{max-width:1200px;margin:0 auto 22px;padding:0 20px}
+.bda-footer-references h2{font-size:.8rem;font-weight:500;color:var(--text-muted);margin:0 0 12px}
+.bda-footer-reference-logos{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.bda-footer-reference-logos .bda-reference-logo-link{width:170px;height:63px;padding:9px 12px;margin:0}
+@media(max-width:700px){.bda-references{padding:18px 16px;margin:18px 0 22px}.bda-references-group{gap:60px;padding-right:60px}.bda-references-track{animation-duration:24s}.bda-reference-logo-link{width:200px;height:76px}.bda-references-rail{mask-image:linear-gradient(to right,transparent,#000 20px,#000 calc(100% - 20px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 20px,#000 calc(100% - 20px),transparent)}.bda-footer-references{padding:0 16px}.bda-footer-reference-logos{gap:12px}.bda-footer-reference-logos .bda-reference-logo-link{width:140px;height:57px}}
+@media(prefers-reduced-motion:reduce){.bda-references-track{animation:none!important;transform:none!important;width:100%;will-change:auto}.bda-references-group{width:100%;padding:0;gap:20px;flex-wrap:wrap;justify-content:center}.bda-references-group[data-ref-clone]{display:none}.bda-references-rail{mask-image:none;-webkit-mask-image:none}}
+</style>
+<style>.bda-service-summary h2{max-width:34ch;line-height:1.35}.bda-service-summary p{max-width:82ch;margin:14px 0;line-height:1.75}.bda-service-summary strong{color:var(--text-main)}.bda-service-summary .btn{margin-top:10px}.bda-service-summary [hidden]{display:none!important}</style>
+<style>
+.bda-service-summary .bda-summary-eyebrow{display:inline-block;margin-bottom:18px;padding:5px 13px;border:1px solid rgba(39,243,217,.35);border-radius:999px;background:rgba(39,243,217,.08);color:var(--accent);font-size:.72rem;font-weight:550;letter-spacing:.07em;text-transform:uppercase;line-height:1.5}
+.bda-service-summary h2{max-width:none;margin-bottom:18px;font-size:clamp(1.4rem,2.3vw,1.9rem)}
+.bda-service-summary p{max-width:84ch}
+.bda-service-summary p strong{color:var(--accent);font-weight:550}
+</style>
+<style id="bda-hero-final-polish">
+#hero .hero-left,#hero .hero-right{min-width:0}
+#hero .hero-pill{max-width:100%;margin-bottom:22px;font-size:.72rem;line-height:1.6;letter-spacing:.035em}
+#hero .hero-title{font-size:clamp(1.8rem,3.1vw,2.75rem);line-height:1.2;letter-spacing:-.025em;text-wrap:balance;max-width:24ch;margin:0 0 20px}
+#hero .hero-subtitle,#hero .hero-highlight{font-size:1rem;line-height:1.8;max-width:66ch;color:#c7d4e0;text-shadow:none;font-weight:400}
+#hero .hero-subtitle{margin-bottom:15px}#hero .hero-highlight{margin-bottom:24px}
+#hero .hero-cta-row{gap:12px;flex-wrap:wrap}#hero .hero-cta-row a{text-decoration:none}
+#hero .bda-hero-assistant-link{margin-top:18px}#hero .hero-right{justify-content:space-between;gap:28px}
+#hero .hero-right-title{line-height:1.5}#hero .hero-right-badge{line-height:1.5;white-space:normal;text-align:right}
+#hero .hero-kpi-row{gap:12px}#hero .hero-kpi{padding:16px 12px;min-width:0}
+.bda-hero-workflow{border-top:1px solid rgba(93,178,194,.25);padding-top:24px}
+.bda-workflow-title{font-size:.95rem;color:#e5f1f8;line-height:1.6;margin-bottom:18px}
+.bda-workflow-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:0}
+.bda-workflow-steps li{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;min-width:0;min-height:130px;text-align:center;border:1px solid rgba(39,243,217,.17);border-radius:12px;padding:18px 8px;background:linear-gradient(145deg,#102b37,#0c1b28)}
+.bda-workflow-steps li:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:48%;color:#62dcd4;font-size:15px}
+.bda-workflow-icon{display:flex;align-items:center;justify-content:center;color:#54e4d7;width:32px;height:32px}.bda-workflow-icon svg{width:28px;height:28px}
+.bda-workflow-steps strong{font-size:.8rem;line-height:1.55;font-weight:500;color:#e5f2f7;overflow-wrap:break-word}
+.bda-workflow-note{margin-top:16px;color:#9db3c5;font-size:.75rem;line-height:1.7}
+@media(max-width:1100px){.bda-workflow-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.bda-workflow-steps li{min-height:105px}.bda-workflow-steps li::after{display:none}}
+@media(max-width:650px){#hero .hero-title{font-size:clamp(1.7rem,7vw,2.2rem)}#hero .hero-pill{margin-bottom:17px;font-size:.65rem}#hero .hero-subtitle,#hero .hero-highlight{font-size:.96rem;line-height:1.75}#hero .hero-cta-row{display:flex;flex-direction:column;align-items:stretch}#hero .hero-cta-row .btn{text-align:center;justify-content:center;white-space:normal}#hero .hero-kpi-row{gap:7px}#hero .hero-kpi{padding:12px 7px}#hero .hero-kpi-label{font-size:.67rem}.bda-hero-workflow{padding-top:19px}}
+</style>
+<style id="bda-hero-compact-layout">
+/* Let longer German words use the column width; avoid forced four-line headlines. */
+#hero .hero-title{max-width:none;width:100%;text-wrap:wrap;font-size:clamp(1.9rem,2.65vw,2.65rem);line-height:1.19;letter-spacing:-.025em;text-shadow:0 0 12px rgba(39,243,217,.12);margin-bottom:18px}
+#hero .hero-title>span{max-width:none;display:inline}
+#hero .hero-left{padding:26px;gap:0}
+#hero .hero-pill{margin-bottom:22px}
+#hero .hero-subtitle,#hero .hero-highlight{line-height:1.65;font-size:1rem;max-width:none}
+#hero .hero-subtitle{margin-bottom:14px}#hero .hero-highlight{margin-bottom:20px}
+#hero .hero-right{display:flex;flex-direction:column;justify-content:flex-start;gap:25px;padding:26px}
+#hero .hero-right-header{margin-bottom:0}#hero .hero-kpi-row{margin:0}
+#hero .bda-hero-workflow{margin-top:0;padding-top:23px}
+#hero .bda-hero-assistant-link{margin-top:16px}
+@media(min-width:900px){#hero{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);align-items:start}}
+@media(max-width:1100px) and (min-width:900px){#hero .hero-left,#hero .hero-right{padding:22px}#hero .hero-title{font-size:1.95rem}}
+@media(max-width:899px){#hero .hero-title{font-size:clamp(1.7rem,4.2vw,2.4rem)}#hero .hero-right{gap:22px}}
+@media(max-width:650px){#hero .hero-left,#hero .hero-right{padding:20px}#hero .hero-title{font-size:clamp(1.55rem,6.4vw,2rem);text-align:left}#hero .hero-subtitle,#hero .hero-highlight{text-align:left;font-size:.95rem;line-height:1.7}#hero .hero-pill{margin-bottom:18px}}
+</style>
+<style id="bda-interactive-hero">
+@media(min-width:900px){#hero{align-items:stretch}#hero .hero-left,#hero .hero-right{height:100%}}
+#hero .hero-right{gap:22px}#hero .hero-right-header{min-height:28px}
+#hero .bda-workflow-steps{gap:12px}#hero .bda-workflow-steps li{padding:0;background:none;border:0;min-height:0;display:block}
+.bda-step-button{width:100%;height:100%;min-height:116px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:15px 7px;background:#102632;border:1px solid rgba(39,243,217,.18);border-radius:12px;color:#edf6fa;font:inherit;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s}
+.bda-step-button:hover{background:#143542;border-color:rgba(39,243,217,.55)}
+.bda-step-button[aria-pressed=true]{background:linear-gradient(145deg,#12434b,#102c37);border-color:#42e0d2;box-shadow:inset 0 -3px 0 #42e0d2,0 0 15px rgba(39,243,217,.08)}
+.bda-step-button:focus-visible,.bda-detail-demo:focus-visible{outline:2px solid #a1fff2;outline-offset:3px}
+#hero .bda-hero-workflow{display:flex;flex:1;flex-direction:column;gap:0}
+.bda-workflow-detail{margin-top:19px;padding:18px 19px;background:linear-gradient(130deg,rgba(18,44,58,.9),rgba(9,24,37,.95));border:1px solid rgba(112,171,192,.25);border-radius:13px;flex:1;display:flex;flex-direction:column;justify-content:center;min-height:185px}
+.bda-detail-kicker{color:#56dfd4;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.bda-detail-title{font-size:1.05rem;line-height:1.45;color:#eff8fc;margin:0 0 8px}.bda-detail-text{font-size:.84rem;line-height:1.7;color:#bdcddd;margin:0 0 12px}
+.bda-detail-chips{display:flex;gap:7px;flex-wrap:wrap}.bda-detail-chips span{border:1px solid rgba(104,159,180,.28);background:rgba(7,20,32,.7);padding:4px 9px;border-radius:6px;font-size:.7rem;color:#d7e9f0}
+.bda-detail-bottom{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid rgba(104,159,180,.18);padding-top:12px;margin-top:14px}.bda-detail-result{font-size:.73rem;color:#9fb6c6;line-height:1.6}.bda-detail-demo{color:#63e7da;font-size:.77rem;text-decoration:none;white-space:nowrap}.bda-detail-demo:hover{text-decoration:underline}
+@media(max-width:650px){.bda-step-button{min-height:104px}#hero .bda-workflow-detail{min-height:0;padding:17px}.bda-detail-bottom{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.bda-step-button{transition:none}}
+</style>
+<style id="bda-demo-entrypoints">
+button.nav-live-demo,button.mobile-live-demo{font-family:inherit;cursor:pointer}.bda-demo-chevron{font-size:.85em;margin-left:7px;opacity:.75}
+#bda-demo-switcher.bda-trigger-open .bda-switch-panel{position:fixed;left:var(--bda-menu-left);top:var(--bda-menu-top);bottom:auto;right:auto;width:min(360px,calc(100vw - 24px));max-height:var(--bda-menu-height);overflow-y:auto;overscroll-behavior:contain;z-index:10020}
+#bda-demo-switcher .bda-switch-panel{scrollbar-width:thin;scrollbar-color:#28536a #071522}
+#hero .hero-title{font-size:clamp(1.85rem,2.3vw,2.25rem);line-height:1.22;text-wrap:pretty;max-width:100%}
+#hero .hero-title>span{font-size:inherit;line-height:inherit}
+@media(max-width:899px){#hero .hero-title{font-size:clamp(1.65rem,4.1vw,2.25rem)}}
+</style>
+<style id="bda-solution-cockpit-layout">
+#hero .bda-hero-workflow{border-top:0;padding-top:0;margin-top:0}
+#hero .bda-workflow-title{font-size:.85rem;color:#b8cbd8;margin-bottom:14px}
+#hero .bda-workflow-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#hero .bda-workflow-steps li::after{display:none}
+#hero .bda-step-button{flex-direction:row;justify-content:flex-start;gap:13px;text-align:left;padding:17px 15px;min-height:91px}
+#hero .bda-step-button strong{font-size:.88rem;line-height:1.5;font-weight:500}
+#hero .bda-workflow-icon{flex:0 0 27px;width:27px;height:27px}
+#hero .bda-workflow-detail{min-height:226px;margin-top:16px;padding:21px}
+#hero .hero-right{gap:22px}
+@media(max-width:650px){#hero .bda-step-button{padding:14px 10px;gap:8px;min-height:94px}#hero .bda-step-button strong{font-size:.78rem}#hero .bda-workflow-detail{min-height:0;padding:17px}}
+</style>
+<style id="bda-cockpit-views-css">
+.bda-view-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:16px;padding:4px;background:#081621;border:1px solid #213e50;border-radius:10px}
+.bda-view-tabs button{font:inherit;font-size:.82rem;line-height:1.5;border:0;border-radius:7px;padding:8px 10px;background:transparent;color:#aebfce;cursor:pointer}
+.bda-view-tabs button[aria-selected=true]{background:#16434a;color:#bafff3;font-weight:700;box-shadow:inset 0 0 0 1px #35dcca,inset 0 -3px 0 #35dcca}.bda-view-tabs button:focus-visible{outline:2px solid #6ce9d9;outline-offset:2px}
+#hero .bda-workflow-detail,#hero .bda-cockpit-visual{margin-top:12px;min-height:270px;flex:1;box-sizing:border-box}
+#hero .bda-cockpit-visual{padding:20px;border:1px solid rgba(112,171,192,.25);border-radius:13px;background:linear-gradient(130deg,#112c3a,#091825);display:flex;flex-direction:column;justify-content:center;gap:14px}
+#hero .bda-cockpit-visual[hidden],#hero .bda-workflow-detail[hidden]{display:none!important}
+.bda-cockpit-visual h3{font-size:1rem;line-height:1.5;margin:0;color:#eef8fa}.bda-cockpit-visual p{font-size:.76rem;line-height:1.6;color:#afc5d2;margin:0}
+.bda-visual-flow{display:flex;align-items:center;justify-content:space-between;gap:8px}.bda-visual-flow span{flex:1;text-align:center;background:#0b202c;border:1px solid #2a5663;border-radius:9px;padding:15px 6px;font-size:.74rem;line-height:1.5;color:#d5edf1}.bda-visual-flow i{font-style:normal;color:#58dfd3}
+.bda-visual-bars{display:grid;gap:14px}.bda-visual-bar{display:grid;grid-template-columns:80px 1fr;align-items:center;gap:10px;font-size:.75rem;color:#c2d9e4}.bda-visual-bar div{height:14px;background:#0a1d2a;border-radius:4px;overflow:hidden}.bda-visual-bar b{display:block;height:100%;background:linear-gradient(90deg,#1e99a6,#58e4ce);border-radius:4px}
+.bda-app-preview{border:1px solid #2d5366;border-radius:10px;overflow:hidden;background:#081a27}.bda-app-preview header{position:static!important;display:flex!important;align-items:center;justify-content:space-between;padding:10px 12px!important;background:#153746!important;border:0!important;min-height:0!important;font-size:.75rem;color:#d8eef4}.bda-app-preview .bda-app-row{display:flex;justify-content:space-between;gap:10px;margin:10px;padding:10px;border:1px solid #254859;border-radius:7px;font-size:.73rem;color:#c6dde7}.bda-app-row strong{font-weight:500;color:#70e4cf}
+@media(max-width:650px){#hero .bda-workflow-detail,#hero .bda-cockpit-visual{min-height:290px}.bda-visual-flow{flex-wrap:wrap}.bda-visual-flow span{padding:13px 5px}.bda-visual-bar{grid-template-columns:65px 1fr}}
+</style>
+<style id="bda-cockpit-clarity-spacing">
+#hero .hero-left{display:flex;flex-direction:column}#hero .hero-cta-row{margin-top:26px;padding-top:0}#hero .bda-hero-assistant-link{align-self:flex-start;margin-top:20px}
+.bda-visual-bar{grid-template-columns:65px minmax(0,1fr) 76px;gap:10px}.bda-visual-bar>strong{color:#e2f6f3;font-size:.75rem;font-weight:600;text-align:right;white-space:nowrap}
+@media(max-width:899px){#hero .hero-cta-row{margin-top:0;padding-top:6px}}
+@media(max-width:650px){.bda-visual-bar{grid-template-columns:57px minmax(0,1fr) 69px;gap:7px}.bda-visual-bar>strong{font-size:.68rem}#hero .bda-hero-assistant-link{margin-top:18px}}
+</style>
+<style id="bda-hero-scope-spacing">
+#hero .bda-hero-scope-title{margin:22px 0 9px;color:#65f0dd;font-size:1rem;font-weight:700;line-height:1.5}
+#hero .hero-highlight{margin-top:0;margin-bottom:0;line-height:1.75}
+#hero .hero-subtitle{margin-bottom:0;line-height:1.75}
+#hero .hero-cta-row{margin-top:26px;padding-top:0;gap:12px;flex-wrap:wrap}
+@media(min-width:900px){#hero{align-items:stretch}#hero .hero-left,#hero .hero-right{height:auto;align-self:stretch}}
+@media(max-width:650px){#hero .bda-hero-scope-title{margin-top:18px;font-size:.95rem}#hero .hero-cta-row{margin-top:22px}}
+</style>
+<style id="bda-solutions-action-button">
+#hero .hero-cta-row button[data-open-demo-menu]{background:linear-gradient(135deg,#123f50,#14312e);border:1px solid #41cdbb;color:#d9fff6;font-weight:600;box-shadow:0 4px 18px rgba(35,200,180,.12);transition:background .2s,box-shadow .2s,transform .2s}
+#hero .hero-cta-row button[data-open-demo-menu]:hover{background:#195451;box-shadow:0 6px 22px rgba(35,200,180,.24);transform:translateY(-1px)}
+#hero .hero-cta-row button[data-open-demo-menu]:focus-visible{outline:2px solid #9affeb;outline-offset:4px}
+#hero .hero-cta-row button[data-open-demo-menu][aria-expanded=true]{background:#195451;border-color:#9affeb}
+#bda-demo-switcher.bda-trigger-open .bda-switch-panel{width:min(620px,calc(100vw - 32px));max-height:min(540px,70vh);padding:14px;border-radius:18px}
+#bda-demo-switcher.bda-trigger-open .bda-switch-link{border:1px solid rgba(80,166,181,.22);border-radius:12px;margin:7px 0;padding:12px;background:rgba(14,40,53,.65)}
+#bda-demo-switcher.bda-trigger-open .bda-switch-link:hover,#bda-demo-switcher.bda-trigger-open .bda-switch-link:focus-visible{border-color:#41cdbb;background:#143e47}
+@media(prefers-reduced-motion:reduce){#hero .hero-cta-row button[data-open-demo-menu]{transition:none}}
+</style>
+<style id="bda-fusion-product-css">
+#bda-fusion-product{margin:30px 0;display:grid;grid-template-columns:1.05fr 1fr;gap:36px;padding:clamp(24px,3vw,42px);border:1px solid #23505b;border-radius:24px;background:radial-gradient(ellipse at 95% 0,rgba(25,204,185,.12),transparent 60%),#07121d;scroll-margin-top:110px}
+.fusion-product-eyebrow{font-size:.75rem;letter-spacing:.15em;color:#54e8d6;font-weight:700}
+#bda-fusion-product h2{font-size:clamp(1.55rem,2.2vw,2rem);line-height:1.28;margin:17px 0;color:#f0f8fc;max-width:23ch}
+.fusion-product-copy>p{color:#bed0dc;font-size:1rem;line-height:1.8;margin:0 0 19px;max-width:58ch}
+.fusion-product-promise{display:block;color:#5be8d4;line-height:1.6;font-size:1rem}
+.fusion-product-details{margin-top:22px;border-top:1px solid #25404d;padding-top:16px;color:#c7d9e4}
+.fusion-product-details summary{cursor:pointer;color:#d7fff7;font-weight:600;line-height:1.6}.fusion-product-details summary:focus-visible{outline:2px solid #50e0cc;outline-offset:5px}
+.fusion-product-details p{font-size:.9rem;line-height:1.8;margin-top:12px}
+.fusion-product-access{padding:24px;border:1px solid #25515d;border-radius:18px;background:linear-gradient(145deg,#102838,#091822);align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.fusion-product-brand{display:flex;gap:14px;align-items:center}.fusion-product-brand>span{font-size:2.3rem;color:#53ead7}.fusion-product-brand strong{display:block;font-size:1.2rem;color:#edf9ff}.fusion-product-brand small{display:block;margin-top:5px;font-size:.73rem;color:#9eb8c8}
+.fusion-product-flow{list-style:none;display:grid;gap:12px;padding:0;margin:24px 0}.fusion-product-flow li{display:flex;align-items:center;gap:13px;padding:10px 0;border-bottom:1px solid #203e4d;line-height:1.5}.fusion-product-flow b{color:#52e1cf;font-size:.75rem}.fusion-product-flow span{color:#d7e9f2;font-size:.91rem}
+.fusion-product-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fusion-product-links button{width:100%;padding:12px 10px;border-radius:10px;border:1px solid #3c6874;background:#163b46;color:#c3dedf;font:inherit;font-size:.85rem;font-weight:600;opacity:1;cursor:default;line-height:1.4}.fusion-product-links small{display:block;margin-top:8px;color:#9fb6c7;font-size:.75rem;line-height:1.5}.fusion-product-status{color:#90aebb;font-size:.75rem;line-height:1.6;margin:17px 0 0}
+@media(max-width:899px){#bda-fusion-product{grid-template-columns:1fr;gap:24px}.fusion-product-copy>p{max-width:none}#bda-fusion-product h2{max-width:30ch}}
+@media(max-width:480px){.fusion-product-links{grid-template-columns:1fr}.fusion-product-access{padding:18px}#bda-fusion-product{padding:22px}}
+</style>
+<style id="bda-solutions-menu-css">
+.bda-solutions-trigger{font:inherit;background:transparent;border:0;color:inherit;display:inline-flex;align-items:center;gap:7px;cursor:pointer}.bda-solutions-trigger>span:last-child{font-size:.75em;color:#5bdfcf}.bda-solutions-trigger:focus-visible{outline:2px solid #63efda;outline-offset:5px;border-radius:5px}.bda-solutions-trigger[aria-expanded=true]{color:#65f1df}
+#bda-solutions-panel[hidden]{display:none!important}#bda-solutions-panel{position:fixed;z-index:12000;width:min(520px,calc(100vw - 28px));padding:18px;border:1px solid #2a6874;border-radius:18px;background:#081822;box-shadow:0 22px 60px #000a;color:#e6f6fa;max-height:calc(100dvh - 105px);overflow:auto;box-sizing:border-box}
+.bda-solutions-panel-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}.bda-solutions-panel-head>strong{font-size:.85rem;color:#a4cad2;letter-spacing:.03em}.bda-solutions-close{font:inherit;font-size:1.5rem;color:#c9e9ec;background:transparent;border:0;cursor:pointer;padding:0 6px}
+#bda-solutions-panel a{text-decoration:none;color:inherit;display:flex;border-radius:12px;padding:17px;border:1px solid #244653;transition:background .18s,border-color .18s}
+#bda-solutions-panel a:hover,#bda-solutions-panel a:focus-visible{background:#16414a;border-color:#56e4d0;outline:2px solid transparent}
+.bda-solutions-feature{gap:15px;background:linear-gradient(130deg,#123e48,#0d2535);margin-bottom:10px}.bda-fusion-wordmark{font-size:2.5rem;color:#5ff0d8;line-height:1.2}.bda-solutions-feature>span:last-child{min-width:0;display:flex;flex-direction:column;gap:7px}.bda-solutions-feature small{font-size:.65rem;letter-spacing:.12em;color:#68dfd3}.bda-solutions-feature strong{font-size:1.2rem}.bda-solutions-feature strong>span{float:right;font-size:.9rem;margin-left:15px}.bda-solutions-feature span span,.bda-solutions-service>span{font-size:.86rem;line-height:1.65;color:#b9d1dc}.bda-solutions-feature b,.bda-solutions-service b{font-size:.76rem;color:#63e9d5;margin-top:3px}
+.bda-solutions-service{flex-direction:column;gap:6px;background:#0d2230}.bda-solutions-service>strong{font-size:.94rem}.bda-solutions-customer{margin-top:13px;padding:14px 3px 0;border-top:1px solid #25434d;display:flex;justify-content:space-between;gap:16px;align-items:center}.bda-solutions-customer>div{display:flex;flex-direction:column;gap:5px}.bda-solutions-customer strong{font-size:.9rem}.bda-solutions-customer div span{font-size:.76rem;color:#9dbac6;line-height:1.5}.bda-solutions-status{font-size:.68rem;line-height:1.5;color:#bfd5dc;background:#18303e;border-radius:7px;padding:5px 8px;max-width:115px;text-align:center}
+@media(max-width:650px){#bda-solutions-panel{padding:14px}.bda-solutions-feature{padding:14px!important}.bda-solutions-customer{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){#bda-solutions-panel a{transition:none}}
+</style>
+<style id="bda-fusion-concise-copy-css">
+#bda-fusion-product h2{max-width:29ch;font-size:clamp(1.45rem,2vw,1.85rem);line-height:1.38;margin:17px 0 18px}
+#bda-fusion-product .fusion-product-eyebrow{letter-spacing:.07em;line-height:1.6;display:block}
+#bda-fusion-product .fusion-product-copy>p:not(.fusion-product-benefit){line-height:1.8;margin-bottom:22px}
+#bda-fusion-product .fusion-product-promise{font-size:1.05rem;line-height:1.65;margin-top:4px}
+#bda-fusion-product .fusion-product-benefit{font-size:.94rem;line-height:1.7;color:#c3d7df;margin:12px 0 0}
+@media(max-width:650px){#bda-fusion-product h2{max-width:none;font-size:1.45rem}.fusion-product-promise{font-size:1rem}}
+</style>
+<style id="bda-fusion-capabilities-css">
+#bda-fusion-product .fusion-capabilities{margin-top:16px;padding:18px;border-radius:14px;background:#102936;border:1px solid #234653;display:grid;gap:19px}
+#bda-fusion-product .fusion-capability{display:grid;grid-template-columns:23px minmax(0,1fr);gap:11px;align-items:start}
+#bda-fusion-product .fusion-capability>span{color:#53e3d1;font-size:1.4rem;line-height:1.3}
+#bda-fusion-product .fusion-capability h3{margin:0 0 6px;font-size:.95rem;line-height:1.5;color:#e8f7fc;font-weight:600}
+#bda-fusion-product .fusion-capability p{margin:0;color:#b9d0dc;font-size:.86rem;line-height:1.75}
+#bda-fusion-product .fusion-report-note{margin:0;padding-top:14px;border-top:1px solid #2a4754;font-size:.77rem;line-height:1.7;color:#a3bcc9}
+#bda-fusion-product:has(.fusion-product-details[open]) .fusion-product-access{align-self:start}
+@media(max-width:480px){#bda-fusion-product .fusion-capabilities{padding:14px}.fusion-capability{gap:8px}}
+</style>
+<style id="bda-solutions-navigation-affordance">
+.nav-center .bda-solutions-trigger{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:9px 14px;border:1px solid #338879;border-radius:10px;background:linear-gradient(135deg,#143c40,#102a35);color:#d9fff5;font-weight:650;line-height:1.3;box-shadow:0 0 16px rgba(39,243,217,.08);transition:background .18s,border-color .18s,box-shadow .18s}
+.nav-center .bda-solutions-trigger>span:last-child{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:5px;background:#21534f;color:#8bffe7;font-size:1rem;line-height:1;transition:transform .18s}
+.nav-center .bda-solutions-trigger:hover{background:#1b4849;border-color:#63ead1;box-shadow:0 0 20px rgba(39,243,217,.16)}
+.nav-center .bda-solutions-trigger[aria-expanded=true]{background:#20524f;border-color:#78f4d9;color:#effffb}
+.bda-solutions-trigger[aria-expanded=true]>span:last-child{transform:rotate(180deg)}
+.mobile-nav .bda-solutions-trigger{width:100%;justify-content:space-between;padding:12px 15px;border:1px solid #338879;border-radius:10px;background:#133740;color:#dcfff6;box-sizing:border-box}
+.mobile-nav .bda-solutions-trigger>span:last-child{font-size:1.1rem;color:#80f8dc}
+@media(prefers-reduced-motion:reduce){.nav-center .bda-solutions-trigger,.nav-center .bda-solutions-trigger>span:last-child{transition:none}}
+</style>
 </head>
 
 <body>
@@ -9786,11 +9980,11 @@ footer {
 
       <div class="nav-link active" data-scroll="#hero" data-i18n="nav_home"></div>
 
-      <div class="nav-link" data-scroll="#services" data-i18n="nav_services"></div>
+      <button type="button" class="nav-link bda-solutions-trigger" aria-expanded="false" aria-controls="bda-solutions-panel"><span data-i18n="nav_services"></span><span aria-hidden="true">⌄</span></button>
 
-      <div class="nav-link" data-scroll="#global" data-i18n="nav_global"></div>
+      <div class="nav-link" data-scroll="#bda-international" data-i18n="nav_global"></div>
 
-      <a class="nav-link nav-live-demo" href="https://barrydataanalytics.de/demo/" target="_blank" rel="noopener noreferrer" aria-label="Live-Demo in einem neuen Tab öffnen" title="Interaktive Live-Demo öffnen"><span class="live-demo-dot" aria-hidden="true"></span><span data-i18n="nav_demos"></span></a>
+      <button type="button" class="nav-link nav-live-demo" data-open-demo-menu aria-controls="bda-demo-menu-panel" aria-expanded="false"><span class="live-demo-dot" aria-hidden="true"></span><span data-i18n="nav_demos"></span><span aria-hidden="true" class="bda-demo-chevron">⌄</span></button>
 
       <div class="nav-link" data-scroll="#about" data-i18n="nav_about"></div>
 
@@ -9872,11 +10066,11 @@ footer {
 
     <div class="mobile-link" data-scroll="#hero" data-i18n="nav_home"></div>
 
-    <div class="mobile-link" data-scroll="#services" data-i18n="nav_services"></div>
+    <button type="button" class="mobile-link bda-solutions-trigger" aria-expanded="false" aria-controls="bda-solutions-panel"><span data-i18n="nav_services"></span><span aria-hidden="true">⌄</span></button>
 
-    <div class="mobile-link" data-scroll="#global" data-i18n="nav_global"></div>
+    <div class="mobile-link" data-scroll="#bda-international" data-i18n="nav_global"></div>
 
-    <a class="mobile-link mobile-live-demo" href="https://barrydataanalytics.de/demo/" target="_blank" rel="noopener noreferrer" aria-label="Live-Demo in einem neuen Tab öffnen"><span class="live-demo-dot" aria-hidden="true"></span><span data-i18n="nav_demos"></span></a>
+    <button type="button" class="mobile-link mobile-live-demo" data-open-demo-menu aria-controls="bda-demo-menu-panel" aria-expanded="false"><span class="live-demo-dot" aria-hidden="true"></span><span data-i18n="nav_demos"></span><span aria-hidden="true" class="bda-demo-chevron">⌄</span></button>
 
     <div class="mobile-link" data-scroll="#about" data-i18n="nav_about"></div>
 
@@ -9938,17 +10132,11 @@ footer {
 
 
 
-        <div class="hero-eyebrow">
-
-          <span class="hero-pill-dot"></span>
-
-          <span data-i18n="hero_eyebrow"></span>
-
-        </div>
+        
 
 
 
-        <p class="hero-sub-eyebrow" data-i18n="hero_sub_eyebrow"></p>
+        
 
 
 
@@ -9960,6 +10148,7 @@ footer {
 
 
 
+        <p class="bda-hero-scope-title" data-i18n="hero_scope_title"></p>
         <p class="hero-highlight" data-i18n="hero_highlight"></p>
 
 
@@ -9968,7 +10157,7 @@ footer {
 
           <button class="btn btn-primary" data-scroll="#contact" data-i18n="hero_cta_primary"></button>
 
-          <button class="btn btn-ghost" data-scroll="#services" data-i18n="hero_cta_secondary"></button>
+          <button type="button" class="btn btn-ghost" data-open-demo-menu aria-controls="bda-demo-menu-panel" aria-expanded="false"><span data-i18n="hero_cta_secondary"></span><span aria-hidden="true" class="bda-demo-chevron">↗</span></button>
 
         </div>
 
@@ -9998,125 +10187,12 @@ footer {
 
           </div>
 
-          <div class="hero-right-badge" data-i18n="hero_dashboard_badge"></div>
+          
 
         </div>
 
-        <div class="hero-kpi-row">
-
-          <div class="hero-kpi">
-
-            <div class="hero-kpi-label" data-i18n="hero_kpi1_label"></div>
-
-            <div class="hero-kpi-value" data-i18n="hero_kpi1_value"></div>
-
-          </div>
-
-          <div class="hero-kpi">
-
-            <div class="hero-kpi-label" data-i18n="hero_kpi2_label"></div>
-
-            <div class="hero-kpi-value" data-i18n="hero_kpi2_value"></div>
-
-          </div>
-
-          <div class="hero-kpi">
-
-            <div class="hero-kpi-label" data-i18n="hero_kpi3_label"></div>
-
-            <div class="hero-kpi-value" data-i18n="hero_kpi3_value"></div>
-
-          </div>
-
-        </div>
-
-        <div class="hero-tags">
-
-          <div class="hero-tag">
-
-            <span class="hero-tag-dot"></span>
-
-            <span data-i18n="hero_tag1"></span>
-
-          </div>
-
-          <div class="hero-tag">
-
-            <span class="hero-tag-dot"></span>
-
-            <span data-i18n="hero_tag2"></span>
-
-          </div>
-
-          <div class="hero-tag">
-
-            <span class="hero-tag-dot"></span>
-
-            <span data-i18n="hero_tag3"></span>
-
-          </div>
-
-          <div class="hero-tag">
-
-            <span class="hero-tag-dot"></span>
-
-            <span data-i18n="hero_tag4"></span>
-
-          </div>
-
-          <div class="hero-tag">
-
-            <span class="hero-tag-dot"></span>
-
-            <span data-i18n="hero_tag5"></span>
-
-          </div>
-
-          <div class="hero-tag">
-
-            <span class="hero-tag-dot"></span>
-
-            <span data-i18n="hero_tag6"></span>
-
-          </div>
-
-        </div>
-
-        <div class="hero-chart">
-
-          <div class="hero-chart-header">
-
-            <span data-i18n="hero_chart_title"></span>
-
-            <span data-i18n="hero_chart_range"></span>
-
-          </div>
-
-          <div class="hero-chart-bars">
-
-            <div class="hero-chart-bar"></div>
-
-            <div class="hero-chart-bar"></div>
-
-            <div class="hero-chart-bar"></div>
-
-            <div class="hero-chart-bar"></div>
-
-            <div class="hero-chart-bar"></div>
-
-          </div>
-
-          <div class="hero-chart-footer">
-
-            <span data-i18n="hero_chart_footer_left"></span>
-
-            <span data-i18n="hero_chart_footer_right"></span>
-
-          </div>
-
-        </div>
-
-      </aside>
+        <div class="bda-hero-workflow"><p class="bda-workflow-title" data-i18n="hero_workflow_title"></p><ol class="bda-workflow-steps"><li><button type="button" class="bda-step-button" data-workflow-step="0" aria-pressed="true" aria-controls="bda-workflow-detail"><span class="bda-workflow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="7" width="12" height="13" rx="2"/><path d="M8 7V4h12v13h-4"/></svg></span><strong data-i18n="hero_step_1"></strong></button></li><li><button type="button" class="bda-step-button" data-workflow-step="1" aria-pressed="false" aria-controls="bda-workflow-detail"><span class="bda-workflow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7h5v5H5zM14 14h5v5h-5zM10 9h7v5M7 12v5h7"/></svg></span><strong data-i18n="hero_step_2"></strong></button></li><li><button type="button" class="bda-step-button" data-workflow-step="2" aria-pressed="false" aria-controls="bda-workflow-detail"><span class="bda-workflow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V5m0 15h17M9 16v-5m5 5V7m5 9v-3"/></svg></span><strong data-i18n="hero_step_3"></strong></button></li><li><button type="button" class="bda-step-button" data-workflow-step="3" aria-pressed="false" aria-controls="bda-workflow-detail"><span class="bda-workflow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="m8 12 3 3 5-6"/></svg></span><strong data-i18n="hero_step_4"></strong></button></li></ol><div class="bda-view-tabs" role="tablist"><button type="button" id="bda-benefit-tab" role="tab" aria-selected="true" aria-controls="bda-workflow-detail" data-cockpit-view="benefit">Ihr Nutzen</button><button type="button" id="bda-visual-tab" role="tab" aria-selected="false" aria-controls="bda-cockpit-visual" tabindex="-1" data-cockpit-view="visual">So funktioniert’s</button></div><div id="bda-workflow-detail" class="bda-workflow-detail" role="tabpanel" aria-labelledby="bda-benefit-tab"><div class="bda-detail-kicker"></div><h3 class="bda-detail-title"></h3><p class="bda-detail-text"></p><div class="bda-detail-chips"></div><div class="bda-detail-bottom"><span class="bda-detail-result"></span><a class="bda-detail-demo" href="https://barrydataanalytics.de/connected_data_management/" target="_blank" rel="noopener noreferrer"></a></div></div><div id="bda-cockpit-visual" class="bda-cockpit-visual" role="tabpanel" aria-labelledby="bda-visual-tab" hidden></div></div>
+</aside>
 
     </section>
 
@@ -10126,55 +10202,15 @@ footer {
 
     <div class="project-ticker-wrapper">
 
-      <div class="project-ticker" data-lang="de">
-
-        ⚡ Zu viele Tickets, zu wenig Transparenz · 📞 Marketing weiß nicht, welche Kampagne wirklich funktioniert ·
-
-        📊 Vertrieb kämpft mit unklaren Forecasts · 🕒 Management bekommt Berichte zu spät · 🔧 Teams arbeiten mit
-
-        mehreren Tools gleichzeitig · 📊 Excel kostet jede Woche wertvolle Zeit · ⚡ Kennzahlen müssen mühsam
-
-        zusammengesucht werden · 💡 Entscheidungen basieren auf unvollständigen Daten · 📞 Tägliche Performance‑Auswertungen
-
-        fehlen · 📊 Teamleiter brauchen klare Leistungsdaten · 📞 Auftraggeber verlangen transparente SLA‑Nachweise ·
-
-        🕒 Manuelle Auswertungen kosten zu viel Zeit · 🌐 Die Website wirkt veraltet oder bringt keine Anfragen · 🧩 Kunden- und Projektinfos liegen in Excel, E-Mail und WhatsApp verteilt · ⚙️ Wiederkehrende Abläufe könnten längst automatisiert sein ·
-
-      </div>
+      <div class="project-ticker" data-lang="de">Verteilte Dateien → gemeinsame Übersicht · Manuelle Auswertungen → wiederverwendbare Berichte · Unklare Kennzahlen → abgestimmte KPI-Definitionen · Viele Einzelschritte → verbundene Abläufe · Neue Daten → bestehendes Reporting aktualisieren · Kundenanfragen → nachvollziehbare Folgeprozesse · </div>
 
 
 
-      <div class="project-ticker" data-lang="en" style="display:none;">
-
-        ⚡ Too many tickets, too little transparency · 📞 Marketing cannot see which campaign performs ·
-
-        📊 Sales teams struggle with unclear forecasts · 🕒 Management receives reports too late · 🔧 Teams work with
-
-        too many tools · 📊 Excel consumes valuable hours · ⚡ Key metrics must be manually collected · 💡 Decisions
-
-        based on incomplete data · 📞 Daily performance evaluations missing · 📊 Team leaders need objective data ·
-
-        📞 Clients expect transparent SLA reporting · 🕒 Manual evaluations consume time · 🌐 The company website looks outdated or generates no enquiries · 🧩 Customer and project information is scattered across Excel, email and messaging · ⚙️ Recurring workflows could already be automated ·
-
-      </div>
+      <div class="project-ticker" data-lang="en" style="display:none;">Scattered files → a shared overview · Manual analysis → reusable reporting · Unclear figures → agreed KPI definitions · Disconnected steps → connected workflows · New data → refresh existing reporting · Customer enquiries → traceable follow-up processes · </div>
 
 
 
-      <div class="project-ticker" data-lang="fr" style="display:none;">
-
-        ⚡ Trop de tickets, trop peu de transparence · 📞 Le marketing ne sait pas quelle campagne fonctionne ·
-
-        📊 Les équipes commerciales manquent de prévisions claires · 🕒 La direction reçoit les rapports trop tard ·
-
-        🔧 Trop d’outils différents · 📊 Excel consomme des heures précieuses · ⚡ Les indicateurs doivent être collectés
-
-        manuellement · 💡 Décisions basées sur des données incomplètes · 📞 Évaluations quotidiennes manquantes ·
-
-        📊 Les responsables ont besoin de données fiables · 📞 Les clients exigent des rapports SLA transparents ·
-
-        🕒 Les évaluations manuelles prennent trop de temps · 🌐 Le site web de l’entreprise est dépassé ou ne génère pas de demandes · 🧩 Les informations clients et projets sont dispersées entre Excel, e-mail et messagerie · ⚙️ Des tâches répétitives pourraient déjà être automatisées ·
-
-      </div>
+      <div class="project-ticker" data-lang="fr" style="display:none;">Fichiers dispersés → vue commune · Analyses manuelles → rapports réutilisables · Indicateurs peu clairs → définitions convenues · Étapes isolées → processus connectés · Nouvelles données → reporting actualisé · Demandes clients → suivi structuré · </div>
 
     </div>
 
@@ -10183,6 +10219,9 @@ footer {
     <!-- TYPISCHES KUNDENPROJEKT – STORY TICKER -->
 
 
+
+<!-- REFERENCES: approved company names and original logos -->
+<section id="bda-references" class="bda-references" aria-labelledby="bda-references-title"><h2 id="bda-references-title" data-ref-copy="title">Ausgewählte Referenzen</h2><div class="bda-references-rail"><div class="bda-references-track"><div class="bda-references-group"><a class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a></div><div class="bda-references-group" data-ref-clone aria-hidden="true"><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a tabindex="-1" aria-hidden="true" class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a></div></div></div></section>
 
     <!-- WORLDWIDE DIGITAL BUSINESS POSITIONING -->
 
@@ -10204,7 +10243,7 @@ footer {
 
         </div>
 
-        <div class="bda-worldwide-bar"><strong data-i18n="global_worldwide_title"></strong><span class="bda-worldwide-chip" data-i18n="global_chip_1"></span><span class="bda-worldwide-chip" data-i18n="global_chip_2"></span><span class="bda-worldwide-chip" data-i18n="global_chip_3"></span><span class="bda-worldwide-chip" data-i18n="global_chip_4"></span></div>
+        <div class="bda-worldwide-bar"><strong id="bda-international" style="scroll-margin-top:120px" data-i18n="global_worldwide_title"></strong><span class="bda-worldwide-chip" data-i18n="global_chip_1"></span><span class="bda-worldwide-chip" data-i18n="global_chip_2"></span><span class="bda-worldwide-chip" data-i18n="global_chip_3"></span><span class="bda-worldwide-chip" data-i18n="global_chip_4"></span></div>
 
       </div>
 
@@ -10790,7 +10829,7 @@ footer {
 
           </div>
 
-          <div class="bda-decision-note" data-i18n="proof_note"></div>
+          
 
         </div>
 
@@ -10838,6 +10877,26 @@ footer {
       </div>
 
     </section>
+<section id="bda-fusion-product" aria-labelledby="bda-fusion-heading">
+ <div class="fusion-product-copy">
+  <span class="fusion-product-eyebrow" data-fusion="eyebrow"></span>
+  <h2 id="bda-fusion-heading" data-fusion="title"></h2>
+  <p data-fusion="intro"></p>
+  <strong class="fusion-product-promise" data-fusion="promise"></strong>
+  <p class="fusion-product-benefit" data-fusion="benefit"></p>
+  <details class="fusion-product-details"><summary data-fusion="details"></summary><div class="fusion-capabilities"><div class="fusion-capability"><span aria-hidden="true">▱</span><div><h3 data-fusion="cap1Title"></h3><p data-fusion="cap1Text"></p></div></div><div class="fusion-capability"><span aria-hidden="true">↻</span><div><h3 data-fusion="cap2Title"></h3><p data-fusion="cap2Text"></p></div></div><div class="fusion-capability"><span aria-hidden="true">▥</span><div><h3 data-fusion="cap3Title"></h3><p data-fusion="cap3Text"></p></div></div><div class="fusion-capability"><span aria-hidden="true">↗</span><div><h3 data-fusion="cap4Title"></h3><p data-fusion="cap4Text"></p></div></div><p class="fusion-report-note" data-fusion="reportNote"></p></div></details>
+ </div>
+ <div class="fusion-product-access">
+  <div class="fusion-product-brand"><span aria-hidden="true">▥</span><div><strong>BDA Fusion Desktop</strong><small>Business Data Automation &amp; Analytics</small></div></div>
+  <ol class="fusion-product-flow"><li><b>01</b><span data-fusion="step1"></span></li><li><b>02</b><span data-fusion="step2"></span></li><li><b>03</b><span data-fusion="step3"></span></li></ol>
+  <div class="fusion-product-links">
+   <div><button type="button" disabled data-fusion-target="product" data-fusion="product"></button><small data-fusion="productNote"></small></div>
+   <div><button type="button" disabled data-fusion-target="customer-center" data-fusion="center"></button><small data-fusion="centerNote"></small></div>
+  </div>
+  <p class="fusion-product-status" data-fusion="status"></p>
+ </div>
+</section>
+
 
 
 
@@ -11069,7 +11128,7 @@ footer {
 
         <div class="bda-decision-head">
 
-          <div><div class="section-eyebrow" data-i18n="faq_eyebrow"></div><h2 class="section-title" data-i18n="faq_title"></h2><div class="section-subtitle" data-i18n="faq_subtitle"></div></div>
+          <div><h2 class="section-title" data-i18n="faq_title"></h2><div class="section-subtitle" data-i18n="faq_subtitle"></div></div>
 
         </div>
 
@@ -11453,123 +11512,7 @@ footer {
 
 
 
-<section class="seo-section">
-
-
-
-  <div class="seo-preview">
-
-    <h2 data-i18n="seoLong10.h2"></h2>
-
-    <p data-i18n="seoLong10.p1"></p>
-
-  </div>
-
-
-
-  <div class="seo-full collapsed" id="seoFull">
-
-
-
-    <p data-i18n="seoLong10.p2"></p>
-
-
-
-    <h3 data-i18n="seoLong10.dashboards_h3"></h3>
-
-    <p data-i18n="seoLong10.dashboards_p1"></p>
-
-    <p data-i18n="seoLong10.dashboards_p2"></p>
-
-
-
-    <h3 data-i18n="seoLong10.excel_h3"></h3>
-
-    <p data-i18n="seoLong10.excel_p1"></p>
-
-    <p data-i18n="seoLong10.excel_p2"></p>
-
-
-
-    <h3 data-i18n="seoLong10.powerbi_h3"></h3>
-
-    <p data-i18n="seoLong10.powerbi_p1"></p>
-
-
-
-    <h3 data-i18n="seoLong10.automate_h3"></h3>
-
-    <p data-i18n="seoLong10.automate_p1"></p>
-
-    <p data-i18n="seoLong10.automate_p2"></p>
-
-
-
-    <h3 data-i18n="seoLong10.invoice_h3"></h3>
-
-    <p data-i18n="seoLong10.invoice_p1"></p>
-
-
-
-    <h3 data-i18n="seoLong10.forecast_h3"></h3>
-
-    <p data-i18n="seoLong10.forecast_p1"></p>
-
-
-
-    <h3 data-i18n="seoLong10.crm_h3"></h3><p data-i18n="seoLong10.crm_p1"></p>
-
-    <h3 data-i18n="seoLong10.web_h3"></h3><p data-i18n="seoLong10.web_p1"></p>
-
-    <h3 data-i18n="seoLong10.international_h3"></h3><p data-i18n="seoLong10.international_p1"></p>
-
-
-
-    <h3 data-i18n="seoLong10.target_h3"></h3>
-
-    <p data-i18n="seoLong10.target_p1"></p>
-
-
-
-    <ul>
-
-      <li data-i18n="seoLong10.target_list.0"></li>
-
-      <li data-i18n="seoLong10.target_list.1"></li>
-
-      <li data-i18n="seoLong10.target_list.2"></li>
-
-      <li data-i18n="seoLong10.target_list.3"></li>
-
-      <li data-i18n="seoLong10.target_list.4"></li>
-
-    </ul>
-
-
-
-    <h3 data-i18n="seoLong10.why_h3"></h3>
-
-    <p data-i18n="seoLong10.why_p1"></p>
-
-    <p data-i18n="seoLong10.why_p2"></p>
-
-
-
-    <h3 data-i18n="seoLong10.cta_h3"></h3>
-
-    <p data-i18n="seoLong10.cta_p1"></p>
-
-
-
-  </div>
-
-
-
-  <button id="seoToggle" class="seo-toggle-btn" data-i18n="seo_toggle_more"></button>
-
-
-
-</section>
+<section class="seo-section bda-service-summary" aria-labelledby="bda-summary-title"><div class="bda-summary-eyebrow" data-i18n="summary_eyebrow">Was wir für Sie tun</div><h2 id="bda-summary-title" data-i18n="summary_title"></h2><p data-i18n="summary_intro"></p><p data-i18n="summary_services"></p><p><strong data-i18n="summary_benefit"></strong></p><button type="button" class="btn btn-primary" data-scroll="#contact" data-i18n="summary_cta"></button><div id="seoFull" hidden></div><button id="seoToggle" hidden aria-hidden="true" tabindex="-1"></button></section>
 
 
 
@@ -11580,6 +11523,7 @@ footer {
 
 
 <footer>
+<div id="bda-footer-references" class="bda-footer-references"><h2 data-ref-copy="title">Ausgewählte Referenzen</h2><div class="bda-footer-reference-logos"><a class="bda-reference-logo-link" href="https://mygutachter.de/" target="_blank" rel="noopener noreferrer" aria-label="MyGutachter GmbH"><img src="assets/references/mygutachter-logo.svg" alt="MyGutachter GmbH" width="250" height="90" loading="lazy"></a><a class="bda-reference-logo-link" href="https://barryanalytics.github.io/company-websites/ctia-guinee-trading/" target="_blank" rel="noopener noreferrer" aria-label="CTIA Guinée Trading"><img src="assets/references/ctia-logo.png" alt="CTIA Guinée Trading" width="250" height="90" loading="lazy"></a></div></div>
 
   <div class="footer-inner">
 
@@ -11605,7 +11549,7 @@ footer {
 
       <span class="footer-link" data-scroll="#hero" data-i18n="nav_home"></span>
 
-      <span class="footer-link" data-scroll="#services" data-i18n="nav_services"></span>
+      <span class="footer-link" data-scroll="#global" data-i18n="nav_services"></span>
 
       <span class="footer-link" data-scroll="#about" data-i18n="nav_about"></span>
 
@@ -14623,11 +14567,11 @@ Object.assign(languageData.fr.seoLong10, {
 
 <script id="bda-10of10-i18n">
 
-Object.assign(languageData.de, {"start_eyebrow": "EINFACH STARTEN", "start_title": "Starten Sie dort, wo heute Zeit, Übersicht oder Kundenfluss verloren geht.", "start_subtitle": "Kein Unternehmen muss alles auf einmal digitalisieren. Ein klar abgegrenzter Einstieg kann später sinnvoll erweitert werden.", "start_note": "Ein Klick übernimmt die Richtung direkt in die Projektanfrage.", "start_1_kicker": "Daten & Reporting", "start_1_title": "Reporting- & Datenklarheits-Check", "start_1_text": "Wenn Zahlen verteilt sind, Reports zu lange dauern oder KPIs nicht zuverlässig zusammenpassen.", "start_2_kicker": "Prozesse", "start_2_title": "Prozess- & Automatisierungs-Check", "start_2_text": "Wenn wiederkehrende Schritte, E-Mails, Dateien oder Freigaben unnötig manuell laufen.", "start_3_kicker": "CRM & Kundenfluss", "start_3_title": "CRM- & Kundenprozess-Check", "start_3_text": "Wenn Kontakte, Anfragen, Projekte und nächste Schritte in mehreren Werkzeugen verteilt sind.", "start_4_kicker": "Rechnung & Abrechnung", "start_4_title": "Rechnungsprozess-Check", "start_4_text": "Wenn Erstellung, Freigabe, Versand, Status, Ablage oder Nachverfolgung zu viel Handarbeit verursachen.", "start_5_kicker": "Web & Digital", "start_5_title": "Website- & Digitalprozess-Check", "start_5_text": "Wenn die Website nicht nur besser aussehen, sondern Anfragen und Folgeprozesse sinnvoll verbinden soll.", "start_action": "Als Startpunkt wählen →", "start_chip_1": "Fokussierter Einstieg", "start_chip_2": "Bestehende Systeme zuerst verstehen", "start_chip_3": "Erweiterung nur, wenn sie sinnvoll ist", "proof_eyebrow": "LIVE ANSEHEN", "proof_title": "Nicht nur erklären. Zeigen, wie digitale Lösungen aussehen können.", "proof_subtitle": "Interaktive Beispiele machen Reporting, Prozesse, Business-Systeme und CRM greifbar, bevor ein Projekt beginnt.", "proof_note": "Die Demos verwenden Beispielwerte und keine vertraulichen Kundendaten.", "proof_1_title": "Reporting-Demo", "proof_1_text": "Vorher/Nachher, Kennzahlen und automatisiertes Reporting in einer verständlichen Oberfläche.", "proof_2_title": "Business-Process-Demo", "proof_2_text": "Vom Erstkontakt über Analyse und Angebot bis zur Umsetzung und Rückmeldung.", "proof_3_title": "Vier-Säulen-Lösungsdemo", "proof_3_text": "Data Analytics, Reporting, Automation und Business-Tools in einem Gesamtbild.", "proof_4_title": "CRM-Cockpit-Demo", "proof_4_text": "Kunden, Projekte, Angebote, Rechnungen und Status in einer zentralen Arbeitsoberfläche.", "proof_open": "Live-Demo öffnen ↗", "proof_chip_1": "Interaktive Beispiele", "proof_chip_2": "Fiktive Demo-Daten", "proof_chip_3": "Keine vertraulichen Kundendaten", "faq_eyebrow": "HÄUFIGE FRAGEN", "faq_title": "Klarheit, bevor Sie eine Anfrage senden.", "faq_subtitle": "Die wichtigsten Fragen zur Zusammenarbeit kurz beantwortet.", "faq_q1": "Arbeitet Barry Data & Analytics nur mit Unternehmen in Deutschland?", "faq_a1": "Nein. Deutschland ist die Basis, Projekte können remote weltweit begleitet werden. Europa und Afrika sind wichtige Wachstumsregionen, andere internationale Märkte sind ausdrücklich nicht ausgeschlossen.", "faq_q2": "Ist das Angebot nur für kleine oder mittlere Unternehmen gedacht?", "faq_a2": "Nein. Entscheidend ist nicht die Unternehmensgröße, sondern ein klar lösbares Daten-, Reporting-, Prozess- oder Digitalisierungsproblem. Projekte können fokussiert starten und bei Bedarf erweitert werden.", "faq_q3": "Muss ein Unternehmen vorhandene Excel-Dateien oder Systeme sofort ersetzen?", "faq_a3": "Nein. Zuerst wird geprüft, was bereits funktioniert. Bestehende Excel-, Microsoft-365-, Daten- oder Prozessstrukturen können je nach Situation verbessert, verbunden oder schrittweise abgelöst werden.", "faq_q4": "Kann ein Projekt klein beginnen?", "faq_a4": "Ja. Ein Projekt kann mit einem konkreten Engpass starten – zum Beispiel Reporting, ein manueller Workflow, CRM-Struktur, Rechnungsprozess oder Website-Prozess. Der weitere Ausbau wird erst danach entschieden.", "faq_q5": "Können Website und interne Prozesse zusammenarbeiten?", "faq_a5": "Ja. Eine Unternehmenswebsite kann bei Bedarf mit Anfrage-, Kommunikations-, CRM-, Angebots-, Projekt- oder Folgeprozessen verbunden werden, damit externe und interne Abläufe besser zusammenpassen.", "faq_q6": "Übernimmt Barry Data & Analytics Buchhaltung oder Steuerberatung?", "faq_a6": "Nein. Der Schwerpunkt liegt auf der technischen und prozessualen Digitalisierung von Rechnungs- und Abrechnungsabläufen. Steuerliche und rechtliche Verantwortung bleibt beim Unternehmen und den dafür zuständigen Fachstellen.", "intent_label": "Ausgewählter Startpunkt:"});
+Object.assign(languageData.de, {"start_eyebrow": "EINFACH STARTEN", "start_title": "Starten Sie dort, wo heute Zeit, Übersicht oder Kundenfluss verloren geht.", "start_subtitle": "Kein Unternehmen muss alles auf einmal digitalisieren. Ein klar abgegrenzter Einstieg kann später sinnvoll erweitert werden.", "start_note": "Ein Klick übernimmt die Richtung direkt in die Projektanfrage.", "start_1_kicker": "Daten & Reporting", "start_1_title": "Reporting- & Datenklarheits-Check", "start_1_text": "Wenn Zahlen verteilt sind, Reports zu lange dauern oder KPIs nicht zuverlässig zusammenpassen.", "start_2_kicker": "Prozesse", "start_2_title": "Prozess- & Automatisierungs-Check", "start_2_text": "Wenn wiederkehrende Schritte, E-Mails, Dateien oder Freigaben unnötig manuell laufen.", "start_3_kicker": "CRM & Kundenfluss", "start_3_title": "CRM- & Kundenprozess-Check", "start_3_text": "Wenn Kontakte, Anfragen, Projekte und nächste Schritte in mehreren Werkzeugen verteilt sind.", "start_4_kicker": "Rechnung & Abrechnung", "start_4_title": "Rechnungsprozess-Check", "start_4_text": "Wenn Erstellung, Freigabe, Versand, Status, Ablage oder Nachverfolgung zu viel Handarbeit verursachen.", "start_5_kicker": "Web & Digital", "start_5_title": "Website- & Digitalprozess-Check", "start_5_text": "Wenn die Website nicht nur besser aussehen, sondern Anfragen und Folgeprozesse sinnvoll verbinden soll.", "start_action": "Als Startpunkt wählen →", "start_chip_1": "Fokussierter Einstieg", "start_chip_2": "Bestehende Systeme zuerst verstehen", "start_chip_3": "Erweiterung nur, wenn sie sinnvoll ist", "proof_eyebrow": "LIVE ANSEHEN", "proof_title": "Beispielprojekte. Lösungen selbst entdecken.", "proof_subtitle": "Entdecken Sie unsere eigenen Entwicklungen für Reporting, Automatisierung und digitale Geschäftsprozesse. Öffnen Sie ein Projekt und probieren Sie die Funktionen direkt aus.", "proof_note": "Die Demos verwenden Beispielwerte und keine vertraulichen Kundendaten.", "proof_1_title": "Reporting-Demo", "proof_1_text": "Vorher/Nachher, Kennzahlen und automatisiertes Reporting in einer verständlichen Oberfläche.", "proof_2_title": "Business-Process-Demo", "proof_2_text": "Vom Erstkontakt über Analyse und Angebot bis zur Umsetzung und Rückmeldung.", "proof_3_title": "Vier-Säulen-Lösungsdemo", "proof_3_text": "Data Analytics, Reporting, Automation und Business-Tools in einem Gesamtbild.", "proof_4_title": "CRM-Cockpit-Demo", "proof_4_text": "Kunden, Projekte, Angebote, Rechnungen und Status in einer zentralen Arbeitsoberfläche.", "proof_open": "Live-Demo öffnen ↗", "proof_chip_1": "Reporting & Analyse", "proof_chip_2": "Automatisierte Abläufe", "proof_chip_3": "Digitale Geschäftssysteme", "faq_eyebrow": "HÄUFIGE FRAGEN", "faq_title": "Klarheit, bevor Sie eine Anfrage senden.", "faq_subtitle": "Die wichtigsten Fragen zur Zusammenarbeit kurz beantwortet.", "faq_q1": "Arbeitet Barry Data & Analytics nur mit Unternehmen in Deutschland?", "faq_a1": "Nein. Deutschland ist die Basis, Projekte können remote weltweit begleitet werden. Europa und Afrika sind wichtige Wachstumsregionen, andere internationale Märkte sind ausdrücklich nicht ausgeschlossen.", "faq_q2": "Ist das Angebot nur für kleine oder mittlere Unternehmen gedacht?", "faq_a2": "Nein. Entscheidend ist nicht die Unternehmensgröße, sondern ein klar lösbares Daten-, Reporting-, Prozess- oder Digitalisierungsproblem. Projekte können fokussiert starten und bei Bedarf erweitert werden.", "faq_q3": "Muss ein Unternehmen vorhandene Excel-Dateien oder Systeme sofort ersetzen?", "faq_a3": "Nein. Zuerst wird geprüft, was bereits funktioniert. Bestehende Excel-, Microsoft-365-, Daten- oder Prozessstrukturen können je nach Situation verbessert, verbunden oder schrittweise abgelöst werden.", "faq_q4": "Kann ein Projekt klein beginnen?", "faq_a4": "Ja. Ein Projekt kann mit einem konkreten Engpass starten – zum Beispiel Reporting, ein manueller Workflow, CRM-Struktur, Rechnungsprozess oder Website-Prozess. Der weitere Ausbau wird erst danach entschieden.", "faq_q5": "Können Website und interne Prozesse zusammenarbeiten?", "faq_a5": "Ja. Eine Unternehmenswebsite kann bei Bedarf mit Anfrage-, Kommunikations-, CRM-, Angebots-, Projekt- oder Folgeprozessen verbunden werden, damit externe und interne Abläufe besser zusammenpassen.", "faq_q6": "Übernimmt Barry Data & Analytics Buchhaltung oder Steuerberatung?", "faq_a6": "Nein. Der Schwerpunkt liegt auf der technischen und prozessualen Digitalisierung von Rechnungs- und Abrechnungsabläufen. Steuerliche und rechtliche Verantwortung bleibt beim Unternehmen und den dafür zuständigen Fachstellen.", "intent_label": "Ausgewählter Startpunkt:"});
 
-Object.assign(languageData.en, {"start_eyebrow": "START WITH CLARITY", "start_title": "Start where time, visibility or customer flow is being lost today.", "start_subtitle": "A company does not have to digitise everything at once. A focused starting point can be expanded later when it makes business sense.", "start_note": "One click carries the selected direction into the project enquiry.", "start_1_kicker": "Data & reporting", "start_1_title": "Reporting & data clarity check", "start_1_text": "When figures are scattered, reports take too long or KPIs do not reliably match.", "start_2_kicker": "Processes", "start_2_title": "Process & automation check", "start_2_text": "When recurring steps, emails, files or approvals still require unnecessary manual work.", "start_3_kicker": "CRM & customer flow", "start_3_title": "CRM & customer process check", "start_3_text": "When contacts, enquiries, projects and next steps are spread across different tools.", "start_4_kicker": "Invoice & billing", "start_4_title": "Invoice process check", "start_4_text": "When creation, approval, dispatch, status, filing or follow-up causes too much manual work.", "start_5_kicker": "Web & digital", "start_5_title": "Website & digital process check", "start_5_text": "When the website should not only look better but also connect enquiries and follow-up processes.", "start_action": "Choose as starting point →", "start_chip_1": "Focused starting point", "start_chip_2": "Understand existing systems first", "start_chip_3": "Expand only when useful", "proof_eyebrow": "SEE IT LIVE", "proof_title": "Do not just explain it. Show what digital solutions can look like.", "proof_subtitle": "Interactive examples make reporting, processes, business systems and CRM tangible before a project starts.", "proof_note": "The demos use sample values and no confidential client data.", "proof_1_title": "Reporting demo", "proof_1_text": "Before/after, KPIs and automated reporting in a clear business interface.", "proof_2_title": "Business process demo", "proof_2_text": "From first enquiry through analysis and quotation to implementation and feedback.", "proof_3_title": "Four-pillar solutions demo", "proof_3_text": "Data Analytics, reporting, automation and business tools in one connected view.", "proof_4_title": "CRM cockpit demo", "proof_4_text": "Customers, projects, quotations, invoices and status in one central workspace.", "proof_open": "Open live demo ↗", "proof_chip_1": "Interactive examples", "proof_chip_2": "Fictitious demo data", "proof_chip_3": "No confidential client data", "faq_eyebrow": "COMMON QUESTIONS", "faq_title": "Clarity before you send an enquiry.", "faq_subtitle": "The key questions about working together, answered briefly.", "faq_q1": "Does Barry Data & Analytics only work with companies in Germany?", "faq_a1": "No. Germany is the base, and projects can be supported remotely worldwide. Europe and Africa are important growth regions, without excluding other international markets.", "faq_q2": "Is the service only for small or medium-sized companies?", "faq_a2": "No. Company size is not the deciding factor. What matters is a clearly solvable data, reporting, process or digitalisation challenge. Projects can start focused and expand when needed.", "faq_q3": "Does a company have to replace existing Excel files or systems immediately?", "faq_a3": "No. We first review what already works. Existing Excel, Microsoft 365, data or process structures can be improved, connected or gradually replaced depending on the situation.", "faq_q4": "Can a project start small?", "faq_a4": "Yes. A project can begin with one concrete bottleneck, such as reporting, a manual workflow, CRM structure, invoice process or website process. Further expansion is decided afterwards.", "faq_q5": "Can a website and internal processes work together?", "faq_a5": "Yes. Where useful, a company website can be connected with enquiry, communication, CRM, quotation, project or follow-up processes so external and internal workflows fit together better.", "faq_q6": "Does Barry Data & Analytics provide bookkeeping or tax advice?", "faq_a6": "No. The focus is the technical and process-oriented digitalisation of invoice and billing workflows. Tax and legal responsibility remains with the company and the relevant professional advisers.", "intent_label": "Selected starting point:"});
+Object.assign(languageData.en, {"start_eyebrow": "START WITH CLARITY", "start_title": "Start where time, visibility or customer flow is being lost today.", "start_subtitle": "A company does not have to digitise everything at once. A focused starting point can be expanded later when it makes business sense.", "start_note": "One click carries the selected direction into the project enquiry.", "start_1_kicker": "Data & reporting", "start_1_title": "Reporting & data clarity check", "start_1_text": "When figures are scattered, reports take too long or KPIs do not reliably match.", "start_2_kicker": "Processes", "start_2_title": "Process & automation check", "start_2_text": "When recurring steps, emails, files or approvals still require unnecessary manual work.", "start_3_kicker": "CRM & customer flow", "start_3_title": "CRM & customer process check", "start_3_text": "When contacts, enquiries, projects and next steps are spread across different tools.", "start_4_kicker": "Invoice & billing", "start_4_title": "Invoice process check", "start_4_text": "When creation, approval, dispatch, status, filing or follow-up causes too much manual work.", "start_5_kicker": "Web & digital", "start_5_title": "Website & digital process check", "start_5_text": "When the website should not only look better but also connect enquiries and follow-up processes.", "start_action": "Choose as starting point →", "start_chip_1": "Focused starting point", "start_chip_2": "Understand existing systems first", "start_chip_3": "Expand only when useful", "proof_eyebrow": "SEE IT LIVE", "proof_title": "Example projects. Explore the solutions.", "proof_subtitle": "Explore our own developments in reporting, automation and digital business processes. Open a project and try its features for yourself.", "proof_note": "The demos use sample values and no confidential client data.", "proof_1_title": "Reporting demo", "proof_1_text": "Before/after, KPIs and automated reporting in a clear business interface.", "proof_2_title": "Business process demo", "proof_2_text": "From first enquiry through analysis and quotation to implementation and feedback.", "proof_3_title": "Four-pillar solutions demo", "proof_3_text": "Data Analytics, reporting, automation and business tools in one connected view.", "proof_4_title": "CRM cockpit demo", "proof_4_text": "Customers, projects, quotations, invoices and status in one central workspace.", "proof_open": "Open live demo ↗", "proof_chip_1": "Reporting & analysis", "proof_chip_2": "Automated workflows", "proof_chip_3": "Digital business systems", "faq_eyebrow": "COMMON QUESTIONS", "faq_title": "Clarity before you send an enquiry.", "faq_subtitle": "The key questions about working together, answered briefly.", "faq_q1": "Does Barry Data & Analytics only work with companies in Germany?", "faq_a1": "No. Germany is the base, and projects can be supported remotely worldwide. Europe and Africa are important growth regions, without excluding other international markets.", "faq_q2": "Is the service only for small or medium-sized companies?", "faq_a2": "No. Company size is not the deciding factor. What matters is a clearly solvable data, reporting, process or digitalisation challenge. Projects can start focused and expand when needed.", "faq_q3": "Does a company have to replace existing Excel files or systems immediately?", "faq_a3": "No. We first review what already works. Existing Excel, Microsoft 365, data or process structures can be improved, connected or gradually replaced depending on the situation.", "faq_q4": "Can a project start small?", "faq_a4": "Yes. A project can begin with one concrete bottleneck, such as reporting, a manual workflow, CRM structure, invoice process or website process. Further expansion is decided afterwards.", "faq_q5": "Can a website and internal processes work together?", "faq_a5": "Yes. Where useful, a company website can be connected with enquiry, communication, CRM, quotation, project or follow-up processes so external and internal workflows fit together better.", "faq_q6": "Does Barry Data & Analytics provide bookkeeping or tax advice?", "faq_a6": "No. The focus is the technical and process-oriented digitalisation of invoice and billing workflows. Tax and legal responsibility remains with the company and the relevant professional advisers.", "intent_label": "Selected starting point:"});
 
-Object.assign(languageData.fr, {"start_eyebrow": "COMMENCER CLAIREMENT", "start_title": "Commencez là où l’entreprise perd aujourd’hui du temps, de la visibilité ou de la fluidité client.", "start_subtitle": "Une entreprise n’a pas besoin de tout digitaliser en une seule fois. Un point de départ ciblé peut être élargi ensuite si cela apporte une vraie valeur.", "start_note": "Un clic reprend directement l’orientation choisie dans la demande de projet.", "start_1_kicker": "Données & reporting", "start_1_title": "Diagnostic reporting & clarté des données", "start_1_text": "Lorsque les chiffres sont dispersés, les rapports prennent trop de temps ou les KPIs ne correspondent pas de manière fiable.", "start_2_kicker": "Processus", "start_2_title": "Diagnostic processus & automatisation", "start_2_text": "Lorsque des étapes, e-mails, fichiers ou validations récurrents demandent encore trop de travail manuel.", "start_3_kicker": "CRM & parcours client", "start_3_title": "Diagnostic CRM & processus client", "start_3_text": "Lorsque les contacts, demandes, projets et prochaines étapes sont répartis dans plusieurs outils.", "start_4_kicker": "Facturation", "start_4_title": "Diagnostic processus de facturation", "start_4_text": "Lorsque la création, validation, envoi, statut, archivage ou suivi génèrent trop de travail manuel.", "start_5_kicker": "Web & digital", "start_5_title": "Diagnostic site web & processus digitaux", "start_5_text": "Lorsque le site web doit non seulement être plus moderne, mais aussi relier les demandes et les processus qui suivent.", "start_action": "Choisir comme point de départ →", "start_chip_1": "Point de départ ciblé", "start_chip_2": "Comprendre d’abord l’existant", "start_chip_3": "Élargir uniquement si utile", "proof_eyebrow": "VOIR EN DIRECT", "proof_title": "Ne pas seulement expliquer. Montrer à quoi peuvent ressembler les solutions digitales.", "proof_subtitle": "Des exemples interactifs rendent le reporting, les processus, les systèmes métier et le CRM concrets avant le démarrage d’un projet.", "proof_note": "Les démos utilisent des valeurs fictives et aucune donnée client confidentielle.", "proof_1_title": "Démo reporting", "proof_1_text": "Avant/après, indicateurs et reporting automatisé dans une interface métier claire.", "proof_2_title": "Démo processus métier", "proof_2_text": "De la première demande à l’analyse, l’offre, la mise en œuvre et le retour.", "proof_3_title": "Démo solutions en quatre piliers", "proof_3_text": "Data Analytics, reporting, automatisation et outils métier dans une vue connectée.", "proof_4_title": "Démo cockpit CRM", "proof_4_text": "Clients, projets, offres, factures et statuts dans un espace de travail central.", "proof_open": "Ouvrir la démo ↗", "proof_chip_1": "Exemples interactifs", "proof_chip_2": "Données de démonstration fictives", "proof_chip_3": "Aucune donnée client confidentielle", "faq_eyebrow": "QUESTIONS FRÉQUENTES", "faq_title": "De la clarté avant d’envoyer une demande.", "faq_subtitle": "Les principales questions sur la collaboration, avec des réponses courtes.", "faq_q1": "Barry Data & Analytics travaille-t-il uniquement avec des entreprises en Allemagne ?", "faq_a1": "Non. L’Allemagne est la base et les projets peuvent être accompagnés à distance dans le monde entier. L’Europe et l’Afrique sont des régions de croissance importantes, sans exclure les autres marchés internationaux.", "faq_q2": "L’offre est-elle réservée aux petites ou moyennes entreprises ?", "faq_a2": "Non. La taille de l’entreprise n’est pas le critère principal. L’essentiel est d’avoir un problème de données, reporting, processus ou digitalisation clairement identifiable. Un projet peut commencer de façon ciblée puis évoluer.", "faq_q3": "Faut-il remplacer immédiatement les fichiers Excel ou systèmes existants ?", "faq_a3": "Non. Nous examinons d’abord ce qui fonctionne déjà. Les structures Excel, Microsoft 365, données ou processus existantes peuvent être améliorées, connectées ou remplacées progressivement selon la situation.", "faq_q4": "Un projet peut-il commencer petit ?", "faq_a4": "Oui. Un projet peut démarrer par un seul point de blocage : reporting, workflow manuel, structure CRM, processus de facturation ou processus lié au site web. L’extension est décidée ensuite.", "faq_q5": "Le site web et les processus internes peuvent-ils fonctionner ensemble ?", "faq_a5": "Oui. Si cela est utile, un site d’entreprise peut être relié aux demandes, à la communication, au CRM, aux offres, aux projets ou aux processus de suivi afin de mieux connecter l’externe et l’interne.", "faq_q6": "Barry Data & Analytics prend-il en charge la comptabilité ou le conseil fiscal ?", "faq_a6": "Non. L’accent est mis sur la digitalisation technique et procédurale des workflows de facturation. La responsabilité fiscale et juridique reste auprès de l’entreprise et des professionnels compétents.", "intent_label": "Point de départ sélectionné :"});
+Object.assign(languageData.fr, {"start_eyebrow": "COMMENCER CLAIREMENT", "start_title": "Commencez là où l’entreprise perd aujourd’hui du temps, de la visibilité ou de la fluidité client.", "start_subtitle": "Une entreprise n’a pas besoin de tout digitaliser en une seule fois. Un point de départ ciblé peut être élargi ensuite si cela apporte une vraie valeur.", "start_note": "Un clic reprend directement l’orientation choisie dans la demande de projet.", "start_1_kicker": "Données & reporting", "start_1_title": "Diagnostic reporting & clarté des données", "start_1_text": "Lorsque les chiffres sont dispersés, les rapports prennent trop de temps ou les KPIs ne correspondent pas de manière fiable.", "start_2_kicker": "Processus", "start_2_title": "Diagnostic processus & automatisation", "start_2_text": "Lorsque des étapes, e-mails, fichiers ou validations récurrents demandent encore trop de travail manuel.", "start_3_kicker": "CRM & parcours client", "start_3_title": "Diagnostic CRM & processus client", "start_3_text": "Lorsque les contacts, demandes, projets et prochaines étapes sont répartis dans plusieurs outils.", "start_4_kicker": "Facturation", "start_4_title": "Diagnostic processus de facturation", "start_4_text": "Lorsque la création, validation, envoi, statut, archivage ou suivi génèrent trop de travail manuel.", "start_5_kicker": "Web & digital", "start_5_title": "Diagnostic site web & processus digitaux", "start_5_text": "Lorsque le site web doit non seulement être plus moderne, mais aussi relier les demandes et les processus qui suivent.", "start_action": "Choisir comme point de départ →", "start_chip_1": "Point de départ ciblé", "start_chip_2": "Comprendre d’abord l’existant", "start_chip_3": "Élargir uniquement si utile", "proof_eyebrow": "VOIR EN DIRECT", "proof_title": "Exemples de projets. Découvrez les solutions.", "proof_subtitle": "Découvrez nos propres réalisations en reporting, automatisation et processus métier numériques. Ouvrez un projet et testez ses fonctionnalités.", "proof_note": "Les démos utilisent des valeurs fictives et aucune donnée client confidentielle.", "proof_1_title": "Démo reporting", "proof_1_text": "Avant/après, indicateurs et reporting automatisé dans une interface métier claire.", "proof_2_title": "Démo processus métier", "proof_2_text": "De la première demande à l’analyse, l’offre, la mise en œuvre et le retour.", "proof_3_title": "Démo solutions en quatre piliers", "proof_3_text": "Data Analytics, reporting, automatisation et outils métier dans une vue connectée.", "proof_4_title": "Démo cockpit CRM", "proof_4_text": "Clients, projets, offres, factures et statuts dans un espace de travail central.", "proof_open": "Ouvrir la démo ↗", "proof_chip_1": "Reporting et analyse", "proof_chip_2": "Processus automatisés", "proof_chip_3": "Systèmes métier numériques", "faq_eyebrow": "QUESTIONS FRÉQUENTES", "faq_title": "De la clarté avant d’envoyer une demande.", "faq_subtitle": "Les principales questions sur la collaboration, avec des réponses courtes.", "faq_q1": "Barry Data & Analytics travaille-t-il uniquement avec des entreprises en Allemagne ?", "faq_a1": "Non. L’Allemagne est la base et les projets peuvent être accompagnés à distance dans le monde entier. L’Europe et l’Afrique sont des régions de croissance importantes, sans exclure les autres marchés internationaux.", "faq_q2": "L’offre est-elle réservée aux petites ou moyennes entreprises ?", "faq_a2": "Non. La taille de l’entreprise n’est pas le critère principal. L’essentiel est d’avoir un problème de données, reporting, processus ou digitalisation clairement identifiable. Un projet peut commencer de façon ciblée puis évoluer.", "faq_q3": "Faut-il remplacer immédiatement les fichiers Excel ou systèmes existants ?", "faq_a3": "Non. Nous examinons d’abord ce qui fonctionne déjà. Les structures Excel, Microsoft 365, données ou processus existantes peuvent être améliorées, connectées ou remplacées progressivement selon la situation.", "faq_q4": "Un projet peut-il commencer petit ?", "faq_a4": "Oui. Un projet peut démarrer par un seul point de blocage : reporting, workflow manuel, structure CRM, processus de facturation ou processus lié au site web. L’extension est décidée ensuite.", "faq_q5": "Le site web et les processus internes peuvent-ils fonctionner ensemble ?", "faq_a5": "Oui. Si cela est utile, un site d’entreprise peut être relié aux demandes, à la communication, au CRM, aux offres, aux projets ou aux processus de suivi afin de mieux connecter l’externe et l’interne.", "faq_q6": "Barry Data & Analytics prend-il en charge la comptabilité ou le conseil fiscal ?", "faq_a6": "Non. L’accent est mis sur la digitalisation technique et procédurale des workflows de facturation. La responsabilité fiscale et juridique reste auprès de l’entreprise et des professionnels compétents.", "intent_label": "Point de départ sélectionné :"});
 
 </script>
 
@@ -14646,9 +14590,9 @@ Object.assign(languageData.fr,{hero_title:"Des données, rapports et processus q
 
 
 <script id="bda-technical-services-i18n">
-Object.assign(languageData.de, {"hero_pill":"Data Analytics & BI · AI Engineering · Web & Software Solutions","hero_eyebrow":"Power BI · AI Engineering · Automation · Software","hero_subtitle":"Für Unternehmen, die verteilte Informationen nutzbar machen, wiederkehrende Arbeit reduzieren und passende digitale Lösungen entwickeln möchten.","hero_highlight":"Von Excel, Power Query und Power BI bis zu KI-gestützten Workflows, Schnittstellen und individuellen Anwendungen: Wir verbinden Daten, Systeme und Geschäftsprozesse – abgestimmt auf Ihren Bedarf.","hero_tag1":"Data Analytics & Business Intelligence","hero_tag2":"Power BI & Reporting","hero_tag3":"AI Engineering & Automation","hero_tag4":"CRM & Business Systems","hero_tag5":"Web & Software Solutions","hero_tag6":"Rechnungs- & Geschäftsprozesse","global_subtitle":"Data Analytics und Business Intelligence bilden den Kern. Wir ergänzen sie durch AI Engineering, Prozessautomatisierung und individuelle Software – von der fachlichen Anforderung bis zur technischen Umsetzung.","global_data_title":"Data Analytics & Business Intelligence","global_data_text":"Excel, Power Query, Power BI, KPI-Reporting und Forecasting: Daten aufbereiten, Ergebnisse nachvollziehbar machen und Entscheidungen fundiert vorbereiten.","global_auto_title":"AI Engineering & Automation","global_auto_text":"KI-gestützte Anwendungen, Agenten und Workflows für wiederkehrende Aufgaben. Je nach Projekt verbinden wir Microsoft 365, Google Workspace und weitere Systeme über passende Schnittstellen.","global_systems_title":"Business Systems & Integrationen","global_systems_text":"CRM, Kundenportale und interne Anwendungen mit klarer Daten- und Berechnungslogik. Schnittstellen verbinden vorhandene Systeme und halten Abläufe nachvollziehbar.","global_web_title":"Web & Software Solutions","global_web_text":"Unternehmenswebsites, Webanwendungen und individuelle Business-Software – mit passenden Benutzeroberflächen, Berechtigungen und Anbindungen an Ihre Geschäftsprozesse.","capabilities_title":"Technische Umsetzung, die zu Ihrem Unternehmen passt.","capabilities_subtitle":"Von der Datenaufbereitung bis zur individuellen Anwendung: Wir wählen die Bausteine nach Ihren Anforderungen, vorhandenen Systemen und dem vorgesehenen Betrieb.","tool_1_title":"Individuelle Business-Anwendungen","tool_1_text":"Kundenportale und interne Arbeitsoberflächen für Anfragen, Angebote, Dokumente und Projektstatus. Mit abgestimmter Datenstruktur, Berechnungen und Zugriffsrechten.","tool_2_title":"AI Engineering & intelligente Workflows","tool_2_text":"KI-gestützte Assistenten, Agenten und automatisierte Abläufe, die Informationen verarbeiten und Teams bei wiederkehrenden Aufgaben unterstützen. Prüf- und Freigabeschritte werden passend zum Einsatz vereinbart.","tool_3_title":"Datenintegration & API-Schnittstellen","tool_3_text":"Daten aus Dateien, Datenbanken und verfügbaren APIs zusammenführen. Wir berücksichtigen Zuordnungen, Qualitätsprüfungen, Fehlerbehandlung und die Nachvollziehbarkeit der Verarbeitung.","tool_4_title":"Websites & digitale Geschäftsprozesse","tool_4_text":"Mobile Unternehmenswebsites und Webanwendungen mit durchgängigen Anfrage-, Kommunikations- und Folgeprozessen. Bestehende CRM- und Projektsysteme können über geeignete Schnittstellen angebunden werden.","about_approach_text":"Unsere Schwerpunkte liegen in Datenaufbereitung, Business Intelligence, Power BI und Reporting. Dazu kommen AI Engineering, Prozessautomatisierung, API-Integrationen und individuelle Web- und Softwarelösungen. Wir klären zuerst Anforderungen und Datenbasis und stimmen darauf die technische Umsetzung ab.","form_project_custom":"Individuelle Software / Website / CRM / Integration","field_focus_ai":"AI Engineering / KI-gestützte Automatisierung","field_focus_software":"Individuelle Software / API-Integration","cap_15":"AI Engineering & KI-gestützte Workflows","cap_16":"API-Integration & individuelle Software"});
-Object.assign(languageData.en, {"hero_pill":"Data Analytics & BI · AI Engineering · Web & Software Solutions","hero_eyebrow":"Power BI · AI Engineering · Automation · Software","hero_subtitle":"For organisations looking to make distributed information useful, reduce repetitive work and develop digital solutions that fit their business.","hero_highlight":"From Excel, Power Query and Power BI to AI-assisted workflows, integrations and custom applications: We connect data, systems and business processes around your requirements.","hero_tag1":"Data Analytics & Business Intelligence","hero_tag2":"Power BI & Reporting","hero_tag3":"AI Engineering & Automation","hero_tag4":"CRM & Business Systems","hero_tag5":"Web & Software Solutions","hero_tag6":"Invoicing & Business Processes","global_subtitle":"Data Analytics and Business Intelligence are at the core. We extend them with AI engineering, process automation and custom software – from business requirements to technical implementation.","global_data_title":"Data Analytics & Business Intelligence","global_data_text":"Excel, Power Query, Power BI, KPI reporting and forecasting: Prepare data, make results traceable and support informed decisions.","global_auto_title":"AI Engineering & Automation","global_auto_text":"AI-assisted applications, agents and workflows for recurring tasks. Depending on the project, we connect Microsoft 365, Google Workspace and other systems through suitable interfaces.","global_systems_title":"Business Systems & Integrations","global_systems_text":"CRM, customer portals and internal applications with clear data and calculation logic. Interfaces connect existing systems and keep workflows traceable.","global_web_title":"Web & Software Solutions","global_web_text":"Company websites, web applications and custom business software – with appropriate interfaces, access controls and connections to your business processes.","capabilities_title":"Technical implementation that fits your business.","capabilities_subtitle":"From data preparation to custom applications: We select the components around your requirements, existing systems and intended operating environment.","tool_1_title":"Custom Business Applications","tool_1_text":"Customer portals and internal workspaces for enquiries, proposals, documents and project status. With agreed data structures, calculations and access permissions.","tool_2_title":"AI Engineering & Intelligent Workflows","tool_2_text":"AI-assisted tools, agents and automated workflows that process information and support teams with recurring tasks. Review and approval steps are agreed for the intended use.","tool_3_title":"Data Integration & APIs","tool_3_text":"Bring together data from files, databases and available APIs. We consider mappings, quality checks, error handling and traceability throughout the processing.","tool_4_title":"Websites & Digital Business Processes","tool_4_text":"Mobile company websites and web applications with connected enquiry, communication and follow-up processes. Existing CRM and project systems can be connected through suitable interfaces.","about_approach_text":"Our focus is data preparation, Business Intelligence, Power BI and reporting, complemented by AI engineering, process automation, API integrations and custom web and software solutions. We clarify requirements and the available data first, then shape the technical implementation around them.","form_project_custom":"Custom software / website / CRM / integration","field_focus_ai":"AI engineering / AI-assisted automation","field_focus_software":"Custom software / API integration","cap_15":"AI engineering & AI-assisted workflows","cap_16":"API integration & custom software"});
-Object.assign(languageData.fr, {"hero_pill":"Data Analytics & BI · Ingénierie IA · Solutions web & logicielles","hero_eyebrow":"Power BI · Ingénierie IA · Automatisation · Logiciels","hero_subtitle":"Pour les entreprises qui souhaitent exploiter leurs informations dispersées, réduire les tâches répétitives et développer des solutions numériques adaptées à leur activité.","hero_highlight":"D’Excel, Power Query et Power BI aux workflows assistés par IA, aux intégrations et aux applications sur mesure : nous relions données, systèmes et processus métier selon vos besoins.","hero_tag1":"Analyse de données & Business Intelligence","hero_tag2":"Power BI & Reporting","hero_tag3":"Ingénierie IA & Automatisation","hero_tag4":"CRM & Systèmes métier","hero_tag5":"Solutions web & logicielles","hero_tag6":"Facturation & Processus métier","global_subtitle":"L’analyse de données et la Business Intelligence sont au cœur de notre activité. Nous les complétons par l’ingénierie IA, l’automatisation et les logiciels sur mesure, des besoins métier à la réalisation technique.","global_data_title":"Analyse de données & Business Intelligence","global_data_text":"Excel, Power Query, Power BI, reporting KPI et prévisions : préparer les données, rendre les résultats traçables et éclairer les décisions.","global_auto_title":"Ingénierie IA & Automatisation","global_auto_text":"Applications, agents et workflows assistés par IA pour les tâches récurrentes. Selon le projet, nous relions Microsoft 365, Google Workspace et d’autres systèmes via des interfaces adaptées.","global_systems_title":"Systèmes métier & Intégrations","global_systems_text":"CRM, portails clients et applications internes avec une logique de données et de calcul claire. Les interfaces relient les systèmes existants et rendent les processus traçables.","global_web_title":"Solutions web & logicielles","global_web_text":"Sites d’entreprise, applications web et logiciels métier sur mesure, avec des interfaces, des droits d’accès et des connexions adaptés à vos processus.","capabilities_title":"Une réalisation technique adaptée à votre entreprise.","capabilities_subtitle":"De la préparation des données aux applications sur mesure : nous choisissons les composants selon vos besoins, vos systèmes existants et l’environnement d’exploitation prévu.","tool_1_title":"Applications métier sur mesure","tool_1_text":"Portails clients et espaces de travail internes pour les demandes, devis, documents et statuts de projet. Avec des structures de données, calculs et droits d’accès définis ensemble.","tool_2_title":"Ingénierie IA & Workflows intelligents","tool_2_text":"Outils, agents et workflows assistés par IA qui traitent l’information et accompagnent les équipes dans les tâches récurrentes. Les étapes de contrôle et de validation sont définies selon l’usage prévu.","tool_3_title":"Intégration de données & API","tool_3_text":"Réunir les données issues de fichiers, bases de données et API disponibles. Nous prenons en compte les correspondances, contrôles qualité, erreurs et la traçabilité du traitement.","tool_4_title":"Sites web & Processus métier numériques","tool_4_text":"Sites d’entreprise adaptés aux mobiles et applications web reliant demandes, communication et suivi. Les systèmes CRM et de gestion de projet existants peuvent être connectés via des interfaces adaptées.","about_approach_text":"Nos spécialités sont la préparation des données, la Business Intelligence, Power BI et le reporting, complétés par l’ingénierie IA, l’automatisation, les intégrations API et les solutions web et logicielles sur mesure. Nous précisons d’abord les besoins et les données disponibles, puis définissons la réalisation technique.","form_project_custom":"Logiciel sur mesure / site web / CRM / intégration","field_focus_ai":"Ingénierie IA / automatisation assistée par IA","field_focus_software":"Logiciel sur mesure / intégration API","cap_15":"Ingénierie IA & workflows assistés par IA","cap_16":"Intégration API & logiciels sur mesure"});
+Object.assign(languageData.de, {"hero_pill":"Data Analytics & BI · AI Engineering · Web & Software Solutions","hero_eyebrow":"Power BI · AI Engineering · Automation · Software","hero_subtitle":"Für Unternehmen, die verteilte Informationen nutzbar machen, wiederkehrende Arbeit reduzieren und passende digitale Lösungen entwickeln möchten.","hero_highlight": "Wir begleiten Sie von Ihren vorhandenen Dateien und Systemen bis zur fertigen Lösung. Dabei berücksichtigen wir, wie Daten aktualisiert werden, wie Ihr Team damit arbeitet und welche Aufgaben anschließend automatisiert werden können.", "hero_scope_title": "Von der Datenquelle bis zum täglichen Arbeitsablauf.","hero_tag1":"Data Analytics & Business Intelligence","hero_tag2":"Power BI & Reporting","hero_tag3":"AI Engineering & Automation","hero_tag4":"CRM & Business Systems","hero_tag5":"Web & Software Solutions","hero_tag6":"Rechnungs- & Geschäftsprozesse","global_subtitle":"Data Analytics und Business Intelligence bilden den Kern. Wir ergänzen sie durch AI Engineering, Prozessautomatisierung und individuelle Software – von der fachlichen Anforderung bis zur technischen Umsetzung.","global_data_title":"Data Analytics & Business Intelligence","global_data_text":"Excel, Power Query, Power BI, KPI-Reporting und Forecasting: Daten aufbereiten, Ergebnisse nachvollziehbar machen und Entscheidungen fundiert vorbereiten.","global_auto_title":"AI Engineering & Automation","global_auto_text":"KI-gestützte Anwendungen, Agenten und Workflows für wiederkehrende Aufgaben. Je nach Projekt verbinden wir Microsoft 365, Google Workspace und weitere Systeme über passende Schnittstellen.","global_systems_title":"Business Systems & Integrationen","global_systems_text":"CRM, Kundenportale und interne Anwendungen mit klarer Daten- und Berechnungslogik. Schnittstellen verbinden vorhandene Systeme und halten Abläufe nachvollziehbar.","global_web_title":"Web & Software Solutions","global_web_text":"Unternehmenswebsites, Webanwendungen und individuelle Business-Software – mit passenden Benutzeroberflächen, Berechtigungen und Anbindungen an Ihre Geschäftsprozesse.","capabilities_title":"Technische Umsetzung, die zu Ihrem Unternehmen passt.","capabilities_subtitle":"Von der Datenaufbereitung bis zur individuellen Anwendung: Wir wählen die Bausteine nach Ihren Anforderungen, vorhandenen Systemen und dem vorgesehenen Betrieb.","tool_1_title":"Individuelle Business-Anwendungen","tool_1_text":"Kundenportale und interne Arbeitsoberflächen für Anfragen, Angebote, Dokumente und Projektstatus. Mit abgestimmter Datenstruktur, Berechnungen und Zugriffsrechten.","tool_2_title":"AI Engineering & intelligente Workflows","tool_2_text":"KI-gestützte Assistenten, Agenten und automatisierte Abläufe, die Informationen verarbeiten und Teams bei wiederkehrenden Aufgaben unterstützen. Prüf- und Freigabeschritte werden passend zum Einsatz vereinbart.","tool_3_title":"Datenintegration & API-Schnittstellen","tool_3_text":"Daten aus Dateien, Datenbanken und verfügbaren APIs zusammenführen. Wir berücksichtigen Zuordnungen, Qualitätsprüfungen, Fehlerbehandlung und die Nachvollziehbarkeit der Verarbeitung.","tool_4_title":"Websites & digitale Geschäftsprozesse","tool_4_text":"Mobile Unternehmenswebsites und Webanwendungen mit durchgängigen Anfrage-, Kommunikations- und Folgeprozessen. Bestehende CRM- und Projektsysteme können über geeignete Schnittstellen angebunden werden.","about_approach_text":"Unsere Schwerpunkte liegen in Datenaufbereitung, Business Intelligence, Power BI und Reporting. Dazu kommen AI Engineering, Prozessautomatisierung, API-Integrationen und individuelle Web- und Softwarelösungen. Wir klären zuerst Anforderungen und Datenbasis und stimmen darauf die technische Umsetzung ab.","form_project_custom":"Individuelle Software / Website / CRM / Integration","field_focus_ai":"AI Engineering / KI-gestützte Automatisierung","field_focus_software":"Individuelle Software / API-Integration","cap_15":"AI Engineering & KI-gestützte Workflows","cap_16":"API-Integration & individuelle Software"});
+Object.assign(languageData.en, {"hero_pill":"Data Analytics & BI · AI Engineering · Web & Software Solutions","hero_eyebrow":"Power BI · AI Engineering · Automation · Software","hero_subtitle":"For organisations looking to make distributed information useful, reduce repetitive work and develop digital solutions that fit their business.","hero_highlight": "We support you from your existing files and systems through to the finished solution. We consider how data is updated, how your team works with it and which tasks can then be automated.", "hero_scope_title": "From your data sources to everyday workflows.","hero_tag1":"Data Analytics & Business Intelligence","hero_tag2":"Power BI & Reporting","hero_tag3":"AI Engineering & Automation","hero_tag4":"CRM & Business Systems","hero_tag5":"Web & Software Solutions","hero_tag6":"Invoicing & Business Processes","global_subtitle":"Data Analytics and Business Intelligence are at the core. We extend them with AI engineering, process automation and custom software – from business requirements to technical implementation.","global_data_title":"Data Analytics & Business Intelligence","global_data_text":"Excel, Power Query, Power BI, KPI reporting and forecasting: Prepare data, make results traceable and support informed decisions.","global_auto_title":"AI Engineering & Automation","global_auto_text":"AI-assisted applications, agents and workflows for recurring tasks. Depending on the project, we connect Microsoft 365, Google Workspace and other systems through suitable interfaces.","global_systems_title":"Business Systems & Integrations","global_systems_text":"CRM, customer portals and internal applications with clear data and calculation logic. Interfaces connect existing systems and keep workflows traceable.","global_web_title":"Web & Software Solutions","global_web_text":"Company websites, web applications and custom business software – with appropriate interfaces, access controls and connections to your business processes.","capabilities_title":"Technical implementation that fits your business.","capabilities_subtitle":"From data preparation to custom applications: We select the components around your requirements, existing systems and intended operating environment.","tool_1_title":"Custom Business Applications","tool_1_text":"Customer portals and internal workspaces for enquiries, proposals, documents and project status. With agreed data structures, calculations and access permissions.","tool_2_title":"AI Engineering & Intelligent Workflows","tool_2_text":"AI-assisted tools, agents and automated workflows that process information and support teams with recurring tasks. Review and approval steps are agreed for the intended use.","tool_3_title":"Data Integration & APIs","tool_3_text":"Bring together data from files, databases and available APIs. We consider mappings, quality checks, error handling and traceability throughout the processing.","tool_4_title":"Websites & Digital Business Processes","tool_4_text":"Mobile company websites and web applications with connected enquiry, communication and follow-up processes. Existing CRM and project systems can be connected through suitable interfaces.","about_approach_text":"Our focus is data preparation, Business Intelligence, Power BI and reporting, complemented by AI engineering, process automation, API integrations and custom web and software solutions. We clarify requirements and the available data first, then shape the technical implementation around them.","form_project_custom":"Custom software / website / CRM / integration","field_focus_ai":"AI engineering / AI-assisted automation","field_focus_software":"Custom software / API integration","cap_15":"AI engineering & AI-assisted workflows","cap_16":"API integration & custom software"});
+Object.assign(languageData.fr, {"hero_pill":"Data Analytics & BI · Ingénierie IA · Solutions web & logicielles","hero_eyebrow":"Power BI · Ingénierie IA · Automatisation · Logiciels","hero_subtitle":"Pour les entreprises qui souhaitent exploiter leurs informations dispersées, réduire les tâches répétitives et développer des solutions numériques adaptées à leur activité.","hero_highlight": "Nous vous accompagnons de vos fichiers et systèmes existants jusqu’à la solution finale. Nous prenons en compte l’actualisation des données, leur utilisation par votre équipe et les tâches qui peuvent ensuite être automatisées.", "hero_scope_title": "Des sources de données aux processus du quotidien.","hero_tag1":"Analyse de données & Business Intelligence","hero_tag2":"Power BI & Reporting","hero_tag3":"Ingénierie IA & Automatisation","hero_tag4":"CRM & Systèmes métier","hero_tag5":"Solutions web & logicielles","hero_tag6":"Facturation & Processus métier","global_subtitle":"L’analyse de données et la Business Intelligence sont au cœur de notre activité. Nous les complétons par l’ingénierie IA, l’automatisation et les logiciels sur mesure, des besoins métier à la réalisation technique.","global_data_title":"Analyse de données & Business Intelligence","global_data_text":"Excel, Power Query, Power BI, reporting KPI et prévisions : préparer les données, rendre les résultats traçables et éclairer les décisions.","global_auto_title":"Ingénierie IA & Automatisation","global_auto_text":"Applications, agents et workflows assistés par IA pour les tâches récurrentes. Selon le projet, nous relions Microsoft 365, Google Workspace et d’autres systèmes via des interfaces adaptées.","global_systems_title":"Systèmes métier & Intégrations","global_systems_text":"CRM, portails clients et applications internes avec une logique de données et de calcul claire. Les interfaces relient les systèmes existants et rendent les processus traçables.","global_web_title":"Solutions web & logicielles","global_web_text":"Sites d’entreprise, applications web et logiciels métier sur mesure, avec des interfaces, des droits d’accès et des connexions adaptés à vos processus.","capabilities_title":"Une réalisation technique adaptée à votre entreprise.","capabilities_subtitle":"De la préparation des données aux applications sur mesure : nous choisissons les composants selon vos besoins, vos systèmes existants et l’environnement d’exploitation prévu.","tool_1_title":"Applications métier sur mesure","tool_1_text":"Portails clients et espaces de travail internes pour les demandes, devis, documents et statuts de projet. Avec des structures de données, calculs et droits d’accès définis ensemble.","tool_2_title":"Ingénierie IA & Workflows intelligents","tool_2_text":"Outils, agents et workflows assistés par IA qui traitent l’information et accompagnent les équipes dans les tâches récurrentes. Les étapes de contrôle et de validation sont définies selon l’usage prévu.","tool_3_title":"Intégration de données & API","tool_3_text":"Réunir les données issues de fichiers, bases de données et API disponibles. Nous prenons en compte les correspondances, contrôles qualité, erreurs et la traçabilité du traitement.","tool_4_title":"Sites web & Processus métier numériques","tool_4_text":"Sites d’entreprise adaptés aux mobiles et applications web reliant demandes, communication et suivi. Les systèmes CRM et de gestion de projet existants peuvent être connectés via des interfaces adaptées.","about_approach_text":"Nos spécialités sont la préparation des données, la Business Intelligence, Power BI et le reporting, complétés par l’ingénierie IA, l’automatisation, les intégrations API et les solutions web et logicielles sur mesure. Nous précisons d’abord les besoins et les données disponibles, puis définissons la réalisation technique.","form_project_custom":"Logiciel sur mesure / site web / CRM / intégration","field_focus_ai":"Ingénierie IA / automatisation assistée par IA","field_focus_software":"Logiciel sur mesure / intégration API","cap_15":"Ingénierie IA & workflows assistés par IA","cap_16":"Intégration API & logiciels sur mesure"});
 </script>
 
 <!-- USECASE DETAILS -->
@@ -17581,7 +17525,7 @@ pointer-events:none;transform:translateY(8px);transition:.2s ease}
 
  <button class="bda-switch-btn" type="button" aria-expanded="false"><span class="bda-switch-live"></span><span data-net="button">Interaktive Demos</span><span>⌃</span></button>
 
- <div class="bda-switch-panel" role="navigation" aria-label="BDA Live-Demos">
+ <div id="bda-demo-menu-panel" class="bda-switch-panel" role="navigation" aria-label="Interaktive Demos">
 
   <div class="bda-switch-top"><strong data-net="network">BDA Demo Network</strong><a href="https://barrydataanalytics.de/demo/" data-net="all">Alle ansehen →</a></div>
 
@@ -17813,6 +17757,15 @@ pointer-events:none;transform:translateY(8px);transition:.2s ease}
 
 @media(max-width:620px){.bda-whatsapp-cta{left:10px;bottom:calc(70px + env(safe-area-inset-bottom));width:auto;max-width:none;gap:0;padding:7px;border-radius:16px}.bda-whatsapp-cta-icon{width:43px;height:43px;flex-basis:43px;border-radius:13px}.bda-whatsapp-cta-copy{display:none}}
 @media(prefers-reduced-motion:reduce){.bda-whatsapp-cta,.bda-whatsapp-cta::before{transition:none}.bda-whatsapp-cta-icon::after{animation:none}}
+/* Compact floating contact: keep the page content visible. */
+.bda-whatsapp-cta{width:54px;height:54px;max-width:54px;padding:5px;gap:0;border-radius:50%;background:#073d28;box-shadow:0 5px 18px rgba(0,0,0,.25)}
+.bda-whatsapp-cta-copy{display:none}
+.bda-whatsapp-cta-icon{width:42px;height:42px;flex:0 0 42px;border-radius:50%;box-shadow:none}
+.bda-whatsapp-cta::before,.bda-whatsapp-cta-icon::after{display:none}
+.bda-whatsapp-cta:hover,.bda-whatsapp-cta:focus-visible{box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.bda-whatsapp-cta:focus-visible{outline:2px solid #a6ffc7;outline-offset:4px}
+@media(max-width:620px){.bda-whatsapp-cta{width:50px;height:50px;max-width:50px;padding:4px}.bda-whatsapp-cta-icon{width:40px;height:40px;flex-basis:40px}}
+
 @media print{.bda-whatsapp-cta,.bda-whatsapp-inline,.bda-whatsapp-footer{display:none!important}}
 </style>
 
@@ -17830,7 +17783,7 @@ pointer-events:none;transform:translateY(8px);transition:.2s ease}
   const notes={de:'Sie erreichen uns auch über WhatsApp.',en:'You can also reach us on WhatsApp.',fr:'Vous pouvez aussi nous joindre sur WhatsApp.'};
   const starters={de:'Hallo Barry Data & Analytics, ich habe eine Frage zu Ihrem Angebot.',en:'Hello Barry Data & Analytics, I have a question about your services.',fr:'Bonjour Barry Data & Analytics, j’ai une question concernant vos services.'};
   function lang(){const value=(document.documentElement.lang||'de').slice(0,2);return labels[value]?value:'de'}
-  function render(){const l=lang();const href='https://wa.me/'+CONFIG.number+'?text='+encodeURIComponent(starters[l]);document.querySelectorAll('[data-whatsapp-label]').forEach(el=>el.textContent=labels[l]);document.querySelectorAll('[data-whatsapp-note]').forEach(el=>el.textContent=notes[l]);[button,...links].forEach(el=>{el.href=href;el.setAttribute('aria-label',notes[l]);});}
+  function render(){const l=lang();button.title=notes[l];const href='https://wa.me/'+CONFIG.number+'?text='+encodeURIComponent(starters[l]);document.querySelectorAll('[data-whatsapp-label]').forEach(el=>el.textContent=labels[l]);document.querySelectorAll('[data-whatsapp-note]').forEach(el=>el.textContent=notes[l]);[button,...links].forEach(el=>{el.href=href;el.setAttribute('aria-label',notes[l]);});}
   render();new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   const ready=CONFIG.enabled&&/^\d{8,15}$/.test(CONFIG.number);
   [button,...links].forEach(el=>{el.hidden=!ready;});
@@ -17839,6 +17792,105 @@ pointer-events:none;transform:translateY(8px);transition:.2s ease}
 
 
 
+
+<script>
+(function(){
+ const section=document.getElementById('bda-references');if(!section)return;
+
+ const copy={de:{eyebrow:'Unternehmen & Verbindungen',title:'Ausgewählte Referenzen',mg:'Kfz-Gutachten · Deutschland',ctia:'Multisektorielles Unternehmen · Conakry',visit:'Unternehmenswebsite ↗',pause:'Bewegung pausieren',resume:'Bewegung fortsetzen'},en:{eyebrow:'Companies & connections',title:'Selected references',mg:'Vehicle assessment · Germany',ctia:'Multisector company · Conakry',visit:'Company website ↗',pause:'Pause movement',resume:'Resume movement'},fr:{eyebrow:'Entreprises & relations',title:'Quelques références',mg:'Expertise automobile · Allemagne',ctia:'Société multisectorielle · Conakry',visit:'Site de l’entreprise ↗',pause:'Mettre en pause',resume:'Reprendre le défilement'}};
+ function translate(){const lang=(document.documentElement.lang||'de').split('-')[0];const t=copy[lang]||copy.en;document.querySelectorAll('[data-ref-copy]').forEach(el=>el.textContent=t[el.dataset.refCopy])}
+ new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});translate();
+})();
+</script>
+
+<script id="bda-final-content-polish">
+Object.assign(languageData.de,{"hero_subtitle": "Wir führen verteilte Daten zusammen, vereinfachen wiederkehrende Abläufe und entwickeln digitale Lösungen für Ihren Arbeitsalltag.", "hero_highlight": "Wir begleiten Sie von Ihren vorhandenen Dateien und Systemen bis zur fertigen Lösung. Dabei berücksichtigen wir, wie Daten aktualisiert werden, wie Ihr Team damit arbeitet und welche Aufgaben anschließend automatisiert werden können.", "hero_scope_title": "Von der Datenquelle bis zum täglichen Arbeitsablauf.", "hero_cta_primary": "Mein Vorhaben besprechen", "hero_cta_secondary": "Lösungen in Aktion sehen", "hero_assistant": "Christine – digitaler Assistent", "global_data_text": "Wir bereiten Daten auf und entwickeln KPI-Dashboards, Berichte und Forecasts. Sie erhalten eine nachvollziehbare Übersicht mit abgestimmten Kennzahlen und einem passenden Aktualisierungsablauf.", "global_auto_text": "Wir automatisieren geeignete Datei-, E-Mail- und Freigabeabläufe und ergänzen bei Bedarf KI-gestützte Funktionen. Sie erhalten einen abgestimmten Workflow mit passenden Prüf- und Freigabeschritten.", "global_systems_text": "Wir verbinden Datenquellen, CRM-nahe Prozesse und interne Anwendungen über geeignete Schnittstellen. Sie erhalten einen gemeinsamen Blick auf Informationen, Zuständigkeiten und den aktuellen Bearbeitungsstand.", "global_web_text": "Wir entwickeln mobile Unternehmenswebsites und individuelle Webanwendungen. Sie erhalten eine klare digitale Anlaufstelle, die Anfragen und weitere Geschäftsabläufe sinnvoll verbinden kann.", "start_title": "Welchen Teil Ihres Arbeitsalltags möchten Sie vereinfachen?", "start_subtitle": "Wählen Sie einen passenden Einstieg. Wir prüfen Ihre Ausgangslage und grenzen den nächsten sinnvollen Schritt gemeinsam ab.", "start_note": "Ihre Auswahl wird in die bestehende Projektanfrage übernommen.", "proof_title": "Beispielprojekte. Lösungen selbst entdecken.", "proof_subtitle": "Entdecken Sie unsere eigenen Entwicklungen für Reporting, Automatisierung und digitale Geschäftsprozesse. Öffnen Sie ein Projekt und probieren Sie die Funktionen direkt aus.", "usecase_reporting_tagline": "Weniger manuelle Excel-Arbeit – ein wiederverwendbarer Berichtsablauf.", "usecase_service_tagline": "Tickets, Reaktionszeiten und Zufriedenheit in einer gemeinsamen Übersicht.", "bridge_title": "Von Ihrer Frage zum passenden nächsten Schritt.", "bridge_cta": "Mein Vorhaben kurz beschreiben →"});
+Object.assign(languageData.en,{"hero_subtitle": "We bring scattered data together, simplify recurring workflows and develop digital solutions for your day-to-day business.", "hero_highlight": "We support you from your existing files and systems through to the finished solution. We consider how data is updated, how your team works with it and which tasks can then be automated.", "hero_scope_title": "From your data sources to everyday workflows.", "hero_cta_primary": "Discuss my requirements", "hero_cta_secondary": "See solutions in action", "hero_assistant": "Christine – digital assistant", "global_data_text": "We prepare data and develop KPI dashboards, reports and forecasts. You receive a clear view with agreed measures and a suitable refresh workflow.", "global_auto_text": "We automate suitable file, email and approval workflows, adding AI-assisted functions where useful. You receive an agreed workflow with appropriate review and approval steps.", "global_systems_text": "We connect data sources, CRM-related processes and internal applications through suitable interfaces. You receive a shared view of information, responsibilities and progress.", "global_web_text": "We develop mobile company websites and custom web applications. You receive a clear digital point of contact that can connect enquiries with further business workflows.", "start_title": "Which part of your working day would you like to simplify?", "start_subtitle": "Choose a suitable starting point. We review your situation and agree the next practical step together.", "start_note": "Your selection is carried into the existing project enquiry.", "proof_title": "Example projects. Explore the solutions.", "proof_subtitle": "Explore our own developments in reporting, automation and digital business processes. Open a project and try its features for yourself.", "usecase_reporting_tagline": "Less manual Excel work – a reusable reporting workflow.", "usecase_service_tagline": "Tickets, response times and satisfaction in a shared overview.", "bridge_title": "From your question to a suitable next step.", "bridge_cta": "Briefly describe my requirements →"});
+Object.assign(languageData.fr,{"hero_subtitle": "Nous réunissons les données dispersées, simplifions les tâches récurrentes et développons des solutions numériques adaptées à votre quotidien.", "hero_highlight": "Nous vous accompagnons de vos fichiers et systèmes existants jusqu’à la solution finale. Nous prenons en compte l’actualisation des données, leur utilisation par votre équipe et les tâches qui peuvent ensuite être automatisées.", "hero_scope_title": "Des sources de données aux processus du quotidien.", "hero_cta_primary": "Discuter de mon projet", "hero_cta_secondary": "Voir les solutions en action", "hero_assistant": "Christine – assistante numérique", "global_data_text": "Nous préparons les données et développons des tableaux de bord, rapports et prévisions. Vous obtenez une vue claire avec des indicateurs convenus et un processus d’actualisation adapté.", "global_auto_text": "Nous automatisons les processus de fichiers, e-mails et validations qui s’y prêtent, avec des fonctions d’IA si elles sont utiles. Vous obtenez un processus défini avec des étapes de contrôle adaptées.", "global_systems_text": "Nous relions sources de données, processus CRM et applications internes par des interfaces adaptées. Vous obtenez une vue commune des informations, responsabilités et étapes en cours.", "global_web_text": "Nous développons des sites mobiles et des applications web sur mesure. Vous obtenez un point de contact numérique clair qui peut relier les demandes aux processus de votre entreprise.", "start_title": "Quelle partie de votre quotidien souhaitez-vous simplifier ?", "start_subtitle": "Choisissez un point de départ adapté. Nous examinons votre situation et définissons ensemble la prochaine étape utile.", "start_note": "Votre choix est repris dans la demande de projet existante.", "proof_title": "Exemples de projets. Découvrez les solutions.", "proof_subtitle": "Découvrez nos propres réalisations en reporting, automatisation et processus métier numériques. Ouvrez un projet et testez ses fonctionnalités.", "usecase_reporting_tagline": "Moins de travail manuel dans Excel – un processus de reporting réutilisable.", "usecase_service_tagline": "Tickets, délais de réponse et satisfaction dans une vue commune.", "bridge_title": "De votre question à la prochaine étape adaptée.", "bridge_cta": "Décrire brièvement mon projet →"});
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-faq-inviting-copy">
+Object.assign(languageData.de,{"faq_title": "Häufige Fragen", "faq_subtitle": "Ein kurzer Einblick in unsere Zusammenarbeit. Haben Sie ein konkretes Anliegen? Sprechen Sie uns gerne direkt an."});
+Object.assign(languageData.en,{"faq_title": "Frequently asked questions", "faq_subtitle": "A brief look at working with us. Have something specific in mind? Get in touch directly."});
+Object.assign(languageData.fr,{"faq_title": "Questions fréquentes", "faq_subtitle": "Un aperçu de notre collaboration. Vous avez un besoin précis ? Contactez-nous directement."});
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-global-nav-label">
+Object.assign(languageData.de,{nav_global:"Global"});
+Object.assign(languageData.en,{nav_global:"Global"});
+Object.assign(languageData.fr,{nav_global:"Global"});
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-compact-service-summary">
+Object.assign(languageData.de,{"summary_title": "Daten verstehen. Prozesse vereinfachen. Digitale Lösungen entwickeln.", "summary_intro": "Wir unterstützen Unternehmen dabei, verteilte Daten zusammenzuführen, wiederkehrende Aufgaben zu automatisieren und digitale Abläufe sinnvoll zu verbinden.", "summary_services": "Ob Power-BI-Dashboard, automatisiertes Reporting, CRM-Anbindung oder individuelle Web- und Softwarelösung: Wir klären Ihren Bedarf und bauen auf Ihren vorhandenen Dateien, Systemen und Arbeitsabläufen auf.", "summary_result": "Sie erhalten eine Lösung, die zu Ihrem Unternehmen passt – mit nachvollziehbaren Kennzahlen, klaren Abläufen und verständlichen Benutzeroberflächen.", "summary_benefit": "Weniger manuelle Arbeit. Mehr Übersicht. Mehr Zeit für Ihr Kerngeschäft.", "summary_location": "Barry Data & Analytics – aus Bochum, für Unternehmen in Deutschland und international.", "summary_cta": "Kurz Projekt besprechen"});
+Object.assign(languageData.en,{"summary_title": "Understand data. Simplify processes. Develop digital solutions.", "summary_intro": "We help companies bring scattered data together, automate recurring tasks and connect digital workflows in a practical way.", "summary_services": "Whether you need a Power BI dashboard, automated reporting, CRM integration or a custom web and software solution, we clarify your requirements and build on your existing files, systems and workflows.", "summary_result": "You receive a solution that fits your business, with traceable KPIs, clear processes and understandable interfaces.", "summary_benefit": "Less manual work. Greater visibility. More time for your core business.", "summary_location": "Barry Data & Analytics – based in Bochum, supporting companies in Germany and internationally.", "summary_cta": "Discuss your project"});
+Object.assign(languageData.fr,{"summary_title": "Comprendre les données. Simplifier les processus. Développer des solutions numériques.", "summary_intro": "Nous aidons les entreprises à réunir leurs données dispersées, automatiser les tâches récurrentes et relier leurs processus numériques de manière cohérente.", "summary_services": "Tableau de bord Power BI, reporting automatisé, intégration CRM ou solution web et logicielle sur mesure : nous clarifions vos besoins et nous appuyons sur vos fichiers, systèmes et processus existants.", "summary_result": "Vous obtenez une solution adaptée à votre entreprise, avec des indicateurs vérifiables, des processus clairs et des interfaces compréhensibles.", "summary_benefit": "Moins de travail manuel. Plus de visibilité. Plus de temps pour votre cœur de métier.", "summary_location": "Barry Data & Analytics – depuis Bochum, pour les entreprises en Allemagne et à l’international.", "summary_cta": "Discuter de votre projet"});
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-summary-final-heading">
+Object.assign(languageData.de,{"summary_eyebrow": "Was wir für Sie tun", "summary_title": "Daten verbinden. Abläufe vereinfachen.", "summary_benefit": "Weniger manuelle Arbeit. Mehr Überblick. Mehr Zeit für Ihr Kerngeschäft."});
+Object.assign(languageData.en,{"summary_eyebrow": "What we do for you", "summary_title": "Connect data. Simplify workflows.", "summary_benefit": "Less manual work. Greater visibility. More time for your core business."});
+Object.assign(languageData.fr,{"summary_eyebrow": "Ce que nous faisons pour vous", "summary_title": "Relier les données. Simplifier les processus.", "summary_benefit": "Moins de travail manuel. Plus de visibilité. Plus de temps pour votre cœur de métier."});
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-hero-final-copy">
+Object.assign(languageData.de,{"hero_pill": "DATEN · AUTOMATISIERUNG · SOFTWAREENTWICKLUNG", "hero_title": "Daten, Reporting und Abläufe, die im Unternehmen zusammenpassen.", "hero_title_now": "", "hero_subtitle": "Wir bringen Daten aus unterschiedlichen Dateien und Systemen zusammen, vereinfachen wiederkehrende Arbeitsschritte und entwickeln digitale Anwendungen für Ihren Geschäftsalltag.", "hero_highlight": "Wir begleiten Sie von Ihren vorhandenen Dateien und Systemen bis zur fertigen Lösung. Dabei berücksichtigen wir, wie Daten aktualisiert werden, wie Ihr Team damit arbeitet und welche Aufgaben anschließend automatisiert werden können.", "hero_scope_title": "Von der Datenquelle bis zum täglichen Arbeitsablauf.", "hero_cta_primary": "Kurz Projekt besprechen", "hero_cta_secondary": "Lösungen in Aktion sehen", "hero_dashboard_badge": "Beispielhafter Ablauf", "hero_workflow_title": "Von Dateien und Systemen zu nutzbaren Ergebnissen", "hero_step_1": "Dateien & Systeme", "hero_step_2": "Verbinden & prüfen", "hero_step_3": "Analysieren & automatisieren", "hero_step_4": "Ergebnisse nutzen", "hero_workflow_note": "Der konkrete Ablauf richtet sich nach Ihren Daten, Systemen und Anforderungen."});
+Object.assign(languageData.en,{"hero_pill": "DATA · AUTOMATION · SOFTWARE DEVELOPMENT", "hero_title": "Data, reporting and workflows that fit together across the business.", "hero_title_now": "", "hero_subtitle": "We bring together data from different files and systems, simplify recurring tasks and develop digital applications for your day-to-day business.", "hero_highlight": "We support you from your existing files and systems through to the finished solution. We consider how data is updated, how your team works with it and which tasks can then be automated.", "hero_scope_title": "From your data sources to everyday workflows.", "hero_cta_primary": "Discuss your project", "hero_cta_secondary": "See solutions in action", "hero_dashboard_badge": "Illustrative workflow", "hero_workflow_title": "From files and systems to usable results", "hero_step_1": "Files & systems", "hero_step_2": "Connect & check", "hero_step_3": "Analyse & automate", "hero_step_4": "Use the results", "hero_workflow_note": "The actual workflow depends on your data, systems and requirements."});
+Object.assign(languageData.fr,{"hero_pill": "DONNÉES · AUTOMATISATION · DÉVELOPPEMENT LOGICIEL", "hero_title": "Des données, rapports et processus qui fonctionnent ensemble dans l’entreprise.", "hero_title_now": "", "hero_subtitle": "Nous réunissons les données issues de différents fichiers et systèmes, simplifions les tâches récurrentes et développons des applications numériques pour votre activité quotidienne.", "hero_highlight": "Nous vous accompagnons de vos fichiers et systèmes existants jusqu’à la solution finale. Nous prenons en compte l’actualisation des données, leur utilisation par votre équipe et les tâches qui peuvent ensuite être automatisées.", "hero_scope_title": "Des sources de données aux processus du quotidien.", "hero_cta_primary": "Discuter de votre projet", "hero_cta_secondary": "Voir les solutions en action", "hero_dashboard_badge": "Processus illustratif", "hero_workflow_title": "Des fichiers et systèmes aux résultats utilisables", "hero_step_1": "Fichiers & systèmes", "hero_step_2": "Relier & vérifier", "hero_step_3": "Analyser & automatiser", "hero_step_4": "Utiliser les résultats", "hero_workflow_note": "Le processus dépend de vos données, systèmes et besoins."});
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-interactive-workflow">
+(function(){
+const root=document.querySelector('#hero .bda-hero-workflow');if(!root)return;
+const data={"de": {"kicker": "Ihr Einstieg", "link": "Passende Demo öffnen ↗", "steps": [["Klarheit über Ihre Kennzahlen", "Wir führen verteilte Informationen zusammen, werten relevante Kennzahlen aus und stellen Ergebnisse verständlich dar.", ["Data Analytics", "Reporting", "Power BI"], "Für Überblick, Vergleiche und fundierte Entscheidungen", "power-bi-sales-operations/"], ["Weniger wiederkehrende Handarbeit", "Wir vereinfachen geeignete Datei-, E-Mail- und Freigabeabläufe. Notwendige Kontrollen bleiben Teil des abgestimmten Prozesses.", ["Automatisierung", "Microsoft 365", "Workflows"], "Für wiederverwendbare Abläufe und weniger manuelle Übergaben", "business-prozess-demo/"], ["Informationen an einem Ort nutzbar machen", "Wir verbinden vorhandene Datenquellen, CRM-nahe Prozesse und Anwendungen über geeignete Schnittstellen.", ["ERP & CRM", "API-Integration", "Datenqualität"], "Für gemeinsame Informationen und nachvollziehbare Bearbeitungsstände", "connected_data_management/"], ["Digitale Werkzeuge für Ihren Geschäftsalltag", "Wir entwickeln Unternehmenswebsites, Webanwendungen und individuelle Software – von der Kundenanfrage bis zur internen Arbeitsoberfläche.", ["Unternehmenswebsites", "Webanwendungen", "Business-Software"], "Für Ihre Kunden, Ihr Team und Ihre Geschäftsprozesse", "vier-saeulen-loesungsdemo/"]]}, "en": {"kicker": "Your starting point", "link": "Open a relevant demo ↗", "steps": [["Clarity about your business measures", "We bring scattered information together, analyse relevant measures and present the results clearly.", ["Data analytics", "Reporting", "Power BI"], "For visibility, comparisons and informed decisions", "power-bi-sales-operations/"], ["Less recurring manual work", "We simplify suitable file, email and approval workflows. Necessary checks remain part of the agreed process.", ["Automation", "Microsoft 365", "Workflows"], "For reusable processes and fewer manual handovers", "business-prozess-demo/"], ["Make information useful in one place", "We connect existing data sources, CRM-related processes and applications through suitable interfaces.", ["ERP & CRM", "API integration", "Data quality"], "For shared information and traceable progress", "connected_data_management/"], ["Digital tools for everyday business", "We develop company websites, web applications and custom software, from customer enquiries to internal workspaces.", ["Company websites", "Web applications", "Business software"], "For your customers, team and business processes", "vier-saeulen-loesungsdemo/"]]}, "fr": {"kicker": "Votre point de départ", "link": "Ouvrir une démo adaptée ↗", "steps": [["Des indicateurs métier compréhensibles", "Nous réunissons les informations dispersées, analysons les indicateurs pertinents et présentons les résultats clairement.", ["Analyse de données", "Reporting", "Power BI"], "Pour une vue claire, des comparaisons et des décisions éclairées", "power-bi-sales-operations/"], ["Moins de tâches manuelles récurrentes", "Nous simplifions les processus de fichiers, d’e-mails et de validation adaptés. Les contrôles nécessaires restent intégrés au processus convenu.", ["Automatisation", "Microsoft 365", "Processus"], "Pour des processus réutilisables et moins de transmissions manuelles", "business-prozess-demo/"], ["Rendre les informations accessibles ensemble", "Nous relions les sources de données existantes, les processus CRM et les applications par des interfaces adaptées.", ["ERP & CRM", "Intégration API", "Qualité des données"], "Pour des informations communes et un suivi clair", "connected_data_management/"], ["Des outils numériques pour votre activité", "Nous développons des sites d’entreprise, applications web et logiciels sur mesure, des demandes clients aux espaces de travail internes.", ["Sites d’entreprise", "Applications web", "Logiciels métier"], "Pour vos clients, votre équipe et vos processus", "vier-saeulen-loesungsdemo/"]]}};const buttons=[...root.querySelectorAll('[data-workflow-step]')];let selected=0;
+function render(){const lang=(document.documentElement.lang||'de').slice(0,2);const t=data[lang]||data.en;const item=t.steps[selected];root.querySelector('.bda-detail-kicker').textContent=t.kicker+' · '+String(selected+1).padStart(2,'0')+' / 04';root.querySelector('.bda-detail-title').textContent=item[0];root.querySelector('.bda-detail-text').textContent=item[1];const chips=root.querySelector('.bda-detail-chips');chips.replaceChildren();item[2].forEach(label=>{const el=document.createElement('span');el.textContent=label;chips.append(el)});root.querySelector('.bda-detail-result').textContent=item[3];const link=root.querySelector('.bda-detail-demo');link.textContent=t.link;link.href='https://barrydataanalytics.de/'+item[4];buttons.forEach((button,i)=>button.setAttribute('aria-pressed',i===selected?'true':'false'))}
+buttons.forEach((button,i)=>{button.addEventListener('click',()=>{selected=i;render()});button.addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();selected=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowRight'?1:3))%4;render();buttons[selected].focus()})});new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});render();
+})();
+</script>
+<script id="bda-demo-entrypoints-js">
+(function(){const root=document.getElementById('bda-demo-switcher'),panel=document.getElementById('bda-demo-menu-panel');if(!root||!panel)return;const triggers=[...document.querySelectorAll('[data-open-demo-menu]')];let anchor=null;
+function position(){if(!anchor||!root.classList.contains('open'))return;const r=anchor.getBoundingClientRect();const w=Math.min(360,innerWidth-24);const top=Math.min(Math.max(12,r.bottom+10),Math.max(12,innerHeight-260));root.style.setProperty('--bda-menu-left',Math.max(12,Math.min(r.left,innerWidth-w-12))+'px');root.style.setProperty('--bda-menu-top',top+'px');root.style.setProperty('--bda-menu-height',Math.max(160,innerHeight-top-16)+'px')}
+triggers.forEach(trigger=>trigger.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const closing=root.classList.contains('open')&&anchor===trigger&&root.classList.contains('bda-trigger-open');anchor=trigger;root.classList.add('bda-trigger-open');root.classList.toggle('open',!closing);root.querySelector('.bda-switch-btn').setAttribute('aria-expanded',String(!closing));position()}));
+root.querySelector('.bda-switch-btn').addEventListener('click',()=>{root.classList.remove('bda-trigger-open');anchor=null});
+new MutationObserver(()=>{const open=root.classList.contains('open');triggers.forEach(t=>t.setAttribute('aria-expanded',String(open&&anchor===t&&root.classList.contains('bda-trigger-open'))))}).observe(root,{attributes:true,attributeFilter:['class']});
+window.addEventListener('resize',position);window.addEventListener('scroll',position,{passive:true});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&anchor){anchor.focus();anchor=null}});
+})();
+Object.assign(languageData.de,{"nav_demos": "Interaktive Demos", "hero_cta_secondary": "Lösungen in Aktion sehen"});
+Object.assign(languageData.en,{"nav_demos": "Interactive demos", "hero_cta_secondary": "See solutions in action"});
+Object.assign(languageData.fr,{"nav_demos": "Démos interactives", "hero_cta_secondary": "Voir les solutions en action"});
+applyLanguage(document.documentElement.lang || 'de');
+</script>
+<script id="bda-solution-cockpit-copy">
+Object.assign(languageData.de,{"hero_highlight": "Wir begleiten Sie von Ihren vorhandenen Dateien und Systemen bis zur fertigen Lösung. Dabei berücksichtigen wir, wie Daten aktualisiert werden, wie Ihr Team damit arbeitet und welche Aufgaben anschließend automatisiert werden können.", "hero_scope_title": "Von der Datenquelle bis zum täglichen Arbeitsablauf.", "hero_workflow_title": "Welche Aufgabe möchten Sie vereinfachen?", "hero_step_1": "Daten verstehen", "hero_step_2": "Arbeit automatisieren", "hero_step_3": "Systeme verbinden", "hero_step_4": "Software entwickeln"});
+Object.assign(languageData.en,{"hero_highlight": "We support you from your existing files and systems through to the finished solution. We consider how data is updated, how your team works with it and which tasks can then be automated.", "hero_scope_title": "From your data sources to everyday workflows.", "hero_workflow_title": "What would you like to simplify?", "hero_step_1": "Understand data", "hero_step_2": "Automate work", "hero_step_3": "Connect systems", "hero_step_4": "Develop software"});
+Object.assign(languageData.fr,{"hero_highlight": "Nous vous accompagnons de vos fichiers et systèmes existants jusqu’à la solution finale. Nous prenons en compte l’actualisation des données, leur utilisation par votre équipe et les tâches qui peuvent ensuite être automatisées.", "hero_scope_title": "Des sources de données aux processus du quotidien.", "hero_workflow_title": "Quelle tâche souhaitez-vous simplifier ?", "hero_step_1": "Comprendre les données", "hero_step_2": "Automatiser le travail", "hero_step_3": "Relier les systèmes", "hero_step_4": "Développer des logiciels"});
+document.getElementById("bda-demo-switcher").classList.remove("open");
+applyLanguage(document.documentElement.lang || "de");
+</script>
+<script id="bda-cockpit-views-js">
+(function(){const root=document.querySelector('#hero .bda-hero-workflow');if(!root)return;const data={"de": {"benefit": "Ihr Nutzen", "visual": "So funktioniert’s", "names": ["Kennzahlen verstehen", "Abläufe automatisieren", "Systeme verbinden", "Software entwickeln"], "titles": ["Beispiel: Umsatz nach Monat", "Vom Eingang zur Freigabe", "Informationen zusammenführen", "Eine Anwendung für Ihren Ablauf"], "flow1": ["Eingang", "Verarbeitung", "Prüfung", "Freigabe"], "flow2": ["Dateien & CRM", "Schnittstelle", "Gemeinsame Ansicht"], "bars": ["Januar", "Februar", "März"], "note": "Darstellungsbeispiel – keine gemessenen Kundenergebnisse.", "chartnote": "Beispieldaten: Februar liegt mit 41.000 € um 9.000 € über Januar. Ihre Auswertung verwendet die Daten Ihres Unternehmens.", "app": "Projektübersicht", "rows": ["Anfrage eingegangen", "Bearbeitung", "Ergebnis bereit"], "status": ["Neu", "In Arbeit", "Zur Prüfung"]}, "en": {"benefit": "Your benefit", "visual": "How it works", "names": ["Understand measures", "Automate workflows", "Connect systems", "Develop software"], "titles": ["Example: monthly revenue", "From intake to approval", "Bring information together", "An application for your workflow"], "flow1": ["Intake", "Processing", "Review", "Approval"], "flow2": ["Files & CRM", "Integration", "Shared view"], "bars": ["January", "February", "March"], "note": "Presentation example, not measured client results.", "chartnote": "Sample data: February revenue of €41,000 is €9,000 above January. Your analysis uses your own business data.", "app": "Project overview", "rows": ["Enquiry received", "Processing", "Result ready"], "status": ["New", "In progress", "For review"]}, "fr": {"benefit": "Votre bénéfice", "visual": "Comment ça fonctionne", "names": ["Comprendre les indicateurs", "Automatiser les processus", "Relier les systèmes", "Développer des logiciels"], "titles": ["Exemple : chiffre d’affaires mensuel", "De la réception à la validation", "Réunir les informations", "Une application pour votre activité"], "flow1": ["Réception", "Traitement", "Contrôle", "Validation"], "flow2": ["Fichiers & CRM", "Intégration", "Vue commune"], "bars": ["Janvier", "Février", "Mars"], "note": "Exemple de présentation, sans résultats clients mesurés.", "chartnote": "Données fictives : les 41 000 € de février dépassent janvier de 9 000 €. Votre analyse utilise les données de votre entreprise.", "app": "Vue des projets", "rows": ["Demande reçue", "Traitement", "Résultat prêt"], "status": ["Nouveau", "En cours", "À vérifier"]}};const tabs=[...root.querySelectorAll('[data-cockpit-view]')],benefit=document.getElementById('bda-workflow-detail'),visual=document.getElementById('bda-cockpit-visual');let view='benefit';
+function make(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e}
+function render(){const t=data[(document.documentElement.lang||'de').slice(0,2)]||data.en;const buttons=[...root.querySelectorAll('[data-workflow-step]')];let n=buttons.findIndex(b=>b.getAttribute('aria-pressed')==='true');if(n<0)n=0;buttons.forEach((b,i)=>b.querySelector('strong').textContent=t.names[i]);tabs.forEach(tab=>{const on=tab.dataset.cockpitView===view;tab.textContent=tab.dataset.cockpitView==='benefit'?t.benefit:t.visual;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1});root.querySelector('.bda-view-tabs').setAttribute('aria-label',t.visual);benefit.hidden=view!=='benefit';visual.hidden=view!=='visual';visual.replaceChildren();visual.append(make('h3',t.titles[n]));
+if(n===0){const chart=make('div',undefined,'bda-visual-bars');chart.setAttribute('role','img');chart.setAttribute('aria-label',t.chartnote);[78.05,100,90.24].forEach((width,i)=>{const row=make('div',undefined,'bda-visual-bar');row.append(make('span',t.bars[i]));const track=make('div');const bar=make('b');bar.style.width=width+'%';track.append(bar);row.append(track);const value=make('strong',new Intl.NumberFormat((document.documentElement.lang||'de')+'-'+({de:'DE',en:'GB',fr:'FR'}[(document.documentElement.lang||'de').slice(0,2)]||'DE'),{style:'currency',currency:'EUR',maximumFractionDigits:0}).format([32000,41000,37000][i]));row.append(value);chart.append(row)});visual.append(chart);visual.append(make('p',t.chartnote));}
+else if(n===1||n===2){const flow=make('div',undefined,'bda-visual-flow');const labels=n===1?t.flow1:t.flow2;labels.forEach((label,i)=>{if(i)flow.append(make('i','→'));flow.append(make('span',label))});visual.append(flow);visual.append(make('p',t.note));}
+else{const app=make('div',undefined,'bda-app-preview');app.append(make('header',t.app));t.rows.forEach((label,i)=>{const row=make('div',undefined,'bda-app-row');row.append(make('span',label),make('strong',t.status[i]));app.append(row)});visual.append(app);visual.append(make('p',t.note));}}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>{view=tab.dataset.cockpitView;render()});tab.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?1:1-i;view=tabs[next].dataset.cockpitView;render();tabs[next].focus()})});root.querySelectorAll('[data-workflow-step]').forEach(b=>{b.addEventListener('click',render);b.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key))render()})});new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});render();})();
+</script>
+<script id="bda-fusion-product-js">(function(){const root=document.getElementById("bda-fusion-product");const data={"de": {"title": "Arbeiten Sie regelmäßig mit Excel-Dateien, CSV-Exporten oder anderen Geschäftsdaten?", "intro": "Mit BDA Fusion Desktop verbinden Sie kompatible Dateien und Ordner, prüfen die Datenqualität und erstellen interaktive Auswertungen – ohne Programmierkenntnisse.", "promise": "No coding. Connect once. Refresh anytime.", "details": "Was Sie mit BDA Fusion Desktop machen können", "more": "Prüfen und analysieren Sie Ihre Daten, passen Sie Ansichten und Filter an und bereiten Sie Ergebnisse für unterschiedliche Empfänger vor. Interaktive HTML-Berichte lassen sich nach dem Speichern auch offline in einem kompatiblen Browser erkunden. Der exportierte Bericht zeigt den Datenstand zum Zeitpunkt der Erstellung.", "step1": "Dateien und Ordner verbinden", "step2": "Daten prüfen und Ergebnisse erkunden", "step3": "Aktualisieren, präsentieren und teilen", "product": "BDA Fusion kennenlernen", "center": "Zum Kundencenter", "productNote": "Produktinformationen und offizielle Demo", "centerNote": "Zugang, Downloads und Installation", "status": "Die Zugänge werden hier später freigeschaltet.", "eyebrow": "BDA Fusion Desktop · Windows-Anwendung", "benefit": "Weniger manuelle Vorbereitung. Mehr Zeit für Ihre Auswertung.", "cap1Title": "Daten verbinden & prüfen", "cap1Text": "Kompatible Excel- und CSV-Dateien oder Ordner zusammenführen, Datenstrukturen prüfen und auffällige Werte erkennen.", "cap2Title": "Aktualisieren statt neu beginnen", "cap2Text": "Neue kompatible Daten aus verbundenen Ordnern per Refresh in den vorbereiteten Arbeitsbereich übernehmen und bestehende Auswertungen weiterverwenden.", "cap3Title": "Analysieren & interpretieren", "cap3Text": "Ergebnisse mit verschiedenen Ansichten, Kennzahlen, Zeiträumen und Filtern erkunden. Analytische Zusammenfassungen helfen, Entwicklungen einzuordnen.", "cap4Title": "Präsentieren & teilen", "cap4Text": "Ergebnisse präsentieren und verfügbare Informationen nach Excel, CSV, PDF oder PowerPoint exportieren. Interaktive HTML-Berichte ermöglichen Empfängern, die enthaltenen Daten mit den verfügbaren Filtern selbst zu erkunden.", "reportNote": "Nach dem Speichern lassen sich HTML-Berichte auch offline in einem kompatiblen Browser erkunden. Sie enthalten den Datenstand bei der Erstellung und aktualisieren sich nicht automatisch."}, "en": {"title": "Do you regularly work with Excel files, CSV exports or other business data?", "intro": "With BDA Fusion Desktop, you connect compatible files and folders, check data quality and create interactive analyses — without coding.", "promise": "No coding. Connect once. Refresh anytime.", "details": "What you can do with BDA Fusion Desktop", "more": "Review and analyse your data, adjust views and filters, and prepare results for different audiences. Once saved, interactive HTML reports can also be explored offline in a compatible browser. The exported report contains a snapshot of the data at the time it was created.", "step1": "Connect files and folders", "step2": "Review data and explore results", "step3": "Refresh, present and share", "product": "Discover BDA Fusion", "center": "Customer Center", "productNote": "Product information and official demo", "centerNote": "Access, downloads and installation", "status": "These links will be activated here at a later date.", "eyebrow": "BDA Fusion Desktop · Windows application", "benefit": "Less manual preparation. More time for your analysis.", "cap1Title": "Connect & review data", "cap1Text": "Bring together compatible Excel and CSV files or folders, check data structures and identify unusual values.", "cap2Title": "Refresh instead of starting over", "cap2Text": "Use Refresh to bring new compatible data from connected folders into your prepared workspace and reuse existing analyses.", "cap3Title": "Analyse & interpret", "cap3Text": "Explore results through different views, KPIs, periods and filters. Analytical summaries help put developments into context.", "cap4Title": "Present & share", "cap4Text": "Present results and export available information to Excel, CSV, PDF or PowerPoint. Interactive HTML reports let recipients explore the included data using the available filters.", "reportNote": "Once saved, HTML reports can also be explored offline in a compatible browser. They contain a snapshot of the data when created and do not refresh automatically."}, "fr": {"title": "Travaillez-vous régulièrement avec des fichiers Excel, des exports CSV ou d’autres données métier ?", "intro": "Avec BDA Fusion Desktop, connectez des fichiers et dossiers compatibles, vérifiez la qualité des données et créez des analyses interactives — sans programmation.", "promise": "No coding. Connect once. Refresh anytime.", "details": "Ce que vous pouvez faire avec BDA Fusion Desktop", "more": "Vérifiez et analysez vos données, adaptez les vues et filtres et préparez les résultats pour différents destinataires. Une fois enregistrés, les rapports HTML interactifs peuvent aussi être explorés hors ligne dans un navigateur compatible. Le rapport exporté contient un instantané des données lors de sa création.", "step1": "Connecter les fichiers et dossiers", "step2": "Vérifier les données et explorer les résultats", "step3": "Actualiser, présenter et partager", "product": "Découvrir BDA Fusion", "center": "Espace client", "productNote": "Informations produit et démo officielle", "centerNote": "Accès, téléchargements et installation", "status": "Ces accès seront activés ici ultérieurement.", "eyebrow": "BDA Fusion Desktop · Application Windows", "benefit": "Moins de préparation manuelle. Plus de temps pour votre analyse.", "cap1Title": "Connecter et vérifier les données", "cap1Text": "Réunissez des fichiers Excel et CSV ou des dossiers compatibles, vérifiez les structures et repérez les valeurs inhabituelles.", "cap2Title": "Actualiser au lieu de recommencer", "cap2Text": "Intégrez de nouvelles données compatibles des dossiers connectés dans votre espace de travail préparé grâce à Refresh et réutilisez vos analyses.", "cap3Title": "Analyser et interpréter", "cap3Text": "Explorez les résultats avec différentes vues, indicateurs, périodes et filtres. Les synthèses analytiques aident à comprendre les évolutions.", "cap4Title": "Présenter et partager", "cap4Text": "Présentez les résultats et exportez les informations disponibles vers Excel, CSV, PDF ou PowerPoint. Les rapports HTML interactifs permettent aux destinataires d’explorer les données incluses avec les filtres disponibles.", "reportNote": "Une fois enregistrés, les rapports HTML peuvent aussi être explorés hors ligne dans un navigateur compatible. Ils contiennent un instantané des données à leur création et ne s’actualisent pas automatiquement."}};function render(){const lang=(document.documentElement.lang||"de").slice(0,2);const copy=data[lang]||data.de;root.querySelectorAll("[data-fusion]").forEach(el=>el.textContent=copy[el.dataset.fusion]||"")}render();new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})})();</script>
+
+<div id="bda-solutions-panel" hidden aria-labelledby="bda-solutions-panel-title">
+ <div class="bda-solutions-panel-head"><strong id="bda-solutions-panel-title" data-solutions-copy="heading"></strong><button type="button" class="bda-solutions-close" aria-label="Schließen">×</button></div>
+ <a class="bda-solutions-feature" href="#bda-fusion-product"><span class="bda-fusion-wordmark" aria-hidden="true">▥</span><span><small data-solutions-copy="productTag"></small><strong>BDA Fusion Desktop <span aria-hidden="true">↗</span></strong><span data-solutions-copy="productDesc"></span><b data-solutions-copy="productAction"></b></span></a>
+ <a class="bda-solutions-service" href="#global"><strong data-solutions-copy="services"></strong><span data-solutions-copy="servicesDesc"></span><b data-solutions-copy="serviceAction"></b></a>
+ <div class="bda-solutions-customer"><div><strong data-solutions-copy="center"></strong><span data-solutions-copy="centerDesc"></span></div><span class="bda-solutions-status" data-solutions-copy="soon"></span></div>
+</div>
+<script id="bda-solutions-menu-js">(function(){const panel=document.getElementById('bda-solutions-panel');const triggers=[...document.querySelectorAll('.bda-solutions-trigger')];const copy={"de": {"heading": "Lösungen & Produkte", "productTag": "UNSER PRODUKT", "productDesc": "Dateien verbinden, Daten prüfen und vorbereitete Auswertungen aktualisieren.", "productAction": "BDA Fusion kennenlernen →", "services": "Individuelle Lösungen", "servicesDesc": "Datenanalyse, Automatisierung und Software für Ihre Anforderungen.", "serviceAction": "Leistungen ansehen →", "center": "Kundencenter", "centerDesc": "Ihr künftiger direkter Zugang zu Downloads und Installation.", "soon": "Zugang in Vorbereitung", "close": "Auswahl schließen"}, "en": {"heading": "Solutions & products", "productTag": "OUR PRODUCT", "productDesc": "Connect files, review data and refresh prepared analyses.", "productAction": "Discover BDA Fusion →", "services": "Custom solutions", "servicesDesc": "Data analytics, automation and software for your requirements.", "serviceAction": "Explore services →", "center": "Customer Center", "centerDesc": "Your future direct access to downloads and installation.", "soon": "Access in preparation", "close": "Close selection"}, "fr": {"heading": "Solutions et produits", "productTag": "NOTRE PRODUIT", "productDesc": "Connectez vos fichiers, vérifiez les données et actualisez vos analyses.", "productAction": "Découvrir BDA Fusion →", "services": "Solutions sur mesure", "servicesDesc": "Analyse de données, automatisation et logiciels selon vos besoins.", "serviceAction": "Découvrir les services →", "center": "Espace client", "centerDesc": "Votre futur accès direct aux téléchargements et à l’installation.", "soon": "Accès en préparation", "close": "Fermer la sélection"}};let opener=null;
+function render(){const d=copy[(document.documentElement.lang||'de').slice(0,2)]||copy.de;panel.querySelectorAll('[data-solutions-copy]').forEach(el=>el.textContent=d[el.dataset.solutionsCopy]||'');panel.querySelector('.bda-solutions-close').setAttribute('aria-label',d.close)}
+function position(){if(!opener||panel.hidden)return;const r=opener.getBoundingClientRect();const header=document.querySelector('header');const bottom=header?header.getBoundingClientRect().bottom:r.bottom;const top=Math.max(12,Math.min(r.bottom+12,bottom+12));panel.style.top=top+'px';panel.style.maxHeight=Math.max(140,window.innerHeight-top-16)+'px';panel.style.left=Math.max(14,Math.min(r.left,window.innerWidth-panel.offsetWidth-14))+'px'}
+function close(focus){panel.hidden=true;triggers.forEach(b=>b.setAttribute('aria-expanded','false'));if(focus&&opener)opener.focus()}
+triggers.forEach(button=>button.addEventListener('click',()=>{if(!panel.hidden&&opener===button){close(false);return}opener=button;panel.hidden=false;triggers.forEach(b=>b.setAttribute('aria-expanded',String(b===button)));position();panel.querySelector('a').focus({preventScroll:true})}));
+panel.querySelector('.bda-solutions-close').addEventListener('click',()=>close(true));document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!triggers.some(b=>b.contains(e.target)))close(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){e.preventDefault();close(true)}});document.addEventListener('focusin',e=>{if(!panel.hidden&&!panel.contains(e.target)&&!triggers.includes(e.target))close(false)});
+panel.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(!target)return;e.preventDefault();close(false);document.querySelector('.mobile-nav')?.classList.remove('open','active');document.querySelector('.mobile-nav-toggle')?.classList.remove('open','active');target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}));window.addEventListener('resize',position);window.addEventListener('scroll',position,{passive:true});render();new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});})();</script>
 </body>
 
 </html>
