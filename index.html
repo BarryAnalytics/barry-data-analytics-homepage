@@ -9940,6 +9940,20 @@ button.nav-live-demo,button.mobile-live-demo{font-family:inherit;cursor:pointer}
 .mobile-nav .bda-solutions-trigger>span:last-child{font-size:1.1rem;color:#80f8dc}
 @media(prefers-reduced-motion:reduce){.nav-center .bda-solutions-trigger,.nav-center .bda-solutions-trigger>span:last-child{transition:none}}
 </style>
+<style id="bda-hero-balanced-vertical-spacing">
+@media(min-width:900px){
+ #hero .hero-left{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(18px,1.7vw,28px);padding-top:clamp(26px,2.5vw,38px);padding-bottom:clamp(26px,2.5vw,38px)}
+ #hero .hero-left>.hero-pill{align-self:flex-start;margin:0}
+ #hero .hero-left>.hero-title{margin:0;line-height:1.24}
+ #hero .hero-left>.hero-subtitle{margin:0;line-height:1.8}
+ #hero .hero-left>.bda-hero-scope-title{margin:0;line-height:1.55}
+ #hero .hero-left>.hero-highlight{margin:0;line-height:1.8}
+ #hero .hero-left>.hero-cta-row{margin:0;padding:0;gap:12px;flex-wrap:wrap}
+ #hero .hero-left>.bda-hero-assistant-link{margin:0;align-self:flex-start}
+}
+@media(max-width:899px){#hero .hero-left{justify-content:flex-start}}
+</style>
+
 </head>
 
 <body>
@@ -10026,7 +10040,7 @@ button.nav-live-demo,button.mobile-live-demo{font-family:inherit;cursor:pointer}
 
       <!-- ⭐ EINZIGER Mobile-Burger -->
 
-      <div class="mobile-nav-toggle">
+      <div class="mobile-nav-toggle" role="button" tabindex="0" aria-label="Menü öffnen" aria-expanded="false">
 
         <span></span>
 
@@ -17891,6 +17905,54 @@ function close(focus){panel.hidden=true;triggers.forEach(b=>b.setAttribute('aria
 triggers.forEach(button=>button.addEventListener('click',()=>{if(!panel.hidden&&opener===button){close(false);return}opener=button;panel.hidden=false;triggers.forEach(b=>b.setAttribute('aria-expanded',String(b===button)));position();panel.querySelector('a').focus({preventScroll:true})}));
 panel.querySelector('.bda-solutions-close').addEventListener('click',()=>close(true));document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!triggers.some(b=>b.contains(e.target)))close(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){e.preventDefault();close(true)}});document.addEventListener('focusin',e=>{if(!panel.hidden&&!panel.contains(e.target)&&!triggers.includes(e.target))close(false)});
 panel.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(!target)return;e.preventDefault();close(false);document.querySelector('.mobile-nav')?.classList.remove('open','active');document.querySelector('.mobile-nav-toggle')?.classList.remove('open','active');target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}));window.addEventListener('resize',position);window.addEventListener('scroll',position,{passive:true});render();new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});})();</script>
+<script id="bda-mobile-accessibility-js">(function(){const toggle=document.querySelector('.mobile-nav-toggle');if(!toggle)return;const labels={de:['Menü öffnen','Menü schließen'],en:['Open menu','Close menu'],fr:['Ouvrir le menu','Fermer le menu']};function sync(){const lang=(document.documentElement.lang||'de').slice(0,2);const text=labels[lang]||labels.de;const launch=document.querySelector('.bda-chat-launch');if(launch)launch.setAttribute('aria-label',lang==='fr'?'Ouvrir le chat avec Christine':lang==='en'?'Open chat with Christine':'Chat mit Christine öffnen');const open=document.querySelector('.mobile-nav').classList.contains('active');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',text[open?1:0])}toggle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle.click()}});new MutationObserver(sync).observe(document.querySelector('.mobile-nav'),{attributes:true,attributeFilter:['class']});new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync()})();</script>
+<style id="bda-responsive-comfort-final">
+/* Keep layout sizing independent of content length and translations. */
+header .nav{box-sizing:border-box;max-width:100%;min-width:0}
+#hero>*{min-width:0}main section{min-width:0}main p,main h1,main h2,main h3{overflow-wrap:break-word}
+@media(min-width:901px) and (max-width:1200px){header .nav{padding-left:14px;padding-right:14px;gap:12px}.nav-center{gap:14px}.nav-link{font-size:.86rem}.nav-right{gap:7px}.mobile-header-cta{margin-right:0;font-size:.78rem;padding:9px 10px}.nav-center .bda-solutions-trigger{padding:8px 10px}}
+@media(max-width:900px){
+ header{width:100%;box-sizing:border-box}header .nav{width:100%;height:auto;min-height:72px;display:flex;gap:10px!important;padding:10px 12px!important}
+ header .nav-left{flex:0 0 40px;min-width:0}header .logo{width:40px!important;height:40px!important}
+ header .nav-center{display:none!important}header .nav-right{display:flex;flex:1;min-width:0;justify-content:flex-end;gap:9px}
+ header .mobile-header-cta{margin:0;min-width:0;max-width:140px;white-space:normal;line-height:1.35;padding:9px 10px;font-size:.78rem;min-height:42px;flex:0 1 140px}
+ header .lang-switch{padding:2px!important;gap:2px!important;flex-shrink:0}header .lang-btn{min-width:31px;min-height:36px;font-size:.75rem!important;padding:5px!important}
+ header .mobile-nav-toggle{display:flex!important;flex:0 0 34px;width:34px;min-width:34px;min-height:42px;transform:none!important;justify-content:center}
+ .mobile-nav{overflow-y:auto;overscroll-behavior:contain}.mobile-nav-inner{max-width:100%;box-sizing:border-box}
+ #hero .hero-left{height:auto;justify-content:flex-start;gap:0;padding:24px!important}#hero .hero-title{font-size:clamp(1.7rem,5.7vw,2.2rem)!important;line-height:1.28!important;margin:22px 0 20px!important}
+ #hero .hero-subtitle,#hero .hero-highlight{font-size:1rem!important;line-height:1.8!important;color:#d0e0eb}
+ #hero .bda-hero-scope-title{font-size:1rem;line-height:1.6;margin:22px 0 10px}
+ #hero .hero-cta-row{margin-top:24px;gap:12px}#hero .hero-cta-row .btn{font-size:.9rem!important;padding:12px 15px!important;min-height:44px;white-space:normal!important;line-height:1.4}
+ #hero .bda-hero-assistant-link{min-height:42px;margin-top:20px;font-size:.82rem}
+ #hero .hero-right{height:auto;min-width:0}#hero .bda-step-button{min-height:88px}#hero .bda-step-button strong{font-size:.88rem;line-height:1.5}
+ #hero .bda-view-tabs button{min-height:44px;font-size:.85rem}.bda-detail-text,.bda-visual-note{font-size:.9rem;line-height:1.75}
+ .bda-proof-card p{font-size:.9rem;line-height:1.75}.bda-proof-card h3{font-size:1rem;line-height:1.5}.bda-proof-open{font-size:.86rem;display:block;padding-top:9px}
+ #contact input,#contact select,#contact textarea{font-size:16px!important;min-height:44px;max-width:100%;box-sizing:border-box}#contact textarea{min-height:135px}
+ .section-subtitle,.ueber-uns-text>p,.contact-info>p{font-size:.95rem!important;line-height:1.8!important}.bda-decision-note{font-size:.82rem;line-height:1.7}
+ #contact label{font-size:.9rem;line-height:1.5}.bda-faq-item summary{min-height:48px;line-height:1.6}
+ #bda-assistant{right:12px!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;width:auto!important}
+ #bda-assistant .bda-chat-launch{width:52px!important;height:52px!important;min-height:52px!important;padding:5px!important;border-radius:50%!important;justify-content:center;gap:0}
+ #bda-assistant .bda-chat-launch>div:not(.bda-chat-avatar),#bda-assistant .bda-chat-launch>span:not(.bda-chat-avatar){display:none}
+ #bda-assistant .bda-chat-launch img{width:40px;height:40px;object-fit:cover;border-radius:50%}
+ #bda-assistant .bda-chat-teaser{display:none!important}
+ #bda-assistant .bda-chat-panel{position:fixed;left:10px!important;right:10px!important;top:10px!important;bottom:calc(76px + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;max-height:none!important;max-width:none!important}
+ #bda-demo-switcher{left:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:calc(100vw - 92px)}
+ #bda-demo-switcher .bda-switch-btn{min-height:44px;padding:10px 13px;font-size:.78rem;box-sizing:border-box;max-width:100%}
+ #bda-whatsapp-cta{left:12px;bottom:calc(72px + env(safe-area-inset-bottom));width:44px;height:44px;min-height:44px}
+ #scroll-up{display:none!important}main.wrapper{padding-bottom:100px!important}
+}
+@media(max-width:480px){
+ header .nav{gap:7px!important;padding:9px 10px!important}header .nav-right{gap:6px}header .nav-left{flex-basis:34px}header .logo{width:34px!important;height:34px!important}
+ header .mobile-header-cta{font-size:.72rem;padding:7px;flex-basis:100px;max-width:100px}header .lang-btn{min-width:29px;min-height:36px}header .mobile-nav-toggle{flex-basis:30px;min-width:30px;width:30px}
+ main.wrapper{padding-left:12px!important;padding-right:12px!important;width:100%;box-sizing:border-box}
+ #hero .hero-left,#hero .hero-right{padding:22px 18px!important}#hero .hero-pill{max-width:100%;box-sizing:border-box;white-space:normal;line-height:1.6;font-size:.66rem}
+ #hero .hero-cta-row{display:flex;flex-direction:column;align-items:stretch}#hero .hero-cta-row .btn{justify-content:center;text-align:center;width:100%}
+ .bda-start-shell,.bda-proof-shell,.bda-faq-shell{padding:20px 16px}.bda-proof-grid{grid-template-columns:minmax(0,1fr)}
+ .bda-start-card,.bda-proof-card,.bda-faq-item{min-width:0;box-sizing:border-box}.section-title{font-size:1.5rem;line-height:1.35}
+ #bda-fusion-product{padding:22px 18px}.fusion-product-access{padding:18px}.fusion-product-brand strong{font-size:1.05rem}.fusion-product-brand small{line-height:1.6}
+ #bda-references .bda-reference-logo-link{max-width:calc(100vw - 76px)}
+}
+</style>
 </body>
 
 </html>
