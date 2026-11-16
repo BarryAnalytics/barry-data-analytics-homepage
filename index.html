@@ -17953,6 +17953,18 @@ header .nav{box-sizing:border-box;max-width:100%;min-width:0}
  #bda-references .bda-reference-logo-link{max-width:calc(100vw - 76px)}
 }
 </style>
+<style id="bda-contact-mobile-containment">
+@media(max-width:900px){
+ #contact .contact{grid-template-columns:minmax(0,1fr)!important;min-width:0;width:100%;box-sizing:border-box}
+ #contact .contact-left,#contact .contact-form{min-width:0;max-width:100%;width:100%;box-sizing:border-box}
+ #contact .process-cards{min-width:0;grid-template-columns:minmax(0,1fr)!important}
+ #contact .process-card,#contact .bda-flow-mini,#contact .bda-whatsapp-inline{min-width:0;max-width:100%;box-sizing:border-box}
+ #contact h3,#contact h4,#contact p,#contact li,#contact label{overflow-wrap:anywhere}
+ #contact .bda-flow-mini ol{min-width:0;max-width:100%;box-sizing:border-box}
+ #contact .bda-whatsapp-inline{white-space:normal}
+}
+@media(min-width:600px) and (max-width:900px){#contact .process-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
 </body>
 
 </html>
