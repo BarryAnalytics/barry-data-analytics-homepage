@@ -11214,6 +11214,7 @@ button.nav-live-demo,button.mobile-live-demo{font-family:inherit;cursor:pointer}
   <div class="contact">
 
     <div class="contact-left">
+<p class="bda-form-focus-note" data-i18n="enquiry_scope" style="margin:0 0 18px;line-height:1.6"></p>
 
 
 
@@ -11333,7 +11334,7 @@ button.nav-live-demo,button.mobile-live-demo{font-family:inherit;cursor:pointer}
 
   <input type="hidden" id="language" name="language" value="de">
 
-  <p class="bda-form-focus-note" data-i18n="enquiry_scope" style="margin:0 0 18px;line-height:1.6"></p>
+  
   <div id="bda-focus-intent" class="bda-focus-intent" hidden><strong data-i18n="intent_label"></strong> <span id="bda-focus-intent-text"></span></div>
 
 
@@ -17997,6 +17998,25 @@ Object.assign(languageData.en, {"summary_intro":"Less manual work, clearer infor
 Object.assign(languageData.fr, {"summary_intro":"Moins de tâches manuelles, des informations plus claires et des processus mieux connectés. Nous convenons des résultats visés selon votre projet.","booking_button":"Planifier un premier échange sans engagement","booking_heading":"Parlons de votre projet.","about_approach_title":"Compréhension métier et réalisation technique avec un même partenaire.","global_title":"Quel défi souhaitez-vous relever ?","summary_title":"Ce qui peut être amélioré dans votre entreprise","booking_note":"30 minutes · gratuit · en ligne via Microsoft Teams","hero_subtitle":"Nous conseillons les entreprises et développons des solutions adaptées aux données, aux processus et aux applications numériques – des premiers besoins à la mise en œuvre.","global_subtitle":"Données dispersées, rapports chronophages, tâches manuelles ou systèmes déconnectés ? Ensemble, nous identifions les améliorations pertinentes.","about_approach_text":"Nous relions vos exigences métier à la donnée, aux workflows automatisés et au développement logiciel. Vous disposez de contacts directs et de prochaines étapes claires.","process_step2_text":"Nous échangeons sur votre situation, vos objectifs et vos priorités pour définir une démarche claire et un périmètre de prestations précis.","process_step2_title":"Vos besoins déterminent la solution."});
 applyLanguage(document.documentElement.lang || "de");</script>
 <script src="/assets/js/bda-demo-navigation.js?v=20261123"></script>
+<style id="bda-balanced-enquiry-20261125">
+#contact .contact{align-items:start;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:28px}
+#contact .contact-left,#contact .contact-form{min-width:0}
+#contact .contact-left>[data-i18n="enquiry_scope"]{margin:0 0 22px!important;font-size:1rem;line-height:1.65;color:#cbd5e1}
+#contact .contact-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 14px;padding-top:0;align-content:start}
+#contact .contact-form>.field,#contact .contact-form>.bda-focus-intent,#contact .contact-form>.contact-legal-box,#contact .contact-form>.btn,#contact .contact-form>.contact-note{grid-column:1/-1}
+#contact .contact-form>.field:has(#name),#contact .contact-form>.field:has(#company),#contact .contact-form>.field:has(#email),#contact .contact-form>.field:has(#type){grid-column:auto}
+#contact .contact-form>.field{margin:0;min-width:0}
+#contact .field input,#contact .field select,#contact .field textarea{box-sizing:border-box;width:100%;min-width:0;font-size:1rem}
+#contact .field label{font-size:.9rem;line-height:1.45}
+#contact .field textarea{min-height:145px;resize:vertical}
+#contact .contact-form .bda-form-focus-note{line-height:1.5;margin-bottom:0}
+#contact .contact-form .contact-legal-box{margin-top:0}
+#contact .process-card{min-height:150px}
+#contact .process-card p{font-size:.9rem;line-height:1.55}
+#contact .bda-flow-mini li{font-size:.9rem;line-height:1.5}
+@media(max-width:880px){#contact .contact{grid-template-columns:1fr;gap:24px}#contact .contact-form{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){#contact .contact-form{grid-template-columns:1fr}#contact .contact-form>.field:has(#name),#contact .contact-form>.field:has(#company),#contact .contact-form>.field:has(#email),#contact .contact-form>.field:has(#type){grid-column:1/-1}#contact .field textarea{min-height:140px}}
+</style>
 </body>
 
 </html>
