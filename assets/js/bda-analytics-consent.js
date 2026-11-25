@@ -19,7 +19,7 @@
     const page=new URL(location.origin+location.pathname), input=new URL(location.href);
     ['utm_source','utm_medium','utm_campaign'].forEach(k=>{const v=input.searchParams.get(k);if(v&&/^[a-zA-Z0-9_-]{1,100}$/.test(v))page.searchParams.set(k,v);});
     let ref=''; try {ref=new URL(document.referrer).origin;} catch (_) {}
-    command('config',id,{page_location:page.href,page_referrer:ref,page_title:location.pathname,allow_google_signals:false,allow_ad_personalization_signals:false,send_page_view:true});
+    command('config',id,{page_location:page.href,page_referrer:ref,page_title:location.pathname,allow_google_signals:false,allow_ad_personalization_signals:false,send_page_view:true,cookie_expires:15552000});
     const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.append(script);
   }
   function stop() {
