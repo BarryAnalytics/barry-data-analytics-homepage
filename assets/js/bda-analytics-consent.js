@@ -3,12 +3,15 @@
   'use strict';
   if (window.BDAAnalytics || !/^https?:$/.test(location.protocol) || !['barrydataanalytics.de','www.barrydataanalytics.de'].includes(location.hostname)) return;
   const id = 'G-SGJSLM63CB', key = 'bda-analytics-consent-v1';
+  // Public, non-tracking preview: exercise the real dialog without resetting a saved choice.
+  const preview = new URL(location.href).searchParams.get('cookie-preview') === '1';
   let allowed = false, loaded = false;
   const denied = {analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'};
-  function read() {try {const x=JSON.parse(localStorage.getItem(key));return x && Date.now()-x.at<15552000000 ? x.choice : null;} catch (_) {return null;}}
-  function write(choice) {try {localStorage.setItem(key,JSON.stringify({choice,at:Date.now()}));}catch (_) {}}
+  function read() {if(preview)return null;try {const x=JSON.parse(localStorage.getItem(key));return x && Date.now()-x.at<15552000000 ? x.choice : null;} catch (_) {return null;}}
+  function write(choice) {if(preview)return;try {localStorage.setItem(key,JSON.stringify({choice,at:Date.now()}));}catch (_) {}}
   function command() {window.dataLayer.push(arguments);}
   function start() {
+    if(preview)return;
     allowed=true; window['ga-disable-'+id]=false;
     if (loaded) {command('consent','update',{...denied,analytics_storage:'granted'}); return;}
     loaded=true; window.dataLayer=window.dataLayer||[]; window.gtag=command;
@@ -23,6 +26,7 @@
     const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.append(script);
   }
   function stop() {
+    if(preview)return;
     allowed=false;window['ga-disable-'+id]=true;
     if(loaded)command('consent','update',denied);
     document.cookie.split(';').forEach(part=>{const name=part.trim().split('=')[0];if(!/^_ga(?:_|$)/.test(name))return;
