@@ -65,7 +65,7 @@
       autoOpenDue=false;const choice=read();if(choice!=='yes'&&choice!=='no')showChoice(true);
     }
     function scheduleAutoOpen(){
-      cancelAutoOpen();autoOpenTimer=setTimeout(()=>{autoOpenTimer=null;autoOpenDue=true;openWhenVisible();},20000);
+      cancelAutoOpen();autoOpenTimer=setTimeout(()=>{autoOpenTimer=null;autoOpenDue=true;openWhenVisible();},10000);
     }
     document.addEventListener('visibilitychange',openWhenVisible);
     yes.onclick=()=>{cancelAutoOpen();write('yes');start();showChoice(false);(returnFocus&&returnFocus!==document.body?returnFocus:settings).focus({preventScroll:true});};no.onclick=()=>{cancelAutoOpen();write('no');stop();showChoice(false);(returnFocus&&returnFocus!==document.body?returnFocus:settings).focus({preventScroll:true});};settings.onclick=()=>{cancelAutoOpen();showChoice(true);no.focus();};
