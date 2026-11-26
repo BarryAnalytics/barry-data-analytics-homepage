@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.BDAAnalytics || !/^https?:$/.test(location.protocol) || !['barrydataanalytics.de','www.barrydataanalytics.de'].includes(location.hostname)) return;
-  const id = 'G-SGJSLM63CB', key = 'bda-analytics-consent-v1';
+  const id = 'G-SGJSLM63CB', key = 'bda-analytics-consent-v2';
   // Public, non-tracking preview: exercise the real dialog without resetting a saved choice.
   const preview = new URL(location.href).searchParams.get('cookie-preview') === '1';
   let allowed = false, loaded = false;
