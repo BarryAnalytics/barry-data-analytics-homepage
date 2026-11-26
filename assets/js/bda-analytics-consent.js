@@ -54,9 +54,20 @@
       if(e.key==='Escape'){e.preventDefault();if(read()==='yes'||read()==='no'){showChoice(false);settings.focus({preventScroll:true});}return;}
       if(e.key==='Tab'){if(e.shiftKey&&document.activeElement===no){e.preventDefault();privacy.focus();}else if(!e.shiftKey&&document.activeElement===privacy){e.preventDefault();no.focus();}}
     });
-    yes.onclick=()=>{write('yes');start();showChoice(false);(returnFocus&&returnFocus!==document.body?returnFocus:settings).focus({preventScroll:true});};no.onclick=()=>{write('no');stop();showChoice(false);(returnFocus&&returnFocus!==document.body?returnFocus:settings).focus({preventScroll:true});};settings.onclick=()=>{showChoice(true);no.focus();};
-    const previous=read();showChoice(previous!=='yes'&&previous!=='no');if(previous==='yes')start();else stop();
-    addEventListener('storage',e=>{if(e.key===key){const choice=read();if(choice==='yes')start();else stop();showChoice(choice!=='yes'&&choice!=='no');}});
+    let autoOpenTimer=null,autoOpenDue=false;
+    function cancelAutoOpen(){clearTimeout(autoOpenTimer);autoOpenTimer=null;autoOpenDue=false;}
+    function openWhenVisible(){
+      if(!autoOpenDue||document.hidden)return;
+      autoOpenDue=false;const choice=read();if(choice!=='yes'&&choice!=='no')showChoice(true);
+    }
+    function scheduleAutoOpen(){
+      cancelAutoOpen();autoOpenTimer=setTimeout(()=>{autoOpenTimer=null;autoOpenDue=true;openWhenVisible();},60000);
+    }
+    document.addEventListener('visibilitychange',openWhenVisible);
+    yes.onclick=()=>{cancelAutoOpen();write('yes');start();showChoice(false);(returnFocus&&returnFocus!==document.body?returnFocus:settings).focus({preventScroll:true});};no.onclick=()=>{cancelAutoOpen();write('no');stop();showChoice(false);(returnFocus&&returnFocus!==document.body?returnFocus:settings).focus({preventScroll:true});};settings.onclick=()=>{cancelAutoOpen();showChoice(true);no.focus();};
+    const previous=read();showChoice(false);if(previous==='yes')start();else stop();
+    if(previous!=='yes'&&previous!=='no')scheduleAutoOpen();
+    addEventListener('storage',e=>{if(e.key===key){const choice=read();if(choice==='yes')start();else stop();cancelAutoOpen();showChoice(false);if(choice!=='yes'&&choice!=='no')scheduleAutoOpen();}});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
 })();
